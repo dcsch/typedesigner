@@ -12,6 +12,7 @@
 #import "TCDataInput.h"
 #import "TCHeadTable.h"
 #import "TCHheaTable.h"
+#import "TCMaxpTable.h"
 
 @implementation TCTableFactory
 
@@ -100,9 +101,9 @@
 //        case Table.loca:
 //            t = new LocaTable(de, dis, font.getHeadTable(), font.getMaxpTable());
 //            break;
-//        case Table.maxp:
-//            t = new MaxpTable(de, dis);
-//            break;
+        case TCTable_maxp:
+            table = [[TCMaxpTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
 //        case Table.name:
 //            t = new NameTable(de, dis);
 //            break;

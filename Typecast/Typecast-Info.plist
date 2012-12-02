@@ -7,6 +7,20 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>NSDocumentClass</key>
+			<string>TCDocument</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>otf</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>OpenType font</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ttf</string>
@@ -14,7 +28,7 @@
 			<key>NSDocumentClass</key>
 			<string>TCDocument</string>
 			<key>CFBundleTypeName</key>
-			<string>TrueType Font</string>
+			<string>TrueType font</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
