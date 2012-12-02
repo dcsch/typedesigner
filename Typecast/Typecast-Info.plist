@@ -9,6 +9,20 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>ttf</string>
+			</array>
+			<key>NSDocumentClass</key>
+			<string>TCDocument</string>
+			<key>CFBundleTypeName</key>
+			<string>TrueType Font</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>typecast</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>

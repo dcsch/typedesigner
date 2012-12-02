@@ -1,16 +1,13 @@
 //
-//  TCDocument.h
+//  TCFontCollection.m
 //  Typecast
 //
 //  Created by David Schweinsberg on 1/12/12.
 //  Copyright (c) 2012 David Schweinsberg. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "TCFont.h"
+#import "TCFontCollection.h"
 
-@interface TCDocument : NSDocument
-
-@property (strong) TCFont *font;
+@implementation TCFontCollection
 
 @end

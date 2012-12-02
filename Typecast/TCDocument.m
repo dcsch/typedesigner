@@ -7,6 +7,8 @@
 //
 
 #import "TCDocument.h"
+#import "TCTablesWindowController.h"
+#import "TCFont.h"
 
 @implementation TCDocument
 
@@ -19,11 +21,17 @@
     return self;
 }
 
-- (NSString *)windowNibName
+//- (NSString *)windowNibName
+//{
+//    // Override returning the nib file name of the document
+//    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
+//    return @"TCDocument";
+//}
+
+- (void)makeWindowControllers
 {
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-    return @"TCDocument";
+    NSWindowController *controller = [[TCTablesWindowController alloc] initWithWindowNibName:@"TablesWindow"];
+    [self addWindowController:controller];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
@@ -48,11 +56,8 @@
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
+    _font = [[TCFont alloc] initWithData:data];
+
     return YES;
 }
 

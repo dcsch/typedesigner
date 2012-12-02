@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630AA38F166AD700001BD6BF /* TCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA38E166AD700001BD6BF /* TCAppDelegate.m */; };
+		630AA394166B2483001BD6BF /* TCTablesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA392166B2483001BD6BF /* TCTablesWindowController.m */; };
+		630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630AA393166B2483001BD6BF /* TablesWindow.xib */; };
+		630AA398166B331D001BD6BF /* TCTableFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA397166B331C001BD6BF /* TCTableFactory.m */; };
+		630AA39C166B5A5F001BD6BF /* TCHeadTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA39B166B5A5F001BD6BF /* TCHeadTable.m */; };
+		633D7869166A17B400FBFFC3 /* TCFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7868166A17B400FBFFC3 /* TCFont.m */; };
+		633D786C166A184B00FBFFC3 /* TCTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D786B166A184B00FBFFC3 /* TCTable.m */; };
+		633D786F166A189500FBFFC3 /* TCDirectoryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D786E166A189500FBFFC3 /* TCDirectoryEntry.m */; };
+		633D7872166A1B5100FBFFC3 /* TCFontCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7871166A1B5100FBFFC3 /* TCFontCollection.m */; };
+		633D7875166A1F8D00FBFFC3 /* TCTableDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */; };
+		633D7878166A303500FBFFC3 /* TCDataInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7877166A303500FBFFC3 /* TCDataInput.m */; };
 		6373B1B0166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
 		6373B1BA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1B8166A11B5007EC53F /* InfoPlist.strings */; };
 		6373B1BC166A11B5007EC53F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1BB166A11B5007EC53F /* main.m */; };
-		6373B1C0166A11B5007EC53F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1BE166A11B5007EC53F /* Credits.rtf */; };
 		6373B1C3166A11B5007EC53F /* TCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1C2166A11B5007EC53F /* TCDocument.m */; };
 		6373B1C6166A11B5007EC53F /* TCDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1C4166A11B5007EC53F /* TCDocument.xib */; };
 		6373B1C9166A11B5007EC53F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1C7166A11B5007EC53F /* MainMenu.xib */; };
@@ -31,6 +41,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		630AA38D166AD700001BD6BF /* TCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAppDelegate.h; sourceTree = "<group>"; };
+		630AA38E166AD700001BD6BF /* TCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAppDelegate.m; sourceTree = "<group>"; };
+		630AA391166B2483001BD6BF /* TCTablesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTablesWindowController.h; sourceTree = "<group>"; };
+		630AA392166B2483001BD6BF /* TCTablesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTablesWindowController.m; sourceTree = "<group>"; };
+		630AA393166B2483001BD6BF /* TablesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TablesWindow.xib; sourceTree = "<group>"; };
+		630AA396166B331C001BD6BF /* TCTableFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableFactory.h; sourceTree = "<group>"; };
+		630AA397166B331C001BD6BF /* TCTableFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableFactory.m; sourceTree = "<group>"; };
+		630AA39A166B5A5F001BD6BF /* TCHeadTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHeadTable.h; sourceTree = "<group>"; };
+		630AA39B166B5A5F001BD6BF /* TCHeadTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHeadTable.m; sourceTree = "<group>"; };
+		633D7867166A17B400FBFFC3 /* TCFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFont.h; sourceTree = "<group>"; };
+		633D7868166A17B400FBFFC3 /* TCFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFont.m; sourceTree = "<group>"; };
+		633D786A166A184B00FBFFC3 /* TCTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTable.h; sourceTree = "<group>"; };
+		633D786B166A184B00FBFFC3 /* TCTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTable.m; sourceTree = "<group>"; };
+		633D786D166A189500FBFFC3 /* TCDirectoryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDirectoryEntry.h; sourceTree = "<group>"; };
+		633D786E166A189500FBFFC3 /* TCDirectoryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDirectoryEntry.m; sourceTree = "<group>"; };
+		633D7870166A1B5100FBFFC3 /* TCFontCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFontCollection.h; sourceTree = "<group>"; };
+		633D7871166A1B5100FBFFC3 /* TCFontCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFontCollection.m; sourceTree = "<group>"; };
+		633D7873166A1F8D00FBFFC3 /* TCTableDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableDirectory.h; sourceTree = "<group>"; };
+		633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableDirectory.m; sourceTree = "<group>"; };
+		633D7876166A303500FBFFC3 /* TCDataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDataInput.h; sourceTree = "<group>"; };
+		633D7877166A303500FBFFC3 /* TCDataInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDataInput.m; sourceTree = "<group>"; };
 		6373B1AB166A11B5007EC53F /* Typecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Typecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6373B1AF166A11B5007EC53F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6373B1B2166A11B5007EC53F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -40,7 +71,6 @@
 		6373B1B9166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373B1BB166A11B5007EC53F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6373B1BD166A11B5007EC53F /* Typecast-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Typecast-Prefix.pch"; sourceTree = "<group>"; };
-		6373B1BF166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		6373B1C1166A11B5007EC53F /* TCDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCDocument.h; sourceTree = "<group>"; };
 		6373B1C2166A11B5007EC53F /* TCDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCDocument.m; sourceTree = "<group>"; };
 		6373B1C5166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TCDocument.xib; sourceTree = "<group>"; };
@@ -74,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		630AA399166B5A17001BD6BF /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				630AA39A166B5A5F001BD6BF /* TCHeadTable.h */,
+				630AA39B166B5A5F001BD6BF /* TCHeadTable.m */,
+			);
+			name = Tables;
+			sourceTree = "<group>";
+		};
 		6373B1A0166A11B5007EC53F = {
 			isa = PBXGroup;
 			children = (
@@ -116,11 +155,31 @@
 		6373B1B5166A11B5007EC53F /* Typecast */ = {
 			isa = PBXGroup;
 			children = (
+				630AA399166B5A17001BD6BF /* Tables */,
 				6373B1C1166A11B5007EC53F /* TCDocument.h */,
 				6373B1C2166A11B5007EC53F /* TCDocument.m */,
 				6373B1C4166A11B5007EC53F /* TCDocument.xib */,
 				6373B1C7166A11B5007EC53F /* MainMenu.xib */,
 				6373B1B6166A11B5007EC53F /* Supporting Files */,
+				633D7867166A17B400FBFFC3 /* TCFont.h */,
+				633D7868166A17B400FBFFC3 /* TCFont.m */,
+				633D786A166A184B00FBFFC3 /* TCTable.h */,
+				633D786B166A184B00FBFFC3 /* TCTable.m */,
+				633D786D166A189500FBFFC3 /* TCDirectoryEntry.h */,
+				633D786E166A189500FBFFC3 /* TCDirectoryEntry.m */,
+				633D7870166A1B5100FBFFC3 /* TCFontCollection.h */,
+				633D7871166A1B5100FBFFC3 /* TCFontCollection.m */,
+				633D7873166A1F8D00FBFFC3 /* TCTableDirectory.h */,
+				633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */,
+				633D7876166A303500FBFFC3 /* TCDataInput.h */,
+				633D7877166A303500FBFFC3 /* TCDataInput.m */,
+				630AA38D166AD700001BD6BF /* TCAppDelegate.h */,
+				630AA38E166AD700001BD6BF /* TCAppDelegate.m */,
+				630AA391166B2483001BD6BF /* TCTablesWindowController.h */,
+				630AA392166B2483001BD6BF /* TCTablesWindowController.m */,
+				630AA393166B2483001BD6BF /* TablesWindow.xib */,
+				630AA396166B331C001BD6BF /* TCTableFactory.h */,
+				630AA397166B331C001BD6BF /* TCTableFactory.m */,
 			);
 			path = Typecast;
 			sourceTree = "<group>";
@@ -132,7 +191,6 @@
 				6373B1B8166A11B5007EC53F /* InfoPlist.strings */,
 				6373B1BB166A11B5007EC53F /* main.m */,
 				6373B1BD166A11B5007EC53F /* Typecast-Prefix.pch */,
-				6373B1BE166A11B5007EC53F /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -229,9 +287,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6373B1BA166A11B5007EC53F /* InfoPlist.strings in Resources */,
-				6373B1C0166A11B5007EC53F /* Credits.rtf in Resources */,
 				6373B1C6166A11B5007EC53F /* TCDocument.xib in Resources */,
 				6373B1C9166A11B5007EC53F /* MainMenu.xib in Resources */,
+				630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +326,16 @@
 			files = (
 				6373B1BC166A11B5007EC53F /* main.m in Sources */,
 				6373B1C3166A11B5007EC53F /* TCDocument.m in Sources */,
+				633D7869166A17B400FBFFC3 /* TCFont.m in Sources */,
+				633D786C166A184B00FBFFC3 /* TCTable.m in Sources */,
+				633D786F166A189500FBFFC3 /* TCDirectoryEntry.m in Sources */,
+				633D7872166A1B5100FBFFC3 /* TCFontCollection.m in Sources */,
+				633D7875166A1F8D00FBFFC3 /* TCTableDirectory.m in Sources */,
+				633D7878166A303500FBFFC3 /* TCDataInput.m in Sources */,
+				630AA38F166AD700001BD6BF /* TCAppDelegate.m in Sources */,
+				630AA394166B2483001BD6BF /* TCTablesWindowController.m in Sources */,
+				630AA398166B331D001BD6BF /* TCTableFactory.m in Sources */,
+				630AA39C166B5A5F001BD6BF /* TCHeadTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +364,6 @@
 				6373B1B9166A11B5007EC53F /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		6373B1BE166A11B5007EC53F /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6373B1BF166A11B5007EC53F /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		6373B1C4166A11B5007EC53F /* TCDocument.xib */ = {
@@ -389,6 +449,7 @@
 		6373B1E1166A11B5007EC53F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Typecast/Typecast-Prefix.pch";
@@ -401,6 +462,7 @@
 		6373B1E2166A11B5007EC53F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Typecast/Typecast-Prefix.pch";
@@ -459,6 +521,7 @@
 				6373B1E2166A11B5007EC53F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6373B1E3166A11B5007EC53F /* Build configuration list for PBXNativeTarget "TypecastTests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +530,7 @@
 				6373B1E5166A11B5007EC53F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
