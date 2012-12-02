@@ -30,21 +30,28 @@
     return self;
 }
 
-- (uint32_t)readInt
+- (int32_t)readInt
 {
-    uint32_t value = CFSwapInt32BigToHost(*(uint32_t *)(_bytes + _offset));
+    int32_t value = CFSwapInt32BigToHost(*(uint32_t *)(_bytes + _offset));
     _offset += 4;
     return value;
 }
 
-- (uint16_t)readShort
+- (int16_t)readShort
+{
+    int16_t value = CFSwapInt16BigToHost(*(uint16_t *)(_bytes + _offset));
+    _offset += 2;
+    return value;
+}
+
+- (uint16_t)readUnsignedShort
 {
     uint16_t value = CFSwapInt16BigToHost(*(uint16_t *)(_bytes + _offset));
     _offset += 2;
     return value;
 }
 
-- (uint64_t)readLong
+- (int64_t)readLong
 {
     uint64_t value = CFSwapInt64BigToHost(*(uint64_t *)(_bytes + _offset));
     _offset += 8;

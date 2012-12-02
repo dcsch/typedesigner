@@ -13,7 +13,6 @@
 
 @interface TCHeadTable : TCTable
 
-@property (strong) TCDirectoryEntry *directoryEntry;
 @property uint32_t versionNumber;
 @property uint32_t fontRevision;
 @property uint32_t checkSumAdjustment;

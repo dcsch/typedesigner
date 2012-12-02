@@ -12,6 +12,7 @@
 		630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630AA393166B2483001BD6BF /* TablesWindow.xib */; };
 		630AA398166B331D001BD6BF /* TCTableFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA397166B331C001BD6BF /* TCTableFactory.m */; };
 		630AA39C166B5A5F001BD6BF /* TCHeadTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA39B166B5A5F001BD6BF /* TCHeadTable.m */; };
+		631D27D5166BF5DB00AB692C /* TCHheaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27D4166BF5DB00AB692C /* TCHheaTable.m */; };
 		633D7869166A17B400FBFFC3 /* TCFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7868166A17B400FBFFC3 /* TCFont.m */; };
 		633D786C166A184B00FBFFC3 /* TCTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D786B166A184B00FBFFC3 /* TCTable.m */; };
 		633D786F166A189500FBFFC3 /* TCDirectoryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D786E166A189500FBFFC3 /* TCDirectoryEntry.m */; };
@@ -50,6 +51,8 @@
 		630AA397166B331C001BD6BF /* TCTableFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableFactory.m; sourceTree = "<group>"; };
 		630AA39A166B5A5F001BD6BF /* TCHeadTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHeadTable.h; sourceTree = "<group>"; };
 		630AA39B166B5A5F001BD6BF /* TCHeadTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHeadTable.m; sourceTree = "<group>"; };
+		631D27D3166BF5DB00AB692C /* TCHheaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHheaTable.h; sourceTree = "<group>"; };
+		631D27D4166BF5DB00AB692C /* TCHheaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHheaTable.m; sourceTree = "<group>"; };
 		633D7867166A17B400FBFFC3 /* TCFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFont.h; sourceTree = "<group>"; };
 		633D7868166A17B400FBFFC3 /* TCFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFont.m; sourceTree = "<group>"; };
 		633D786A166A184B00FBFFC3 /* TCTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTable.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 			children = (
 				630AA39A166B5A5F001BD6BF /* TCHeadTable.h */,
 				630AA39B166B5A5F001BD6BF /* TCHeadTable.m */,
+				631D27D3166BF5DB00AB692C /* TCHheaTable.h */,
+				631D27D4166BF5DB00AB692C /* TCHheaTable.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				630AA394166B2483001BD6BF /* TCTablesWindowController.m in Sources */,
 				630AA398166B331D001BD6BF /* TCTableFactory.m in Sources */,
 				630AA39C166B5A5F001BD6BF /* TCHeadTable.m in Sources */,
+				631D27D5166BF5DB00AB692C /* TCHheaTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

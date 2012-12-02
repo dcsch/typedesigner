@@ -11,6 +11,7 @@
 #import "TCDirectoryEntry.h"
 #import "TCDataInput.h"
 #import "TCHeadTable.h"
+#import "TCHheaTable.h"
 
 @implementation TCTableFactory
 
@@ -87,9 +88,9 @@
         case TCTable_head:
             table = [[TCHeadTable alloc] initWithDataInput:dataInput directoryEntry:entry];
             break;
-//        case Table.hhea:
-//            t = new HheaTable(de, dis);
-//            break;
+        case TCTable_hhea:
+            table = [[TCHheaTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
 //        case Table.hmtx:
 //            t = new HmtxTable(de, dis, font.getHheaTable(), font.getMaxpTable());
 //            break;

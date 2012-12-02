@@ -16,6 +16,7 @@
 @interface TCFont ()
 
 @property (strong) TCTable *head;
+@property (strong) TCTable *hhea;
 
 - (void)loadFromData:(NSData *)fontData;
 
@@ -49,8 +50,12 @@
     NSMutableArray *tables = [[NSMutableArray alloc] initWithCapacity:[_tableDirectory numTables]];
 
     _head = [self readTableWithTag:TCTable_head fromDataInput:dataInput];
+    _hhea = [self readTableWithTag:TCTable_hhea fromDataInput:dataInput];
+
+    NSLog(@"'hhea': %@", _hhea);
 
     [tables addObject:_head];
+    [tables addObject:_hhea];
 }
 
 - (TCTable *)readTableWithTag:(uint32_t)tag fromDataInput:(TCDataInput *)dataInput
