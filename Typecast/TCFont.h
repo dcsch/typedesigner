@@ -14,6 +14,7 @@
 @class TCHheaTable;
 @class TCMaxpTable;
 @class TCLocaTable;
+@class TCVheaTable;
 
 @interface TCFont : NSObject
 
@@ -23,6 +24,7 @@
 @property (strong) TCHheaTable *hhea;
 @property (strong) TCMaxpTable *maxp;
 @property (strong) TCLocaTable *loca;
+@property (strong) TCVheaTable *vhea;
 
 - (id)initWithData:(NSData *)data;
 - (TCTable *)tableWithType:(NSUInteger)tableType;

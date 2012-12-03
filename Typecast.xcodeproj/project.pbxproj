@@ -15,6 +15,7 @@
 		631D27D5166BF5DB00AB692C /* TCHheaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27D4166BF5DB00AB692C /* TCHheaTable.m */; };
 		631D27D9166BFB7000AB692C /* TCMaxpTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27D8166BFB7000AB692C /* TCMaxpTable.m */; };
 		631D27E8166C134100AB692C /* TCLocaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27E7166C134100AB692C /* TCLocaTable.m */; };
+		631D27EC166C305800AB692C /* TCVheaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27EB166C305700AB692C /* TCVheaTable.m */; };
 		633D7869166A17B400FBFFC3 /* TCFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7868166A17B400FBFFC3 /* TCFont.m */; };
 		633D786C166A184B00FBFFC3 /* TCTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D786B166A184B00FBFFC3 /* TCTable.m */; };
 		633D786F166A189500FBFFC3 /* TCDirectoryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D786E166A189500FBFFC3 /* TCDirectoryEntry.m */; };
@@ -59,6 +60,8 @@
 		631D27D8166BFB7000AB692C /* TCMaxpTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMaxpTable.m; sourceTree = "<group>"; };
 		631D27E6166C134100AB692C /* TCLocaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLocaTable.h; sourceTree = "<group>"; };
 		631D27E7166C134100AB692C /* TCLocaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLocaTable.m; sourceTree = "<group>"; };
+		631D27EA166C305700AB692C /* TCVheaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVheaTable.h; sourceTree = "<group>"; };
+		631D27EB166C305700AB692C /* TCVheaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVheaTable.m; sourceTree = "<group>"; };
 		633D7867166A17B400FBFFC3 /* TCFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFont.h; sourceTree = "<group>"; };
 		633D7868166A17B400FBFFC3 /* TCFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFont.m; sourceTree = "<group>"; };
 		633D786A166A184B00FBFFC3 /* TCTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTable.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 				631D27D8166BFB7000AB692C /* TCMaxpTable.m */,
 				631D27E6166C134100AB692C /* TCLocaTable.h */,
 				631D27E7166C134100AB692C /* TCLocaTable.m */,
+				631D27EA166C305700AB692C /* TCVheaTable.h */,
+				631D27EB166C305700AB692C /* TCVheaTable.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				631D27D5166BF5DB00AB692C /* TCHheaTable.m in Sources */,
 				631D27D9166BFB7000AB692C /* TCMaxpTable.m in Sources */,
 				631D27E8166C134100AB692C /* TCLocaTable.m in Sources */,
+				631D27EC166C305800AB692C /* TCVheaTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

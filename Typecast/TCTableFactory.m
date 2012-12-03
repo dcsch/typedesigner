@@ -14,6 +14,7 @@
 #import "TCHheaTable.h"
 #import "TCLocaTable.h"
 #import "TCMaxpTable.h"
+#import "TCVheaTable.h"
 
 @implementation TCTableFactory
 
@@ -114,9 +115,9 @@
 //        case Table.post:
 //            t = new PostTable(de, dis);
 //            break;
-//        case Table.vhea:
-//            t = new VheaTable(de, dis);
-//            break;
+        case TCTable_vhea:
+            table = [[TCVheaTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
 //        case Table.vmtx:
 //            t = new VmtxTable(de, dis, font.getVheaTable(), font.getMaxpTable());
 //            break;

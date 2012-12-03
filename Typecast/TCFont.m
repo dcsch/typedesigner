@@ -11,6 +11,7 @@
 #import "TCHheaTable.h"
 #import "TCMaxpTable.h"
 #import "TCLocaTable.h"
+#import "TCVheaTable.h"
 #import "TCTableDirectory.h"
 #import "TCDirectoryEntry.h"
 #import "TCTableFactory.h"
@@ -53,14 +54,17 @@
     _hhea = (TCHheaTable *)[self readTableWithTag:TCTable_hhea fromDataInput:dataInput];
     _maxp = (TCMaxpTable *)[self readTableWithTag:TCTable_maxp fromDataInput:dataInput];
     _loca = (TCLocaTable *)[self readTableWithTag:TCTable_loca fromDataInput:dataInput];
+    _vhea = (TCVheaTable *)[self readTableWithTag:TCTable_vhea fromDataInput:dataInput];
 
-    NSLog(@"'loca': %@", _loca);
+    NSLog(@"'vhea': %@", _vhea);
 
     [tables addObject:_head];
     [tables addObject:_hhea];
     [tables addObject:_maxp];
     if (_loca)
         [tables addObject:_loca];
+    if (_vhea)
+        [tables addObject:_vhea];
 }
 
 - (TCTable *)readTableWithTag:(uint32_t)tag fromDataInput:(TCDataInput *)dataInput
