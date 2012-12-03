@@ -10,11 +10,19 @@
 
 @class TCTable;
 @class TCTableDirectory;
+@class TCHeadTable;
+@class TCHheaTable;
+@class TCMaxpTable;
+@class TCLocaTable;
 
 @interface TCFont : NSObject
 
 @property (strong) TCTableDirectory *tableDirectory;
 @property (strong) NSArray *tables;
+@property (strong) TCHeadTable *head;
+@property (strong) TCHheaTable *hhea;
+@property (strong) TCMaxpTable *maxp;
+@property (strong) TCLocaTable *loca;
 
 - (id)initWithData:(NSData *)data;
 - (TCTable *)tableWithType:(NSUInteger)tableType;

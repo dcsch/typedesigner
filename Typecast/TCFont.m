@@ -7,17 +7,16 @@
 //
 
 #import "TCFont.h"
-#import "TCTable.h"
+#import "TCHeadTable.h"
+#import "TCHheaTable.h"
+#import "TCMaxpTable.h"
+#import "TCLocaTable.h"
 #import "TCTableDirectory.h"
 #import "TCDirectoryEntry.h"
 #import "TCTableFactory.h"
 #import "TCDataInput.h"
 
 @interface TCFont ()
-
-@property (strong) TCTable *head;
-@property (strong) TCTable *hhea;
-@property (strong) TCTable *maxp;
 
 - (void)loadFromData:(NSData *)fontData;
 
@@ -50,23 +49,30 @@
     _tableDirectory = [[TCTableDirectory alloc] initWithDataInput:dataInput];
     NSMutableArray *tables = [[NSMutableArray alloc] initWithCapacity:[_tableDirectory numTables]];
 
-    _head = [self readTableWithTag:TCTable_head fromDataInput:dataInput];
-    _hhea = [self readTableWithTag:TCTable_hhea fromDataInput:dataInput];
-    _maxp = [self readTableWithTag:TCTable_maxp fromDataInput:dataInput];
+    _head = (TCHeadTable *)[self readTableWithTag:TCTable_head fromDataInput:dataInput];
+    _hhea = (TCHheaTable *)[self readTableWithTag:TCTable_hhea fromDataInput:dataInput];
+    _maxp = (TCMaxpTable *)[self readTableWithTag:TCTable_maxp fromDataInput:dataInput];
+    _loca = (TCLocaTable *)[self readTableWithTag:TCTable_loca fromDataInput:dataInput];
 
-    NSLog(@"'maxp': %@", _maxp);
+    NSLog(@"'loca': %@", _loca);
 
     [tables addObject:_head];
     [tables addObject:_hhea];
     [tables addObject:_maxp];
+    if (_loca)
+        [tables addObject:_loca];
 }
 
 - (TCTable *)readTableWithTag:(uint32_t)tag fromDataInput:(TCDataInput *)dataInput
 {
     [dataInput reset];
     TCDirectoryEntry *entry = [_tableDirectory entryWithTag:tag];
-    [dataInput skipByteCount:[entry offset]];
-    return [TCTableFactory createTableForFont:self withDataInput:dataInput directoryEntry:entry];
+    if (entry)
+    {
+        [dataInput skipByteCount:[entry offset]];
+        return [TCTableFactory createTableForFont:self withDataInput:dataInput directoryEntry:entry];
+    }
+    return nil;
 }
 
 @end
