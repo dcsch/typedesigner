@@ -39,6 +39,11 @@
     return self;
 }
 
+- (uint32_t)type
+{
+    return TCTable_head;
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:

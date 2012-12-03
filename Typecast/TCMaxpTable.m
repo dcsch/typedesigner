@@ -46,6 +46,11 @@
     return self;
 }
 
+- (uint32_t)type
+{
+    return TCTable_maxp;
+}
+
 - (NSString *)description
 {
     NSString *str = [NSString stringWithFormat:

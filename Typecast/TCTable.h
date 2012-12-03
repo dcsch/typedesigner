@@ -114,7 +114,7 @@
 
 @interface TCTable : NSObject
 
-@property uint32_t type;
+@property (readonly) uint32_t type;
 @property (strong) TCDirectoryEntry *directoryEntry;
 
 @end

@@ -37,6 +37,11 @@
     return self;
 }
 
+- (uint32_t)type
+{
+    return TCTable_hhea;
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:

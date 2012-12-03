@@ -12,10 +12,16 @@
 		630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630AA393166B2483001BD6BF /* TablesWindow.xib */; };
 		630AA398166B331D001BD6BF /* TCTableFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA397166B331C001BD6BF /* TCTableFactory.m */; };
 		630AA39C166B5A5F001BD6BF /* TCHeadTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA39B166B5A5F001BD6BF /* TCHeadTable.m */; };
+		630B9A83166C826D00E8587A /* TCCmapFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 630B9A82166C826D00E8587A /* TCCmapFormat.m */; };
+		630B9A87166C8A1C00E8587A /* TCCmapFormat0.m in Sources */ = {isa = PBXBuildFile; fileRef = 630B9A86166C8A1C00E8587A /* TCCmapFormat0.m */; };
+		630B9A8A166C8D3200E8587A /* TCCmapFormat2.m in Sources */ = {isa = PBXBuildFile; fileRef = 630B9A89166C8D3200E8587A /* TCCmapFormat2.m */; };
 		631D27D5166BF5DB00AB692C /* TCHheaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27D4166BF5DB00AB692C /* TCHheaTable.m */; };
 		631D27D9166BFB7000AB692C /* TCMaxpTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27D8166BFB7000AB692C /* TCMaxpTable.m */; };
 		631D27E8166C134100AB692C /* TCLocaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27E7166C134100AB692C /* TCLocaTable.m */; };
 		631D27EC166C305800AB692C /* TCVheaTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27EB166C305700AB692C /* TCVheaTable.m */; };
+		631D27F3166C561E00AB692C /* TCCmapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27F2166C561E00AB692C /* TCCmapTable.m */; };
+		631D27F7166C5DA500AB692C /* TCCmapIndexEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27F6166C5DA500AB692C /* TCCmapIndexEntry.m */; };
+		631D27FA166C665500AB692C /* TCID.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27F9166C665500AB692C /* TCID.m */; };
 		633D7869166A17B400FBFFC3 /* TCFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7868166A17B400FBFFC3 /* TCFont.m */; };
 		633D786C166A184B00FBFFC3 /* TCTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D786B166A184B00FBFFC3 /* TCTable.m */; };
 		633D786F166A189500FBFFC3 /* TCDirectoryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D786E166A189500FBFFC3 /* TCDirectoryEntry.m */; };
@@ -54,6 +60,12 @@
 		630AA397166B331C001BD6BF /* TCTableFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableFactory.m; sourceTree = "<group>"; };
 		630AA39A166B5A5F001BD6BF /* TCHeadTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHeadTable.h; sourceTree = "<group>"; };
 		630AA39B166B5A5F001BD6BF /* TCHeadTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHeadTable.m; sourceTree = "<group>"; };
+		630B9A81166C826D00E8587A /* TCCmapFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormat.h; sourceTree = "<group>"; };
+		630B9A82166C826D00E8587A /* TCCmapFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormat.m; sourceTree = "<group>"; };
+		630B9A85166C8A1C00E8587A /* TCCmapFormat0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormat0.h; sourceTree = "<group>"; };
+		630B9A86166C8A1C00E8587A /* TCCmapFormat0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormat0.m; sourceTree = "<group>"; };
+		630B9A88166C8D3200E8587A /* TCCmapFormat2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormat2.h; sourceTree = "<group>"; };
+		630B9A89166C8D3200E8587A /* TCCmapFormat2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormat2.m; sourceTree = "<group>"; };
 		631D27D3166BF5DB00AB692C /* TCHheaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHheaTable.h; sourceTree = "<group>"; };
 		631D27D4166BF5DB00AB692C /* TCHheaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHheaTable.m; sourceTree = "<group>"; };
 		631D27D7166BFB7000AB692C /* TCMaxpTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMaxpTable.h; sourceTree = "<group>"; };
@@ -62,6 +74,12 @@
 		631D27E7166C134100AB692C /* TCLocaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLocaTable.m; sourceTree = "<group>"; };
 		631D27EA166C305700AB692C /* TCVheaTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVheaTable.h; sourceTree = "<group>"; };
 		631D27EB166C305700AB692C /* TCVheaTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVheaTable.m; sourceTree = "<group>"; };
+		631D27F1166C561E00AB692C /* TCCmapTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapTable.h; sourceTree = "<group>"; };
+		631D27F2166C561E00AB692C /* TCCmapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapTable.m; sourceTree = "<group>"; };
+		631D27F5166C5DA500AB692C /* TCCmapIndexEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapIndexEntry.h; sourceTree = "<group>"; };
+		631D27F6166C5DA500AB692C /* TCCmapIndexEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapIndexEntry.m; sourceTree = "<group>"; };
+		631D27F8166C665400AB692C /* TCID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCID.h; sourceTree = "<group>"; };
+		631D27F9166C665500AB692C /* TCID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCID.m; sourceTree = "<group>"; };
 		633D7867166A17B400FBFFC3 /* TCFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFont.h; sourceTree = "<group>"; };
 		633D7868166A17B400FBFFC3 /* TCFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFont.m; sourceTree = "<group>"; };
 		633D786A166A184B00FBFFC3 /* TCTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTable.h; sourceTree = "<group>"; };
@@ -119,6 +137,8 @@
 		630AA399166B5A17001BD6BF /* Tables */ = {
 			isa = PBXGroup;
 			children = (
+				633D786A166A184B00FBFFC3 /* TCTable.h */,
+				633D786B166A184B00FBFFC3 /* TCTable.m */,
 				630AA39A166B5A5F001BD6BF /* TCHeadTable.h */,
 				630AA39B166B5A5F001BD6BF /* TCHeadTable.m */,
 				631D27D3166BF5DB00AB692C /* TCHheaTable.h */,
@@ -129,6 +149,18 @@
 				631D27E7166C134100AB692C /* TCLocaTable.m */,
 				631D27EA166C305700AB692C /* TCVheaTable.h */,
 				631D27EB166C305700AB692C /* TCVheaTable.m */,
+				631D27F1166C561E00AB692C /* TCCmapTable.h */,
+				631D27F2166C561E00AB692C /* TCCmapTable.m */,
+				631D27F5166C5DA500AB692C /* TCCmapIndexEntry.h */,
+				631D27F6166C5DA500AB692C /* TCCmapIndexEntry.m */,
+				631D27F8166C665400AB692C /* TCID.h */,
+				631D27F9166C665500AB692C /* TCID.m */,
+				630B9A81166C826D00E8587A /* TCCmapFormat.h */,
+				630B9A82166C826D00E8587A /* TCCmapFormat.m */,
+				630B9A85166C8A1C00E8587A /* TCCmapFormat0.h */,
+				630B9A86166C8A1C00E8587A /* TCCmapFormat0.m */,
+				630B9A88166C8D3200E8587A /* TCCmapFormat2.h */,
+				630B9A89166C8D3200E8587A /* TCCmapFormat2.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -183,8 +215,6 @@
 				6373B1B6166A11B5007EC53F /* Supporting Files */,
 				633D7867166A17B400FBFFC3 /* TCFont.h */,
 				633D7868166A17B400FBFFC3 /* TCFont.m */,
-				633D786A166A184B00FBFFC3 /* TCTable.h */,
-				633D786B166A184B00FBFFC3 /* TCTable.m */,
 				633D786D166A189500FBFFC3 /* TCDirectoryEntry.h */,
 				633D786E166A189500FBFFC3 /* TCDirectoryEntry.m */,
 				633D7870166A1B5100FBFFC3 /* TCFontCollection.h */,
@@ -360,6 +390,12 @@
 				631D27D9166BFB7000AB692C /* TCMaxpTable.m in Sources */,
 				631D27E8166C134100AB692C /* TCLocaTable.m in Sources */,
 				631D27EC166C305800AB692C /* TCVheaTable.m in Sources */,
+				631D27F3166C561E00AB692C /* TCCmapTable.m in Sources */,
+				631D27F7166C5DA500AB692C /* TCCmapIndexEntry.m in Sources */,
+				631D27FA166C665500AB692C /* TCID.m in Sources */,
+				630B9A83166C826D00E8587A /* TCCmapFormat.m in Sources */,
+				630B9A87166C8A1C00E8587A /* TCCmapFormat0.m in Sources */,
+				630B9A8A166C8D3200E8587A /* TCCmapFormat2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 @class TCMaxpTable;
 @class TCLocaTable;
 @class TCVheaTable;
+@class TCCmapTable;
 
 @interface TCFont : NSObject
 
@@ -25,6 +26,7 @@
 @property (strong) TCMaxpTable *maxp;
 @property (strong) TCLocaTable *loca;
 @property (strong) TCVheaTable *vhea;
+@property (strong) TCCmapTable *cmap;
 
 - (id)initWithData:(NSData *)data;
 - (TCTable *)tableWithType:(NSUInteger)tableType;

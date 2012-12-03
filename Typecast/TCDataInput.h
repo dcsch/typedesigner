@@ -11,10 +11,11 @@
 @interface TCDataInput : NSObject
 
 - (id)initWithData:(NSData *)data;
+- (int64_t)readLong;
 - (int32_t)readInt;
 - (int16_t)readShort;
 - (uint16_t)readUnsignedShort;
-- (int64_t)readLong;
+- (uint8_t)readUnsignedByte;
 - (void)reset;
 - (void)skipByteCount:(NSUInteger)bytesToSkip;
 

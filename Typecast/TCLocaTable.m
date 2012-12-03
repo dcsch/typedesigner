@@ -42,6 +42,11 @@
     return self;
 }
 
+- (uint32_t)type
+{
+    return TCTable_loca;
+}
+
 - (int32_t)offsetAtIndex:(NSUInteger)index
 {
     return [_offsets[index] unsignedIntValue] * _factor;

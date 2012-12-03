@@ -10,6 +10,7 @@
 #import "TCFont.h"
 #import "TCDirectoryEntry.h"
 #import "TCDataInput.h"
+#import "TCCmapTable.h"
 #import "TCHeadTable.h"
 #import "TCHheaTable.h"
 #import "TCLocaTable.h"
@@ -68,9 +69,9 @@
 //        case Table.VDMX:
 //            t = new VdmxTable(de, dis);
 //            break;
-//        case Table.cmap:
-//            t = new CmapTable(de, dis);
-//            break;
+        case TCTable_cmap:
+            table = [[TCCmapTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
 //        case Table.cvt:
 //            t = new CvtTable(de, dis);
 //            break;

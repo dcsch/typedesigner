@@ -30,6 +30,13 @@
     return self;
 }
 
+- (int64_t)readLong
+{
+    uint64_t value = CFSwapInt64BigToHost(*(uint64_t *)(_bytes + _offset));
+    _offset += 8;
+    return value;
+}
+
 - (int32_t)readInt
 {
     int32_t value = CFSwapInt32BigToHost(*(uint32_t *)(_bytes + _offset));
@@ -51,10 +58,10 @@
     return value;
 }
 
-- (int64_t)readLong
+- (uint8_t)readUnsignedByte
 {
-    uint64_t value = CFSwapInt64BigToHost(*(uint64_t *)(_bytes + _offset));
-    _offset += 8;
+    uint8_t value = *(uint8_t *)(_bytes + _offset);
+    _offset += 1;
     return value;
 }
 
