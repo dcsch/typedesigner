@@ -10,6 +10,9 @@
 #import "TCDataInput.h"
 #import "TCCmapFormat0.h"
 #import "TCCmapFormat2.h"
+#import "TCCmapFormat4.h"
+#import "TCCmapFormat6.h"
+#import "TCCmapFormatUnknown.h"
 
 @implementation TCCmapFormat
 
@@ -32,12 +35,12 @@
             return [[TCCmapFormat0 alloc] initWithDataInput:dataInput];
         case 2:
             return [[TCCmapFormat2 alloc] initWithDataInput:dataInput];
-//        case 4:
-//            return [[TCCmapFormat4 alloc] initWithDataInput:dataInput];
-//        case 6:
-//            return [[TCCmapFormat6 alloc] initWithDataInput:dataInput];
-//        default:
-//            return [[TCCmapFormatUnknown alloc] initWithFormatType:formatType dataInput:dataInput];
+        case 4:
+            return [[TCCmapFormat4 alloc] initWithDataInput:dataInput];
+        case 6:
+            return [[TCCmapFormat6 alloc] initWithDataInput:dataInput];
+        default:
+            return [[TCCmapFormatUnknown alloc] initWithFormatType:formatType dataInput:dataInput];
     }
 }
 

@@ -38,6 +38,9 @@
 		6373B1D2166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
 		6373B1DA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1D8166A11B5007EC53F /* InfoPlist.strings */; };
 		6373B1DD166A11B5007EC53F /* TypecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1DC166A11B5007EC53F /* TypecastTests.m */; };
+		63F3EF23166D4283005B30FF /* TCCmapFormat4.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF22166D4283005B30FF /* TCCmapFormat4.m */; };
+		63F3EF27166D470C005B30FF /* TCCmapFormat6.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF26166D470C005B30FF /* TCCmapFormat6.m */; };
+		63F3EF2A166D47E4005B30FF /* TCCmapFormatUnknown.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +114,12 @@
 		6373B1D9166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373B1DB166A11B5007EC53F /* TypecastTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypecastTests.h; sourceTree = "<group>"; };
 		6373B1DC166A11B5007EC53F /* TypecastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypecastTests.m; sourceTree = "<group>"; };
+		63F3EF21166D4283005B30FF /* TCCmapFormat4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormat4.h; sourceTree = "<group>"; };
+		63F3EF22166D4283005B30FF /* TCCmapFormat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormat4.m; sourceTree = "<group>"; };
+		63F3EF25166D470C005B30FF /* TCCmapFormat6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormat6.h; sourceTree = "<group>"; };
+		63F3EF26166D470C005B30FF /* TCCmapFormat6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormat6.m; sourceTree = "<group>"; };
+		63F3EF28166D47E4005B30FF /* TCCmapFormatUnknown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormatUnknown.h; sourceTree = "<group>"; };
+		63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormatUnknown.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +170,12 @@
 				630B9A86166C8A1C00E8587A /* TCCmapFormat0.m */,
 				630B9A88166C8D3200E8587A /* TCCmapFormat2.h */,
 				630B9A89166C8D3200E8587A /* TCCmapFormat2.m */,
+				63F3EF21166D4283005B30FF /* TCCmapFormat4.h */,
+				63F3EF22166D4283005B30FF /* TCCmapFormat4.m */,
+				63F3EF25166D470C005B30FF /* TCCmapFormat6.h */,
+				63F3EF26166D470C005B30FF /* TCCmapFormat6.m */,
+				63F3EF28166D47E4005B30FF /* TCCmapFormatUnknown.h */,
+				63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -396,6 +411,9 @@
 				630B9A83166C826D00E8587A /* TCCmapFormat.m in Sources */,
 				630B9A87166C8A1C00E8587A /* TCCmapFormat0.m in Sources */,
 				630B9A8A166C8D3200E8587A /* TCCmapFormat2.m in Sources */,
+				63F3EF23166D4283005B30FF /* TCCmapFormat4.m in Sources */,
+				63F3EF27166D470C005B30FF /* TCCmapFormat6.m in Sources */,
+				63F3EF2A166D47E4005B30FF /* TCCmapFormatUnknown.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
