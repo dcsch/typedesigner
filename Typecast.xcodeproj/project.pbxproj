@@ -41,6 +41,7 @@
 		63F3EF23166D4283005B30FF /* TCCmapFormat4.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF22166D4283005B30FF /* TCCmapFormat4.m */; };
 		63F3EF27166D470C005B30FF /* TCCmapFormat6.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF26166D470C005B30FF /* TCCmapFormat6.m */; };
 		63F3EF2A166D47E4005B30FF /* TCCmapFormatUnknown.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */; };
+		63F3EF2D166D5069005B30FF /* TCHmtxTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF2C166D5069005B30FF /* TCHmtxTable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		63F3EF26166D470C005B30FF /* TCCmapFormat6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormat6.m; sourceTree = "<group>"; };
 		63F3EF28166D47E4005B30FF /* TCCmapFormatUnknown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormatUnknown.h; sourceTree = "<group>"; };
 		63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormatUnknown.m; sourceTree = "<group>"; };
+		63F3EF2B166D5069005B30FF /* TCHmtxTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHmtxTable.h; sourceTree = "<group>"; };
+		63F3EF2C166D5069005B30FF /* TCHmtxTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHmtxTable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +179,8 @@
 				63F3EF26166D470C005B30FF /* TCCmapFormat6.m */,
 				63F3EF28166D47E4005B30FF /* TCCmapFormatUnknown.h */,
 				63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */,
+				63F3EF2B166D5069005B30FF /* TCHmtxTable.h */,
+				63F3EF2C166D5069005B30FF /* TCHmtxTable.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				63F3EF23166D4283005B30FF /* TCCmapFormat4.m in Sources */,
 				63F3EF27166D470C005B30FF /* TCCmapFormat6.m in Sources */,
 				63F3EF2A166D47E4005B30FF /* TCCmapFormatUnknown.m in Sources */,
+				63F3EF2D166D5069005B30FF /* TCHmtxTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 #import "TCCmapTable.h"
 #import "TCHeadTable.h"
 #import "TCHheaTable.h"
+#import "TCHmtxTable.h"
 #import "TCLocaTable.h"
 #import "TCMaxpTable.h"
 #import "TCVheaTable.h"
@@ -95,9 +96,9 @@
         case TCTable_hhea:
             table = [[TCHheaTable alloc] initWithDataInput:dataInput directoryEntry:entry];
             break;
-//        case Table.hmtx:
-//            t = new HmtxTable(de, dis, font.getHheaTable(), font.getMaxpTable());
-//            break;
+        case TCTable_hmtx:
+            table = [[TCHmtxTable alloc] initWithDataInput:dataInput directoryEntry:entry hheaTable:[font hhea] maxpTable:[font maxp]];
+            break;
 //        case Table.kern:
 //            t = new KernTable(de, dis);
 //            break;

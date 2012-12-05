@@ -16,6 +16,7 @@
 @class TCLocaTable;
 @class TCVheaTable;
 @class TCCmapTable;
+@class TCHmtxTable;
 
 @interface TCFont : NSObject
 
@@ -27,6 +28,7 @@
 @property (strong) TCLocaTable *loca;
 @property (strong) TCVheaTable *vhea;
 @property (strong) TCCmapTable *cmap;
+@property (strong) TCHmtxTable *hmtx;
 
 - (id)initWithData:(NSData *)data;
 - (TCTable *)tableWithType:(NSUInteger)tableType;
