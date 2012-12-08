@@ -18,6 +18,7 @@
 #import "TCMaxpTable.h"
 #import "TCNameTable.h"
 #import "TCOs2Table.h"
+#import "TCPostTable.h"
 #import "TCVheaTable.h"
 
 @implementation TCTableFactory
@@ -116,9 +117,9 @@
 //        case Table.prep:
 //            t = new PrepTable(de, dis);
 //            break;
-//        case Table.post:
-//            t = new PostTable(de, dis);
-//            break;
+        case TCTable_post:
+            table = [[TCPostTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
         case TCTable_vhea:
             table = [[TCVheaTable alloc] initWithDataInput:dataInput directoryEntry:entry];
             break;

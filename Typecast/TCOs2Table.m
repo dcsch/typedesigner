@@ -112,78 +112,77 @@
 
 - (NSString *)description
 {
-    NSString *str = [[NSString alloc] initWithFormat:
-                     @"'OS/2' Table - OS/2 and Windows Metrics\n---------------------------------------"
-                     @"\n  'OS/2' version:      %d"  // append(_version)
-                     @"\n  xAvgCharWidth:       %d"  // append(_xAvgCharWidth)
-                     @"\n  usWeightClass:       %d"  // append(_usWeightClass)
-                     @"\n  usWidthClass:        %d"  // append(_usWidthClass)
-                     @"\n  fsType:              0x%X"  // append(Integer.toHexString(_fsType  // toUpperCase())
-                     @"\n  ySubscriptXSize:     %d"  // append(_ySubscriptXSize)
-                     @"\n  ySubscriptYSize:     %d"  // append(_ySubscriptYSize)
-                     @"\n  ySubscriptXOffset:   %d"  // append(_ySubscriptXOffset)
-                     @"\n  ySubscriptYOffset:   %d"  // append(_ySubscriptYOffset)
-                     @"\n  ySuperscriptXSize:   %d"  // append(_ySuperscriptXSize)
-                     @"\n  ySuperscriptYSize:   %d"  // append(_ySuperscriptYSize)
-                     @"\n  ySuperscriptXOffset: %d"  // append(_ySuperscriptXOffset)
-                     @"\n  ySuperscriptYOffset: %d"  // append(_ySuperscriptYOffset)
-                     @"\n  yStrikeoutSize:      %d"  // append(_yStrikeoutSize)
-                     @"\n  yStrikeoutPosition:  %d"  // append(_yStrikeoutPosition)
-                     @"\n  sFamilyClass:        %d"  // append(_sFamilyClass>>8)
-                     @"    subclass = %d"  // append(_sFamilyClass&0xff)
-                     @"\n  PANOSE:              %@"  // append(_panose.toString())
-                     @"\n  Unicode Range 1( Bits 0 - 31 ): %X"  // append(Integer.toHexString(_ulUnicodeRange1  // toUpperCase())
-                     @"\n  Unicode Range 2( Bits 32- 63 ): %X"  // append(Integer.toHexString(_ulUnicodeRange2  // toUpperCase())
-                     @"\n  Unicode Range 3( Bits 64- 95 ): %X"  // append(Integer.toHexString(_ulUnicodeRange3  // toUpperCase())
-                     @"\n  Unicode Range 4( Bits 96-127 ): %X"  // append(Integer.toHexString(_ulUnicodeRange4  // toUpperCase())
-                     @"\n  achVendID:           '%c%c%c%c"  // append(getVendorIDAsString())
-                     @"'\n  fsSelection:         0x%X"  // append(Integer.toHexString(_fsSelection  // toUpperCase())
-                     @"\n  usFirstCharIndex:    0x%X"  // append(Integer.toHexString(_usFirstCharIndex  // toUpperCase())
-                     @"\n  usLastCharIndex:     0x%X"  // append(Integer.toHexString(_usLastCharIndex  // toUpperCase())
-                     @"\n  sTypoAscender:       %d"  // append(_sTypoAscender)
-                     @"\n  sTypoDescender:      %d"  // append(_sTypoDescender)
-                     @"\n  sTypoLineGap:        %d"  // append(_sTypoLineGap)
-                     @"\n  usWinAscent:         %d"  // append(_usWinAscent)
-                     @"\n  usWinDescent:        %d"  // append(_usWinDescent)
-                     @"\n  CodePage Range 1( Bits 0 - 31 ): %X"  // append(Integer.toHexString(_ulCodePageRange1  // toUpperCase())
-                     @"\n  CodePage Range 2( Bits 32- 63 ): %X",  // append(Integer.toHexString(_ulCodePageRange2  // toUpperCase())
-                     _version,
-                     _xAvgCharWidth,
-                     _usWeightClass,
-                     _usWidthClass,
-                     _fsType,
-                     _ySubscriptXSize,
-                     _ySubscriptYSize,
-                     _ySubscriptXOffset,
-                     _ySubscriptYOffset,
-                     _ySuperscriptXSize,
-                     _ySuperscriptYSize,
-                     _ySuperscriptXOffset,
-                     _ySuperscriptYOffset,
-                     _yStrikeoutSize,
-                     _yStrikeoutPosition,
-                     _sFamilyClass >> 8,
-                     _sFamilyClass & 0xff,
-                     _panose,
-                     _ulUnicodeRange1,
-                     _ulUnicodeRange2,
-                     _ulUnicodeRange3,
-                     _ulUnicodeRange4,
-                     (_achVendorID >> 24) & 0xff,
-                     (_achVendorID >> 16) & 0xff,
-                     (_achVendorID >> 8) & 0xff,
-                     _achVendorID & 0xff,
-                     _fsSelection,
-                     _usFirstCharIndex,
-                     _usLastCharIndex,
-                     _sTypoAscender,
-                     _sTypoDescender,
-                     _sTypoLineGap,
-                     _usWinAscent,
-                     _usWinDescent,
-                     _ulCodePageRange1,
-                     _ulCodePageRange2];
-    return str;
+    return [[NSString alloc] initWithFormat:
+             @"'OS/2' Table - OS/2 and Windows Metrics\n---------------------------------------"
+             @"\n  'OS/2' version:      %d"
+             @"\n  xAvgCharWidth:       %d"
+             @"\n  usWeightClass:       %d"
+             @"\n  usWidthClass:        %d"
+             @"\n  fsType:              0x%X"
+             @"\n  ySubscriptXSize:     %d"
+             @"\n  ySubscriptYSize:     %d"
+             @"\n  ySubscriptXOffset:   %d"
+             @"\n  ySubscriptYOffset:   %d"
+             @"\n  ySuperscriptXSize:   %d"
+             @"\n  ySuperscriptYSize:   %d"
+             @"\n  ySuperscriptXOffset: %d"
+             @"\n  ySuperscriptYOffset: %d"
+             @"\n  yStrikeoutSize:      %d"
+             @"\n  yStrikeoutPosition:  %d"
+             @"\n  sFamilyClass:        %d"
+             @"    subclass = %d"
+             @"\n  PANOSE:              %@"
+             @"\n  Unicode Range 1( Bits 0 - 31 ): %X"
+             @"\n  Unicode Range 2( Bits 32- 63 ): %X"
+             @"\n  Unicode Range 3( Bits 64- 95 ): %X"
+             @"\n  Unicode Range 4( Bits 96-127 ): %X"
+             @"\n  achVendID:           '%c%c%c%c"
+             @"'\n  fsSelection:         0x%X"
+             @"\n  usFirstCharIndex:    0x%X"
+             @"\n  usLastCharIndex:     0x%X"
+             @"\n  sTypoAscender:       %d"
+             @"\n  sTypoDescender:      %d"
+             @"\n  sTypoLineGap:        %d"
+             @"\n  usWinAscent:         %d"
+             @"\n  usWinDescent:        %d"
+             @"\n  CodePage Range 1( Bits 0 - 31 ): %X"
+             @"\n  CodePage Range 2( Bits 32- 63 ): %X",
+             _version,
+             _xAvgCharWidth,
+             _usWeightClass,
+             _usWidthClass,
+             _fsType,
+             _ySubscriptXSize,
+             _ySubscriptYSize,
+             _ySubscriptXOffset,
+             _ySubscriptYOffset,
+             _ySuperscriptXSize,
+             _ySuperscriptYSize,
+             _ySuperscriptXOffset,
+             _ySuperscriptYOffset,
+             _yStrikeoutSize,
+             _yStrikeoutPosition,
+             _sFamilyClass >> 8,
+             _sFamilyClass & 0xff,
+             _panose,
+             _ulUnicodeRange1,
+             _ulUnicodeRange2,
+             _ulUnicodeRange3,
+             _ulUnicodeRange4,
+             (_achVendorID >> 24) & 0xff,
+             (_achVendorID >> 16) & 0xff,
+             (_achVendorID >> 8) & 0xff,
+             _achVendorID & 0xff,
+             _fsSelection,
+             _usFirstCharIndex,
+             _usLastCharIndex,
+             _sTypoAscender,
+             _sTypoDescender,
+             _sTypoLineGap,
+             _usWinAscent,
+             _usWinDescent,
+             _ulCodePageRange1,
+             _ulCodePageRange2];
 }
 
 @end

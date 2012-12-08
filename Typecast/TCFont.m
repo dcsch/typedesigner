@@ -89,13 +89,13 @@
     _hmtx = (TCHmtxTable *)[self tableWithType:TCTable_hmtx];
     _name = (TCNameTable *)[self tableWithType:TCTable_name];
     _os2 = (TCOs2Table *)[self tableWithType:TCTable_OS_2];
-//    _post = (PostTable) getTable(Table.post);
+    _post = (TCPostTable *)[self tableWithType:TCTable_post];
 
     // If this is a TrueType outline, then we'll have at least the
     // 'glyf' table (along with the 'loca' table)
 //    _glyf = (GlyfTable) getTable(Table.glyf);
 
-    NSLog(@"'OS/2': %@", _os2);
+    NSLog(@"'post': %@", _post);
 }
 
 - (TCTable *)readTableWithTag:(uint32_t)tag fromDataInput:(TCDataInput *)dataInput
