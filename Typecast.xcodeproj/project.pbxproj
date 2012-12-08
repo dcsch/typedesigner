@@ -43,6 +43,7 @@
 		63F3EF2A166D47E4005B30FF /* TCCmapFormatUnknown.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */; };
 		63F3EF2D166D5069005B30FF /* TCHmtxTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF2C166D5069005B30FF /* TCHmtxTable.m */; };
 		63F3EFBE166F5FD6005B30FF /* TCNameTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EFBD166F5FD6005B30FF /* TCNameTable.m */; };
+		63F3F0121673101E005B30FF /* TCOs2Table.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3F0111673101E005B30FF /* TCOs2Table.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,8 @@
 		63F3EF2C166D5069005B30FF /* TCHmtxTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCHmtxTable.m; sourceTree = "<group>"; };
 		63F3EFBC166F5FD6005B30FF /* TCNameTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNameTable.h; sourceTree = "<group>"; };
 		63F3EFBD166F5FD6005B30FF /* TCNameTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNameTable.m; sourceTree = "<group>"; };
+		63F3F0101673101D005B30FF /* TCOs2Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOs2Table.h; sourceTree = "<group>"; };
+		63F3F0111673101E005B30FF /* TCOs2Table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOs2Table.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,24 +155,6 @@
 		630AA399166B5A17001BD6BF /* Tables */ = {
 			isa = PBXGroup;
 			children = (
-				633D786A166A184B00FBFFC3 /* TCTable.h */,
-				633D786B166A184B00FBFFC3 /* TCTable.m */,
-				630AA39A166B5A5F001BD6BF /* TCHeadTable.h */,
-				630AA39B166B5A5F001BD6BF /* TCHeadTable.m */,
-				631D27D3166BF5DB00AB692C /* TCHheaTable.h */,
-				631D27D4166BF5DB00AB692C /* TCHheaTable.m */,
-				631D27D7166BFB7000AB692C /* TCMaxpTable.h */,
-				631D27D8166BFB7000AB692C /* TCMaxpTable.m */,
-				631D27E6166C134100AB692C /* TCLocaTable.h */,
-				631D27E7166C134100AB692C /* TCLocaTable.m */,
-				631D27EA166C305700AB692C /* TCVheaTable.h */,
-				631D27EB166C305700AB692C /* TCVheaTable.m */,
-				631D27F1166C561E00AB692C /* TCCmapTable.h */,
-				631D27F2166C561E00AB692C /* TCCmapTable.m */,
-				631D27F5166C5DA500AB692C /* TCCmapIndexEntry.h */,
-				631D27F6166C5DA500AB692C /* TCCmapIndexEntry.m */,
-				631D27F8166C665400AB692C /* TCID.h */,
-				631D27F9166C665500AB692C /* TCID.m */,
 				630B9A81166C826D00E8587A /* TCCmapFormat.h */,
 				630B9A82166C826D00E8587A /* TCCmapFormat.m */,
 				630B9A85166C8A1C00E8587A /* TCCmapFormat0.h */,
@@ -182,10 +167,30 @@
 				63F3EF26166D470C005B30FF /* TCCmapFormat6.m */,
 				63F3EF28166D47E4005B30FF /* TCCmapFormatUnknown.h */,
 				63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */,
+				631D27F5166C5DA500AB692C /* TCCmapIndexEntry.h */,
+				631D27F6166C5DA500AB692C /* TCCmapIndexEntry.m */,
+				631D27F1166C561E00AB692C /* TCCmapTable.h */,
+				631D27F2166C561E00AB692C /* TCCmapTable.m */,
+				630AA39A166B5A5F001BD6BF /* TCHeadTable.h */,
+				630AA39B166B5A5F001BD6BF /* TCHeadTable.m */,
+				631D27D3166BF5DB00AB692C /* TCHheaTable.h */,
+				631D27D4166BF5DB00AB692C /* TCHheaTable.m */,
 				63F3EF2B166D5069005B30FF /* TCHmtxTable.h */,
 				63F3EF2C166D5069005B30FF /* TCHmtxTable.m */,
+				631D27F8166C665400AB692C /* TCID.h */,
+				631D27F9166C665500AB692C /* TCID.m */,
+				631D27E6166C134100AB692C /* TCLocaTable.h */,
+				631D27E7166C134100AB692C /* TCLocaTable.m */,
+				631D27D7166BFB7000AB692C /* TCMaxpTable.h */,
+				631D27D8166BFB7000AB692C /* TCMaxpTable.m */,
 				63F3EFBC166F5FD6005B30FF /* TCNameTable.h */,
 				63F3EFBD166F5FD6005B30FF /* TCNameTable.m */,
+				633D786A166A184B00FBFFC3 /* TCTable.h */,
+				633D786B166A184B00FBFFC3 /* TCTable.m */,
+				631D27EA166C305700AB692C /* TCVheaTable.h */,
+				631D27EB166C305700AB692C /* TCVheaTable.m */,
+				63F3F0101673101D005B30FF /* TCOs2Table.h */,
+				63F3F0111673101E005B30FF /* TCOs2Table.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				63F3EF2A166D47E4005B30FF /* TCCmapFormatUnknown.m in Sources */,
 				63F3EF2D166D5069005B30FF /* TCHmtxTable.m in Sources */,
 				63F3EFBE166F5FD6005B30FF /* TCNameTable.m in Sources */,
+				63F3F0121673101E005B30FF /* TCOs2Table.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

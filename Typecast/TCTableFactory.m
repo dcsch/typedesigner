@@ -17,6 +17,7 @@
 #import "TCLocaTable.h"
 #import "TCMaxpTable.h"
 #import "TCNameTable.h"
+#import "TCOs2Table.h"
 #import "TCVheaTable.h"
 
 @implementation TCTableFactory
@@ -62,9 +63,9 @@
 //            break;
 //        case Table.MMSD:
 //            break;
-//        case Table.OS_2:
-//            t = new Os2Table(de, dis);
-//            break;
+        case TCTable_OS_2:
+            table = [[TCOs2Table alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
 //        case Table.PCLT:
 //            t = new PcltTable(de, dis);
 //            break;
