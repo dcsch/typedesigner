@@ -65,6 +65,13 @@
     return value;
 }
 
+- (NSData *)readDataWithLength:(NSUInteger)dataLength
+{
+    NSData *data = [_data subdataWithRange:NSMakeRange(_offset, dataLength)];
+    _offset += dataLength;
+    return data;
+}
+
 - (void)reset
 {
     _offset = 0;

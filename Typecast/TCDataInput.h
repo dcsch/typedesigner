@@ -16,6 +16,7 @@
 - (int16_t)readShort;
 - (uint16_t)readUnsignedShort;
 - (uint8_t)readUnsignedByte;
+- (NSData *)readDataWithLength:(NSUInteger)dataLength;
 - (void)reset;
 - (void)skipByteCount:(NSUInteger)bytesToSkip;
 

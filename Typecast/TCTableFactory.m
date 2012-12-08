@@ -16,6 +16,7 @@
 #import "TCHmtxTable.h"
 #import "TCLocaTable.h"
 #import "TCMaxpTable.h"
+#import "TCNameTable.h"
 #import "TCVheaTable.h"
 
 @implementation TCTableFactory
@@ -108,9 +109,9 @@
         case TCTable_maxp:
             table = [[TCMaxpTable alloc] initWithDataInput:dataInput directoryEntry:entry];
             break;
-//        case Table.name:
-//            t = new NameTable(de, dis);
-//            break;
+        case TCTable_name:
+            table = [[TCNameTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
 //        case Table.prep:
 //            t = new PrepTable(de, dis);
 //            break;

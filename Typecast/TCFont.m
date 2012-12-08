@@ -87,7 +87,7 @@
     // required tables)
     _cmap = (TCCmapTable *)[self tableWithType:TCTable_cmap];
     _hmtx = (TCHmtxTable *)[self tableWithType:TCTable_hmtx];
-//    _name = (NameTable) getTable(Table.name);
+    _name = (TCNameTable *)[self tableWithType:TCTable_name];
 //    _os2 = (Os2Table) getTable(Table.OS_2);
 //    _post = (PostTable) getTable(Table.post);
 
@@ -95,7 +95,7 @@
     // 'glyf' table (along with the 'loca' table)
 //    _glyf = (GlyfTable) getTable(Table.glyf);
 
-    NSLog(@"'hmtx': %@", _hmtx);
+    NSLog(@"'name': %@", _name);
 }
 
 - (TCTable *)readTableWithTag:(uint32_t)tag fromDataInput:(TCDataInput *)dataInput
