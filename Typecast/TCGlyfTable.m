@@ -40,11 +40,11 @@
                 [glyfDataInput reset];
                 [glyfDataInput skipByteCount:[loca offsetAtIndex:i]];
                 int16_t numberOfContours = [glyfDataInput readShort];
-                if (numberOfContours >= 0)
+//                if (numberOfContours >= 0)
 //                    [descript addObject:[[GlyfSimpleDescript alloc] init (this, i, numberOfContours, dis);
             }
-            else
-                _descript[i] = null;
+//            else
+//                _descript[i] = null;
         }
 
 //        // Now do all the composite glyphs

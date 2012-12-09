@@ -1,4 +1,4 @@
-typecast
-========
+Type Designer
+=============
 
-OpenType font development system
+OpenType Font Design System for OS X.

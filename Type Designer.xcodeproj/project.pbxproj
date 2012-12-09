@@ -28,6 +28,7 @@
 		633D7872166A1B5100FBFFC3 /* TCFontCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7871166A1B5100FBFFC3 /* TCFontCollection.m */; };
 		633D7875166A1F8D00FBFFC3 /* TCTableDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */; };
 		633D7878166A303500FBFFC3 /* TCDataInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7877166A303500FBFFC3 /* TCDataInput.m */; };
+		6365E66D167559690054AAB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6365E66C167559690054AAB3 /* README.md */; };
 		636EA69D1674A9F1003243C7 /* TCGlyfTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA69C1674A9F1003243C7 /* TCGlyfTable.m */; };
 		636EA6A11674B903003243C7 /* TCProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6A01674B903003243C7 /* TCProgram.m */; };
 		636EA6A41674BB95003243C7 /* TCGlyfDescript.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6A31674BB95003243C7 /* TCGlyfDescript.m */; };
@@ -105,6 +106,7 @@
 		633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableDirectory.m; sourceTree = "<group>"; };
 		633D7876166A303500FBFFC3 /* TCDataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDataInput.h; sourceTree = "<group>"; };
 		633D7877166A303500FBFFC3 /* TCDataInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDataInput.m; sourceTree = "<group>"; };
+		6365E66C167559690054AAB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		636EA69B1674A9F1003243C7 /* TCGlyfTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfTable.h; sourceTree = "<group>"; };
 		636EA69C1674A9F1003243C7 /* TCGlyfTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfTable.m; sourceTree = "<group>"; };
 		636EA69F1674B903003243C7 /* TCProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProgram.h; sourceTree = "<group>"; };
@@ -118,22 +120,22 @@
 		636EA6AA1674BD24003243C7 /* TCGlyfCompositeDescript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfCompositeDescript.m; sourceTree = "<group>"; };
 		636EA6AC1674BD56003243C7 /* TCGlyfCompositeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfCompositeComponent.h; sourceTree = "<group>"; };
 		636EA6AD1674BD56003243C7 /* TCGlyfCompositeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfCompositeComponent.m; sourceTree = "<group>"; };
-		6373B1AB166A11B5007EC53F /* Typecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Typecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6373B1AB166A11B5007EC53F /* Type Designer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Type Designer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6373B1AF166A11B5007EC53F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6373B1B2166A11B5007EC53F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		6373B1B3166A11B5007EC53F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6373B1B4166A11B5007EC53F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		6373B1B7166A11B5007EC53F /* Typecast-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Typecast-Info.plist"; sourceTree = "<group>"; };
+		6373B1B7166A11B5007EC53F /* Type-Designer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Type-Designer-Info.plist"; sourceTree = "<group>"; };
 		6373B1B9166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373B1BB166A11B5007EC53F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6373B1BD166A11B5007EC53F /* Typecast-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Typecast-Prefix.pch"; sourceTree = "<group>"; };
+		6373B1BD166A11B5007EC53F /* Type-Designer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Type-Designer-Prefix.pch"; sourceTree = "<group>"; };
 		6373B1C1166A11B5007EC53F /* TCDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCDocument.h; sourceTree = "<group>"; };
 		6373B1C2166A11B5007EC53F /* TCDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCDocument.m; sourceTree = "<group>"; };
 		6373B1C5166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TCDocument.xib; sourceTree = "<group>"; };
 		6373B1C8166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		6373B1CF166A11B5007EC53F /* TypecastTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypecastTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6373B1CF166A11B5007EC53F /* Type DesignerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Type DesignerTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6373B1D0166A11B5007EC53F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		6373B1D7166A11B5007EC53F /* TypecastTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TypecastTests-Info.plist"; sourceTree = "<group>"; };
+		6373B1D7166A11B5007EC53F /* Type-DesignerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Type-DesignerTests-Info.plist"; sourceTree = "<group>"; };
 		6373B1D9166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373B1DB166A11B5007EC53F /* TypecastTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypecastTests.h; sourceTree = "<group>"; };
 		6373B1DC166A11B5007EC53F /* TypecastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypecastTests.m; sourceTree = "<group>"; };
@@ -235,8 +237,9 @@
 		6373B1A0166A11B5007EC53F = {
 			isa = PBXGroup;
 			children = (
-				6373B1B5166A11B5007EC53F /* Typecast */,
-				6373B1D5166A11B5007EC53F /* TypecastTests */,
+				6365E66C167559690054AAB3 /* README.md */,
+				6373B1B5166A11B5007EC53F /* Type Designer */,
+				6373B1D5166A11B5007EC53F /* Type Designer Tests */,
 				6373B1AE166A11B5007EC53F /* Frameworks */,
 				6373B1AC166A11B5007EC53F /* Products */,
 			);
@@ -245,8 +248,8 @@
 		6373B1AC166A11B5007EC53F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6373B1AB166A11B5007EC53F /* Typecast.app */,
-				6373B1CF166A11B5007EC53F /* TypecastTests.octest */,
+				6373B1AB166A11B5007EC53F /* Type Designer.app */,
+				6373B1CF166A11B5007EC53F /* Type DesignerTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,7 +274,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		6373B1B5166A11B5007EC53F /* Typecast */ = {
+		6373B1B5166A11B5007EC53F /* Type Designer */ = {
 			isa = PBXGroup;
 			children = (
 				630AA399166B5A17001BD6BF /* Tables */,
@@ -298,34 +301,36 @@
 				630AA396166B331C001BD6BF /* TCTableFactory.h */,
 				630AA397166B331C001BD6BF /* TCTableFactory.m */,
 			);
+			name = "Type Designer";
 			path = Typecast;
 			sourceTree = "<group>";
 		};
 		6373B1B6166A11B5007EC53F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6373B1B7166A11B5007EC53F /* Typecast-Info.plist */,
+				6373B1B7166A11B5007EC53F /* Type-Designer-Info.plist */,
 				6373B1B8166A11B5007EC53F /* InfoPlist.strings */,
 				6373B1BB166A11B5007EC53F /* main.m */,
-				6373B1BD166A11B5007EC53F /* Typecast-Prefix.pch */,
+				6373B1BD166A11B5007EC53F /* Type-Designer-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6373B1D5166A11B5007EC53F /* TypecastTests */ = {
+		6373B1D5166A11B5007EC53F /* Type Designer Tests */ = {
 			isa = PBXGroup;
 			children = (
 				6373B1DB166A11B5007EC53F /* TypecastTests.h */,
 				6373B1DC166A11B5007EC53F /* TypecastTests.m */,
 				6373B1D6166A11B5007EC53F /* Supporting Files */,
 			);
+			name = "Type Designer Tests";
 			path = TypecastTests;
 			sourceTree = "<group>";
 		};
 		6373B1D6166A11B5007EC53F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6373B1D7166A11B5007EC53F /* TypecastTests-Info.plist */,
+				6373B1D7166A11B5007EC53F /* Type-DesignerTests-Info.plist */,
 				6373B1D8166A11B5007EC53F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -334,9 +339,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6373B1AA166A11B5007EC53F /* Typecast */ = {
+		6373B1AA166A11B5007EC53F /* Type Designer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6373B1E0166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Typecast" */;
+			buildConfigurationList = 6373B1E0166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Type Designer" */;
 			buildPhases = (
 				6373B1A7166A11B5007EC53F /* Sources */,
 				6373B1A8166A11B5007EC53F /* Frameworks */,
@@ -346,14 +351,14 @@
 			);
 			dependencies = (
 			);
-			name = Typecast;
+			name = "Type Designer";
 			productName = Typecast;
-			productReference = 6373B1AB166A11B5007EC53F /* Typecast.app */;
+			productReference = 6373B1AB166A11B5007EC53F /* Type Designer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6373B1CE166A11B5007EC53F /* TypecastTests */ = {
+		6373B1CE166A11B5007EC53F /* Type DesignerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6373B1E3166A11B5007EC53F /* Build configuration list for PBXNativeTarget "TypecastTests" */;
+			buildConfigurationList = 6373B1E3166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Type DesignerTests" */;
 			buildPhases = (
 				6373B1CA166A11B5007EC53F /* Sources */,
 				6373B1CB166A11B5007EC53F /* Frameworks */,
@@ -365,9 +370,9 @@
 			dependencies = (
 				6373B1D4166A11B5007EC53F /* PBXTargetDependency */,
 			);
-			name = TypecastTests;
+			name = "Type DesignerTests";
 			productName = TypecastTests;
-			productReference = 6373B1CF166A11B5007EC53F /* TypecastTests.octest */;
+			productReference = 6373B1CF166A11B5007EC53F /* Type DesignerTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -380,7 +385,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "David Schweinsberg";
 			};
-			buildConfigurationList = 6373B1A5166A11B5007EC53F /* Build configuration list for PBXProject "Typecast" */;
+			buildConfigurationList = 6373B1A5166A11B5007EC53F /* Build configuration list for PBXProject "Type Designer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -392,8 +397,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6373B1AA166A11B5007EC53F /* Typecast */,
-				6373B1CE166A11B5007EC53F /* TypecastTests */,
+				6373B1AA166A11B5007EC53F /* Type Designer */,
+				6373B1CE166A11B5007EC53F /* Type DesignerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -407,6 +412,7 @@
 				6373B1C6166A11B5007EC53F /* TCDocument.xib in Resources */,
 				6373B1C9166A11B5007EC53F /* MainMenu.xib in Resources */,
 				630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */,
+				6365E66D167559690054AAB3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +498,7 @@
 /* Begin PBXTargetDependency section */
 		6373B1D4166A11B5007EC53F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6373B1AA166A11B5007EC53F /* Typecast */;
+			target = 6373B1AA166A11B5007EC53F /* Type Designer */;
 			targetProxy = 6373B1D3166A11B5007EC53F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -592,9 +598,9 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Typecast/Typecast-Prefix.pch";
-				INFOPLIST_FILE = "Typecast/Typecast-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Typecast/Type-Designer-Prefix.pch";
+				INFOPLIST_FILE = "Typecast/Type-Designer-Info.plist";
+				PRODUCT_NAME = "Type Designer";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -605,9 +611,9 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Typecast/Typecast-Prefix.pch";
-				INFOPLIST_FILE = "Typecast/Typecast-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Typecast/Type-Designer-Prefix.pch";
+				INFOPLIST_FILE = "Typecast/Type-Designer-Info.plist";
+				PRODUCT_NAME = "Type Designer";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -620,8 +626,8 @@
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Typecast/Typecast-Prefix.pch";
-				INFOPLIST_FILE = "TypecastTests/TypecastTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "TypecastTests/Type-DesignerTests-Info.plist";
+				PRODUCT_NAME = "Type DesignerTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -635,8 +641,8 @@
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Typecast/Typecast-Prefix.pch";
-				INFOPLIST_FILE = "TypecastTests/TypecastTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "TypecastTests/Type-DesignerTests-Info.plist";
+				PRODUCT_NAME = "Type DesignerTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -645,7 +651,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6373B1A5166A11B5007EC53F /* Build configuration list for PBXProject "Typecast" */ = {
+		6373B1A5166A11B5007EC53F /* Build configuration list for PBXProject "Type Designer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6373B1DE166A11B5007EC53F /* Debug */,
@@ -654,7 +660,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6373B1E0166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Typecast" */ = {
+		6373B1E0166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Type Designer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6373B1E1166A11B5007EC53F /* Debug */,
@@ -663,7 +669,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6373B1E3166A11B5007EC53F /* Build configuration list for PBXNativeTarget "TypecastTests" */ = {
+		6373B1E3166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Type DesignerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6373B1E4166A11B5007EC53F /* Debug */,
