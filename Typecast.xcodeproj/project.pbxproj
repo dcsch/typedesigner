@@ -28,6 +28,12 @@
 		633D7872166A1B5100FBFFC3 /* TCFontCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7871166A1B5100FBFFC3 /* TCFontCollection.m */; };
 		633D7875166A1F8D00FBFFC3 /* TCTableDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */; };
 		633D7878166A303500FBFFC3 /* TCDataInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7877166A303500FBFFC3 /* TCDataInput.m */; };
+		636EA69D1674A9F1003243C7 /* TCGlyfTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA69C1674A9F1003243C7 /* TCGlyfTable.m */; };
+		636EA6A11674B903003243C7 /* TCProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6A01674B903003243C7 /* TCProgram.m */; };
+		636EA6A41674BB95003243C7 /* TCGlyfDescript.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6A31674BB95003243C7 /* TCGlyfDescript.m */; };
+		636EA6A81674BCF8003243C7 /* TCGlyfSimpleDescript.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6A71674BCF8003243C7 /* TCGlyfSimpleDescript.m */; };
+		636EA6AB1674BD24003243C7 /* TCGlyfCompositeDescript.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6AA1674BD24003243C7 /* TCGlyfCompositeDescript.m */; };
+		636EA6AE1674BD57003243C7 /* TCGlyfCompositeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6AD1674BD56003243C7 /* TCGlyfCompositeComponent.m */; };
 		6373B1B0166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
 		6373B1BA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1B8166A11B5007EC53F /* InfoPlist.strings */; };
 		6373B1BC166A11B5007EC53F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1BB166A11B5007EC53F /* main.m */; };
@@ -99,6 +105,19 @@
 		633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableDirectory.m; sourceTree = "<group>"; };
 		633D7876166A303500FBFFC3 /* TCDataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDataInput.h; sourceTree = "<group>"; };
 		633D7877166A303500FBFFC3 /* TCDataInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDataInput.m; sourceTree = "<group>"; };
+		636EA69B1674A9F1003243C7 /* TCGlyfTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfTable.h; sourceTree = "<group>"; };
+		636EA69C1674A9F1003243C7 /* TCGlyfTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfTable.m; sourceTree = "<group>"; };
+		636EA69F1674B903003243C7 /* TCProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProgram.h; sourceTree = "<group>"; };
+		636EA6A01674B903003243C7 /* TCProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProgram.m; sourceTree = "<group>"; };
+		636EA6A21674BB95003243C7 /* TCGlyfDescript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfDescript.h; sourceTree = "<group>"; };
+		636EA6A31674BB95003243C7 /* TCGlyfDescript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfDescript.m; sourceTree = "<group>"; };
+		636EA6A51674BBB1003243C7 /* TCGlyphDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCGlyphDescription.h; sourceTree = "<group>"; };
+		636EA6A61674BCF7003243C7 /* TCGlyfSimpleDescript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfSimpleDescript.h; sourceTree = "<group>"; };
+		636EA6A71674BCF8003243C7 /* TCGlyfSimpleDescript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfSimpleDescript.m; sourceTree = "<group>"; };
+		636EA6A91674BD24003243C7 /* TCGlyfCompositeDescript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfCompositeDescript.h; sourceTree = "<group>"; };
+		636EA6AA1674BD24003243C7 /* TCGlyfCompositeDescript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfCompositeDescript.m; sourceTree = "<group>"; };
+		636EA6AC1674BD56003243C7 /* TCGlyfCompositeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfCompositeComponent.h; sourceTree = "<group>"; };
+		636EA6AD1674BD56003243C7 /* TCGlyfCompositeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfCompositeComponent.m; sourceTree = "<group>"; };
 		6373B1AB166A11B5007EC53F /* Typecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Typecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6373B1AF166A11B5007EC53F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6373B1B2166A11B5007EC53F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -196,6 +215,19 @@
 				63F3F0111673101E005B30FF /* TCOs2Table.m */,
 				63CB1034167352CC004D360F /* TCPostTable.h */,
 				63CB1035167352CC004D360F /* TCPostTable.m */,
+				636EA69B1674A9F1003243C7 /* TCGlyfTable.h */,
+				636EA69C1674A9F1003243C7 /* TCGlyfTable.m */,
+				636EA69F1674B903003243C7 /* TCProgram.h */,
+				636EA6A01674B903003243C7 /* TCProgram.m */,
+				636EA6A21674BB95003243C7 /* TCGlyfDescript.h */,
+				636EA6A31674BB95003243C7 /* TCGlyfDescript.m */,
+				636EA6A51674BBB1003243C7 /* TCGlyphDescription.h */,
+				636EA6A61674BCF7003243C7 /* TCGlyfSimpleDescript.h */,
+				636EA6A71674BCF8003243C7 /* TCGlyfSimpleDescript.m */,
+				636EA6A91674BD24003243C7 /* TCGlyfCompositeDescript.h */,
+				636EA6AA1674BD24003243C7 /* TCGlyfCompositeDescript.m */,
+				636EA6AC1674BD56003243C7 /* TCGlyfCompositeComponent.h */,
+				636EA6AD1674BD56003243C7 /* TCGlyfCompositeComponent.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -438,6 +470,12 @@
 				63F3EFBE166F5FD6005B30FF /* TCNameTable.m in Sources */,
 				63F3F0121673101E005B30FF /* TCOs2Table.m in Sources */,
 				63CB1036167352CC004D360F /* TCPostTable.m in Sources */,
+				636EA69D1674A9F1003243C7 /* TCGlyfTable.m in Sources */,
+				636EA6A11674B903003243C7 /* TCProgram.m in Sources */,
+				636EA6A41674BB95003243C7 /* TCGlyfDescript.m in Sources */,
+				636EA6A81674BCF8003243C7 /* TCGlyfSimpleDescript.m in Sources */,
+				636EA6AB1674BD24003243C7 /* TCGlyfCompositeDescript.m in Sources */,
+				636EA6AE1674BD57003243C7 /* TCGlyfCompositeComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
