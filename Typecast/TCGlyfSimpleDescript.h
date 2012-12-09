@@ -10,4 +10,10 @@
 
 @interface TCGlyfSimpleDescript : TCGlyfDescript
 
+@property (strong) NSArray *endPtsOfContours;
+@property (strong) NSArray *flags;
+@property (strong) NSArray *xCoordinates;
+@property (strong) NSArray *yCoordinates;
+@property uint32_t count;
+
 @end

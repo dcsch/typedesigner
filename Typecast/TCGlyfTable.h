@@ -10,9 +10,16 @@
 
 @class TCDirectoryEntry;
 @class TCDataInput;
+@class TCMaxpTable;
+@class TCLocaTable;
 
 @interface TCGlyfTable : TCTable
 
-- (id)initWithDataInput:(TCDataInput *)dataInput directoryEntry:(TCDirectoryEntry *)entry;
+@property (strong) NSArray *descript;
+
+- (id)initWithDataInput:(TCDataInput *)dataInput
+         directoryEntry:(TCDirectoryEntry *)entry
+              maxpTable:(TCMaxpTable *)maxp
+              locaTable:(TCLocaTable *)loca;
 
 @end

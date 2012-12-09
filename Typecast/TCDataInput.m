@@ -58,6 +58,13 @@
     return value;
 }
 
+- (int8_t)readByte
+{
+    int8_t value = *(int8_t *)(_bytes + _offset);
+    _offset += 1;
+    return value;
+}
+
 - (uint8_t)readUnsignedByte
 {
     uint8_t value = *(uint8_t *)(_bytes + _offset);

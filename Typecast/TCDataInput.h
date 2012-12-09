@@ -15,6 +15,7 @@
 - (int32_t)readInt;
 - (int16_t)readShort;
 - (uint16_t)readUnsignedShort;
+- (int8_t)readByte;
 - (uint8_t)readUnsignedByte;
 - (NSData *)readDataWithLength:(NSUInteger)dataLength;
 - (void)reset;
