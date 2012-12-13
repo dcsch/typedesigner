@@ -40,11 +40,14 @@
                 [glyfDataInput reset];
                 [glyfDataInput skipByteCount:[loca offsetAtIndex:i]];
                 int16_t numberOfContours = [glyfDataInput readShort];
-//                if (numberOfContours >= 0)
-//                    [descript addObject:[[GlyfSimpleDescript alloc] init (this, i, numberOfContours, dis);
+                if (numberOfContours >= 0)
+                    [descript addObject:[[TCGlyfSimpleDescript alloc] initWithDataInput:glyfDataInput
+                                                                            parentTable:self
+                                                                             glyphIndex:i
+                                                                       numberOfContours:numberOfContours]];
             }
-//            else
-//                _descript[i] = null;
+            else
+                [descript addObject:[NSNull null]];
         }
 
 //        // Now do all the composite glyphs

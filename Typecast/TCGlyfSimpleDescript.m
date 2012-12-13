@@ -71,6 +71,42 @@
     NSMutableArray *xCoordinates = [[NSMutableArray alloc] initWithCapacity:length];
     NSMutableArray *yCoordinates = [[NSMutableArray alloc] initWithCapacity:length];
 
+    short x = 0;
+    short y = 0;
+    for (int i = 0; i < length; ++i)
+    {
+        if (([_flags[i] charValue] & xDual) != 0)
+        {
+            if (([_flags[i] charValue] & xShortVector) != 0)
+                x += (short) [dataInput readUnsignedByte];
+        }
+        else
+        {
+            if (([_flags[i] charValue] & xShortVector) != 0)
+                x += (short) -((short) [dataInput readUnsignedByte]);
+            else
+                x += [dataInput readShort];
+        }
+        [xCoordinates addObject:[NSNumber numberWithShort:x]];
+    }
+
+    for (int i = 0; i < length; ++i)
+    {
+        if (([_flags[i] charValue] & yDual) != 0)
+        {
+            if (([_flags[i] charValue] & yShortVector) != 0)
+                y += (short) [dataInput readUnsignedByte];
+        }
+        else
+        {
+            if (([_flags[i] charValue] & yShortVector) != 0)
+                y += (short) -((short) [dataInput readUnsignedByte]);
+            else
+                y += [dataInput readShort];
+        }
+        [yCoordinates addObject:[NSNumber numberWithShort:y]];
+    }
+
     _xCoordinates = xCoordinates;
     _yCoordinates = yCoordinates;
 }

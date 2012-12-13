@@ -20,6 +20,7 @@
 @class TCNameTable;
 @class TCOs2Table;
 @class TCPostTable;
+@class TCGlyfTable;
 
 @interface TCFont : NSObject
 
@@ -35,6 +36,7 @@
 @property (strong) TCNameTable *name;
 @property (strong) TCOs2Table *os2;
 @property (strong) TCPostTable *post;
+@property (strong) TCGlyfTable *glyf;
 
 - (id)initWithData:(NSData *)data;
 - (TCTable *)tableWithType:(NSUInteger)tableType;

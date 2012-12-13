@@ -11,6 +11,7 @@
 #import "TCDirectoryEntry.h"
 #import "TCDataInput.h"
 #import "TCCmapTable.h"
+#import "TCGlyfTable.h"
 #import "TCHeadTable.h"
 #import "TCHheaTable.h"
 #import "TCHmtxTable.h"
@@ -87,9 +88,9 @@
 //        case Table.gasp:
 //            t = new GaspTable(de, dis);
 //            break;
-//        case Table.glyf:
-//            t = new GlyfTable(de, dis, font.getMaxpTable(), font.getLocaTable());
-//            break;
+        case TCTable_glyf:
+            table = [[TCGlyfTable alloc] initWithDataInput:dataInput directoryEntry:entry maxpTable:[font maxp] locaTable:[font loca]];
+            break;
 //        case Table.hdmx:
 //            t = new HdmxTable(de, dis, font.getMaxpTable());
 //            break;
