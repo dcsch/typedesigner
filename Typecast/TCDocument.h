@@ -11,6 +11,7 @@
 
 @interface TCDocument : NSDocument
 
+@property (strong) NSArray *bogus;
 @property (strong) TCFont *font;
 
 @end

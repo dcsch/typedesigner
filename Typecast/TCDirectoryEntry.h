@@ -16,6 +16,7 @@
 @property uint32_t checksum;
 @property uint32_t offset;
 @property uint32_t length;
+@property (strong, readonly) NSString *tagAsString;
 
 - (id)initWithDataInput:(TCDataInput *)dataInput;
 

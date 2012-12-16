@@ -24,6 +24,16 @@
     return self;
 }
 
+- (NSString *)tagAsString
+{
+    return [NSString stringWithFormat:
+            @"%c%c%c%c",
+            (char)(_tag >> 24),
+            (char)(_tag >> 16),
+            (char)(_tag >> 8),
+            (char)_tag];
+}
+
 #pragma mark - NSCopying Methods
 
 - (id)copyWithZone:(NSZone *)zone

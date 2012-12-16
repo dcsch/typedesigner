@@ -94,8 +94,6 @@
     // If this is a TrueType outline, then we'll have at least the
     // 'glyf' table (along with the 'loca' table)
     _glyf = (TCGlyfTable *)[self tableWithType:TCTable_glyf];
-
-    NSLog(@"'post': %@", _post);
 }
 
 - (TCTable *)readTableWithTag:(uint32_t)tag fromDataInput:(TCDataInput *)dataInput
