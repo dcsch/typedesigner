@@ -48,7 +48,7 @@
 		63CB1036167352CC004D360F /* TCPostTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB1035167352CC004D360F /* TCPostTable.m */; };
 		63E96F9F167DD9E400874FBC /* TCTable+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96F9E167DD9E400874FBC /* TCTable+UI.m */; };
 		63E96FA4167DEDE800874FBC /* TCGlyphListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96FA2167DEDE800874FBC /* TCGlyphListViewController.m */; };
-		63E96FA5167DEDE800874FBC /* TCGlyphListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E96FA3167DEDE800874FBC /* TCGlyphListView.xib */; };
+		63E96FA5167DEDE800874FBC /* GlyphListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E96FA3167DEDE800874FBC /* GlyphListView.xib */; };
 		63F3EF23166D4283005B30FF /* TCCmapFormat4.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF22166D4283005B30FF /* TCCmapFormat4.m */; };
 		63F3EF27166D470C005B30FF /* TCCmapFormat6.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF26166D470C005B30FF /* TCCmapFormat6.m */; };
 		63F3EF2A166D47E4005B30FF /* TCCmapFormatUnknown.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F3EF29166D47E4005B30FF /* TCCmapFormatUnknown.m */; };
@@ -148,7 +148,7 @@
 		63E96F9E167DD9E400874FBC /* TCTable+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCTable+UI.m"; sourceTree = "<group>"; };
 		63E96FA1167DEDE800874FBC /* TCGlyphListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyphListViewController.h; sourceTree = "<group>"; };
 		63E96FA2167DEDE800874FBC /* TCGlyphListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyphListViewController.m; sourceTree = "<group>"; };
-		63E96FA3167DEDE800874FBC /* TCGlyphListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCGlyphListView.xib; sourceTree = "<group>"; };
+		63E96FA3167DEDE800874FBC /* GlyphListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlyphListView.xib; sourceTree = "<group>"; };
 		63F3EF21166D4283005B30FF /* TCCmapFormat4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormat4.h; sourceTree = "<group>"; };
 		63F3EF22166D4283005B30FF /* TCCmapFormat4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapFormat4.m; sourceTree = "<group>"; };
 		63F3EF25166D470C005B30FF /* TCCmapFormat6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapFormat6.h; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 				63E96F9E167DD9E400874FBC /* TCTable+UI.m */,
 				63E96FA1167DEDE800874FBC /* TCGlyphListViewController.h */,
 				63E96FA2167DEDE800874FBC /* TCGlyphListViewController.m */,
-				63E96FA3167DEDE800874FBC /* TCGlyphListView.xib */,
+				63E96FA3167DEDE800874FBC /* GlyphListView.xib */,
 			);
 			name = "Type Designer";
 			path = Typecast;
@@ -426,7 +426,7 @@
 				6373B1C9166A11B5007EC53F /* MainMenu.xib in Resources */,
 				630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */,
 				6365E66D167559690054AAB3 /* README.md in Resources */,
-				63E96FA5167DEDE800874FBC /* TCGlyphListView.xib in Resources */,
+				63E96FA5167DEDE800874FBC /* GlyphListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,4 @@
 
 @interface TCTablesWindowController : NSWindowController
 
-@property (weak) IBOutlet NSView *containerView;
-
 @end
