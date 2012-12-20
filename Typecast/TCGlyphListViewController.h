@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class TCDocument;
+
 @interface TCGlyphListViewController : NSViewController
+
+@property (weak) TCDocument *document;
 
 @end

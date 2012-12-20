@@ -12,6 +12,7 @@
 @class TCDataInput;
 @class TCMaxpTable;
 @class TCLocaTable;
+@class TCPostTable;
 
 @interface TCGlyfTable : TCTable
 
@@ -19,7 +20,11 @@
 
 - (id)initWithDataInput:(TCDataInput *)dataInput
          directoryEntry:(TCDirectoryEntry *)entry
-              maxpTable:(TCMaxpTable *)maxp
-              locaTable:(TCLocaTable *)loca;
+              maxpTable:(TCMaxpTable *)maxpTable
+              locaTable:(TCLocaTable *)locaTable
+              postTable:(TCPostTable *)postTable;
+
+- (NSUInteger)countOfGlyphNames;
+- (NSString *)objectInGlyphNamesAtIndex:(NSUInteger)index;
 
 @end

@@ -13,32 +13,42 @@
 #import "TCLocaTable.h"
 #import "TCGlyfSimpleDescript.h"
 #import "TCGlyfCompositeDescript.h"
+#import "TCPostTable.h"
+
+@interface TCGlyfTable ()
+{
+    TCPostTable *_postTable;
+}
+
+@end
 
 @implementation TCGlyfTable
 
 - (id)initWithDataInput:(TCDataInput *)dataInput
          directoryEntry:(TCDirectoryEntry *)entry
-              maxpTable:(TCMaxpTable *)maxp
-              locaTable:(TCLocaTable *)loca
+              maxpTable:(TCMaxpTable *)maxpTable
+              locaTable:(TCLocaTable *)locaTable
+              postTable:(TCPostTable *)postTable
 {
     self = [super init];
     if (self)
     {
         self.directoryEntry = [entry copy];
-        NSMutableArray *descript = [[NSMutableArray alloc] initWithCapacity:[maxp numGlyphs]];
+        _postTable = postTable;
+        NSMutableArray *descript = [[NSMutableArray alloc] initWithCapacity:[maxpTable numGlyphs]];
 
         // Buffer the whole table so we can randomly access it
         NSData *data = [dataInput readDataWithLength:[entry length]];
         TCDataInput *glyfDataInput = [[TCDataInput alloc] initWithData:data];
 
         // Process all the simple glyphs
-        for (int i = 0; i < [maxp numGlyphs]; ++i)
+        for (int i = 0; i < [maxpTable numGlyphs]; ++i)
         {
-            int len = [loca offsetAtIndex:i + 1] - [loca offsetAtIndex:i];
+            int len = [locaTable offsetAtIndex:i + 1] - [locaTable offsetAtIndex:i];
             if (len > 0)
             {
                 [glyfDataInput reset];
-                [glyfDataInput skipByteCount:[loca offsetAtIndex:i]];
+                [glyfDataInput skipByteCount:[locaTable offsetAtIndex:i]];
                 int16_t numberOfContours = [glyfDataInput readShort];
                 if (numberOfContours >= 0)
                     [descript addObject:[[TCGlyfSimpleDescript alloc] initWithDataInput:glyfDataInput
@@ -71,6 +81,26 @@
 - (uint32_t)type
 {
     return TCTable_glyf;
+}
+
+- (NSUInteger)countOfGlyphNames
+{
+    return [_postTable numGlyphs];
+}
+
+- (NSString *)objectInGlyphNamesAtIndex:(NSUInteger)index
+{
+    if ([_postTable version] == 0x00020000)
+    {
+        NSUInteger nameIndex = [[_postTable glyphNameIndex][index] unsignedShortValue];
+        return (nameIndex > 257)
+            ? [_postTable psGlyphName][nameIndex - 258]
+            : [TCPostTable macGlyphNameAtIndex:nameIndex];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "TCGlyfDescript.h"
 #import "TCDataInput.h"
+#import "TCGlyfTable.h"
 
 // flags
 const uint8_t onCurve = 0x01;
@@ -28,6 +29,7 @@ const uint8_t yDual = 0x20;
     if (self)
     {
         _parentTable = parentTable;
+        _glyphIndex = glyphIndex;
         _numberOfContours = numberOfContours;
         _xMin = [dataInput readShort];
         _yMin = [dataInput readShort];
@@ -35,6 +37,11 @@ const uint8_t yDual = 0x20;
         _yMax = [dataInput readShort];
     }
     return self;
+}
+
+- (NSString *)name
+{
+    return [_parentTable objectInGlyphNamesAtIndex:_glyphIndex];
 }
 
 @end

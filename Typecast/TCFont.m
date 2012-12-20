@@ -55,6 +55,8 @@
     _loca = (TCLocaTable *)[self readTableWithTag:TCTable_loca fromDataInput:dataInput];
     _vhea = (TCVheaTable *)[self readTableWithTag:TCTable_vhea fromDataInput:dataInput];
 
+    _post = (TCPostTable *)[self readTableWithTag:TCTable_post fromDataInput:dataInput];
+
     [tables addObject:_head];
     [tables addObject:_hhea];
     [tables addObject:_maxp];
@@ -70,7 +72,8 @@
             [entry tag] == TCTable_hhea ||
             [entry tag] == TCTable_maxp ||
             [entry tag] == TCTable_loca ||
-            [entry tag] == TCTable_vhea)
+            [entry tag] == TCTable_vhea ||
+            [entry tag] == TCTable_post)
             continue;
 
         [dataInput reset];
@@ -86,7 +89,7 @@
     // Get references to commonly used tables (these happen to be all the
     // required tables)
     _cmap = (TCCmapTable *)[self tableWithType:TCTable_cmap];
-    _hmtx = (TCHmtxTable *)[self tableWithType:TCTable_hmtx];
+    _hmtxTable = (TCHmtxTable *)[self tableWithType:TCTable_hmtx];
     _name = (TCNameTable *)[self tableWithType:TCTable_name];
     _os2 = (TCOs2Table *)[self tableWithType:TCTable_OS_2];
     _post = (TCPostTable *)[self tableWithType:TCTable_post];

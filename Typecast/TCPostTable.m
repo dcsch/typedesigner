@@ -20,7 +20,7 @@
 
 // TODO: Mac Glyph names for 210 & 257
 
-static const NSString *macGlyphName[] = {
+static NSString *macGlyphName[] = {
     @".notdef",      // 0
     @"null",         // 1
     @"CR",           // 2
@@ -404,6 +404,11 @@ static const NSString *macGlyphName[] = {
         }
     }
     return str;
+}
+
++ (NSString *)macGlyphNameAtIndex:(NSUInteger)index
+{
+    return macGlyphName[index];
 }
 
 @end

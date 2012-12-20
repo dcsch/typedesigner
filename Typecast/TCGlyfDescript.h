@@ -7,7 +7,6 @@
 //
 
 #import "TCProgram.h"
-#import "TCGlyphDescription.h"
 
 @class TCGlyfTable;
 
@@ -20,7 +19,7 @@ extern const uint8_t xDual;
 extern const uint8_t yDual;
 
 
-@interface TCGlyfDescript : TCProgram <TCGlyphDescription>
+@interface TCGlyfDescript : TCProgram
 
 @property (weak) TCGlyfTable *parentTable;
 @property int glyphIndex;
@@ -29,6 +28,7 @@ extern const uint8_t yDual;
 @property short yMin;
 @property short xMax;
 @property short yMax;
+@property (strong, readonly) NSString *name;
 
 - (id)initWithDataInput:(TCDataInput *)dataInput
             parentTable:(TCGlyfTable *)parentTable

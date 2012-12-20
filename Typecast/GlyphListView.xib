@@ -69,7 +69,7 @@
 											<string key="NSFrameSize">{480, 17}</string>
 											<reference key="NSSuperview" ref="143851636"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="627522134"/>
+											<reference key="NSNextKeyView" ref="724135026"/>
 											<string key="NSReuseIdentifierKey">_NS:16</string>
 											<reference key="NSTableView" ref="434427218"/>
 										</object>
@@ -84,13 +84,13 @@
 										</object>
 										<array class="NSMutableArray" key="NSTableColumns">
 											<object class="NSTableColumn" id="245221275">
-												<double key="NSWidth">116</double>
+												<double key="NSWidth">74.85546875</double>
 												<double key="NSMinWidth">40</double>
 												<double key="NSMaxWidth">1000</double>
 												<object class="NSTableHeaderCell" key="NSHeaderCell">
 													<int key="NSCellFlags">75497536</int>
 													<int key="NSCellFlags2">2048</int>
-													<string key="NSContents"/>
+													<string key="NSContents">Glyph Index</string>
 													<object class="NSFont" key="NSSupport" id="26">
 														<string key="NSName">LucidaGrande</string>
 														<double key="NSSize">11</double>
@@ -138,17 +138,16 @@
 												</object>
 												<int key="NSResizingMask">3</int>
 												<bool key="NSIsResizeable">YES</bool>
-												<bool key="NSIsEditable">YES</bool>
 												<reference key="NSTableView" ref="434427218"/>
 											</object>
 											<object class="NSTableColumn" id="995223510">
-												<double key="NSWidth">358</double>
+												<double key="NSWidth">399</double>
 												<double key="NSMinWidth">40</double>
 												<double key="NSMaxWidth">1000</double>
 												<object class="NSTableHeaderCell" key="NSHeaderCell">
 													<int key="NSCellFlags">75497536</int>
 													<int key="NSCellFlags2">2048</int>
-													<string key="NSContents"/>
+													<string key="NSContents">Glyph Name</string>
 													<reference key="NSSupport" ref="26"/>
 													<reference key="NSBackgroundColor" ref="366939897"/>
 													<reference key="NSTextColor" ref="289966737"/>
@@ -164,7 +163,6 @@
 												</object>
 												<int key="NSResizingMask">3</int>
 												<bool key="NSIsResizeable">YES</bool>
-												<bool key="NSIsEditable">YES</bool>
 												<reference key="NSTableView" ref="434427218"/>
 											</object>
 										</array>
@@ -224,6 +222,7 @@
 								<string key="NSFrame">{{1, 119}, {223, 15}}</string>
 								<reference key="NSSuperview" ref="539537821"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:60</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<int key="NSsFlags">1</int>
@@ -272,7 +271,7 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSArrayController" id="673211395">
-				<bool key="NSEditable">YES</bool>
+				<string key="NSObjectClassName">TCGlyfDescript</string>
 				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
 				<bool key="NSAvoidsEmptySelection">YES</bool>
 				<bool key="NSPreservesSelection">YES</bool>
@@ -296,19 +295,96 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentArray: representedObject</string>
+						<string key="label">doubleClickArgument: selectedObjects</string>
+						<reference key="source" ref="434427218"/>
+						<reference key="destination" ref="673211395"/>
+						<object class="NSNibBindingConnector" key="connector" id="874929445">
+							<reference key="NSSource" ref="434427218"/>
+							<reference key="NSDestination" ref="673211395"/>
+							<string key="NSLabel">doubleClickArgument: selectedObjects</string>
+							<string key="NSBinding">doubleClickArgument</string>
+							<string key="NSKeyPath">selectedObjects</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSSelectorName</string>
+								<string key="NS.object.0">showGlyphs:</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">57</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">doubleClickTarget: self</string>
+						<reference key="source" ref="434427218"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="434427218"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">doubleClickTarget: self</string>
+							<string key="NSBinding">doubleClickTarget</string>
+							<string key="NSKeyPath">self</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSSelectorName</string>
+								<string key="NS.object.0">showGlyphs:</string>
+							</object>
+							<reference key="NSPreviousConnector" ref="874929445"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: arrangedObjects.glyphIndex</string>
+						<reference key="source" ref="245221275"/>
+						<reference key="destination" ref="673211395"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="245221275"/>
+							<reference key="NSDestination" ref="673211395"/>
+							<string key="NSLabel">value: arrangedObjects.glyphIndex</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">arrangedObjects.glyphIndex</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSAllowsEditingMultipleValuesSelection</string>
+								<boolean value="NO" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: arrangedObjects.name</string>
+						<reference key="source" ref="995223510"/>
+						<reference key="destination" ref="673211395"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="995223510"/>
+							<reference key="NSDestination" ref="673211395"/>
+							<string key="NSLabel">value: arrangedObjects.name</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">arrangedObjects.name</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentArray: representedObject.descript</string>
 						<reference key="source" ref="673211395"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="673211395"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">contentArray: representedObject</string>
+							<string key="NSLabel">contentArray: representedObject.descript</string>
 							<string key="NSBinding">contentArray</string>
-							<string key="NSKeyPath">representedObject</string>
+							<string key="NSKeyPath">representedObject.descript</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">22</int>
+					<int key="connectionID">25</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -341,7 +417,6 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="1005"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="539537821"/>
 							<object class="IBNSLayoutConstraint" id="364198719">
 								<reference key="firstItem" ref="539537821"/>
 								<int key="firstAttribute">4</int>
@@ -406,6 +481,7 @@
 								<float key="scoringTypeFloat">29</float>
 								<int key="contentType">3</int>
 							</object>
+							<reference ref="539537821"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -534,7 +610,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">60</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

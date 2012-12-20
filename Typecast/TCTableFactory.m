@@ -89,7 +89,7 @@
 //            t = new GaspTable(de, dis);
 //            break;
         case TCTable_glyf:
-            table = [[TCGlyfTable alloc] initWithDataInput:dataInput directoryEntry:entry maxpTable:[font maxp] locaTable:[font loca]];
+            table = [[TCGlyfTable alloc] initWithDataInput:dataInput directoryEntry:entry maxpTable:[font maxp] locaTable:[font loca] postTable:[font post]];
             break;
 //        case Table.hdmx:
 //            t = new HdmxTable(de, dis, font.getMaxpTable());

@@ -7,8 +7,9 @@
 //
 
 #import "TCGlyfDescript.h"
+#import "TCGlyphDescription.h"
 
-@interface TCGlyfSimpleDescript : TCGlyfDescript
+@interface TCGlyfSimpleDescript : TCGlyfDescript <TCGlyphDescription>
 
 @property (strong) NSArray *endPtsOfContours;
 @property (strong) NSArray *flags;

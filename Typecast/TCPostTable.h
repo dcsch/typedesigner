@@ -30,4 +30,6 @@
 
 - (id)initWithDataInput:(TCDataInput *)dataInput directoryEntry:(TCDirectoryEntry *)entry;
 
++ (NSString *)macGlyphNameAtIndex:(NSUInteger)index;
+
 @end

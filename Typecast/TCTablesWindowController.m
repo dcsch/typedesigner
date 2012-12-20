@@ -8,10 +8,11 @@
 
 #import "TCTablesWindowController.h"
 #import "TCTable.h"
+#import "TCGlyphListViewController.h"
 
 @interface TCTablesWindowController () <NSTableViewDelegate>
 {
-    NSViewController *_containerViewController;
+    NSViewController *_containedViewController;
 }
 
 @property (weak) IBOutlet NSView *containerView;
@@ -24,8 +25,9 @@
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
+    if (self)
+    {
+        [self setShouldCloseDocument:YES];
     }
     
     return self;
@@ -42,16 +44,21 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
-    [[_containerViewController view] removeFromSuperview];
+    [[_containedViewController view] removeFromSuperview];
+    [_containerView removeConstraints:[_containerView constraints]];
 
     TCTable *table = [[_tableArrayController selectedObjects] lastObject];
     if ([table type] == TCTable_glyf)
     {
-        _containerViewController = [[NSViewController alloc] initWithNibName:@"GlyphListView" bundle:nil];
-        [[_containerViewController view] setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_containerView addSubview:[_containerViewController view]];
+        _containedViewController = [[TCGlyphListViewController alloc] initWithNibName:@"GlyphListView" bundle:nil];
+        [[_containedViewController view] setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [_containerView addSubview:[_containedViewController view]];
+        [_containedViewController setRepresentedObject:table];
 
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:[_containerViewController view]
+        [(TCGlyphListViewController *)_containedViewController setDocument:[self document]];
+
+        // Add constraints that fill the container view
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:[_containedViewController view]
                                                                       attribute:NSLayoutAttributeTop
                                                                       relatedBy:NSLayoutRelationEqual
                                                                          toItem:_containerView
@@ -60,7 +67,7 @@
                                                                        constant:0.0];
         [_containerView addConstraint:constraint];
 
-        constraint = [NSLayoutConstraint constraintWithItem:[_containerViewController view]
+        constraint = [NSLayoutConstraint constraintWithItem:[_containedViewController view]
                                                   attribute:NSLayoutAttributeLeft
                                                   relatedBy:NSLayoutRelationEqual
                                                      toItem:_containerView
@@ -69,7 +76,7 @@
                                                    constant:0.0];
         [_containerView addConstraint:constraint];
 
-        constraint = [NSLayoutConstraint constraintWithItem:[_containerViewController view]
+        constraint = [NSLayoutConstraint constraintWithItem:[_containedViewController view]
                                                   attribute:NSLayoutAttributeRight
                                                   relatedBy:NSLayoutRelationEqual
                                                      toItem:_containerView
@@ -78,7 +85,7 @@
                                                    constant:0.0];
         [_containerView addConstraint:constraint];
 
-        constraint = [NSLayoutConstraint constraintWithItem:[_containerViewController view]
+        constraint = [NSLayoutConstraint constraintWithItem:[_containedViewController view]
                                                   attribute:NSLayoutAttributeBottom
                                                   relatedBy:NSLayoutRelationEqual
                                                      toItem:_containerView

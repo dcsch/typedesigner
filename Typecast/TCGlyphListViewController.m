@@ -7,6 +7,8 @@
 //
 
 #import "TCGlyphListViewController.h"
+#import "TCDocument.h"
+#import "TCGlyphWindowController.h"
 
 @interface TCGlyphListViewController ()
 
@@ -22,6 +24,14 @@
     }
     
     return self;
+}
+
+- (void)showGlyphs:(NSArray *)glyphs
+{
+    TCGlyphWindowController *windowController = [[TCGlyphWindowController alloc] initWithWindowNibName:@"GlyphWindow"];
+    [windowController setGlyphDescription:[glyphs lastObject]];
+    [[self document] addWindowController:windowController];
+    [windowController showWindow:self];
 }
 
 @end

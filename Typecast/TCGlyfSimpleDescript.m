@@ -111,4 +111,66 @@
     _yCoordinates = yCoordinates;
 }
 
+#pragma mark - TCGlyphDescription Methods
+
+//- (int)glyphIndex
+//{
+//    return [self glyphIndex];
+//}
+
+- (int)endPtOfContoursAtIndex:(int)index
+{
+    return [_endPtsOfContours[index] intValue];
+}
+
+- (char)flagsAtIndex:(int)index
+{
+    return [_flags[index] charValue];
+}
+
+- (short)xCoordinateAtIndex:(int)index
+{
+    return [_xCoordinates[index] shortValue];
+}
+
+- (short)yCoordinateAtIndex:(int)index
+{
+    return [_yCoordinates[index] shortValue];
+}
+
+- (short)xMaximum
+{
+    return [self xMax];
+}
+
+- (short)xMinimum
+{
+    return [self xMin];
+}
+
+- (short)yMaximum
+{
+    return [self yMax];
+}
+
+- (short)yMinimum
+{
+    return [self yMin];
+}
+
+- (BOOL)isComposite
+{
+    return NO;
+}
+
+- (int)pointCount
+{
+    return _count;
+}
+
+- (int)contourCount
+{
+    return [self numberOfContours];
+}
+
 @end
