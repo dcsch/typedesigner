@@ -13,7 +13,7 @@
 @property int x;
 @property int y;
 @property (getter = isOnCurve) BOOL onCurve;
-@property (getter = isEndOfContoure) BOOL endOfContour;
+@property (getter = isEndOfContour) BOOL endOfContour;
 @property (getter = isTouched) BOOL touched;
 
 @end

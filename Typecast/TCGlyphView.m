@@ -7,6 +7,14 @@
 //
 
 #import "TCGlyphView.h"
+#import "TCGlyphPathFactory.h"
+
+@interface TCGlyphView ()
+{
+    CGPathRef _glyphPath;
+}
+
+@end
 
 @implementation TCGlyphView
 
@@ -22,7 +30,19 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Drawing code here.
+    CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+
+    if (_glyph == nil)
+        return;
+
+    if (_glyphPath == NULL)
+    {
+        _glyphPath = [TCGlyphPathFactory buildPathWithGlyph:_glyph];
+    }
+
+    // Render the glyph path
+    CGContextAddPath(context, _glyphPath);
+    CGContextStrokePath(context);
 }
 
 @end
