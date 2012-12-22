@@ -14,6 +14,7 @@
 
 @interface TCGlyphWindowController ()
 
+@property (weak) IBOutlet NSScrollView *scrollView;
 @property (weak) IBOutlet TCGlyphView *glyphView;
 
 @end
@@ -34,11 +35,19 @@
 {
     [super windowDidLoad];
 
+    [_scrollView setHasHorizontalRuler:YES];
+    [_scrollView setHasVerticalRuler:YES];
+    [_scrollView setRulersVisible:YES];
+
     TCFont *font = [(TCDocument *)[self document] font];
     TCGlyph *glyph = [[TCGlyph alloc] initWithGlyphDescription:_glyphDescription
                                                leftSideBearing:[[font hmtxTable] leftSideBearingAtIndex:[_glyphDescription glyphIndex]]
                                                   advanceWidth:[[font hmtxTable] advanceWidthAtIndex:[_glyphDescription glyphIndex]]];
     [_glyphView setGlyph:glyph];
+    [_glyphView setFont:[(TCDocument *)[self document] font]];
+    [_glyphView setFrame:NSMakeRect(0, 0, 2048, 2048)];
+    [_glyphView setBounds:NSMakeRect(-100, -100, 4096, 4096)];
+    [_glyphView setNeedsDisplay:YES];
 }
 
 - (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName

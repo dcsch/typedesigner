@@ -26,17 +26,19 @@
 
 @property (strong) TCTableDirectory *tableDirectory;
 @property (strong) NSArray *tables;
-@property (strong) TCHeadTable *head;
-@property (strong) TCHheaTable *hhea;
-@property (strong) TCMaxpTable *maxp;
-@property (strong) TCLocaTable *loca;
-@property (strong) TCVheaTable *vhea;
-@property (strong) TCCmapTable *cmap;
+@property (strong) TCHeadTable *headTable;
+@property (strong) TCHheaTable *hheaTable;
+@property (strong) TCMaxpTable *maxpTable;
+@property (strong) TCLocaTable *locaTable;
+@property (strong) TCVheaTable *vheaTable;
+@property (strong) TCCmapTable *cmapTable;
 @property (strong) TCHmtxTable *hmtxTable;
-@property (strong) TCNameTable *name;
-@property (strong) TCOs2Table *os2;
-@property (strong) TCPostTable *post;
-@property (strong) TCGlyfTable *glyf;
+@property (strong) TCNameTable *nameTable;
+@property (strong) TCOs2Table *os2Table;
+@property (strong) TCPostTable *postTable;
+@property (strong) TCGlyfTable *glyfTable;
+@property (readonly) int ascent;
+@property (readonly) int descent;
 
 - (id)initWithData:(NSData *)data;
 - (TCTable *)tableWithType:(NSUInteger)tableType;

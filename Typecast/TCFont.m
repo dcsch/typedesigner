@@ -12,6 +12,7 @@
 #import "TCDirectoryEntry.h"
 #import "TCTableFactory.h"
 #import "TCDataInput.h"
+#import "TCHheaTable.h"
 
 @interface TCFont ()
 
@@ -49,21 +50,21 @@
     NSMutableArray *tables = [[NSMutableArray alloc] initWithCapacity:[_tableDirectory numTables]];
 
     // Load some prerequisite tables
-    _head = (TCHeadTable *)[self readTableWithTag:TCTable_head fromDataInput:dataInput];
-    _hhea = (TCHheaTable *)[self readTableWithTag:TCTable_hhea fromDataInput:dataInput];
-    _maxp = (TCMaxpTable *)[self readTableWithTag:TCTable_maxp fromDataInput:dataInput];
-    _loca = (TCLocaTable *)[self readTableWithTag:TCTable_loca fromDataInput:dataInput];
-    _vhea = (TCVheaTable *)[self readTableWithTag:TCTable_vhea fromDataInput:dataInput];
+    _headTable = (TCHeadTable *)[self readTableWithTag:TCTable_head fromDataInput:dataInput];
+    _hheaTable = (TCHheaTable *)[self readTableWithTag:TCTable_hhea fromDataInput:dataInput];
+    _maxpTable = (TCMaxpTable *)[self readTableWithTag:TCTable_maxp fromDataInput:dataInput];
+    _locaTable = (TCLocaTable *)[self readTableWithTag:TCTable_loca fromDataInput:dataInput];
+    _vheaTable = (TCVheaTable *)[self readTableWithTag:TCTable_vhea fromDataInput:dataInput];
 
-    _post = (TCPostTable *)[self readTableWithTag:TCTable_post fromDataInput:dataInput];
+    _postTable = (TCPostTable *)[self readTableWithTag:TCTable_post fromDataInput:dataInput];
 
-    [tables addObject:_head];
-    [tables addObject:_hhea];
-    [tables addObject:_maxp];
-    if (_loca)
-        [tables addObject:_loca];
-    if (_vhea)
-        [tables addObject:_vhea];
+    [tables addObject:_headTable];
+    [tables addObject:_hheaTable];
+    [tables addObject:_maxpTable];
+    if (_locaTable)
+        [tables addObject:_locaTable];
+    if (_vheaTable)
+        [tables addObject:_vheaTable];
 
     // Load all other tables
     for (TCDirectoryEntry *entry in [_tableDirectory entries])
@@ -88,15 +89,15 @@
 
     // Get references to commonly used tables (these happen to be all the
     // required tables)
-    _cmap = (TCCmapTable *)[self tableWithType:TCTable_cmap];
+    _cmapTable = (TCCmapTable *)[self tableWithType:TCTable_cmap];
     _hmtxTable = (TCHmtxTable *)[self tableWithType:TCTable_hmtx];
-    _name = (TCNameTable *)[self tableWithType:TCTable_name];
-    _os2 = (TCOs2Table *)[self tableWithType:TCTable_OS_2];
-    _post = (TCPostTable *)[self tableWithType:TCTable_post];
+    _nameTable = (TCNameTable *)[self tableWithType:TCTable_name];
+    _os2Table = (TCOs2Table *)[self tableWithType:TCTable_OS_2];
+    _postTable = (TCPostTable *)[self tableWithType:TCTable_post];
 
     // If this is a TrueType outline, then we'll have at least the
     // 'glyf' table (along with the 'loca' table)
-    _glyf = (TCGlyfTable *)[self tableWithType:TCTable_glyf];
+    _glyfTable = (TCGlyfTable *)[self tableWithType:TCTable_glyf];
 }
 
 - (TCTable *)readTableWithTag:(uint32_t)tag fromDataInput:(TCDataInput *)dataInput
@@ -111,6 +112,16 @@
                                    directoryEntry:entry];
     }
     return nil;
+}
+
+- (int)ascent
+{
+    return [_hheaTable ascender];
+}
+
+- (int)descent
+{
+    return [_hheaTable descender];
 }
 
 @end

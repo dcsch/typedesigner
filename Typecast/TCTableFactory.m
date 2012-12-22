@@ -89,7 +89,7 @@
 //            t = new GaspTable(de, dis);
 //            break;
         case TCTable_glyf:
-            table = [[TCGlyfTable alloc] initWithDataInput:dataInput directoryEntry:entry maxpTable:[font maxp] locaTable:[font loca] postTable:[font post]];
+            table = [[TCGlyfTable alloc] initWithDataInput:dataInput directoryEntry:entry maxpTable:[font maxpTable] locaTable:[font locaTable] postTable:[font postTable]];
             break;
 //        case Table.hdmx:
 //            t = new HdmxTable(de, dis, font.getMaxpTable());
@@ -101,13 +101,13 @@
             table = [[TCHheaTable alloc] initWithDataInput:dataInput directoryEntry:entry];
             break;
         case TCTable_hmtx:
-            table = [[TCHmtxTable alloc] initWithDataInput:dataInput directoryEntry:entry hheaTable:[font hhea] maxpTable:[font maxp]];
+            table = [[TCHmtxTable alloc] initWithDataInput:dataInput directoryEntry:entry hheaTable:[font hheaTable] maxpTable:[font maxpTable]];
             break;
 //        case Table.kern:
 //            t = new KernTable(de, dis);
 //            break;
         case TCTable_loca:
-            table = [[TCLocaTable alloc] initWithDataInput:dataInput directoryEntry:entry headTable:[font head] maxpTable:[font maxp]];
+            table = [[TCLocaTable alloc] initWithDataInput:dataInput directoryEntry:entry headTable:[font headTable] maxpTable:[font maxpTable]];
             break;
         case TCTable_maxp:
             table = [[TCMaxpTable alloc] initWithDataInput:dataInput directoryEntry:entry];

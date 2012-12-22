@@ -7,12 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
-//#import "TCGlyphDescription.h"
+#import "TCFont.h"
 #import "TCGlyph.h"
 
 @interface TCGlyphView : NSView
 
-//@property (weak) id <TCGlyphDescription> glyphDescription;
+@property (strong) TCFont *font;
 @property (strong) TCGlyph *glyph;
+
+@property NSPoint translate;
+@property double scaleFactor;
 
 @end

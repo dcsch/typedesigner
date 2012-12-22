@@ -29,8 +29,8 @@
 - (void)showGlyphs:(NSArray *)glyphs
 {
     TCGlyphWindowController *windowController = [[TCGlyphWindowController alloc] initWithWindowNibName:@"GlyphWindow"];
-    [windowController setGlyphDescription:[glyphs lastObject]];
     [[self document] addWindowController:windowController];
+    [windowController setGlyphDescription:[glyphs lastObject]];
     [windowController showWindow:self];
 }
 
