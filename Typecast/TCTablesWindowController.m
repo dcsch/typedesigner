@@ -9,6 +9,7 @@
 #import "TCTablesWindowController.h"
 #import "TCTable.h"
 #import "TCGlyphListViewController.h"
+#import "TCCharacterMapListViewController.h"
 
 @interface TCTablesWindowController () <NSTableViewDelegate>
 {
@@ -46,16 +47,27 @@
 {
     [[_containedViewController view] removeFromSuperview];
     [_containerView removeConstraints:[_containerView constraints]];
+    _containedViewController = nil;
 
     TCTable *table = [[_tableArrayController selectedObjects] lastObject];
     if ([table type] == TCTable_glyf)
     {
         _containedViewController = [[TCGlyphListViewController alloc] initWithNibName:@"GlyphListView" bundle:nil];
+        [_containedViewController setRepresentedObject:table];
+        [(TCGlyphListViewController *)_containedViewController setDocument:[self document]];
+    }
+    else if ([table type] == TCTable_cmap)
+    {
+        _containedViewController = [[TCCharacterMapListViewController alloc] initWithNibName:@"CharacterMapListView" bundle:nil];
+        [_containedViewController setRepresentedObject:table];
+        [(TCCharacterMapListViewController *)_containedViewController setDocument:[self document]];
+    }
+
+    if (_containedViewController)
+    {
+        // Put into the container view
         [[_containedViewController view] setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_containerView addSubview:[_containedViewController view]];
-        [_containedViewController setRepresentedObject:table];
-
-        [(TCGlyphListViewController *)_containedViewController setDocument:[self document]];
 
         // Add constraints that fill the container view
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:[_containedViewController view]

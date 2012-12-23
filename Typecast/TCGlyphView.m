@@ -7,6 +7,8 @@
 //
 
 #import "TCGlyphView.h"
+#import "TCGlyph.h"
+#import "TCPoint.h"
 #import "TCGlyphPathFactory.h"
 #import "TCHeadTable.h"
 
@@ -44,6 +46,7 @@
 - (void)internalInit
 {
     _scaleFactor = 1.0;
+    _controlPointsVisible = YES;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -88,6 +91,35 @@
     CGContextAddPath(context, _glyphPath);
 //    CGContextStrokePath(context);
     CGContextFillPath(context);
+
+    if (_controlPointsVisible)
+    {
+        // Draw control points
+        for (TCPoint *point in [_glyph points])
+        {
+            // Note: The original intention of scaling and translating the
+            // following was to first restore the transformation matrix
+            // so that no matter the scaling of the glyph, the control points
+            // would appear as rects of a fixed size.
+            int x = (int) (_scaleFactor * ([point x] + _translate.x));
+            int y = (int) (_scaleFactor * ([point y] + _translate.y));
+
+            // Set the point colour based on selection
+//            if (_selectedPoints.contains(_glyph.getPoint(i))) {
+//                g2d.setPaint(Color.blue);
+//            } else {
+//                g2d.setPaint(Color.black);
+//            }
+
+            // Draw the point based on its type (on or off curve)
+            CGContextAddRect(context, CGRectMake(x - 2, y - 2, 5, 5));
+            if ([point isOnCurve])
+                CGContextFillPath(context);
+            else
+                CGContextStrokePath(context);
+//            g2d.drawString(Integer.toString(i), x + 4, y - 4);
+        }
+    }
 }
 
 @end

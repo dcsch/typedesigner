@@ -68,6 +68,17 @@
 //        if (leftover > 0) {
 //            [dataInput skipByteount:leftover];
 //        }
+
+        // Determines the ranges
+        NSMutableArray *ranges = [NSMutableArray arrayWithCapacity:_segCount];
+        for (int index = 0; index < _segCount; ++index)
+        {
+            NSUInteger startCode = [_startCode[index] unsignedIntegerValue];
+            NSUInteger endCode = [_endCode[index] unsignedIntegerValue];
+            NSRange range = NSMakeRange(startCode, endCode - startCode + 1);
+            [ranges addObject:[NSValue valueWithRange:range]];
+        }
+        [self setRanges:ranges];
     }
     return self;
 }

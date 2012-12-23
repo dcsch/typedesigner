@@ -23,6 +23,8 @@
     self = [super initWithDataInput:dataInput];
     if (self)
     {
+        [self setRanges:@[[NSValue valueWithRange:NSMakeRange(0, 255)]]];
+
         [self setFormat:0];
         NSMutableArray *glyphIdArray = [[NSMutableArray alloc] initWithCapacity:256];
         for (int i = 0; i < 256; ++i)

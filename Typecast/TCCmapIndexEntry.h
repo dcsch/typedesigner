@@ -18,6 +18,9 @@
 @property uint32_t offset;
 @property (strong) TCCmapFormat *format;
 
+@property (strong, readonly) NSString *platformDescription;
+@property (strong, readonly) NSString *encodingDescription;
+
 - (id)initWithDataInput:(TCDataInput *)dataInput;
 
 - (NSComparisonResult)compare:(TCCmapIndexEntry *)anEntry;

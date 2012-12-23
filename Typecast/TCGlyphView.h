@@ -14,6 +14,7 @@
 
 @property (strong) TCFont *font;
 @property (strong) TCGlyph *glyph;
+@property BOOL controlPointsVisible;
 
 @property NSPoint translate;
 @property double scaleFactor;

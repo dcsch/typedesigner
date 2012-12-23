@@ -34,6 +34,16 @@
         return NSOrderedSame;
 }
 
+- (NSString *)platformDescription
+{
+    return [TCID platformNameForID:_platformId];
+}
+
+- (NSString *)encodingDescription
+{
+    return [TCID encodingNameForPlatformID:_platformId encodingID:_encodingId];
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:
@@ -43,6 +53,16 @@
             _encodingId,
             [TCID encodingNameForPlatformID:_platformId encodingID:_encodingId],
             _offset];
+}
+
+- (id)valueForUndefinedKey:(NSString *)key
+{
+    return key;
+}
+
+- (NSString *)testName
+{
+    return @"This is a test";
 }
 
 @end

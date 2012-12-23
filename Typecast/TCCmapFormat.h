@@ -15,6 +15,7 @@
 @property uint16_t format;
 @property uint16_t length;
 @property uint16_t language;
+@property (strong) NSArray *ranges;
 
 - (id)initWithDataInput:(TCDataInput *)dataInput;
 

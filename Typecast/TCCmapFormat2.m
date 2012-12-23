@@ -83,6 +83,31 @@
         _glyphIndexArray = [[NSMutableArray alloc] initWithCapacity:highest];
         for (int i = 0; i < highest; ++i)
             [_glyphIndexArray addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+
+        // Determines the ranges
+        NSMutableArray *ranges = [NSMutableArray arrayWithCapacity:[_subHeaders count]];
+        for (int index = 0; index < [_subHeaders count]; ++index)
+        {
+            // Find the high-byte (if any)
+            int highByte = 0;
+            if (index != 0)
+            {
+                for (int i = 0; i < 256; ++i)
+                {
+                    if (_subHeaderKeys[i] / 8 == index)
+                    {
+                        highByte = i << 8;
+                        break;
+                    }
+                }
+            }
+
+            TCSubHeader *subHeader = _subHeaders[index];
+            NSRange range = NSMakeRange(highByte | [subHeader firstCode],
+                                        highByte | [subHeader firstCode] + [subHeader entryCount] - 1);
+            [ranges addObject:[NSValue valueWithRange:range]];
+        }
+        [self setRanges:ranges];
     }
     return self;
 }
