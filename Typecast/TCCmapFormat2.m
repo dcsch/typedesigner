@@ -112,4 +112,31 @@
     return self;
 }
 
+- (NSUInteger)glyphCodeAtCharacterCode:(NSUInteger)characterCode
+{
+    // Get the appropriate subheader
+    int index = 0;
+    int highByte = characterCode >> 8;
+    if (highByte != 0) {
+        index = _subHeaderKeys[highByte] / 8;
+    }
+    TCSubHeader *sh = _subHeaders[index];
+
+    // Is the charCode out-of-range?
+    int lowByte = characterCode & 0xff;
+    if (lowByte < sh.firstCode ||
+        lowByte >= (sh.firstCode + sh.entryCount)) {
+        return 0;
+    }
+
+    // Now calculate the glyph index
+    int glyphIndex =
+        [_glyphIndexArray[sh.arrayIndex + (lowByte - sh.firstCode)] intValue];
+    if (glyphIndex != 0) {
+        glyphIndex += sh.idDelta;
+        glyphIndex %= 65536;
+    }
+    return glyphIndex;
+}
+
 @end

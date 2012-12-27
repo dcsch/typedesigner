@@ -29,8 +29,17 @@
         NSMutableArray *glyphIdArray = [[NSMutableArray alloc] initWithCapacity:256];
         for (int i = 0; i < 256; ++i)
             [glyphIdArray addObject:[NSNumber numberWithUnsignedChar:[dataInput readUnsignedByte]]];
+        _glyphIdArray = glyphIdArray;
     }
     return self;
+}
+
+- (NSUInteger)glyphCodeAtCharacterCode:(NSUInteger)characterCode
+{
+    if (characterCode < 256)
+        return [_glyphIdArray[characterCode] unsignedIntegerValue];
+    else
+        return 0;
 }
 
 @end

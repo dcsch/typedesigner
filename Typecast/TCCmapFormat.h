@@ -19,6 +19,8 @@
 
 - (id)initWithDataInput:(TCDataInput *)dataInput;
 
+- (NSUInteger)glyphCodeAtCharacterCode:(NSUInteger)characterCode;
+
 + (TCCmapFormat *)cmapFormatOfType:(int)formatType dataInput:(TCDataInput *)dataInput;
 
 @end

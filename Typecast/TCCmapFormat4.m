@@ -83,4 +83,27 @@
     return self;
 }
 
+- (NSUInteger)glyphCodeAtCharacterCode:(NSUInteger)characterCode
+{
+    for (int i = 0; i < _segCount; ++i)
+    {
+        if ([_endCode[i] intValue] >= characterCode)
+        {
+            if ([_startCode[i] intValue] <= characterCode)
+            {
+                unsigned short idRangeOffset = [_idRangeOffset[i] unsignedShortValue];
+                if (idRangeOffset > 0)
+                    return [_glyphIdArray[idRangeOffset / 2 + (characterCode - [_startCode[i] unsignedShortValue]) - (_segCount - i)] unsignedShortValue];
+                else
+                    return ([_idDelta[i] unsignedShortValue] + characterCode) % 65536;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    return 0;
+}
+
 @end

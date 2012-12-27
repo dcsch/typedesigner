@@ -9,9 +9,16 @@
 #import <Cocoa/Cocoa.h>
 
 @class TCCmapIndexEntry;
+@class TCCharacterMapping;
 
 @interface TCCharacterMapWindowController : NSWindowController
 
 @property (weak) TCCmapIndexEntry *cmapIndexEntry;
+@property (strong, nonatomic) NSMutableArray *characterMappings;
+
+- (void)insertObject:(TCCharacterMapping *)mapping inCharacterMappingsAtIndex:(NSUInteger)index;
+- (void)removeObjectFromCharacterMappingsAtIndex:(NSUInteger)index;
+- (void)setCharacterMappings:(NSMutableArray *)characterMappings;
+- (NSArray *)CharacterMappings;
 
 @end

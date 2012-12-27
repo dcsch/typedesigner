@@ -27,6 +27,11 @@
     return self;
 }
 
+- (NSUInteger)glyphCodeAtCharacterCode:(NSUInteger)characterCode
+{
+    return 0;
+}
+
 + (TCCmapFormat *)cmapFormatOfType:(int)formatType dataInput:(TCDataInput *)dataInput
 {
     switch (formatType)

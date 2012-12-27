@@ -10,9 +10,25 @@
 #import "TCCmapIndexEntry.h"
 #import "TCCmapFormat.h"
 
-@interface TCCharacterMapWindowController ()
+@interface TCCharacterMapping : NSObject
 
-@property (strong) NSMutableArray *entries;
+@property NSUInteger characterCode;
+@property NSUInteger glyphCode;
+@property (strong, readonly) NSString *characterCodeString;
+
+@end
+
+@implementation TCCharacterMapping
+
+- (NSString *)characterCodeString
+{
+    return [NSString stringWithFormat:@"%04lX", _characterCode];
+}
+
+@end
+
+
+@interface TCCharacterMapWindowController ()
 
 @end
 
@@ -32,17 +48,40 @@
 {
     [super windowDidLoad];
 
-    _entries = [NSMutableArray array];
+    NSMutableArray *characterMappings = [NSMutableArray array];
     TCCmapFormat *format = [_cmapIndexEntry format];
     for (NSValue *rangeValue in [format ranges])
     {
         NSRange range = [rangeValue rangeValue];
         for (NSUInteger i = range.location; i < range.location + range.length; ++i)
         {
-            NSString *placeholderString = [NSString stringWithFormat:@"%ld", i];
-            [_entries addObject:placeholderString];
+            TCCharacterMapping *mapping = [[TCCharacterMapping alloc] init];
+            [mapping setCharacterCode:i];
+            [mapping setGlyphCode:[format glyphCodeAtCharacterCode:i]];
+            [characterMappings addObject:mapping];
         }
     }
+    [self setCharacterMappings:characterMappings];
+}
+
+- (void)insertObject:(TCCharacterMapping *)mapping inCharacterMappingsAtIndex:(NSUInteger)index
+{
+    [_characterMappings insertObject:mapping atIndex:index];
+}
+
+- (void)removeObjectFromCharacterMappingsAtIndex:(NSUInteger)index
+{
+    [_characterMappings removeObjectAtIndex:index];
+}
+
+- (void)setCharacterMappings:(NSMutableArray *)characterMappings
+{
+    _characterMappings = characterMappings;
+}
+
+- (NSArray *)CharacterMappings
+{
+    return _characterMappings;
 }
 
 @end
