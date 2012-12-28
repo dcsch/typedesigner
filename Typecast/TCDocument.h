@@ -7,11 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "TCFont.h"
+//#import "TCFontCollection.h"
+
+@class TCFont;
+@class TCFontCollection;
 
 @interface TCDocument : NSDocument
 
-@property (strong) NSArray *bogus;
 @property (strong) TCFont *font;
+@property (strong) TCFontCollection *fontCollection;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "TCDocument.h"
 #import "TCTablesWindowController.h"
+#import "TCFontCollection.h"
 #import "TCFont.h"
 
 @implementation TCDocument
@@ -49,9 +50,34 @@
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-    _font = [[TCFont alloc] initWithData:data];
+    BOOL suitcase = NO;
+    if ([typeName isEqualToString:@"Font Suitcase"] ||
+        [typeName isEqualToString:@"Datafork TrueType font"])
+        suitcase = YES;
+
+    _fontCollection = [[TCFontCollection alloc] initWithData:data isSuitcase:suitcase];
+
+    // TEMPORARY
+    _font = [_fontCollection fonts][0];
 
     return YES;
+}
+
+- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError
+{
+    if ([typeName isEqualToString:@"Font Suitcase"])
+    {
+        // The font data is in the resource fork, so load that
+        NSURL *resourceURL = [url URLByAppendingPathComponent:@"..namedfork/rsrc"];
+
+        return [super readFromURL:resourceURL ofType:typeName error:outError];
+    }
+//    else if ([typeName isEqualToString:@"Datafork TrueType font"])
+//    {
+//        return YES;
+//    }
+    else
+        return [super readFromURL:url ofType:typeName error:outError];
 }
 
 @end

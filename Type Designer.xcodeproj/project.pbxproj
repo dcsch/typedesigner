@@ -32,6 +32,10 @@
 		633D7872166A1B5100FBFFC3 /* TCFontCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7871166A1B5100FBFFC3 /* TCFontCollection.m */; };
 		633D7875166A1F8D00FBFFC3 /* TCTableDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */; };
 		633D7878166A303500FBFFC3 /* TCDataInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 633D7877166A303500FBFFC3 /* TCDataInput.m */; };
+		63534564168DB16300C66A9F /* TCResourceHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 63534563168DB16300C66A9F /* TCResourceHeader.m */; };
+		63534567168DB41700C66A9F /* TCResourceMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 63534566168DB41700C66A9F /* TCResourceMap.m */; };
+		6353456A168DB58500C66A9F /* TCResourceType.m in Sources */ = {isa = PBXBuildFile; fileRef = 63534569168DB58500C66A9F /* TCResourceType.m */; };
+		6353456D168DB97F00C66A9F /* TCResourceReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6353456C168DB97F00C66A9F /* TCResourceReference.m */; };
 		6365E66D167559690054AAB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6365E66C167559690054AAB3 /* README.md */; };
 		636EA69D1674A9F1003243C7 /* TCGlyfTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA69C1674A9F1003243C7 /* TCGlyfTable.m */; };
 		636EA6A11674B903003243C7 /* TCProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6A01674B903003243C7 /* TCProgram.m */; };
@@ -52,6 +56,7 @@
 		637BCBAF1682FAA200226DD8 /* TCGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBAE1682FAA200226DD8 /* TCGlyph.m */; };
 		637BCBB31682FAD100226DD8 /* TCPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBB21682FAD100226DD8 /* TCPoint.m */; };
 		637BCBBE1684435C00226DD8 /* TCGlyphPathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBBD1684435C00226DD8 /* TCGlyphPathFactory.m */; };
+		638BAEAC168C47B9003485A1 /* TCGlyphImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */; };
 		63CB1036167352CC004D360F /* TCPostTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB1035167352CC004D360F /* TCPostTable.m */; };
 		63E96F9F167DD9E400874FBC /* TCTable+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96F9E167DD9E400874FBC /* TCTable+UI.m */; };
 		63E96FA4167DEDE800874FBC /* TCGlyphListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96FA2167DEDE800874FBC /* TCGlyphListViewController.m */; };
@@ -125,6 +130,14 @@
 		633D7874166A1F8D00FBFFC3 /* TCTableDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableDirectory.m; sourceTree = "<group>"; };
 		633D7876166A303500FBFFC3 /* TCDataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDataInput.h; sourceTree = "<group>"; };
 		633D7877166A303500FBFFC3 /* TCDataInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDataInput.m; sourceTree = "<group>"; };
+		63534562168DB16300C66A9F /* TCResourceHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCResourceHeader.h; sourceTree = "<group>"; };
+		63534563168DB16300C66A9F /* TCResourceHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCResourceHeader.m; sourceTree = "<group>"; };
+		63534565168DB41700C66A9F /* TCResourceMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCResourceMap.h; sourceTree = "<group>"; };
+		63534566168DB41700C66A9F /* TCResourceMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCResourceMap.m; sourceTree = "<group>"; };
+		63534568168DB58500C66A9F /* TCResourceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCResourceType.h; sourceTree = "<group>"; };
+		63534569168DB58500C66A9F /* TCResourceType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCResourceType.m; sourceTree = "<group>"; };
+		6353456B168DB97F00C66A9F /* TCResourceReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCResourceReference.h; sourceTree = "<group>"; };
+		6353456C168DB97F00C66A9F /* TCResourceReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCResourceReference.m; sourceTree = "<group>"; };
 		6365E66C167559690054AAB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		636EA69B1674A9F1003243C7 /* TCGlyfTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfTable.h; sourceTree = "<group>"; };
 		636EA69C1674A9F1003243C7 /* TCGlyfTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfTable.m; sourceTree = "<group>"; };
@@ -164,6 +177,8 @@
 		637BCBB21682FAD100226DD8 /* TCPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPoint.m; sourceTree = "<group>"; };
 		637BCBBC1684435C00226DD8 /* TCGlyphPathFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyphPathFactory.h; sourceTree = "<group>"; };
 		637BCBBD1684435C00226DD8 /* TCGlyphPathFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyphPathFactory.m; sourceTree = "<group>"; };
+		638BAEAA168C47B9003485A1 /* TCGlyphImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyphImageFactory.h; sourceTree = "<group>"; };
+		638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyphImageFactory.m; sourceTree = "<group>"; };
 		63CB1034167352CC004D360F /* TCPostTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPostTable.h; sourceTree = "<group>"; };
 		63CB1035167352CC004D360F /* TCPostTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPostTable.m; sourceTree = "<group>"; };
 		63E96F9D167DD9E400874FBC /* TCTable+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCTable+UI.h"; sourceTree = "<group>"; };
@@ -269,6 +284,21 @@
 			name = Tables;
 			sourceTree = "<group>";
 		};
+		63534560168DB12C00C66A9F /* Suitcase */ = {
+			isa = PBXGroup;
+			children = (
+				63534562168DB16300C66A9F /* TCResourceHeader.h */,
+				63534563168DB16300C66A9F /* TCResourceHeader.m */,
+				63534565168DB41700C66A9F /* TCResourceMap.h */,
+				63534566168DB41700C66A9F /* TCResourceMap.m */,
+				63534568168DB58500C66A9F /* TCResourceType.h */,
+				63534569168DB58500C66A9F /* TCResourceType.m */,
+				6353456B168DB97F00C66A9F /* TCResourceReference.h */,
+				6353456C168DB97F00C66A9F /* TCResourceReference.m */,
+			);
+			name = Suitcase;
+			sourceTree = "<group>";
+		};
 		6373B1A0166A11B5007EC53F = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				630AA399166B5A17001BD6BF /* Tables */,
+				63534560168DB12C00C66A9F /* Suitcase */,
 				6373B1C1166A11B5007EC53F /* TCDocument.h */,
 				6373B1C2166A11B5007EC53F /* TCDocument.m */,
 				6373B1C4166A11B5007EC53F /* TCDocument.xib */,
@@ -357,6 +388,8 @@
 				6313472C16858EC10025CDFE /* TCCharacterMapListViewController.h */,
 				6313472D16858EC10025CDFE /* TCCharacterMapListViewController.m */,
 				6313472E16858EC10025CDFE /* CharacterMapListView.xib */,
+				638BAEAA168C47B9003485A1 /* TCGlyphImageFactory.h */,
+				638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */,
 			);
 			name = "Type Designer";
 			path = Typecast;
@@ -552,6 +585,11 @@
 				637BCBBE1684435C00226DD8 /* TCGlyphPathFactory.m in Sources */,
 				63134729168583760025CDFE /* TCCharacterMapWindowController.m in Sources */,
 				6313472F16858EC10025CDFE /* TCCharacterMapListViewController.m in Sources */,
+				638BAEAC168C47B9003485A1 /* TCGlyphImageFactory.m in Sources */,
+				63534564168DB16300C66A9F /* TCResourceHeader.m in Sources */,
+				63534567168DB41700C66A9F /* TCResourceMap.m in Sources */,
+				6353456A168DB58500C66A9F /* TCResourceType.m in Sources */,
+				6353456D168DB97F00C66A9F /* TCResourceReference.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

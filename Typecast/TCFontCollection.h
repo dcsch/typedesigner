@@ -10,4 +10,9 @@
 
 @interface TCFontCollection : NSObject
 
+@property (strong) NSArray *fonts;
+@property (getter = isSuitcase) BOOL suitcase;
+
+- (id)initWithData:(NSData *)data isSuitcase:(BOOL)suitcase;
+
 @end

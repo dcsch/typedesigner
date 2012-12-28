@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class TCDataInput;
 @class TCTable;
 @class TCTableDirectory;
 @class TCHeadTable;
@@ -41,6 +42,11 @@
 @property (readonly) int descent;
 
 - (id)initWithData:(NSData *)data;
+
 - (TCTable *)tableWithType:(NSUInteger)tableType;
+
+- (void)readFromDataInput:(TCDataInput *)dataInput
+          directoryOffset:(NSUInteger)directoryOffset
+             tablesOrigin:(NSUInteger)tablesOrigin;
 
 @end

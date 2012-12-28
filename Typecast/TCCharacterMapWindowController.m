@@ -9,12 +9,22 @@
 #import "TCCharacterMapWindowController.h"
 #import "TCCmapIndexEntry.h"
 #import "TCCmapFormat.h"
+#import "TCGlyph.h"
+#import "TCFont.h"
+#import "TCFontCollection.h"
+#import "TCDocument.h"
+#import "TCGlyphDescription.h"
+#import "TCGlyfTable.h"
+#import "TCHmtxTable.h"
 
 @interface TCCharacterMapping : NSObject
 
+@property (weak) TCFont *font;
 @property NSUInteger characterCode;
 @property NSUInteger glyphCode;
 @property (strong, readonly) NSString *characterCodeString;
+@property (strong, readonly) NSImage *glyphImage;
+@property (strong, readonly) TCGlyph *glyph;
 
 @end
 
@@ -23,6 +33,20 @@
 - (NSString *)characterCodeString
 {
     return [NSString stringWithFormat:@"%04lX", _characterCode];
+}
+
+- (NSImage *)glyphImage
+{
+    return nil;
+}
+
+- (TCGlyph *)glyph
+{
+    id<TCGlyphDescription> glyphDescription = [[[_font glyfTable] descript] objectAtIndex:_glyphCode];
+    TCGlyph *glyph = [[TCGlyph alloc] initWithGlyphDescription:glyphDescription
+                                               leftSideBearing:[[_font hmtxTable] leftSideBearingAtIndex:[glyphDescription glyphIndex]]
+                                                  advanceWidth:[[_font hmtxTable] advanceWidthAtIndex:[glyphDescription glyphIndex]]];
+    return glyph;
 }
 
 @end
@@ -48,6 +72,11 @@
 {
     [super windowDidLoad];
 
+    TCFontCollection *fontCollection = [(TCDocument *)[self document] fontCollection];
+
+    // TODO: Don't just select the first font
+    TCFont *font = [fontCollection fonts][0];
+
     NSMutableArray *characterMappings = [NSMutableArray array];
     TCCmapFormat *format = [_cmapIndexEntry format];
     for (NSValue *rangeValue in [format ranges])
@@ -56,6 +85,7 @@
         for (NSUInteger i = range.location; i < range.location + range.length; ++i)
         {
             TCCharacterMapping *mapping = [[TCCharacterMapping alloc] init];
+            [mapping setFont:font];
             [mapping setCharacterCode:i];
             [mapping setGlyphCode:[format glyphCodeAtCharacterCode:i]];
             [characterMappings addObject:mapping];

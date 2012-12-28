@@ -7,6 +7,20 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Font Suitcase</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>NSDocumentClass</key>
+			<string>TCDocument</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>FFIL</string>
+			</array>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+		</dict>
+		<dict>
 			<key>NSDocumentClass</key>
 			<string>TCDocument</string>
 			<key>CFBundleTypeRole</key>
@@ -37,12 +51,12 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>typecast</string>
+				<string>dfont</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
-			<string>DocumentType</string>
+			<string>Datafork TrueType font</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>????</string>
