@@ -13,6 +13,7 @@
 #import "TCResourceType.h"
 #import "TCResourceReference.h"
 #import "TCFont.h"
+#import "TCTTCHeader.h"
 
 @implementation TCFontCollection
 
@@ -23,6 +24,8 @@
     {
         _suitcase = suitcase;
         [self loadFromData:data];
+        if (_fonts == nil)
+            return nil;
     }
     return self;
 }
@@ -44,6 +47,10 @@
         // Get the 'sfnt' resources
         TCResourceType *resourceType = [map resourceTypeWithName:@"sfnt"];
 
+        // This could be a font suitcase, but with only FONT or NFNT resources
+        if (resourceType == nil)
+            return;
+
         // Load the font data
         NSMutableArray *fonts = [[NSMutableArray alloc] initWithCapacity:[resourceType count]];
         for (TCResourceReference *resourceReference in [resourceType references])
@@ -55,16 +62,21 @@
         }
         _fonts = fonts;
 
-//    } else if (TTCHeader.isTTC(dis)) {
-//
-//        // This is a TrueType font collection
-//        dis.reset();
-//        _ttcHeader = new TTCHeader(dis);
-//        _fonts = new OTFont[_ttcHeader.getDirectoryCount()];
-//        for (int i = 0; i < _ttcHeader.getDirectoryCount(); i++) {
-//            _fonts[i] = new OTFont(this);
-//            _fonts[i].read(dis, _ttcHeader.getTableDirectory(i), 0);
-//        }
+    }
+    else if ([TCTTCHeader isTTCDataInput:dataInput])
+    {
+        // This is a TrueType font collection
+        [dataInput reset];
+        _ttcHeader = [[TCTTCHeader alloc] initWithDataInput:dataInput];
+        NSMutableArray *fonts = [[NSMutableArray alloc] initWithCapacity:[_ttcHeader directoryCount]];
+        for (int i = 0; i < [_ttcHeader directoryCount]; ++i)
+        {
+            TCFont *font = [[TCFont alloc] init];
+            [fonts addObject:font];
+            int offset = [[_ttcHeader tableDirectory][i] intValue];
+            [font readFromDataInput:dataInput directoryOffset:offset tablesOrigin:0];
+        }
+        _fonts = fonts;
     }
     else
     {

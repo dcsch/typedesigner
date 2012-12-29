@@ -56,6 +56,8 @@
         suitcase = YES;
 
     _fontCollection = [[TCFontCollection alloc] initWithData:data isSuitcase:suitcase];
+    if (_fontCollection == nil)
+        return NO;
 
     // TEMPORARY
     _font = [_fontCollection fonts][0];
@@ -69,13 +71,8 @@
     {
         // The font data is in the resource fork, so load that
         NSURL *resourceURL = [url URLByAppendingPathComponent:@"..namedfork/rsrc"];
-
         return [super readFromURL:resourceURL ofType:typeName error:outError];
     }
-//    else if ([typeName isEqualToString:@"Datafork TrueType font"])
-//    {
-//        return YES;
-//    }
     else
         return [super readFromURL:url ofType:typeName error:outError];
 }

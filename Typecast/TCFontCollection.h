@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class TCTTCHeader;
+
 @interface TCFontCollection : NSObject
 
 @property (strong) NSArray *fonts;
+@property (strong) TCTTCHeader *ttcHeader;
 @property (getter = isSuitcase) BOOL suitcase;
 
 - (id)initWithData:(NSData *)data isSuitcase:(BOOL)suitcase;

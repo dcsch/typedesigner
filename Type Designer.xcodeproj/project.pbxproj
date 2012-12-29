@@ -53,6 +53,7 @@
 		6373B1D2166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
 		6373B1DA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1D8166A11B5007EC53F /* InfoPlist.strings */; };
 		6373B1DD166A11B5007EC53F /* TypecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1DC166A11B5007EC53F /* TypecastTests.m */; };
+		6375A399168F13FB00539DA4 /* TCTTCHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375A398168F13FB00539DA4 /* TCTTCHeader.m */; };
 		637BCBAF1682FAA200226DD8 /* TCGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBAE1682FAA200226DD8 /* TCGlyph.m */; };
 		637BCBB31682FAD100226DD8 /* TCPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBB21682FAD100226DD8 /* TCPoint.m */; };
 		637BCBBE1684435C00226DD8 /* TCGlyphPathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBBD1684435C00226DD8 /* TCGlyphPathFactory.m */; };
@@ -171,6 +172,8 @@
 		6373B1D9166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373B1DB166A11B5007EC53F /* TypecastTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypecastTests.h; sourceTree = "<group>"; };
 		6373B1DC166A11B5007EC53F /* TypecastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypecastTests.m; sourceTree = "<group>"; };
+		6375A397168F13FB00539DA4 /* TCTTCHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTTCHeader.h; sourceTree = "<group>"; };
+		6375A398168F13FB00539DA4 /* TCTTCHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTTCHeader.m; sourceTree = "<group>"; };
 		637BCBAD1682FAA200226DD8 /* TCGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyph.h; sourceTree = "<group>"; };
 		637BCBAE1682FAA200226DD8 /* TCGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyph.m; sourceTree = "<group>"; };
 		637BCBB11682FAD100226DD8 /* TCPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPoint.h; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				636EA6AA1674BD24003243C7 /* TCGlyfCompositeDescript.m */,
 				636EA6AC1674BD56003243C7 /* TCGlyfCompositeComponent.h */,
 				636EA6AD1674BD56003243C7 /* TCGlyfCompositeComponent.m */,
+				6375A397168F13FB00539DA4 /* TCTTCHeader.h */,
+				6375A398168F13FB00539DA4 /* TCTTCHeader.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				63534567168DB41700C66A9F /* TCResourceMap.m in Sources */,
 				6353456A168DB58500C66A9F /* TCResourceType.m in Sources */,
 				6353456D168DB97F00C66A9F /* TCResourceReference.m in Sources */,
+				6375A399168F13FB00539DA4 /* TCTTCHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
