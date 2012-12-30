@@ -49,7 +49,7 @@
     [_containerView removeConstraints:[_containerView constraints]];
     _containedViewController = nil;
 
-    TCTable *table = [[_tableArrayController selectedObjects] lastObject];
+    id<TCTable> table = [[_tableArrayController selectedObjects] lastObject];
     if ([table type] == TCTable_glyf)
     {
         _containedViewController = [[TCGlyphListViewController alloc] initWithNibName:@"GlyphListView" bundle:nil];
@@ -106,6 +106,8 @@
                                                    constant:0.0];
         [_containerView addConstraint:constraint];
     }
+
+    //NSLog(@"%@", table);
 }
 
 @end

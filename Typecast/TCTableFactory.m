@@ -20,15 +20,16 @@
 #import "TCNameTable.h"
 #import "TCOs2Table.h"
 #import "TCPostTable.h"
+#import "TCPrepTable.h"
 #import "TCVheaTable.h"
 
 @implementation TCTableFactory
 
-+ (TCTable *)createTableForFont:(TCFont *)font
-                  withDataInput:(TCDataInput *)dataInput
-                 directoryEntry:(TCDirectoryEntry *)entry;
++ (id<TCTable>)createTableForFont:(TCFont *)font
+                    withDataInput:(TCDataInput *)dataInput
+                   directoryEntry:(TCDirectoryEntry *)entry;
 {
-    TCTable *table = nil;
+    id<TCTable> table = nil;
 
     // Create the table
     switch ([entry tag])
@@ -115,9 +116,9 @@
         case TCTable_name:
             table = [[TCNameTable alloc] initWithDataInput:dataInput directoryEntry:entry];
             break;
-//        case Table.prep:
-//            t = new PrepTable(de, dis);
-//            break;
+        case TCTable_prep:
+            table = [[TCPrepTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
         case TCTable_post:
             table = [[TCPostTable alloc] initWithDataInput:dataInput directoryEntry:entry];
             break;

@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@class TCTable;
+@protocol TCTable;
 @class TCFont;
 @class TCDirectoryEntry;
 @class TCDataInput;
 
 @interface TCTableFactory : NSObject
 
-+ (TCTable *)createTableForFont:(TCFont *)font
-                  withDataInput:(TCDataInput *)dataInput
-                 directoryEntry:(TCDirectoryEntry *)entry;
++ (id<TCTable>)createTableForFont:(TCFont *)font
+                    withDataInput:(TCDataInput *)dataInput
+                   directoryEntry:(TCDirectoryEntry *)entry;
 
 @end

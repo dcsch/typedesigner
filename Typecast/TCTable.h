@@ -112,7 +112,18 @@
 
 @class TCDirectoryEntry;
 
-@interface TCTable : NSObject
+
+@protocol TCTable
+
+- (uint32_t)type;
+
+- (TCDirectoryEntry *)directoryEntry;
+
+@end
+
+// A simple base implememtation of TCTable, for classes that don't need to be
+// derived from any other base classes.
+@interface TCTable : NSObject <TCTable>
 
 @property (readonly) uint32_t type;
 @property (strong) TCDirectoryEntry *directoryEntry;

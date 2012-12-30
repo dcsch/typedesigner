@@ -54,10 +54,13 @@
 		6373B1DA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1D8166A11B5007EC53F /* InfoPlist.strings */; };
 		6373B1DD166A11B5007EC53F /* TypecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1DC166A11B5007EC53F /* TypecastTests.m */; };
 		6375A399168F13FB00539DA4 /* TCTTCHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375A398168F13FB00539DA4 /* TCTTCHeader.m */; };
+		6375A39D168F1F0A00539DA4 /* TCMnemonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375A39C168F1F0A00539DA4 /* TCMnemonic.m */; };
 		637BCBAF1682FAA200226DD8 /* TCGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBAE1682FAA200226DD8 /* TCGlyph.m */; };
 		637BCBB31682FAD100226DD8 /* TCPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBB21682FAD100226DD8 /* TCPoint.m */; };
 		637BCBBE1684435C00226DD8 /* TCGlyphPathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBBD1684435C00226DD8 /* TCGlyphPathFactory.m */; };
 		638BAEAC168C47B9003485A1 /* TCGlyphImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */; };
+		63BFC23A168FD05D00435BC8 /* TCDisassembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC239168FD05D00435BC8 /* TCDisassembler.m */; };
+		63BFC23E168FD89400435BC8 /* TCPrepTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC23D168FD89400435BC8 /* TCPrepTable.m */; };
 		63CB1036167352CC004D360F /* TCPostTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB1035167352CC004D360F /* TCPostTable.m */; };
 		63E96F9F167DD9E400874FBC /* TCTable+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96F9E167DD9E400874FBC /* TCTable+UI.m */; };
 		63E96FA4167DEDE800874FBC /* TCGlyphListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96FA2167DEDE800874FBC /* TCGlyphListViewController.m */; };
@@ -174,6 +177,8 @@
 		6373B1DC166A11B5007EC53F /* TypecastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypecastTests.m; sourceTree = "<group>"; };
 		6375A397168F13FB00539DA4 /* TCTTCHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTTCHeader.h; sourceTree = "<group>"; };
 		6375A398168F13FB00539DA4 /* TCTTCHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTTCHeader.m; sourceTree = "<group>"; };
+		6375A39B168F1F0A00539DA4 /* TCMnemonic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMnemonic.h; sourceTree = "<group>"; };
+		6375A39C168F1F0A00539DA4 /* TCMnemonic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMnemonic.m; sourceTree = "<group>"; };
 		637BCBAD1682FAA200226DD8 /* TCGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyph.h; sourceTree = "<group>"; };
 		637BCBAE1682FAA200226DD8 /* TCGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyph.m; sourceTree = "<group>"; };
 		637BCBB11682FAD100226DD8 /* TCPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPoint.h; sourceTree = "<group>"; };
@@ -182,6 +187,10 @@
 		637BCBBD1684435C00226DD8 /* TCGlyphPathFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyphPathFactory.m; sourceTree = "<group>"; };
 		638BAEAA168C47B9003485A1 /* TCGlyphImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyphImageFactory.h; sourceTree = "<group>"; };
 		638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyphImageFactory.m; sourceTree = "<group>"; };
+		63BFC238168FD05D00435BC8 /* TCDisassembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDisassembler.h; sourceTree = "<group>"; };
+		63BFC239168FD05D00435BC8 /* TCDisassembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDisassembler.m; sourceTree = "<group>"; };
+		63BFC23C168FD89400435BC8 /* TCPrepTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPrepTable.h; sourceTree = "<group>"; };
+		63BFC23D168FD89400435BC8 /* TCPrepTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPrepTable.m; sourceTree = "<group>"; };
 		63CB1034167352CC004D360F /* TCPostTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPostTable.h; sourceTree = "<group>"; };
 		63CB1035167352CC004D360F /* TCPostTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPostTable.m; sourceTree = "<group>"; };
 		63E96F9D167DD9E400874FBC /* TCTable+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCTable+UI.h"; sourceTree = "<group>"; };
@@ -285,6 +294,8 @@
 				636EA6AD1674BD56003243C7 /* TCGlyfCompositeComponent.m */,
 				6375A397168F13FB00539DA4 /* TCTTCHeader.h */,
 				6375A398168F13FB00539DA4 /* TCTTCHeader.m */,
+				63BFC23C168FD89400435BC8 /* TCPrepTable.h */,
+				63BFC23D168FD89400435BC8 /* TCPrepTable.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -395,6 +406,10 @@
 				6313472E16858EC10025CDFE /* CharacterMapListView.xib */,
 				638BAEAA168C47B9003485A1 /* TCGlyphImageFactory.h */,
 				638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */,
+				6375A39B168F1F0A00539DA4 /* TCMnemonic.h */,
+				6375A39C168F1F0A00539DA4 /* TCMnemonic.m */,
+				63BFC238168FD05D00435BC8 /* TCDisassembler.h */,
+				63BFC239168FD05D00435BC8 /* TCDisassembler.m */,
 			);
 			name = "Type Designer";
 			path = Typecast;
@@ -596,6 +611,9 @@
 				6353456A168DB58500C66A9F /* TCResourceType.m in Sources */,
 				6353456D168DB97F00C66A9F /* TCResourceReference.m in Sources */,
 				6375A399168F13FB00539DA4 /* TCTTCHeader.m in Sources */,
+				6375A39D168F1F0A00539DA4 /* TCMnemonic.m in Sources */,
+				63BFC23A168FD05D00435BC8 /* TCDisassembler.m in Sources */,
+				63BFC23E168FD89400435BC8 /* TCPrepTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

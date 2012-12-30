@@ -81,9 +81,9 @@
 
         [dataInput reset];
         [dataInput skipByteCount:tablesOrigin + [entry offset]];
-        TCTable *table = [TCTableFactory createTableForFont:self
-                                              withDataInput:dataInput
-                                             directoryEntry:entry];
+        id<TCTable> table = [TCTableFactory createTableForFont:self
+                                                 withDataInput:dataInput
+                                                directoryEntry:entry];
         if (table)
             [tables addObject:table];
     }
@@ -102,9 +102,9 @@
     _glyfTable = (TCGlyfTable *)[self tableWithType:TCTable_glyf];
 }
 
-- (TCTable *)readTableWithTag:(uint32_t)tag
-                fromDataInput:(TCDataInput *)dataInput
-                 tablesOrigin:(NSUInteger)tablesOrigin
+- (id<TCTable>)readTableWithTag:(uint32_t)tag
+                  fromDataInput:(TCDataInput *)dataInput
+                   tablesOrigin:(NSUInteger)tablesOrigin
 {
     [dataInput reset];
     TCDirectoryEntry *entry = [_tableDirectory entryWithTag:tag];
