@@ -150,28 +150,28 @@ const short TCEncodingISO8859_1 = 2;
 //    const short languageUrdu = 20;
 //    const short languageHindi = 21;
 //    const short languageThai = 22;
-//
-//    // Name IDs
-//    const short nameCopyrightNotice = 0;
-//    const short nameFontFamilyName = 1;
-//    const short nameFontSubfamilyName = 2;
-//    const short nameUniqueFontIdentifier = 3;
-//    const short nameFullFontName = 4;
-//    const short nameVersionString = 5;
-//    const short namePostscriptName = 6;
-//    const short nameTrademark = 7;
-//    const short nameManufacturerName = 8;
-//    const short nameDesigner = 9;
-//    const short nameDescription = 10;
-//    const short nameURLVendor = 11;
-//    const short nameURLDesigner = 12;
-//    const short nameLicenseDescription = 13;
-//    const short nameLicenseInfoURL = 14;
-//    const short namePreferredFamily = 16;
-//    const short namePreferredSubfamily = 17;
-//    const short nameCompatibleFull = 18;
-//    const short nameSampleText = 19;
-//    const short namePostScriptCIDFindfontName = 20;
+
+// Name IDs
+const short TCNameCopyrightNotice = 0;
+const short TCNameFontFamilyName = 1;
+const short TCNameFontSubfamilyName = 2;
+const short TCNameUniqueFontIdentifier = 3;
+const short TCNameFullFontName = 4;
+const short TCNameVersionString = 5;
+const short TCNamePostscriptName = 6;
+const short TCNameTrademark = 7;
+const short TCNameManufacturerName = 8;
+const short TCNameDesigner = 9;
+const short TCNameDescription = 10;
+const short TCNameURLVendor = 11;
+const short TCNameURLDesigner = 12;
+const short TCNameLicenseDescription = 13;
+const short TCNameLicenseInfoURL = 14;
+const short TCNamePreferredFamily = 16;
+const short TCNamePreferredSubfamily = 17;
+const short TCNameCompatibleFull = 18;
+const short TCNameSampleText = 19;
+const short TCNamePostScriptCIDFindfontName = 20;
 
 + (NSString *)platformNameForID:(short)platformId
 {
@@ -359,32 +359,33 @@ const short TCEncodingISO8859_1 = 2;
 //        }
 //        return "";
 //    }
-//
-//    public static String getNameName(short nameId) {
-//        switch (nameId) {
-//            case nameCopyrightNotice: return "Copyright notice";
-//            case nameFontFamilyName: return "Font Family name";
-//            case nameFontSubfamilyName: return "Font Subfamily name";
-//            case nameUniqueFontIdentifier: return "Unique font identifier";
-//            case nameFullFontName: return "Full font name";
-//            case nameVersionString: return "Version string";
-//            case namePostscriptName: return "Postscript name";
-//            case nameTrademark: return "Trademark";
-//            case nameManufacturerName: return "Manufacturer Name";
-//            case nameDesigner: return "Designer";
-//            case nameDescription: return "Description";
-//            case nameURLVendor: return "URL Vendor";
-//            case nameURLDesigner: return "URL Designer";
-//            case nameLicenseDescription: return "License Description";
-//            case nameLicenseInfoURL: return "License Info URL";
-//            case namePreferredFamily: return "Preferred Family";
-//            case namePreferredSubfamily: return "Preferred Subfamily";
-//            case nameCompatibleFull: return "Compatible Full";
-//            case nameSampleText: return "Sample text";
-//            case namePostScriptCIDFindfontName: return "PostScript CID findfont name";
-//            default: return "";
-//        }
-//    }
-//}
+
++ (NSString *)nameNameForID:(short)nameId
+{
+    switch (nameId)
+    {
+        case TCNameCopyrightNotice: return @"Copyright notice";
+        case TCNameFontFamilyName: return @"Font Family name";
+        case TCNameFontSubfamilyName: return @"Font Subfamily name";
+        case TCNameUniqueFontIdentifier: return @"Unique font identifier";
+        case TCNameFullFontName: return @"Full font name";
+        case TCNameVersionString: return @"Version string";
+        case TCNamePostscriptName: return @"Postscript name";
+        case TCNameTrademark: return @"Trademark";
+        case TCNameManufacturerName: return @"Manufacturer Name";
+        case TCNameDesigner: return @"Designer";
+        case TCNameDescription: return @"Description";
+        case TCNameURLVendor: return @"URL Vendor";
+        case TCNameURLDesigner: return @"URL Designer";
+        case TCNameLicenseDescription: return @"License Description";
+        case TCNameLicenseInfoURL: return @"License Info URL";
+        case TCNamePreferredFamily: return @"Preferred Family";
+        case TCNamePreferredSubfamily: return @"Preferred Subfamily";
+        case TCNameCompatibleFull: return @"Compatible Full";
+        case TCNameSampleText: return @"Sample text";
+        case TCNamePostScriptCIDFindfontName: return @"PostScript CID findfont name";
+        default: return @"";
+    }
+}
 
 @end

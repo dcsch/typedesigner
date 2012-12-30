@@ -8,6 +8,7 @@
 
 #import "TCDocument.h"
 #import "TCTablesWindowController.h"
+#import "TCCollectionWindowController.h"
 #import "TCFontCollection.h"
 #import "TCFont.h"
 
@@ -24,7 +25,16 @@
 
 - (void)makeWindowControllers
 {
-    NSWindowController *controller = [[TCTablesWindowController alloc] initWithWindowNibName:@"TablesWindow"];
+    // If this is a font collection, show the collection window, otherwise,
+    // show the table window
+    NSWindowController *controller;
+    if ([[_fontCollection fonts] count] > 1)
+        controller = [[TCCollectionWindowController alloc] initWithWindowNibName:@"CollectionWindow"];
+    else
+    {
+        controller = [[TCTablesWindowController alloc] initWithWindowNibName:@"TablesWindow"];
+        [(TCTablesWindowController *)controller setFont:[_fontCollection fonts][0]];
+    }
     [self addWindowController:controller];
 }
 
@@ -60,7 +70,7 @@
         return NO;
 
     // TEMPORARY
-    _font = [_fontCollection fonts][0];
+    //_font = [_fontCollection fonts][0];
 
     return YES;
 }

@@ -13,6 +13,8 @@
 #import "TCTableFactory.h"
 #import "TCDataInput.h"
 #import "TCHheaTable.h"
+#import "TCNameTable.h"
+#import "TCID.h"
 
 @interface TCFont ()
 
@@ -126,6 +128,11 @@
 - (int)descent
 {
     return [_hheaTable descender];
+}
+
+- (NSString *)name
+{
+    return [[_nameTable recordWithID:TCNameFullFontName] record];
 }
 
 @end

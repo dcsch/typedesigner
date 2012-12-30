@@ -40,6 +40,7 @@
 @property (strong) TCGlyfTable *glyfTable;
 @property (readonly) int ascent;
 @property (readonly) int descent;
+@property (strong, readonly) NSString *name;
 
 - (id)initWithData:(NSData *)data;
 

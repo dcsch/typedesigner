@@ -101,4 +101,13 @@
     return TCTable_name;
 }
 
+- (TCNameRecord *)recordWithID:(int16_t)nameId
+{
+    // Search for the first instance of this name ID
+    for (TCNameRecord *record in _nameRecords)
+        if ([record nameId] == nameId)
+            return record;
+    return nil;
+}
+
 @end

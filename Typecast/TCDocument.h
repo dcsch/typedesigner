@@ -9,12 +9,12 @@
 #import <Cocoa/Cocoa.h>
 //#import "TCFontCollection.h"
 
-@class TCFont;
+//@class TCFont;
 @class TCFontCollection;
 
 @interface TCDocument : NSDocument
 
-@property (strong) TCFont *font;
+//@property (strong) TCFont *font;
 @property (strong) TCFontCollection *fontCollection;
 
 @end

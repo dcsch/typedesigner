@@ -38,4 +38,6 @@
 
 - (id)initWithDataInput:(TCDataInput *)dataInput directoryEntry:(TCDirectoryEntry *)entry;
 
+- (TCNameRecord *)recordWithID:(int16_t)nameId;
+
 @end

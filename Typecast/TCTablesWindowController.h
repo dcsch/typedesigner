@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class TCFont;
+
 @interface TCTablesWindowController : NSWindowController
+
+@property (strong) TCFont *font;
 
 @end

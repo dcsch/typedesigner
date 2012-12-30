@@ -72,6 +72,7 @@
 													<int key="NSvFlags">256</int>
 													<string key="NSFrameSize">{105, 272}</string>
 													<reference key="NSSuperview" ref="246434806"/>
+													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="1009220726"/>
 													<string key="NSReuseIdentifierKey">_NS:13</string>
 													<bool key="NSEnabled">YES</bool>
@@ -179,6 +180,7 @@
 											</array>
 											<string key="NSFrameSize">{105, 272}</string>
 											<reference key="NSSuperview" ref="351382733"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="114519408"/>
 											<string key="NSReuseIdentifierKey">_NS:11</string>
 											<reference key="NSDocView" ref="114519408"/>
@@ -190,6 +192,7 @@
 											<int key="NSvFlags">-2147483392</int>
 											<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 											<reference key="NSSuperview" ref="351382733"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="310590744"/>
 											<string key="NSReuseIdentifierKey">_NS:58</string>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -202,6 +205,7 @@
 											<int key="NSvFlags">-2147483392</int>
 											<string key="NSFrame">{{1, 119}, {223, 15}}</string>
 											<reference key="NSSuperview" ref="351382733"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="309494744"/>
 											<string key="NSReuseIdentifierKey">_NS:60</string>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -213,6 +217,7 @@
 									</array>
 									<string key="NSFrameSize">{105, 272}</string>
 									<reference key="NSSuperview" ref="825901853"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="246434806"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<int key="NSsFlags">133680</int>
@@ -229,6 +234,7 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{106, 0}, {377, 272}}</string>
 									<reference key="NSSuperview" ref="825901853"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSClassName">NSView</string>
@@ -236,6 +242,7 @@
 							</array>
 							<string key="NSFrame">{{-1, -1}, {483, 272}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="351382733"/>
 							<bool key="NSIsVertical">YES</bool>
 							<int key="NSDividerStyle">2</int>
@@ -247,6 +254,7 @@
 					</array>
 					<string key="NSFrameSize">{480, 270}</string>
 					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="825901853"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
@@ -302,19 +310,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentArray: document.font.tables</string>
+						<string key="label">contentArray: font.tables</string>
 						<reference key="source" ref="296475371"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="296475371"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">contentArray: document.font.tables</string>
+							<string key="NSLabel">contentArray: font.tables</string>
 							<string key="NSBinding">contentArray</string>
-							<string key="NSKeyPath">document.font.tables</string>
+							<string key="NSKeyPath">font.tables</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">170</int>
+					<int key="connectionID">172</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -568,9 +576,42 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">170</int>
+			<int key="maxID">172</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">NSLayoutConstraint</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">TCTablesWindowController</string>
+					<string key="superclassName">NSWindowController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="containerView">NSView</string>
+						<string key="tableArrayController">NSArrayController</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="containerView">
+							<string key="name">containerView</string>
+							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tableArrayController">
+							<string key="name">tableArrayController</string>
+							<string key="candidateClassName">NSArrayController</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/TCTablesWindowController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
