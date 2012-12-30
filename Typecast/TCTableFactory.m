@@ -11,6 +11,7 @@
 #import "TCDirectoryEntry.h"
 #import "TCDataInput.h"
 #import "TCCmapTable.h"
+#import "TCFpgmTable.h"
 #import "TCGlyfTable.h"
 #import "TCHeadTable.h"
 #import "TCHheaTable.h"
@@ -81,9 +82,9 @@
 //        case Table.cvt:
 //            t = new CvtTable(de, dis);
 //            break;
-//        case Table.fpgm:
-//            t = new FpgmTable(de, dis);
-//            break;
+        case TCTable_fpgm:
+            table = [[TCFpgmTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
 //        case Table.fvar:
 //            break;
 //        case Table.gasp:

@@ -61,6 +61,7 @@
 		638BAEAC168C47B9003485A1 /* TCGlyphImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */; };
 		63BFC23A168FD05D00435BC8 /* TCDisassembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC239168FD05D00435BC8 /* TCDisassembler.m */; };
 		63BFC23E168FD89400435BC8 /* TCPrepTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC23D168FD89400435BC8 /* TCPrepTable.m */; };
+		63BFC2411690055E00435BC8 /* TCFpgmTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC2401690055D00435BC8 /* TCFpgmTable.m */; };
 		63CB1036167352CC004D360F /* TCPostTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB1035167352CC004D360F /* TCPostTable.m */; };
 		63E96F9F167DD9E400874FBC /* TCTable+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96F9E167DD9E400874FBC /* TCTable+UI.m */; };
 		63E96FA4167DEDE800874FBC /* TCGlyphListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96FA2167DEDE800874FBC /* TCGlyphListViewController.m */; };
@@ -191,6 +192,8 @@
 		63BFC239168FD05D00435BC8 /* TCDisassembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDisassembler.m; sourceTree = "<group>"; };
 		63BFC23C168FD89400435BC8 /* TCPrepTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPrepTable.h; sourceTree = "<group>"; };
 		63BFC23D168FD89400435BC8 /* TCPrepTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPrepTable.m; sourceTree = "<group>"; };
+		63BFC23F1690055D00435BC8 /* TCFpgmTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFpgmTable.h; sourceTree = "<group>"; };
+		63BFC2401690055D00435BC8 /* TCFpgmTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFpgmTable.m; sourceTree = "<group>"; };
 		63CB1034167352CC004D360F /* TCPostTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPostTable.h; sourceTree = "<group>"; };
 		63CB1035167352CC004D360F /* TCPostTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPostTable.m; sourceTree = "<group>"; };
 		63E96F9D167DD9E400874FBC /* TCTable+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCTable+UI.h"; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 				6375A398168F13FB00539DA4 /* TCTTCHeader.m */,
 				63BFC23C168FD89400435BC8 /* TCPrepTable.h */,
 				63BFC23D168FD89400435BC8 /* TCPrepTable.m */,
+				63BFC23F1690055D00435BC8 /* TCFpgmTable.h */,
+				63BFC2401690055D00435BC8 /* TCFpgmTable.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 				6375A39D168F1F0A00539DA4 /* TCMnemonic.m in Sources */,
 				63BFC23A168FD05D00435BC8 /* TCDisassembler.m in Sources */,
 				63BFC23E168FD89400435BC8 /* TCPrepTable.m in Sources */,
+				63BFC2411690055E00435BC8 /* TCFpgmTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

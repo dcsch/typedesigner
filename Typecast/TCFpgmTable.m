@@ -1,17 +1,17 @@
 //
-//  TCPrepTable.m
+//  TCFpgmTable.m
 //  Type Designer
 //
 //  Created by David Schweinsberg on 30/12/12.
 //  Copyright (c) 2012 David Schweinsberg. All rights reserved.
 //
 
-#import "TCPrepTable.h"
+#import "TCFpgmTable.h"
 #import "TCDirectoryEntry.h"
 #import "TCDataInput.h"
 #import "TCDisassembler.h"
 
-@implementation TCPrepTable
+@implementation TCFpgmTable
 
 - (id)initWithDataInput:(TCDataInput *)dataInput directoryEntry:(TCDirectoryEntry *)entry
 {
@@ -26,7 +26,7 @@
 
 - (uint32_t)type
 {
-    return TCTable_prep;
+    return TCTable_fpgm;
 }
 
 - (NSString *)name

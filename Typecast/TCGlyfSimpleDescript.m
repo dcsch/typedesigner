@@ -8,6 +8,7 @@
 
 #import "TCGlyfSimpleDescript.h"
 #import "TCDataInput.h"
+#import "TCDisassembler.h"
 
 @interface TCGlyfSimpleDescript ()
 
@@ -109,6 +110,51 @@
 
     _xCoordinates = xCoordinates;
     _yCoordinates = yCoordinates;
+}
+
+- (NSString *)description
+{
+    NSMutableString *str = [[NSMutableString alloc] init];
+    [str appendString:[super description]];
+
+    [str appendString:@"\n        EndPoints\n        ---------"];
+    for (int i = 0; i < [_endPtsOfContours count]; ++i)
+        [str appendFormat:@"\n          %d: %d", i, [_endPtsOfContours[i] intValue]];
+
+    [str appendFormat:@"\n\n          Length of Instructions: %ld\n", [[self instructions] length]];
+    [str appendString:[TCDisassembler disassembleInstructions:[self instructions] leadingSpaceCount:8]];
+
+    [str appendString:@"\n        Flags\n        -----"];
+    for (int i = 0; i < [_flags count]; ++i)
+    {
+        char flags = [_flags[i] charValue];
+        [str appendFormat:
+         @"\n          %d: %@%@%@%@%@%@",
+         i,
+         ((flags & 0x20) != 0) ? @"YDual " : @"      ",
+         ((flags & 0x10) != 0) ? @"XDual " : @"      ",
+         ((flags & 0x08) != 0) ? @"Repeat " : @"       ",
+         ((flags & 0x04) != 0) ? @"Y-Short " : @"        ",
+         ((flags & 0x02) != 0) ? @"X-Short " : @"        ",
+         ((flags & 0x01) != 0) ? @"On" : @"  "];
+    }
+
+    [str appendString:@"\n\n        Coordinates\n        -----------"];
+    short oldX = 0;
+    short oldY = 0;
+    for (int i = 0; i < [_xCoordinates count]; ++i)
+    {
+        [str appendFormat:
+         @"\n          %d: Rel (%d, %d)  ->  Abs (%d, %d)",
+         i,
+         [_xCoordinates[i] shortValue] - oldX,
+         [_yCoordinates[i] shortValue] - oldY,
+         [_xCoordinates[i] shortValue],
+         [_yCoordinates[i] shortValue]];
+        oldX = [_xCoordinates[i] shortValue];
+        oldY = [_yCoordinates[i] shortValue];
+    }
+    return str;
 }
 
 #pragma mark - TCGlyphDescription Methods

@@ -44,4 +44,19 @@ const uint8_t yDual = 0x20;
     return [_parentTable objectInGlyphNamesAtIndex:_glyphIndex];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:
+            @"          numberOfContours: %d\n"
+            @"          xMin:             %d\n"
+            @"          yMin:             %d\n"
+            @"          xMax:             %d\n"
+            @"          yMax:             %d\n",
+            _numberOfContours,
+            _xMin,
+            _yMin,
+            _xMax,
+            _yMax];
+}
+
 @end
