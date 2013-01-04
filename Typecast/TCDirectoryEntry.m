@@ -34,6 +34,16 @@
             (char)_tag];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:
+            @"'%@' - chksm = 0x%x, off = 0x%x, len = %d",
+            [self tagAsString],
+            _checksum,
+            _offset,
+            _length];
+}
+
 #pragma mark - NSCopying Methods
 
 - (id)copyWithZone:(NSZone *)zone

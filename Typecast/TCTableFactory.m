@@ -11,6 +11,7 @@
 #import "TCDirectoryEntry.h"
 #import "TCDataInput.h"
 #import "TCCmapTable.h"
+#import "TCCffTable.h"
 #import "TCFpgmTable.h"
 #import "TCGlyfTable.h"
 #import "TCHeadTable.h"
@@ -38,9 +39,9 @@
 //        case BASE:
 //            table = new BaseTable(de, dis);
 //            break;
-//        case Table.CFF:
-//            t = new CffTable(de, dis);
-//            break;
+        case TCTable_CFF:
+            table = [[TCCffTable alloc] initWithDataInput:dataInput directoryEntry:entry];
+            break;
 //        case Table.DSIG:
 //            t = new DsigTable(de, dis);
 //            break;

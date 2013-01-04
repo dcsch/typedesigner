@@ -12,6 +12,7 @@
 #import "TCCharacterMapListViewController.h"
 #import "TCDocument.h"
 #import "TCFontCollection.h"
+#import "TCFont.h"
 
 @interface TCTablesWindowController () <NSTableViewDelegate>
 {
@@ -51,6 +52,11 @@
     TCFontCollection *fontCollection = [(TCDocument *)[self document] fontCollection];
     if ([[fontCollection fonts] count] == 1)
         [self setShouldCloseDocument:YES];
+}
+
+- (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName
+{
+    return [NSString stringWithFormat:@"%@ (%@)", [_font name], displayName];
 }
 
 #pragma mark - NSTableViewDelegate Methods

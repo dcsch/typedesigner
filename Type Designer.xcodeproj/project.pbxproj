@@ -43,6 +43,9 @@
 		636EA6A81674BCF8003243C7 /* TCGlyfSimpleDescript.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6A71674BCF8003243C7 /* TCGlyfSimpleDescript.m */; };
 		636EA6AB1674BD24003243C7 /* TCGlyfCompositeDescript.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6AA1674BD24003243C7 /* TCGlyfCompositeDescript.m */; };
 		636EA6AE1674BD57003243C7 /* TCGlyfCompositeComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA6AD1674BD56003243C7 /* TCGlyfCompositeComponent.m */; };
+		636FC57C169688BF00D5210E /* CFFCharset.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FC57B169688BF00D5210E /* CFFCharset.m */; };
+		636FC5841696B68000D5210E /* CFFCharstring.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FC5831696B68000D5210E /* CFFCharstring.m */; };
+		636FC5871696BC5500D5210E /* CFFStandardStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FC5861696BC5500D5210E /* CFFStandardStrings.m */; };
 		6373B1B0166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
 		6373B1BA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1B8166A11B5007EC53F /* InfoPlist.strings */; };
 		6373B1BC166A11B5007EC53F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1BB166A11B5007EC53F /* main.m */; };
@@ -64,7 +67,10 @@
 		63BFC2411690055E00435BC8 /* TCFpgmTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC2401690055D00435BC8 /* TCFpgmTable.m */; };
 		63BFC2451690108800435BC8 /* TCCollectionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC2431690108700435BC8 /* TCCollectionWindowController.m */; };
 		63BFC2461690108800435BC8 /* CollectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63BFC2441690108700435BC8 /* CollectionWindow.xib */; };
+		63BFC24916906D3200435BC8 /* TCCffTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC24816906D3200435BC8 /* TCCffTable.m */; };
+		63BFC24C16906E8000435BC8 /* CFFDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC24B16906E8000435BC8 /* CFFDict.m */; };
 		63CB1036167352CC004D360F /* TCPostTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB1035167352CC004D360F /* TCPostTable.m */; };
+		63D82EFA1694FD6C00ED6A22 /* CFFIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D82EF91694FD6C00ED6A22 /* CFFIndex.m */; };
 		63E96F9F167DD9E400874FBC /* TCTable+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96F9E167DD9E400874FBC /* TCTable+UI.m */; };
 		63E96FA4167DEDE800874FBC /* TCGlyphListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96FA2167DEDE800874FBC /* TCGlyphListViewController.m */; };
 		63E96FA5167DEDE800874FBC /* GlyphListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E96FA3167DEDE800874FBC /* GlyphListView.xib */; };
@@ -159,6 +165,12 @@
 		636EA6AA1674BD24003243C7 /* TCGlyfCompositeDescript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfCompositeDescript.m; sourceTree = "<group>"; };
 		636EA6AC1674BD56003243C7 /* TCGlyfCompositeComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyfCompositeComponent.h; sourceTree = "<group>"; };
 		636EA6AD1674BD56003243C7 /* TCGlyfCompositeComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyfCompositeComponent.m; sourceTree = "<group>"; };
+		636FC57A169688BF00D5210E /* CFFCharset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFCharset.h; sourceTree = "<group>"; };
+		636FC57B169688BF00D5210E /* CFFCharset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFCharset.m; sourceTree = "<group>"; };
+		636FC5821696B68000D5210E /* CFFCharstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFCharstring.h; sourceTree = "<group>"; };
+		636FC5831696B68000D5210E /* CFFCharstring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFCharstring.m; sourceTree = "<group>"; };
+		636FC5851696BC5500D5210E /* CFFStandardStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFStandardStrings.h; sourceTree = "<group>"; };
+		636FC5861696BC5500D5210E /* CFFStandardStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFStandardStrings.m; sourceTree = "<group>"; };
 		6373B1AB166A11B5007EC53F /* Type Designer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Type Designer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6373B1AF166A11B5007EC53F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6373B1B2166A11B5007EC53F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -199,8 +211,14 @@
 		63BFC2421690108700435BC8 /* TCCollectionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCollectionWindowController.h; sourceTree = "<group>"; };
 		63BFC2431690108700435BC8 /* TCCollectionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCollectionWindowController.m; sourceTree = "<group>"; };
 		63BFC2441690108700435BC8 /* CollectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionWindow.xib; sourceTree = "<group>"; };
+		63BFC24716906D3100435BC8 /* TCCffTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCffTable.h; sourceTree = "<group>"; };
+		63BFC24816906D3200435BC8 /* TCCffTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCffTable.m; sourceTree = "<group>"; };
+		63BFC24A16906E7F00435BC8 /* CFFDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFDict.h; sourceTree = "<group>"; };
+		63BFC24B16906E8000435BC8 /* CFFDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFDict.m; sourceTree = "<group>"; };
 		63CB1034167352CC004D360F /* TCPostTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPostTable.h; sourceTree = "<group>"; };
 		63CB1035167352CC004D360F /* TCPostTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPostTable.m; sourceTree = "<group>"; };
+		63D82EF81694FD6C00ED6A22 /* CFFIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFIndex.h; sourceTree = "<group>"; };
+		63D82EF91694FD6C00ED6A22 /* CFFIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFIndex.m; sourceTree = "<group>"; };
 		63E96F9D167DD9E400874FBC /* TCTable+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCTable+UI.h"; sourceTree = "<group>"; };
 		63E96F9E167DD9E400874FBC /* TCTable+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCTable+UI.m"; sourceTree = "<group>"; };
 		63E96FA1167DEDE800874FBC /* TCGlyphListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyphListViewController.h; sourceTree = "<group>"; };
@@ -306,6 +324,9 @@
 				63BFC23D168FD89400435BC8 /* TCPrepTable.m */,
 				63BFC23F1690055D00435BC8 /* TCFpgmTable.h */,
 				63BFC2401690055D00435BC8 /* TCFpgmTable.m */,
+				63BFC24716906D3100435BC8 /* TCCffTable.h */,
+				63BFC24816906D3200435BC8 /* TCCffTable.m */,
+				636FC5881696D06700D5210E /* CFF */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -323,6 +344,23 @@
 				6353456C168DB97F00C66A9F /* TCResourceReference.m */,
 			);
 			name = Suitcase;
+			sourceTree = "<group>";
+		};
+		636FC5881696D06700D5210E /* CFF */ = {
+			isa = PBXGroup;
+			children = (
+				63BFC24A16906E7F00435BC8 /* CFFDict.h */,
+				63BFC24B16906E8000435BC8 /* CFFDict.m */,
+				63D82EF81694FD6C00ED6A22 /* CFFIndex.h */,
+				63D82EF91694FD6C00ED6A22 /* CFFIndex.m */,
+				636FC57A169688BF00D5210E /* CFFCharset.h */,
+				636FC57B169688BF00D5210E /* CFFCharset.m */,
+				636FC5821696B68000D5210E /* CFFCharstring.h */,
+				636FC5831696B68000D5210E /* CFFCharstring.m */,
+				636FC5851696BC5500D5210E /* CFFStandardStrings.h */,
+				636FC5861696BC5500D5210E /* CFFStandardStrings.m */,
+			);
+			name = CFF;
 			sourceTree = "<group>";
 		};
 		6373B1A0166A11B5007EC53F = {
@@ -630,6 +668,12 @@
 				63BFC23E168FD89400435BC8 /* TCPrepTable.m in Sources */,
 				63BFC2411690055E00435BC8 /* TCFpgmTable.m in Sources */,
 				63BFC2451690108800435BC8 /* TCCollectionWindowController.m in Sources */,
+				63BFC24916906D3200435BC8 /* TCCffTable.m in Sources */,
+				63BFC24C16906E8000435BC8 /* CFFDict.m in Sources */,
+				63D82EFA1694FD6C00ED6A22 /* CFFIndex.m in Sources */,
+				636FC57C169688BF00D5210E /* CFFCharset.m in Sources */,
+				636FC5841696B68000D5210E /* CFFCharstring.m in Sources */,
+				636FC5871696BC5500D5210E /* CFFStandardStrings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

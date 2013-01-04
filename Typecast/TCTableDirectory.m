@@ -38,4 +38,24 @@
     return nil;
 }
 
+- (NSString *)description
+{
+    NSMutableString *str = [[NSMutableString alloc] init];
+    [str appendFormat:
+     @"Offset Table\n------ -----"
+     @"\n  sfnt version:     %d"
+     @"\n  numTables =       %d"
+     @"\n  searchRange =     %d"
+     @"\n  entrySelector =   %d"
+     @"\n  rangeShift =      %d\n\n",
+     _version,
+     _numTables,
+     _searchRange,
+     _entrySelector,
+     _rangeShift];
+    for (int i = 0; i < _numTables; ++i)
+        [str appendFormat:@"%d. %@\n", i, [_entries[i] description]];
+    return str;
+}
+
 @end
