@@ -105,11 +105,12 @@
     {
         NSUInteger first = [rangeValue rangeValue].location;
         NSUInteger left = [rangeValue rangeValue].length;
-        count += left;
-        if (gid < count) {
-            NSUInteger sid = gid - count + first;
+        if (gid < left + count)
+        {
+            NSUInteger sid = gid - count + first - 1;
             return (int)sid;
         }
+        count += left;
     }
     return 0;
 }

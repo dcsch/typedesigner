@@ -16,16 +16,3 @@
 - (NSString *)name;
 
 @end
-
-
-@interface CFFCharstringType2 : CFFCharstring
-
-- (id)initWithIndex:(int)index
-               name:(NSString *)name
-               data:(NSData *)data
-             offset:(int)offset
-             length:(int)length
-     localSubrIndex:(CFFIndex *)localSubrIndex
-    globalSubrIndex:(CFFIndex *)globalSubrIndex;
-
-@end

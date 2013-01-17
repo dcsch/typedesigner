@@ -69,6 +69,7 @@
 		63BFC2461690108800435BC8 /* CollectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63BFC2441690108700435BC8 /* CollectionWindow.xib */; };
 		63BFC24916906D3200435BC8 /* TCCffTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC24816906D3200435BC8 /* TCCffTable.m */; };
 		63BFC24C16906E8000435BC8 /* CFFDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC24B16906E8000435BC8 /* CFFDict.m */; };
+		63C8FC6B16A6C61800343B7A /* CFFCharstringType2.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C8FC6A16A6C61800343B7A /* CFFCharstringType2.m */; };
 		63CB1036167352CC004D360F /* TCPostTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB1035167352CC004D360F /* TCPostTable.m */; };
 		63D82EFA1694FD6C00ED6A22 /* CFFIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D82EF91694FD6C00ED6A22 /* CFFIndex.m */; };
 		63E96F9F167DD9E400874FBC /* TCTable+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E96F9E167DD9E400874FBC /* TCTable+UI.m */; };
@@ -215,6 +216,8 @@
 		63BFC24816906D3200435BC8 /* TCCffTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCffTable.m; sourceTree = "<group>"; };
 		63BFC24A16906E7F00435BC8 /* CFFDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFDict.h; sourceTree = "<group>"; };
 		63BFC24B16906E8000435BC8 /* CFFDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFDict.m; sourceTree = "<group>"; };
+		63C8FC6916A6C61800343B7A /* CFFCharstringType2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFCharstringType2.h; sourceTree = "<group>"; };
+		63C8FC6A16A6C61800343B7A /* CFFCharstringType2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFCharstringType2.m; sourceTree = "<group>"; };
 		63CB1034167352CC004D360F /* TCPostTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPostTable.h; sourceTree = "<group>"; };
 		63CB1035167352CC004D360F /* TCPostTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPostTable.m; sourceTree = "<group>"; };
 		63D82EF81694FD6C00ED6A22 /* CFFIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFIndex.h; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 				636FC5831696B68000D5210E /* CFFCharstring.m */,
 				636FC5851696BC5500D5210E /* CFFStandardStrings.h */,
 				636FC5861696BC5500D5210E /* CFFStandardStrings.m */,
+				63C8FC6916A6C61800343B7A /* CFFCharstringType2.h */,
+				63C8FC6A16A6C61800343B7A /* CFFCharstringType2.m */,
 			);
 			name = CFF;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 				636FC57C169688BF00D5210E /* CFFCharset.m in Sources */,
 				636FC5841696B68000D5210E /* CFFCharstring.m in Sources */,
 				636FC5871696BC5500D5210E /* CFFStandardStrings.m in Sources */,
+				63C8FC6B16A6C61800343B7A /* CFFCharstringType2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
