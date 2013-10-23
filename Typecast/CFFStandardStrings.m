@@ -415,7 +415,8 @@ static NSString *standardStrings[] = {
 
 + (NSUInteger)stringCount
 {
-    return 391;
+    //return 391;
+    return sizeof(standardStrings) / sizeof(NSString *);
 }
 
 @end

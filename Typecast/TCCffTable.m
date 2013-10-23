@@ -12,7 +12,7 @@
 #import "CFFIndex.h"
 #import "CFFDict.h"
 #import "CFFCharset.h"
-#import "CFFCharstring.h"
+#import "CFFCharstringType2.h"
 
 @implementation TCCffTable
 
@@ -102,6 +102,8 @@
                                                                           length:len
                                                                   localSubrIndex:nil
                                                                  globalSubrIndex:nil]];
+
+                //NSLog(@"%@", [[charstrings lastObject] description]);
             }
         }
     }
