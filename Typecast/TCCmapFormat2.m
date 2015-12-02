@@ -116,7 +116,7 @@
 {
     // Get the appropriate subheader
     int index = 0;
-    int highByte = characterCode >> 8;
+    NSUInteger highByte = characterCode >> 8;
     if (highByte != 0) {
         index = _subHeaderKeys[highByte] / 8;
     }

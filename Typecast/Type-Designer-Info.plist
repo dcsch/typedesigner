@@ -7,60 +7,60 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeName</key>
-			<string>TrueType font collection</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
-			<key>LSHandlerRank</key>
-			<string>Default</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ttc</string>
 			</array>
+			<key>CFBundleTypeName</key>
+			<string>TrueType font collection</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>NSDocumentClass</key>
+			<string>TCDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Font Suitcase</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>FFIL</string>
 			</array>
-			<key>LSHandlerRank</key>
-			<string>Default</string>
-		</dict>
-		<dict>
-			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>NSDocumentClass</key>
+			<string>TCDocument</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>otf</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>OpenType font</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Default</string>
+			<key>NSDocumentClass</key>
+			<string>TCDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ttf</string>
 			</array>
-			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
 			<key>CFBundleTypeName</key>
 			<string>TrueType font</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Default</string>
+			<key>NSDocumentClass</key>
+			<string>TCDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -86,7 +86,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>au.com.dssd.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
