@@ -14,7 +14,7 @@
 #import "TCCffTable.h"
 #import "TCFpgmTable.h"
 #import "TCGlyfTable.h"
-#import "TCHeadTable.h"
+#import "Type_Designer-Swift.h"
 #import "TCHheaTable.h"
 #import "TCHmtxTable.h"
 #import "TCLocaTable.h"

@@ -89,4 +89,25 @@
     _offset += bytesToSkip;
 }
 
+- (uint64_t)readUInt64
+{
+  uint64_t value = CFSwapInt64BigToHost(*(uint64_t *)(_bytes + _offset));
+  _offset += 8;
+  return value;
+}
+
+- (uint32_t)readUInt32
+{
+  uint32_t value = CFSwapInt32BigToHost(*(uint32_t *)(_bytes + _offset));
+  _offset += 4;
+  return value;
+}
+
+- (uint16_t)readUInt16
+{
+  uint16_t value = CFSwapInt16BigToHost(*(uint16_t *)(_bytes + _offset));
+  _offset += 2;
+  return value;
+}
+
 @end

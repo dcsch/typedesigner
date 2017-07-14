@@ -21,4 +21,8 @@
 - (void)reset;
 - (void)skipByteCount:(NSUInteger)bytesToSkip;
 
+- (uint64_t)readUInt64;
+- (uint32_t)readUInt32;
+- (uint16_t)readUInt16;
+
 @end

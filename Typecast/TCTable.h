@@ -78,7 +78,7 @@
 #define TCTable_hdmx 0x68646d78
 
 // font header [r]
-#define TCTable_head 0x68656164
+#define TCTable_head 0x68656164U
 
 // horizontal header [r]
 #define TCTable_hhea 0x68686561

@@ -10,7 +10,7 @@
 #import "TCDocument.h"
 #import "TCGlyph.h"
 #import "TCGlyphView.h"
-#import "TCHeadTable.h"
+#import "Type_Designer-Swift.h"
 #import "TCHheaTable.h"
 #import "TCHmtxTable.h"
 #import "TCFontCollection.h"

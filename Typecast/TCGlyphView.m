@@ -10,7 +10,7 @@
 #import "TCGlyph.h"
 #import "TCPoint.h"
 #import "TCGlyphPathFactory.h"
-#import "TCHeadTable.h"
+#import "Type_Designer-Swift.h"
 
 @interface TCGlyphView ()
 {

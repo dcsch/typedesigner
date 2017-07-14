@@ -9,7 +9,7 @@
 #import "TCLocaTable.h"
 #import "TCDirectoryEntry.h"
 #import "TCDataInput.h"
-#import "TCHeadTable.h"
+#import "Type_Designer-Swift.h"
 #import "TCMaxpTable.h"
 
 @implementation TCLocaTable
