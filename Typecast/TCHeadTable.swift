@@ -51,7 +51,7 @@ class TCHeadTable: TCTable {
 
   override var type: UInt32 {
     get {
-      return TCTable_head
+      return TCTableType.head.rawValue
     }
   }
 

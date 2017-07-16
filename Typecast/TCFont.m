@@ -12,7 +12,7 @@
 #import "TCDirectoryEntry.h"
 #import "TCTableFactory.h"
 #import "TCDataInput.h"
-#import "TCHheaTable.h"
+#import "Type_Designer-Swift.h"
 #import "TCNameTable.h"
 #import "TCID.h"
 

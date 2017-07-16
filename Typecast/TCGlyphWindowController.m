@@ -11,8 +11,6 @@
 #import "TCGlyph.h"
 #import "TCGlyphView.h"
 #import "Type_Designer-Swift.h"
-#import "TCHheaTable.h"
-#import "TCHmtxTable.h"
 #import "TCFontCollection.h"
 #import "TCFont.h"
 
@@ -62,8 +60,8 @@
     TCFont *font = [fontCollection fonts][0];
 
     TCGlyph *glyph = [[TCGlyph alloc] initWithGlyphDescription:_glyphDescription
-                                               leftSideBearing:[[font hmtxTable] leftSideBearingAtIndex:[_glyphDescription glyphIndex]]
-                                                  advanceWidth:[[font hmtxTable] advanceWidthAtIndex:[_glyphDescription glyphIndex]]];
+                                               leftSideBearing:[[font hmtxTable] leftSideBearingWithIndex:[_glyphDescription glyphIndex]]
+                                                  advanceWidth:[[font hmtxTable] advanceWidthWithIndex:[_glyphDescription glyphIndex]]];
     [_glyphView setGlyph:glyph];
     //[_glyphView setFont:[(TCDocument *)[self document] font]];
 

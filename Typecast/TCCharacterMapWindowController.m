@@ -15,7 +15,7 @@
 #import "TCDocument.h"
 #import "TCGlyphDescription.h"
 #import "TCGlyfTable.h"
-#import "TCHmtxTable.h"
+#import "Type_Designer-Swift.h"
 
 @interface TCCharacterMapping : NSObject
 
@@ -44,8 +44,8 @@
 {
     id<TCGlyphDescription> glyphDescription = [[[_font glyfTable] descript] objectAtIndex:_glyphCode];
     TCGlyph *glyph = [[TCGlyph alloc] initWithGlyphDescription:glyphDescription
-                                               leftSideBearing:[[_font hmtxTable] leftSideBearingAtIndex:[glyphDescription glyphIndex]]
-                                                  advanceWidth:[[_font hmtxTable] advanceWidthAtIndex:[glyphDescription glyphIndex]]];
+                                               leftSideBearing:[[_font hmtxTable] leftSideBearingWithIndex:[glyphDescription glyphIndex]]
+                                                  advanceWidth:[[_font hmtxTable] advanceWidthWithIndex:[glyphDescription glyphIndex]]];
     return glyph;
 }
 

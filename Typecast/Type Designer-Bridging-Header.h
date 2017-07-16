@@ -3,5 +3,6 @@
 //
 
 #import "TCTable.h"
+#import "TCMaxpTable.h"
 #import "TCDataInput.h"
 #import "TCDirectoryEntry.h"
