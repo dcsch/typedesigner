@@ -8,7 +8,7 @@
 
 #import "TCDocument.h"
 #import "TCTablesWindowController.h"
-#import "TCCollectionWindowController.h"
+#import "Type_Designer-Swift.h"
 #import "TCFontCollection.h"
 #import "TCFont.h"
 

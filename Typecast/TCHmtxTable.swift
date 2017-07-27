@@ -10,7 +10,7 @@ import Foundation
 
 class TCHmtxTable: TCTable {
   var hMetrics: [UInt32] = []
-  var leftSideBearing: [Int16] = []
+  var leftSideBearings: [Int16] = []
 
   init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry, hheaTable: TCHheaTable, maxpTable: TCMaxpTable) {
     for _ in 0..<hheaTable.numberOfHMetrics {
@@ -23,7 +23,7 @@ class TCHmtxTable: TCTable {
     }
     let lsbCount = maxpTable.numGlyphs - hheaTable.numberOfHMetrics
     for _ in 0..<lsbCount {
-      leftSideBearing.append(dataInput.readShort())
+      leftSideBearings.append(dataInput.readShort())
     }
     super.init()
     self.directoryEntry = directoryEntry.copy() as? TCDirectoryEntry
@@ -35,7 +35,7 @@ class TCHmtxTable: TCTable {
     } else if let last = hMetrics.last {
       return UInt16(last >> 16)
     } else {
-      return 0
+      return UInt16(hMetrics[hMetrics.count - 1] >> 16)
     }
   }
 
@@ -45,7 +45,7 @@ class TCHmtxTable: TCTable {
     } else if let last = hMetrics.last {
       return UInt16(last)
     } else {
-      return 0
+      return UInt16(leftSideBearings[index - hMetrics.count])
     }
   }
 
@@ -65,7 +65,7 @@ class TCHmtxTable: TCTable {
       for i in 0..<hMetrics.count {
         str.append("        \(i). advWid: \(advanceWidth(index: i)), LSdBear: \(leftSideBearing(index: i))\n")
       }
-      for i in 0..<leftSideBearing.count {
+      for i in 0..<leftSideBearings.count {
         str.append("        LSdBear \(i + hMetrics.count): \(leftSideBearing(index: i))\n")
       }
       return str;

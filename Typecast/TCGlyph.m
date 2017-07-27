@@ -9,7 +9,7 @@
 #import "TCGlyph.h"
 #import "TCGlyphDescription.h"
 #import "TCGlyfDescript.h"
-#import "TCPoint.h"
+#import "Type_Designer-Swift.h"
 
 @interface TCGlyph ()
 
@@ -64,27 +64,28 @@
         BOOL endPt = [description endPtOfContoursAtIndex:endPtIndex] == i;
         if (endPt)
             ++endPtIndex;
-        TCPoint *point = [[TCPoint alloc] init];
-        [point setX:[description xCoordinateAtIndex:i]];
-        [point setY:[description yCoordinateAtIndex:i]];
-        [point setOnCurve:([description flagsAtIndex:i] & onCurve) != 0];
-        [point setEndOfContour:endPt];
+
+        TCPoint *point = [[TCPoint alloc] initWithX:[description xCoordinateAtIndex:i]
+                                                  y:[description yCoordinateAtIndex:i]
+                                            onCurve:([description flagsAtIndex:i] & onCurve) != 0
+                                       endOfContour:endPt
+                                            touched:NO];
         [points addObject:point];
     }
 
     // Append the origin and advanceWidth points (n & n+1)
-    TCPoint *point = [[TCPoint alloc] init];
-    [point setX:0];
-    [point setY:0];
-    [point setOnCurve:YES];
-    [point setEndOfContour:YES];
+    TCPoint *point = [[TCPoint alloc] initWithX:0
+                                              y:0
+                                        onCurve:YES
+                                   endOfContour:YES
+                                        touched:NO];
     [points addObject:point];
 
-    point = [[TCPoint alloc] init];
-    [point setX:_advanceWidth];
-    [point setY:0];
-    [point setOnCurve:YES];
-    [point setEndOfContour:YES];
+    point = [[TCPoint alloc] initWithX:_advanceWidth
+                                     y:0
+                               onCurve:YES
+                          endOfContour:YES
+                               touched:NO];
     [points addObject:point];
 
     _points = points;
