@@ -18,9 +18,9 @@ class TCGlyphPathFactory {
   class func addContourToPath(path: CGMutablePath, glyph: TCGlyph, startIndex: Int, count: Int) {
     var offset = 0
     while offset < count {
-      let point = glyph.points[startIndex + offset % count] as! TCPoint
-      let point_plus1 = glyph.points[startIndex + (offset + 1) % count] as! TCPoint
-      let point_plus2 = glyph.points[startIndex + (offset + 2) % count] as! TCPoint
+      let point = glyph.points[startIndex + offset % count]
+      let point_plus1 = glyph.points[startIndex + (offset + 1) % count]
+      let point_plus2 = glyph.points[startIndex + (offset + 2) % count]
 
       if offset == 0 {
         path.move(to: CGPoint(x: Int(point.x), y: Int(point.y)))

@@ -16,6 +16,7 @@
 		03B311ED1F280D3F001E6712 /* TCGlyphPathFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311EC1F280D3F001E6712 /* TCGlyphPathFactory.swift */; };
 		03B311EF1F294C58001E6712 /* TCPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311EE1F294C58001E6712 /* TCPoint.swift */; };
 		03B311F11F295747001E6712 /* TCGlyphWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F01F295747001E6712 /* TCGlyphWindowController.swift */; };
+		03B311F31F29B5AD001E6712 /* TCGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F21F29B5AD001E6712 /* TCGlyph.swift */; };
 		03C162911F2174BB00A44848 /* TCGlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C162901F2174BB00A44848 /* TCGlyphView.swift */; };
 		630AA38F166AD700001BD6BF /* TCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA38E166AD700001BD6BF /* TCAppDelegate.m */; };
 		630AA394166B2483001BD6BF /* TCTablesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630AA392166B2483001BD6BF /* TCTablesWindowController.m */; };
@@ -64,7 +65,6 @@
 		6373B1DD166A11B5007EC53F /* TypecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1DC166A11B5007EC53F /* TypecastTests.m */; };
 		6375A399168F13FB00539DA4 /* TCTTCHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375A398168F13FB00539DA4 /* TCTTCHeader.m */; };
 		6375A39D168F1F0A00539DA4 /* TCMnemonic.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375A39C168F1F0A00539DA4 /* TCMnemonic.m */; };
-		637BCBAF1682FAA200226DD8 /* TCGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BCBAE1682FAA200226DD8 /* TCGlyph.m */; };
 		638BAEAC168C47B9003485A1 /* TCGlyphImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */; };
 		63BFC23A168FD05D00435BC8 /* TCDisassembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC239168FD05D00435BC8 /* TCDisassembler.m */; };
 		63BFC23E168FD89400435BC8 /* TCPrepTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC23D168FD89400435BC8 /* TCPrepTable.m */; };
@@ -108,6 +108,7 @@
 		03B311EC1F280D3F001E6712 /* TCGlyphPathFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyphPathFactory.swift; sourceTree = "<group>"; };
 		03B311EE1F294C58001E6712 /* TCPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPoint.swift; sourceTree = "<group>"; };
 		03B311F01F295747001E6712 /* TCGlyphWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyphWindowController.swift; sourceTree = "<group>"; };
+		03B311F21F29B5AD001E6712 /* TCGlyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyph.swift; sourceTree = "<group>"; };
 		03C162901F2174BB00A44848 /* TCGlyphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyphView.swift; sourceTree = "<group>"; };
 		630AA38D166AD700001BD6BF /* TCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAppDelegate.h; sourceTree = "<group>"; };
 		630AA38E166AD700001BD6BF /* TCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAppDelegate.m; sourceTree = "<group>"; };
@@ -200,8 +201,6 @@
 		6375A398168F13FB00539DA4 /* TCTTCHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTTCHeader.m; sourceTree = "<group>"; };
 		6375A39B168F1F0A00539DA4 /* TCMnemonic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMnemonic.h; sourceTree = "<group>"; };
 		6375A39C168F1F0A00539DA4 /* TCMnemonic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMnemonic.m; sourceTree = "<group>"; };
-		637BCBAD1682FAA200226DD8 /* TCGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyph.h; sourceTree = "<group>"; };
-		637BCBAE1682FAA200226DD8 /* TCGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyph.m; sourceTree = "<group>"; };
 		638BAEAA168C47B9003485A1 /* TCGlyphImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGlyphImageFactory.h; sourceTree = "<group>"; };
 		638BAEAB168C47B9003485A1 /* TCGlyphImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGlyphImageFactory.m; sourceTree = "<group>"; };
 		63BFC238168FD05D00435BC8 /* TCDisassembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDisassembler.h; sourceTree = "<group>"; };
@@ -433,8 +432,7 @@
 				03B311F01F295747001E6712 /* TCGlyphWindowController.swift */,
 				63F16EE21681B42E00306A20 /* GlyphWindow.xib */,
 				03C162901F2174BB00A44848 /* TCGlyphView.swift */,
-				637BCBAD1682FAA200226DD8 /* TCGlyph.h */,
-				637BCBAE1682FAA200226DD8 /* TCGlyph.m */,
+				03B311F21F29B5AD001E6712 /* TCGlyph.swift */,
 				03B311EE1F294C58001E6712 /* TCPoint.swift */,
 				03B311EC1F280D3F001E6712 /* TCGlyphPathFactory.swift */,
 				63134726168583760025CDFE /* TCCharacterMapWindowController.h */,
@@ -612,6 +610,7 @@
 				6373B1BC166A11B5007EC53F /* main.m in Sources */,
 				6373B1C3166A11B5007EC53F /* TCDocument.m in Sources */,
 				633D7869166A17B400FBFFC3 /* TCFont.m in Sources */,
+				03B311F31F29B5AD001E6712 /* TCGlyph.swift in Sources */,
 				633D786F166A189500FBFFC3 /* TCDirectoryEntry.m in Sources */,
 				633D7872166A1B5100FBFFC3 /* TCFontCollection.m in Sources */,
 				633D7875166A1F8D00FBFFC3 /* TCTableDirectory.m in Sources */,
@@ -647,7 +646,6 @@
 				03C162911F2174BB00A44848 /* TCGlyphView.swift in Sources */,
 				63E96F9F167DD9E400874FBC /* TCTable+UI.m in Sources */,
 				63E96FA4167DEDE800874FBC /* TCGlyphListViewController.m in Sources */,
-				637BCBAF1682FAA200226DD8 /* TCGlyph.m in Sources */,
 				039845B81F195B6F0040988F /* TCHheaTable.swift in Sources */,
 				63134729168583760025CDFE /* TCCharacterMapWindowController.m in Sources */,
 				6313472F16858EC10025CDFE /* TCCharacterMapListViewController.m in Sources */,

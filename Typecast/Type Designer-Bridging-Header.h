@@ -9,6 +9,6 @@
 #import "TCFont.h"
 #import "TCFontCollection.h"
 #import "TCGlyphDescription.h"
-#import "TCGlyph.h"
 #import "TCTablesWindowController.h"
 #import "TCDocument.h"
+#import "TCGlyfDescript.h"

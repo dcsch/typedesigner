@@ -15,11 +15,11 @@ class TCPoint: NSObject {
   var endOfContour: Bool
   var touched: Bool
 
-  init(x: Int, y: Int, onCurve: Bool, endOfContour: Bool, touched: Bool) {
+  init(x: Int, y: Int, onCurve: Bool, endOfContour: Bool) {
     self.x = x
     self.y = y
     self.onCurve = onCurve
     self.endOfContour = endOfContour
-    self.touched = touched
+    self.touched = false
   }
 }

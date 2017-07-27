@@ -9,7 +9,6 @@
 #import "TCCharacterMapWindowController.h"
 #import "TCCmapIndexEntry.h"
 #import "TCCmapFormat.h"
-#import "TCGlyph.h"
 #import "TCFont.h"
 #import "TCFontCollection.h"
 #import "TCDocument.h"

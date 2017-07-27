@@ -7,7 +7,7 @@
 //
 
 #import "TCGlyphImageFactory.h"
-#import "TCGlyph.h"
+#import "Type_Designer-Swift.h"
 
 @implementation TCGlyphImageFactory
 

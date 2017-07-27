@@ -79,7 +79,7 @@ class TCGlyphView: NSView {
       if controlPointsVisible {
 
         // Draw control points
-        for point in (glyph?.points as! [TCPoint]) {
+        for point in (glyph?.points)! {
 
           // Note: The original intention of scaling and translating the
           // following was to first restore the transformation matrix
