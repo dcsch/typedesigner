@@ -8,7 +8,7 @@
 
 #import "TCCharacterMapListViewController.h"
 #import "TCCharacterMapWindowController.h"
-#import "TCDocument.h"
+#import "Type_Designer-Swift.h"
 
 @interface TCCharacterMapListViewController ()
 

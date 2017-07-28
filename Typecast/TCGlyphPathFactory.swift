@@ -23,29 +23,29 @@ class TCGlyphPathFactory {
       let point_plus2 = glyph.points[startIndex + (offset + 2) % count]
 
       if offset == 0 {
-        path.move(to: CGPoint(x: Int(point.x), y: Int(point.y)))
+        path.move(to: CGPoint(x: point.x, y: point.y))
       }
 
       if point.onCurve && point_plus1.onCurve {
-        path.addLine(to: CGPoint(x: Int(point_plus1.x), y: Int(point_plus1.y)))
+        path.addLine(to: CGPoint(x: point_plus1.x, y: point_plus1.y))
         offset += 1
       } else if point.onCurve && !point_plus1.onCurve && point_plus2.onCurve {
-        path.addQuadCurve(to: CGPoint(x: Int(point_plus2.x), y: Int(point_plus2.y)),
-                          control: CGPoint(x: Int(point_plus1.x), y: Int(point_plus1.y)))
+        path.addQuadCurve(to: CGPoint(x: point_plus2.x, y: point_plus2.y),
+                          control: CGPoint(x: point_plus1.x, y: point_plus1.y))
         offset += 2
       } else if point.onCurve && !point_plus1.onCurve && !point_plus2.onCurve {
         path.addQuadCurve(to: CGPoint(x: midValue(point_plus1.x, point_plus2.x),
                                       y: midValue(point_plus1.y, point_plus2.y)),
-                          control: CGPoint(x: Int(point_plus1.x), y: Int(point_plus1.y)))
+                          control: CGPoint(x: point_plus1.x, y: point_plus1.y))
         offset += 2
       } else if !point.onCurve && !point_plus1.onCurve  {
         path.addQuadCurve(to: CGPoint(x: midValue(point.x, point_plus1.x),
                                       y: midValue(point.y, point_plus1.y)),
-                          control: CGPoint(x: Int(point.x), y: Int(point.y)))
+                          control: CGPoint(x: point.x, y: point.y))
         offset += 1
       } else if !point.onCurve && point_plus1.onCurve {
-        path.addQuadCurve(to: CGPoint(x: Int(point_plus1.x), y: Int(point_plus1.y)),
-                          control: CGPoint(x: Int(point.x), y: Int(point.y)))
+        path.addQuadCurve(to: CGPoint(x: point_plus1.x, y: point_plus1.y),
+                          control: CGPoint(x: point.x, y: point.y))
         offset += 1
       } else {
         os_log("drawGlyph case not catered for!!")
@@ -63,7 +63,7 @@ class TCGlyphPathFactory {
     var count = 0
     for i in 0 ..< glyph.points.count {
       count += 1
-      if (glyph.points[i] as! TCPoint).endOfContour {
+      if glyph.points[i].endOfContour {
         addContourToPath(path: glyphPath, glyph: glyph, startIndex: firstIndex,
                          count: count)
         firstIndex = i + 1

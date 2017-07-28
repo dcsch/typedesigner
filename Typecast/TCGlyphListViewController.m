@@ -7,7 +7,6 @@
 //
 
 #import "TCGlyphListViewController.h"
-#import "TCDocument.h"
 #import "Type_Designer-Swift.h"
 
 @interface TCGlyphListViewController ()

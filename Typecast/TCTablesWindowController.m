@@ -10,8 +10,7 @@
 #import "TCTable.h"
 #import "TCGlyphListViewController.h"
 #import "TCCharacterMapListViewController.h"
-#import "TCDocument.h"
-#import "TCFontCollection.h"
+#import "Type_Designer-Swift.h"
 #import "TCFont.h"
 
 @interface TCTablesWindowController () <NSTableViewDelegate>

@@ -8,19 +8,22 @@
 
 import Foundation
 
+/**
+ An individual glyph.
+ */
 class TCGlyph: NSObject {
   var leftSideBearing: Int
   var advanceWidth: Int
   var points: [TCPoint] = []
 
   /**
-   * Construct a Glyph from a TrueType outline described by
-   * a GlyphDescription.
-   * @param description The Glyph Description describing the glyph.
-   * @param leftSideBearing The Left Side Bearing.
-   * @param advanceWidth The advance width.
+   Construct a Glyph from a TrueType outline described by
+   a GlyphDescription.
+   - parameter glyphDescription: The Glyph Description describing the glyph.
+   - parameter leftSideBearing: The Left Side Bearing.
+   - parameter advanceWidth: The advance width.
    */
-  init(withGlyphDescription description: TCGlyphDescription,
+  init(glyphDescription description: TCGlyphDescription,
        leftSideBearing: Int,
        advanceWidth: Int) {
     self.leftSideBearing = leftSideBearing
@@ -30,10 +33,10 @@ class TCGlyph: NSObject {
   }
 
   /**
-   * Construct a Glyph from a PostScript outline described by a Charstring.
-   * @param charstring The Charstring describing the glyph.
-   * @param leftSideBearing The Left Side Bearing.
-   * @param advanceWidth The advance width.
+   Construct a Glyph from a PostScript outline described by a Charstring.
+   - parameter charstring: The Charstring describing the glyph.
+   - parameter leftSideBearing: The Left Side Bearing.
+   - parameter advanceWidth: The advance width.
    */
 //  init(withCharstring charstring: TCCharstring,
 //       leftSideBearing: Int,
@@ -55,15 +58,15 @@ class TCGlyph: NSObject {
   func read(description: TCGlyphDescription) {
     var endPtIndex = 0
     points.removeAll()
-    for i in 0..<description.pointCount() {
+    for i in 0 ..< description.pointCount() {
       let endPt = description.endPtOfContours(at: Int32(endPtIndex)) == i
       if endPt {
         endPtIndex += 1
       }
       let point = TCPoint(x: Int(description.xCoordinate(at: i)),
                           y: Int(description.yCoordinate(at: i)),
-                          onCurve:(UInt8(description.flags(at: i)) & onCurve) != 0,
-                          endOfContour:endPt)
+                          onCurve: (UInt8(description.flags(at: i)) & onCurve) != 0,
+                          endOfContour: endPt)
       points.append(point)
     }
 
@@ -71,7 +74,7 @@ class TCGlyph: NSObject {
     let oPoint = TCPoint(x: 0, y: 0, onCurve: true, endOfContour: true)
     points.append(oPoint)
 
-    let awPoint = TCPoint(x: advanceWidth, y: 0, onCurve:true, endOfContour:true)
+    let awPoint = TCPoint(x: advanceWidth, y: 0, onCurve: true, endOfContour: true)
     points.append(awPoint)
   }
 }

@@ -10,8 +10,6 @@
 #import "TCCmapIndexEntry.h"
 #import "TCCmapFormat.h"
 #import "TCFont.h"
-#import "TCFontCollection.h"
-#import "TCDocument.h"
 #import "TCGlyphDescription.h"
 #import "TCGlyfTable.h"
 #import "Type_Designer-Swift.h"

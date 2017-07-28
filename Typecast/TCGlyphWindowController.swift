@@ -41,16 +41,17 @@ class TCGlyphWindowController: NSWindowController {
     let fontCollection = (self.document as! TCDocument).fontCollection
 
     // TODO: Don't just select the first font
-    let font = fontCollection?.fonts[0] as! TCFont
+    if let font = fontCollection?.fonts[0] {
 
-    let glyphIndex = Int((glyphDescription?.glyphIndex())!)
+      let glyphIndex = Int((glyphDescription?.glyphIndex())!)
 
-    let glyph = TCGlyph(withGlyphDescription: glyphDescription!,
-                        leftSideBearing: Int(font.hmtxTable.leftSideBearing(index: glyphIndex)),
-                        advanceWidth: Int(font.hmtxTable.advanceWidth(index: glyphIndex)))
-    glyphView?.glyph = glyph
+      let glyph = TCGlyph(glyphDescription: glyphDescription!,
+                          leftSideBearing: Int(font.hmtxTable.leftSideBearing(index: glyphIndex)),
+                          advanceWidth: Int(font.hmtxTable.advanceWidth(index: glyphIndex)))
+      glyphView?.glyph = glyph
 
-    calculateGlyphViewSize()
+      calculateGlyphViewSize()
+    }
   }
 
   override func windowTitle(forDocumentDisplayName displayName: String) -> String {
@@ -69,16 +70,17 @@ class TCGlyphWindowController: NSWindowController {
     let fontCollection = (self.document as! TCDocument).fontCollection
 
     // TODO: Don't just select the first font
-    let font = fontCollection?.fonts[0] as! TCFont
+    if let font = fontCollection?.fonts[0] {
 
-    // Visible height: head.yMax - 2 * hhea.yDescender
-    let visibleBottom = Int(2 * font.hheaTable.descender)
-    let visibleHeight = Int(font.headTable.yMax) - visibleBottom
-    let visibleLeft = visibleBottom
-    let visibleWidth = visibleHeight
+      // Visible height: head.yMax - 2 * hhea.yDescender
+      let visibleBottom = Int(2 * font.hheaTable.descender)
+      let visibleHeight = Int(font.headTable.yMax) - visibleBottom
+      let visibleLeft = visibleBottom
+      let visibleWidth = visibleHeight
 
-    glyphView?.bounds = CGRect(origin: CGPoint(x: visibleLeft, y: visibleBottom),
-                               size: CGSize(width: visibleWidth, height: visibleHeight))
+      glyphView?.bounds = CGRect(origin: CGPoint(x: visibleLeft, y: visibleBottom),
+                                 size: CGSize(width: visibleWidth, height: visibleHeight))
+    }
 
     if let rect = scrollView?.bounds {
       glyphView?.frame = NSRect(x: -rect.size.height,
@@ -86,7 +88,6 @@ class TCGlyphWindowController: NSWindowController {
                                 width: 3 * rect.size.height,
                                 height: 3 * rect.size.height)
     }
-
     glyphView?.needsDisplay = true
   }
 }
