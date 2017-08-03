@@ -7,7 +7,7 @@
 //
 
 #import "TCCmapFormat2.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @interface TCSubHeader : NSObject
 
@@ -50,7 +50,7 @@
         int highest = 0;
         for (int i = 0; i < 256; ++i)
         {
-            _subHeaderKeys[i] = [dataInput readUnsignedShort];
+            _subHeaderKeys[i] = [dataInput readUInt16];
             highest = MAX(highest, _subHeaderKeys[i]);
             pos += 2;
         }
@@ -64,10 +64,10 @@
         for (int i = 0; i < subHeaderCount; ++i)
         {
             TCSubHeader *subHeader = [[TCSubHeader alloc] init];
-            [subHeader setFirstCode:[dataInput readUnsignedShort]];
-            [subHeader setEntryCount:[dataInput readUnsignedShort]];
-            [subHeader setIdDelta:[dataInput readShort]];
-            [subHeader setIdRangeOffset:[dataInput readUnsignedShort]];
+            [subHeader setFirstCode:[dataInput readUInt16]];
+            [subHeader setEntryCount:[dataInput readUInt16]];
+            [subHeader setIdDelta:[dataInput readInt16]];
+            [subHeader setIdRangeOffset:[dataInput readUInt16]];
             
             // Calculate the offset into the _glyphIndexArray
             pos += 8;
@@ -82,7 +82,7 @@
         // Read the glyphIndexArray
         _glyphIndexArray = [[NSMutableArray alloc] initWithCapacity:highest];
         for (int i = 0; i < highest; ++i)
-            [_glyphIndexArray addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+            [_glyphIndexArray addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
 
         // Determines the ranges
         NSMutableArray *ranges = [NSMutableArray arrayWithCapacity:[_subHeaders count]];

@@ -7,7 +7,7 @@
 //
 
 #import "TCCmapFormatUnknown.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @implementation TCCmapFormatUnknown
 
@@ -19,7 +19,8 @@
         [self setFormat:format];
 
         // We don't know how to handle this data, so we'll just skip over it
-        [dataInput skipByteCount:[self length] - 4];
+        NSArray *array = [dataInput readWithLength:[self length] - 4];
+//        [dataInput skipWithByteCount:[self length] - 4];
     }
     return self;
 }

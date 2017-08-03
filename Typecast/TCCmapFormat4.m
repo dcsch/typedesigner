@@ -7,7 +7,7 @@
 //
 
 #import "TCCmapFormat4.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @interface TCCmapFormat4 ()
 {
@@ -33,34 +33,34 @@
     if (self)
     {
         [self setFormat:4];
-        _segCountX2 = [dataInput readUnsignedShort]; // +2 (8)
+        _segCountX2 = [dataInput readUInt16]; // +2 (8)
         _segCount = _segCountX2 / 2;
         _endCode = [[NSMutableArray alloc] initWithCapacity:_segCount];
         _startCode = [[NSMutableArray alloc] initWithCapacity:_segCount];
         _idDelta = [[NSMutableArray alloc] initWithCapacity:_segCount];
         _idRangeOffset = [[NSMutableArray alloc] initWithCapacity:_segCount];
-        _searchRange = [dataInput readUnsignedShort]; // +2 (10)
-        _entrySelector = [dataInput readUnsignedShort]; // +2 (12)
-        _rangeShift = [dataInput readUnsignedShort]; // +2 (14)
+        _searchRange = [dataInput readUInt16]; // +2 (10)
+        _entrySelector = [dataInput readUInt16]; // +2 (12)
+        _rangeShift = [dataInput readUInt16]; // +2 (14)
         for (int i = 0; i < _segCount; i++) {
-            [_endCode addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+            [_endCode addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
         } // + 2*segCount (2*segCount + 14)
-        [dataInput readUnsignedShort]; // reservePad  +2 (2*segCount + 16)
+        [dataInput readUInt16]; // reservePad  +2 (2*segCount + 16)
         for (int i = 0; i < _segCount; i++) {
-            [_startCode addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+            [_startCode addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
         } // + 2*segCount (4*segCount + 16)
         for (int i = 0; i < _segCount; i++) {
-            [_idDelta addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+            [_idDelta addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
         } // + 2*segCount (6*segCount + 16)
         for (int i = 0; i < _segCount; i++) {
-            [_idRangeOffset addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+            [_idRangeOffset addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
         } // + 2*segCount (8*segCount + 16)
 
         // Whatever remains of this header belongs in glyphIdArray
         int count = ([self length] - (8 * _segCount + 16)) / 2;
         _glyphIdArray = [[NSMutableArray alloc] initWithCapacity:count];
         for (int i = 0; i < count; i++) {
-            [_glyphIdArray addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+            [_glyphIdArray addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
         } // + 2*count (8*segCount + 2*count + 18)
 
         // Are there any padding bytes we need to consume?

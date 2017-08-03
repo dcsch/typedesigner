@@ -9,26 +9,26 @@
 import Foundation
 
 class TCResourceReference {
-  let resourceID: Int
-  let nameOffset: Int
-  let attributes: Int
-  let dataOffset: Int
-  let handle: Int
+  let resourceID: UInt16
+  let nameOffset: Int16
+  let attributes: UInt8
+  let dataOffset: UInt32
+  let handle: UInt32
   var name: String?
 
   init(dataInput: TCDataInput) {
-    resourceID = Int(dataInput.readUnsignedShort())
-    nameOffset = Int(dataInput.readShort())
-    attributes = Int(dataInput.readUnsignedByte())
-    dataOffset = Int(dataInput.readUnsignedByte()) << 16 | Int(dataInput.readUnsignedShort())
-    handle = Int(dataInput.readInt())
+    resourceID = dataInput.readUInt16()
+    nameOffset = dataInput.readInt16()
+    attributes = dataInput.readUInt8()
+    dataOffset = UInt32(dataInput.readUInt8()) << 16 | UInt32(dataInput.readUInt16())
+    handle = dataInput.readUInt32()
   }
 
   func readName(dataInput: TCDataInput) {
     if nameOffset > -1 {
-      let len = UInt(dataInput.readUnsignedByte())
-      let data = dataInput.readData(withLength: len)
-      name = String(data: data!, encoding: String.Encoding.ascii)!
+      let len = Data.Index(dataInput.readUInt8())
+      let bytes = dataInput.read(length: len)
+      name = String(bytes: bytes, encoding: String.Encoding.ascii)!
     }
   }
 }

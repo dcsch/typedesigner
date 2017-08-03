@@ -7,7 +7,7 @@
 //
 
 #import "CFFIndex.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 #import "CFFDict.h"
 #import "CFFStandardStrings.h"
 
@@ -24,20 +24,20 @@
     self = [super init];
     if (self)
     {
-        _count = [dataInput readUnsignedShort];
+        _count = [dataInput readUInt16];
         NSMutableArray *offset = [[NSMutableArray alloc] initWithCapacity:_count];
-        _offSize = [dataInput readUnsignedByte];
+        _offSize = [dataInput readUInt8];
         for (int i = 0; i < _count + 1; ++i)
         {
             int thisOffset = 0;
             for (int j = 0; j < _offSize; ++j)
             {
-                thisOffset |= [dataInput readUnsignedByte] << ((_offSize - j - 1) * 8);
+                thisOffset |= [dataInput readUInt8] << ((_offSize - j - 1) * 8);
             }
             [offset addObject:[NSNumber numberWithInt:thisOffset]];
         }
         _offset = offset;
-        _data = [dataInput readDataWithLength:[self dataLength]];
+//        _data = [dataInput readDataWithLength:[self dataLength]];
     }
     return self;
 }

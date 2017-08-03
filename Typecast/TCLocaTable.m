@@ -7,8 +7,6 @@
 //
 
 #import "TCLocaTable.h"
-#import "TCDirectoryEntry.h"
-#import "TCDataInput.h"
 #import "Type_Designer-Swift.h"
 #import "TCMaxpTable.h"
 
@@ -29,13 +27,13 @@
         {
             _factor = 2;
             for (int i = 0; i <= [maxp numGlyphs]; ++i)
-                [offsets addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+                [offsets addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
         }
         else
         {
             _factor = 1;
             for (int i = 0; i <= [maxp numGlyphs]; ++i)
-                [offsets addObject:[NSNumber numberWithInt:[dataInput readInt]]];
+                [offsets addObject:[NSNumber numberWithInt:[dataInput readUInt32]]];
         }
         _offsets = offsets;
     }

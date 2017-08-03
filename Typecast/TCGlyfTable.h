@@ -18,11 +18,11 @@
 
 @property (strong) NSArray *descript;
 
-- (id)initWithDataInput:(TCDataInput *)dataInput
-         directoryEntry:(TCDirectoryEntry *)entry
-              maxpTable:(TCMaxpTable *)maxpTable
-              locaTable:(TCLocaTable *)locaTable
-              postTable:(TCPostTable *)postTable;
+- (id)initWithData:(NSData *)data
+    directoryEntry:(TCDirectoryEntry *)entry
+         maxpTable:(TCMaxpTable *)maxpTable
+         locaTable:(TCLocaTable *)locaTable
+         postTable:(TCPostTable *)postTable;
 
 - (NSUInteger)countOfGlyphNames;
 - (NSString *)objectInGlyphNamesAtIndex:(NSUInteger)index;

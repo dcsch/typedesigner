@@ -9,15 +9,15 @@
 import Foundation
 
 class TCResourceType {
-  let type: Int
-  let count: Int
-  let offset: Int
+  let type: UInt32
+  let count: UInt16
+  let offset: UInt16
   var references: [TCResourceReference] = []
 
   init(dataInput: TCDataInput) {
-    type = Int(dataInput.readInt())
-    count = Int(dataInput.readUnsignedShort()) + 1;
-    offset = Int(dataInput.readUnsignedShort())
+    type = dataInput.readUInt32()
+    count = dataInput.readUInt16() + 1
+    offset = dataInput.readUInt16()
   }
 
   func readReferences(dataInput: TCDataInput) {
@@ -28,7 +28,7 @@ class TCResourceType {
   }
 
   func readNames(dataInput: TCDataInput) {
-    for i in 0 ..< count {
+    for i in 0 ..< Int(count) {
       references[i].readName(dataInput: dataInput)
     }
   }

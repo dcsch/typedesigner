@@ -7,7 +7,7 @@
 //
 
 #import "TCCmapFormat6.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @implementation TCCmapFormat6
 

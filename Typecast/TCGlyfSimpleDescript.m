@@ -7,7 +7,7 @@
 //
 
 #import "TCGlyfSimpleDescript.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 #import "TCDisassembler.h"
 
 @interface TCGlyfSimpleDescript ()
@@ -34,13 +34,13 @@
         // Simple glyph description
         NSMutableArray *endPtsOfContours = [[NSMutableArray alloc] initWithCapacity:numberOfContours];
         for (int i = 0; i < numberOfContours; ++i)
-            [endPtsOfContours addObject:[NSNumber numberWithShort:[dataInput readShort]]];
+            [endPtsOfContours addObject:[NSNumber numberWithShort:[dataInput readInt16]]];
         _endPtsOfContours = endPtsOfContours;
 
         // The last end point index reveals the total number of points
         _count = [_endPtsOfContours[numberOfContours - 1] shortValue] + 1;
 
-        int instructionCount = [dataInput readShort];
+        int instructionCount = [dataInput readInt16];
         [self readInstructionsWithDataInput:dataInput length:instructionCount];
         [self readFlagsWithDataInput:dataInput length:_count];
         [self readCoordsWithDataInput:dataInput length:_count];
@@ -54,10 +54,10 @@
 
     for (int index = 0; index < length; ++index)
     {
-        uint8_t flagByte = [dataInput readByte];
+        uint8_t flagByte = [dataInput readInt8];
         [flags addObject:[NSNumber numberWithChar:flagByte]];
         if ((flagByte & repeat) != 0) {
-            int repeats = [dataInput readByte];
+            int repeats = [dataInput readInt8];
             for (int i = 1; i <= repeats; ++i)
                 [flags addObject:[NSNumber numberWithChar:flagByte]];
             index += repeats;
@@ -79,14 +79,14 @@
         if (([_flags[i] charValue] & xDual) != 0)
         {
             if (([_flags[i] charValue] & xShortVector) != 0)
-                x += (short) [dataInput readUnsignedByte];
+                x += (short) [dataInput readUInt8];
         }
         else
         {
             if (([_flags[i] charValue] & xShortVector) != 0)
-                x += (short) -((short) [dataInput readUnsignedByte]);
+                x += (short) -((short) [dataInput readUInt8]);
             else
-                x += [dataInput readShort];
+                x += [dataInput readInt16];
         }
         [xCoordinates addObject:[NSNumber numberWithShort:x]];
     }
@@ -96,14 +96,14 @@
         if (([_flags[i] charValue] & yDual) != 0)
         {
             if (([_flags[i] charValue] & yShortVector) != 0)
-                y += (short) [dataInput readUnsignedByte];
+                y += (short) [dataInput readUInt8];
         }
         else
         {
             if (([_flags[i] charValue] & yShortVector) != 0)
-                y += (short) -((short) [dataInput readUnsignedByte]);
+                y += (short) -((short) [dataInput readUInt8]);
             else
-                y += [dataInput readShort];
+                y += [dataInput readInt16];
         }
         [yCoordinates addObject:[NSNumber numberWithShort:y]];
     }

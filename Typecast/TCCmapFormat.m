@@ -7,12 +7,12 @@
 //
 
 #import "TCCmapFormat.h"
-#import "TCDataInput.h"
 #import "TCCmapFormat0.h"
 #import "TCCmapFormat2.h"
 #import "TCCmapFormat4.h"
 #import "TCCmapFormat6.h"
 #import "TCCmapFormatUnknown.h"
+#import "Type_Designer-Swift.h"
 
 @implementation TCCmapFormat
 
@@ -21,8 +21,8 @@
     self = [super init];
     if (self)
     {
-        _length = [dataInput readUnsignedShort];
-        _language = [dataInput readUnsignedShort];
+        _length = [dataInput readUInt16];
+        _language = [dataInput readUInt16];
     }
     return self;
 }

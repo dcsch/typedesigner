@@ -7,8 +7,7 @@
 //
 
 #import "TCCmapTable.h"
-#import "TCDirectoryEntry.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 #import "TCCmapIndexEntry.h"
 #import "TCCmapFormat.h"
 
@@ -20,8 +19,8 @@
     if (self)
     {
         self.directoryEntry = [entry copy];
-        _version = [dataInput readUnsignedShort];
-        _numTables = [dataInput readUnsignedShort];
+        _version = [dataInput readUInt16];
+        _numTables = [dataInput readUInt16];
         long bytesRead = 4;
         NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:_numTables];
 
@@ -48,7 +47,8 @@
             }
             else if ([entry offset] > bytesRead)
             {
-                [dataInput skipByteCount:[entry offset] - bytesRead];
+                NSArray *array = [dataInput readWithLength:[entry offset] - bytesRead];
+//                [dataInput skipWithByteCount:[entry offset] - bytesRead];
             }
             else if ([entry offset] != bytesRead)
             {
@@ -58,7 +58,7 @@
                                                                userInfo:nil];
                 @throw exception;
             }
-            int formatType = [dataInput readUnsignedShort];
+            int formatType = [dataInput readUInt16];
             lastFormat = [TCCmapFormat cmapFormatOfType:formatType dataInput:dataInput];
             lastOffset = [entry offset];
             [entry setFormat:lastFormat];

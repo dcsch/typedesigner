@@ -7,8 +7,7 @@
 //
 
 #import "TCCffTable.h"
-#import "TCDirectoryEntry.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 #import "CFFIndex.h"
 #import "CFFDict.h"
 #import "CFFCharset.h"
@@ -27,14 +26,14 @@
         TCDataInput *di = [[TCDataInput alloc] initWithData:data];
 
         // Header
-        _major = [di readUnsignedByte];
-        _minor = [di readUnsignedByte];
-        _hdrSize = [di readUnsignedByte];
-        _offSize = [di readUnsignedByte];
+        _major = [di readUInt8];
+        _minor = [di readUInt8];
+        _hdrSize = [di readUInt8];
+        _offSize = [di readUInt8];
 
         // Name INDEX
         [dataInput reset];
-        [dataInput skipByteCount:_hdrSize];
+        [dataInput skipWithByteCount:_hdrSize];
         _nameIndex = [[CFFNameIndex alloc] initWithDataInput:di];
 
         // Top DICT INDEX
@@ -62,7 +61,7 @@
             CFFDict *topDict = [_topDictIndex topDictAtIndex:i];
             int charStringsOffset = [[topDict valueForKey:17] intValue];
             [di reset];
-            [di skipByteCount:charStringsOffset];
+            [di skipWithByteCount:charStringsOffset];
 
             CFFIndex *charStringsIndex = [[CFFIndex alloc] initWithDataInput:di];
             [charStringsIndexArray addObject:charStringsIndex];
@@ -71,8 +70,8 @@
             // Charsets
             int charsetOffset = [[topDict valueForKey:15] intValue];
             [di reset];
-            [di skipByteCount:charsetOffset];
-            int format = [di readUnsignedByte];
+            [di skipWithByteCount:charsetOffset];
+            int format = [di readUInt8];
             CFFCharset *charset = nil;
             switch (format)
             {

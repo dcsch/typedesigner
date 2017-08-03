@@ -7,8 +7,7 @@
 //
 
 #import "TCMaxpTable.h"
-#import "TCDirectoryEntry.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @implementation TCMaxpTable
 
@@ -18,29 +17,29 @@
     if (self)
     {
         self.directoryEntry = [entry copy];
-        _versionNumber = [dataInput readInt];
+        _versionNumber = [dataInput readUInt32];
 
         // CFF fonts use version 0.5, TrueType fonts use version 1.0
         if (_versionNumber == 0x00005000)
         {
-            _numGlyphs = [dataInput readUnsignedShort];
+            _numGlyphs = [dataInput readUInt16];
         }
         else if (_versionNumber == 0x00010000)
         {
-            _numGlyphs = [dataInput readUnsignedShort];
-            _maxPoints = [dataInput readUnsignedShort];
-            _maxContours = [dataInput readUnsignedShort];
-            _maxCompositePoints = [dataInput readUnsignedShort];
-            _maxCompositeContours = [dataInput readUnsignedShort];
-            _maxZones = [dataInput readUnsignedShort];
-            _maxTwilightPoints = [dataInput readUnsignedShort];
-            _maxStorage = [dataInput readUnsignedShort];
-            _maxFunctionDefs = [dataInput readUnsignedShort];
-            _maxInstructionDefs = [dataInput readUnsignedShort];
-            _maxStackElements = [dataInput readUnsignedShort];
-            _maxSizeOfInstructions = [dataInput readUnsignedShort];
-            _maxComponentElements = [dataInput readUnsignedShort];
-            _maxComponentDepth = [dataInput readUnsignedShort];
+            _numGlyphs = [dataInput readUInt16];
+            _maxPoints = [dataInput readUInt16];
+            _maxContours = [dataInput readUInt16];
+            _maxCompositePoints = [dataInput readUInt16];
+            _maxCompositeContours = [dataInput readUInt16];
+            _maxZones = [dataInput readUInt16];
+            _maxTwilightPoints = [dataInput readUInt16];
+            _maxStorage = [dataInput readUInt16];
+            _maxFunctionDefs = [dataInput readUInt16];
+            _maxInstructionDefs = [dataInput readUInt16];
+            _maxStackElements = [dataInput readUInt16];
+            _maxSizeOfInstructions = [dataInput readUInt16];
+            _maxComponentElements = [dataInput readUInt16];
+            _maxComponentDepth = [dataInput readUInt16];
         }
     }
     return self;

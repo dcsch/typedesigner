@@ -7,13 +7,14 @@
 //
 
 #import "TCProgram.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @implementation TCProgram
 
 - (void)readInstructionsWithDataInput:(TCDataInput *)dataInput length:(NSUInteger)length
 {
-    _instructions = [dataInput readDataWithLength:length];
+  [dataInput readWithLength:length];
+//    _instructions = [dataInput readDataWithLength:length];
 }
 
 @end

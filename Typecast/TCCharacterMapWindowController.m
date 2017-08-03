@@ -9,7 +9,6 @@
 #import "TCCharacterMapWindowController.h"
 #import "TCCmapIndexEntry.h"
 #import "TCCmapFormat.h"
-#import "TCFont.h"
 #import "TCGlyphDescription.h"
 #import "TCGlyfTable.h"
 #import "Type_Designer-Swift.h"

@@ -7,7 +7,7 @@
 //
 
 #import "TCCmapFormat0.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @interface TCCmapFormat0 ()
 
@@ -28,7 +28,7 @@
         [self setFormat:0];
         NSMutableArray *glyphIdArray = [[NSMutableArray alloc] initWithCapacity:256];
         for (int i = 0; i < 256; ++i)
-            [glyphIdArray addObject:[NSNumber numberWithUnsignedChar:[dataInput readUnsignedByte]]];
+            [glyphIdArray addObject:[NSNumber numberWithUnsignedChar:[dataInput readUInt8]]];
         _glyphIdArray = glyphIdArray;
     }
     return self;

@@ -7,8 +7,7 @@
 //
 
 #import "TCGlyfTable.h"
-#import "TCDirectoryEntry.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 #import "TCMaxpTable.h"
 #import "TCLocaTable.h"
 #import "TCGlyfSimpleDescript.h"
@@ -24,11 +23,11 @@
 
 @implementation TCGlyfTable
 
-- (id)initWithDataInput:(TCDataInput *)dataInput
-         directoryEntry:(TCDirectoryEntry *)entry
-              maxpTable:(TCMaxpTable *)maxpTable
-              locaTable:(TCLocaTable *)locaTable
-              postTable:(TCPostTable *)postTable
+- (id)initWithData:(NSData *)data
+    directoryEntry:(TCDirectoryEntry *)entry
+         maxpTable:(TCMaxpTable *)maxpTable
+         locaTable:(TCLocaTable *)locaTable
+         postTable:(TCPostTable *)postTable
 {
     self = [super init];
     if (self)
@@ -37,21 +36,22 @@
         _postTable = postTable;
         NSMutableArray *descript = [[NSMutableArray alloc] initWithCapacity:[maxpTable numGlyphs]];
 
-        // Buffer the whole table so we can randomly access it
-        NSData *data = [dataInput readDataWithLength:[entry length]];
-        TCDataInput *glyfDataInput = [[TCDataInput alloc] initWithData:data];
-
         // Process all the simple glyphs
         for (int i = 0; i < [maxpTable numGlyphs]; ++i)
         {
+//            NSLog(@"%d", i);
+//            if (i == 8)
+//            {
+//              int foo = 0;
+//            }
             int len = [locaTable offsetAtIndex:i + 1] - [locaTable offsetAtIndex:i];
             if (len > 0)
             {
-                [glyfDataInput reset];
-                [glyfDataInput skipByteCount:[locaTable offsetAtIndex:i]];
-                int16_t numberOfContours = [glyfDataInput readShort];
+                NSData *glyfData = [data subdataWithRange:NSMakeRange([locaTable offsetAtIndex:i], len)];
+                TCDataInput *dataInput = [[TCDataInput alloc] initWithData:glyfData];
+                int16_t numberOfContours = [dataInput readInt16];
                 if (numberOfContours >= 0)
-                    [descript addObject:[[TCGlyfSimpleDescript alloc] initWithDataInput:glyfDataInput
+                    [descript addObject:[[TCGlyfSimpleDescript alloc] initWithDataInput:dataInput
                                                                             parentTable:self
                                                                              glyphIndex:i
                                                                        numberOfContours:numberOfContours]];

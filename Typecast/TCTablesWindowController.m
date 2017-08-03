@@ -11,7 +11,6 @@
 #import "TCGlyphListViewController.h"
 #import "TCCharacterMapListViewController.h"
 #import "Type_Designer-Swift.h"
-#import "TCFont.h"
 
 @interface TCTablesWindowController () <NSTableViewDelegate>
 {

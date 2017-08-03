@@ -7,8 +7,7 @@
 //
 
 #import "TCFpgmTable.h"
-#import "TCDirectoryEntry.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 #import "TCDisassembler.h"
 
 @implementation TCFpgmTable

@@ -9,35 +9,35 @@
 import Foundation
 
 class TCResourceMap {
-  let headerData: Data
-  let nextResourceMap: Int
-  let fileReferenceNumber: Int
-  let attributes: Int
+  let headerData: [UInt8]
+  let nextResourceMap: UInt32
+  let fileReferenceNumber: UInt16
+  let attributes: UInt16
   var types: [TCResourceType]
 
   init(dataInput: TCDataInput) {
-    headerData = dataInput.readData(withLength:16)
-    nextResourceMap = Int(dataInput.readInt())
-    fileReferenceNumber = Int(dataInput.readUnsignedShort())
-    attributes = Int(dataInput.readUnsignedShort())
+    headerData = dataInput.read(length: 16)
+    nextResourceMap = dataInput.readUInt32()
+    fileReferenceNumber = dataInput.readUInt16()
+    attributes = dataInput.readUInt16()
 
-    _ = dataInput.readUnsignedShort()  // typeOffset
-    _ = dataInput.readUnsignedShort()  // nameOffset
-    let typeCount = Int(dataInput.readUnsignedShort()) + 1
+    _ = dataInput.readUInt16()  // typeOffset
+    _ = dataInput.readUInt16()  // nameOffset
+    let typeCount = Int(dataInput.readUInt16()) + 1
 
     // Read types
     types = []
-    for _ in 0 ..< typeCount {
+    for _ in 0..<typeCount {
       types.append(TCResourceType(dataInput: dataInput))
     }
 
     // Read the references
-    for i in 0 ..< typeCount {
+    for i in 0..<typeCount {
       types[i].readReferences(dataInput: dataInput)
     }
 
     // Read the names
-    for i in 0 ..< typeCount {
+    for i in 0..<typeCount {
       types[i].readNames(dataInput: dataInput)
     }
   }

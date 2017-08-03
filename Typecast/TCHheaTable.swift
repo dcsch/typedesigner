@@ -24,20 +24,20 @@ class TCHheaTable: TCTable {
 
   init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
     version = dataInput.readUInt32()
-    ascender = dataInput.readShort()
-    descender = dataInput.readShort()
-    lineGap = dataInput.readShort()
-    advanceWidthMax = dataInput.readShort()
-    minLeftSideBearing = dataInput.readShort()
-    minRightSideBearing = dataInput.readShort()
-    xMaxExtent = dataInput.readShort()
-    caretSlopeRise = dataInput.readShort()
-    caretSlopeRun = dataInput.readShort()
-    for _ in 0..<5 {
-      dataInput.readShort()
+    ascender = dataInput.readInt16()
+    descender = dataInput.readInt16()
+    lineGap = dataInput.readInt16()
+    advanceWidthMax = dataInput.readInt16()
+    minLeftSideBearing = dataInput.readInt16()
+    minRightSideBearing = dataInput.readInt16()
+    xMaxExtent = dataInput.readInt16()
+    caretSlopeRise = dataInput.readInt16()
+    caretSlopeRun = dataInput.readInt16()
+    for _ in 0 ..< 5 {
+      _ = dataInput.readInt16()
     }
-    metricDataFormat = dataInput.readShort()
-    numberOfHMetrics = dataInput.readUnsignedShort()
+    metricDataFormat = dataInput.readInt16()
+    numberOfHMetrics = dataInput.readUInt16()
     super.init()
     self.directoryEntry = directoryEntry.copy() as? TCDirectoryEntry
   }

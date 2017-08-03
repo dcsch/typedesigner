@@ -9,28 +9,24 @@
 import Foundation
 
 class TCFontCollection: NSObject {
-  var fonts: [TCFont] = []
+  var fonts: [TCFont]
   var ttcHeader: TCTTCHeader?
   var suitcase: Bool
 
   init(data: Data, isSuitcase: Bool) {
+    fonts = []
     self.suitcase = isSuitcase
     super.init()
-    load(fontData: data)
-  }
-
-  func load(fontData: Data) {
-    let dataInput = TCDataInput(data: fontData)
-    fonts.removeAll()
 
     if suitcase {
       // This is a Macintosh font suitcase resource
-      let resourceHeader = TCResourceHeader(dataInput: dataInput!)
+      let dataInput = TCDataInput(data: data)
+      let resourceHeader = TCResourceHeader(dataInput: dataInput)
 
       // Seek to the map offset and read the map
-      dataInput?.reset()
-      dataInput?.skipByteCount(UInt(resourceHeader.mapOffset))
-      let map = TCResourceMap(dataInput: dataInput!)
+      let mapData = data.subdata(in: Int(resourceHeader.mapOffset)..<data.count)
+      let mapDataInput = TCDataInput(data: mapData)
+      let map = TCResourceMap(dataInput: mapDataInput)
 
       // Get the 'sfnt' resources
       let resourceType = map.resourceType(name: "sfnt")
@@ -42,28 +38,30 @@ class TCFontCollection: NSObject {
 
       // Load the font data
       for resourceReference in (resourceType?.references)! {
-        let font = TCFont()
-        fonts.append(font)
-        let offset = UInt(resourceHeader.dataOffset + resourceReference.dataOffset + 4)
-        font.read(from: dataInput, directoryOffset:offset, tablesOrigin:offset)
+        let offset = resourceHeader.dataOffset + UInt32(resourceReference.dataOffset + 4)
+        let resData = data.subdata(in: Int(offset)..<data.count)
+        if let font = TCFont(data: resData, tablesOrigin: 0) {
+          fonts.append(font)
+        }
       }
-    } else if TCTTCHeader.isTTCDataInput(dataInput) {
+    } else if TCTTCHeader.isTTC(data: data) {
 
       // This is a TrueType font collection
-      dataInput?.reset()
-      ttcHeader = TCTTCHeader(dataInput: dataInput)
+      ttcHeader = TCTTCHeader(data: data)
       for i in 0 ..< Int((ttcHeader?.directoryCount)!) {
-        let font = TCFont()
-        fonts.append(font)
-        let offset = UInt(ttcHeader?.tableDirectory[i] as! Int)
-        font.read(from: dataInput, directoryOffset: offset, tablesOrigin: 0)
+        let offset = ttcHeader?.tableDirectory[i]
+//        font.read(dataInput: dataInput, directoryOffset: Int(offset), tablesOrigin: 0)
+        let fontData = data.subdata(in: Int(offset!)..<data.count)
+        if let font = TCFont(data: fontData, tablesOrigin: UInt(offset!)) {
+          fonts.append(font)
+        }
       }
     } else {
 
       // This is a standalone font file
-      let font = TCFont()
-      font.read(from: dataInput, directoryOffset: 0, tablesOrigin: 0)
-      fonts.append(font)
+      if let font = TCFont(data: data, tablesOrigin: 0) {
+        fonts.append(font)
+      }
     }
   }
 }

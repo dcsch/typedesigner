@@ -7,8 +7,7 @@
 //
 
 #import "TCVheaTable.h"
-#import "TCDirectoryEntry.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @implementation TCVheaTable
 
@@ -18,21 +17,21 @@
     if (self)
     {
         self.directoryEntry = [entry copy];
-        _version = [dataInput readInt];
-        _ascent = [dataInput readShort];
-        _descent = [dataInput readShort];
-        _lineGap = [dataInput readShort];
-        _advanceHeightMax = [dataInput readShort];
-        _minTopSideBearing = [dataInput readShort];
-        _minBottomSideBearing = [dataInput readShort];
-        _yMaxExtent = [dataInput readShort];
-        _caretSlopeRise = [dataInput readShort];
-        _caretSlopeRun = [dataInput readShort];
+        _version = [dataInput readUInt32];
+        _ascent = [dataInput readInt16];
+        _descent = [dataInput readInt16];
+        _lineGap = [dataInput readInt16];
+        _advanceHeightMax = [dataInput readInt16];
+        _minTopSideBearing = [dataInput readInt16];
+        _minBottomSideBearing = [dataInput readInt16];
+        _yMaxExtent = [dataInput readInt16];
+        _caretSlopeRise = [dataInput readInt16];
+        _caretSlopeRun = [dataInput readInt16];
         for (int i = 0; i < 5; ++i) {
-            [dataInput readShort];
+            [dataInput readInt16];
         }
-        _metricDataFormat = [dataInput readShort];
-        _numberOfLongVerMetrics = [dataInput readUnsignedShort];
+        _metricDataFormat = [dataInput readInt16];
+        _numberOfLongVerMetrics = [dataInput readUInt16];
     }
     return self;
 }

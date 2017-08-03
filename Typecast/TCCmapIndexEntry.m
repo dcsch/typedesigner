@@ -7,7 +7,7 @@
 //
 
 #import "TCCmapIndexEntry.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 #import "TCID.h"
 
 @implementation TCCmapIndexEntry
@@ -17,9 +17,9 @@
     self = [super init];
     if (self)
     {
-        _platformId = [dataInput readUnsignedShort];
-        _encodingId = [dataInput readUnsignedShort];
-        _offset = [dataInput readInt];
+        _platformId = [dataInput readUInt16];
+        _encodingId = [dataInput readUInt16];
+        _offset = [dataInput readUInt32];
     }
     return self;
 }

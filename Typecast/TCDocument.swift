@@ -18,15 +18,14 @@ class TCDocument: NSDocument {
 
       // If this is a font collection, show the collection window, otherwise,
       // show the table window
-      var controller: NSWindowController
       if collection.fonts.count > 1 {
-        controller = TCCollectionWindowController(windowNibName: "CollectionWindow")
-      } else {
-        let ctrl = TCTablesWindowController(windowNibName: "TablesWindow")
-        ctrl.font = fontCollection!.fonts[0]
-        controller = ctrl
+        let controller = TCCollectionWindowController(windowNibName: "CollectionWindow")
+        addWindowController(controller)
+      } else if collection.fonts.count == 1 {
+        let controller = TCTablesWindowController(windowNibName: "TablesWindow")
+        controller.font = collection.fonts[0]
+        addWindowController(controller)
       }
-      addWindowController(controller)
     }
   }
 
@@ -46,6 +45,8 @@ class TCDocument: NSDocument {
     if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
       suitcase = true
     }
+
+    Swift.print(data.count)
 
     fontCollection = TCFontCollection(data: data, isSuitcase: suitcase)
     if fontCollection == nil {

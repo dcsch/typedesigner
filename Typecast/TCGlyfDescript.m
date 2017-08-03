@@ -7,7 +7,7 @@
 //
 
 #import "TCGlyfDescript.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 #import "TCGlyfTable.h"
 
 // flags
@@ -31,10 +31,10 @@ const uint8_t yDual = 0x20;
         _parentTable = parentTable;
         _glyphIndex = glyphIndex;
         _numberOfContours = numberOfContours;
-        _xMin = [dataInput readShort];
-        _yMin = [dataInput readShort];
-        _xMax = [dataInput readShort];
-        _yMax = [dataInput readShort];
+        _xMin = [dataInput readInt16];
+        _yMin = [dataInput readInt16];
+        _xMax = [dataInput readInt16];
+        _yMax = [dataInput readInt16];
     }
     return self;
 }

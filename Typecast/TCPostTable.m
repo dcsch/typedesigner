@@ -7,8 +7,7 @@
 //
 
 #import "TCPostTable.h"
-#import "TCDirectoryEntry.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @interface TCPostTable ()
 
@@ -289,22 +288,22 @@ static NSString *macGlyphName[] = {
     if (self)
     {
         self.directoryEntry = [entry copy];
-        _version = [dataInput readInt];
-        _italicAngle = [dataInput readInt];
-        _underlinePosition = [dataInput readShort];
-        _underlineThickness = [dataInput readShort];
-        _isFixedPitch = [dataInput readInt];
-        _minMemType42 = [dataInput readInt];
-        _maxMemType42 = [dataInput readInt];
-        _minMemType1 = [dataInput readInt];
-        _maxMemType1 = [dataInput readInt];
+        _version = [dataInput readUInt32];
+        _italicAngle = [dataInput readUInt32];
+        _underlinePosition = [dataInput readInt16];
+        _underlineThickness = [dataInput readInt16];
+        _isFixedPitch = [dataInput readUInt32];
+        _minMemType42 = [dataInput readUInt32];
+        _maxMemType42 = [dataInput readUInt32];
+        _minMemType1 = [dataInput readUInt32];
+        _maxMemType1 = [dataInput readUInt32];
 
         if (_version == 0x00020000)
         {
-            _numGlyphs = [dataInput readUnsignedShort];
+            _numGlyphs = [dataInput readUInt16];
             NSMutableArray *glyphNameIndex = [[NSMutableArray alloc] initWithCapacity:_numGlyphs];
             for (int i = 0; i < _numGlyphs; ++i)
-                [glyphNameIndex addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+                [glyphNameIndex addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
             _glyphNameIndex = glyphNameIndex;
 
             uint16_t h = [self highestGlyphNameIndex];
@@ -312,13 +311,13 @@ static NSString *macGlyphName[] = {
             {
                 h -= 257;
                 NSMutableArray *psGlyphName = [[NSMutableArray alloc] initWithCapacity:h];
-                for (uint16_t i = 0; i < h; ++i)
-                {
-                    uint8_t len = [dataInput readUnsignedByte];
-                    NSData *stringData = [dataInput readDataWithLength:len];
-                    [psGlyphName addObject:[[NSString alloc] initWithData:stringData
-                                                                 encoding:NSASCIIStringEncoding]];
-                }
+//                for (uint16_t i = 0; i < h; ++i)
+//                {
+//                    uint8_t len = [dataInput readUInt8];
+//                    NSData *stringData = [dataInput readDataWithLength:len];
+//                    [psGlyphName addObject:[[NSString alloc] initWithData:stringData
+//                                                                 encoding:NSASCIIStringEncoding]];
+//                }
                 _psGlyphName = psGlyphName;
             }
         }

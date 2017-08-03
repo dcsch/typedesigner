@@ -13,17 +13,17 @@ class TCHmtxTable: TCTable {
   var leftSideBearings: [Int16] = []
 
   init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry, hheaTable: TCHheaTable, maxpTable: TCMaxpTable) {
-    for _ in 0..<hheaTable.numberOfHMetrics {
+    for _ in 0 ..< hheaTable.numberOfHMetrics {
       let metric =
-        UInt32(dataInput.readUnsignedByte()) << 24
-          | UInt32(dataInput.readUnsignedByte()) << 16
-          | UInt32(dataInput.readUnsignedByte()) << 8
-          | UInt32(dataInput.readUnsignedByte())
+        UInt32(dataInput.readUInt8()) << 24
+          | UInt32(dataInput.readUInt8()) << 16
+          | UInt32(dataInput.readUInt8()) << 8
+          | UInt32(dataInput.readUInt8())
       hMetrics.append(metric)
     }
     let lsbCount = maxpTable.numGlyphs - hheaTable.numberOfHMetrics
     for _ in 0..<lsbCount {
-      leftSideBearings.append(dataInput.readShort())
+      leftSideBearings.append(dataInput.readInt16())
     }
     super.init()
     self.directoryEntry = directoryEntry.copy() as? TCDirectoryEntry
