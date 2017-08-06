@@ -35,7 +35,7 @@ class TCFont: NSObject {
   }
   var name: String {
     get {
-      return nameTable!.record(nameId: TCNameFullFontName)!.record!
+      return nameTable!.record(nameId: TCID.nameFullFontName)!.record!
     }
   }
 

@@ -42,6 +42,7 @@
 		03C40BF11F36A49F00CD6BAC /* TCVheaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF01F36A49F00CD6BAC /* TCVheaTable.swift */; };
 		03C40BF31F36A84300CD6BAC /* TCMaxpTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF21F36A84300CD6BAC /* TCMaxpTable.swift */; };
 		03C40BF51F36F99A00CD6BAC /* TCLocaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF41F36F99A00CD6BAC /* TCLocaTable.swift */; };
+		03C40BF71F3795C800CD6BAC /* TCID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF61F3795C800CD6BAC /* TCID.swift */; };
 		03FF3A221F2F8CCB005F07AB /* TCTableFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF3A211F2F8CCB005F07AB /* TCTableFactory.swift */; };
 		03FF3A241F2F9C2C005F07AB /* TCDirectoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF3A231F2F9C2C005F07AB /* TCDirectoryEntry.swift */; };
 		03FF3A261F2FA86A005F07AB /* TCTableDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF3A251F2FA86A005F07AB /* TCTableDirectory.swift */; };
@@ -57,7 +58,6 @@
 		6313473016858EC10025CDFE /* CharacterMapListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6313472E16858EC10025CDFE /* CharacterMapListView.xib */; };
 		631D27F3166C561E00AB692C /* TCCmapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27F2166C561E00AB692C /* TCCmapTable.m */; };
 		631D27F7166C5DA500AB692C /* TCCmapIndexEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27F6166C5DA500AB692C /* TCCmapIndexEntry.m */; };
-		631D27FA166C665500AB692C /* TCID.m in Sources */ = {isa = PBXBuildFile; fileRef = 631D27F9166C665500AB692C /* TCID.m */; };
 		6365E66D167559690054AAB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6365E66C167559690054AAB3 /* README.md */; };
 		636FC57C169688BF00D5210E /* CFFCharset.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FC57B169688BF00D5210E /* CFFCharset.m */; };
 		636FC5841696B68000D5210E /* CFFCharstring.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FC5831696B68000D5210E /* CFFCharstring.m */; };
@@ -133,6 +133,7 @@
 		03C40BF01F36A49F00CD6BAC /* TCVheaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCVheaTable.swift; sourceTree = "<group>"; };
 		03C40BF21F36A84300CD6BAC /* TCMaxpTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCMaxpTable.swift; sourceTree = "<group>"; };
 		03C40BF41F36F99A00CD6BAC /* TCLocaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCLocaTable.swift; sourceTree = "<group>"; };
+		03C40BF61F3795C800CD6BAC /* TCID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCID.swift; sourceTree = "<group>"; };
 		03FF3A211F2F8CCB005F07AB /* TCTableFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCTableFactory.swift; sourceTree = "<group>"; };
 		03FF3A231F2F9C2C005F07AB /* TCDirectoryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCDirectoryEntry.swift; sourceTree = "<group>"; };
 		03FF3A251F2FA86A005F07AB /* TCTableDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCTableDirectory.swift; sourceTree = "<group>"; };
@@ -156,8 +157,6 @@
 		631D27F2166C561E00AB692C /* TCCmapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapTable.m; sourceTree = "<group>"; };
 		631D27F5166C5DA500AB692C /* TCCmapIndexEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCmapIndexEntry.h; sourceTree = "<group>"; };
 		631D27F6166C5DA500AB692C /* TCCmapIndexEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCmapIndexEntry.m; sourceTree = "<group>"; };
-		631D27F8166C665400AB692C /* TCID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCID.h; sourceTree = "<group>"; };
-		631D27F9166C665500AB692C /* TCID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCID.m; sourceTree = "<group>"; };
 		6365E66C167559690054AAB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		636FC57A169688BF00D5210E /* CFFCharset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFCharset.h; sourceTree = "<group>"; };
 		636FC57B169688BF00D5210E /* CFFCharset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFCharset.m; sourceTree = "<group>"; };
@@ -250,8 +249,7 @@
 				631D27F6166C5DA500AB692C /* TCCmapIndexEntry.m */,
 				631D27F1166C561E00AB692C /* TCCmapTable.h */,
 				631D27F2166C561E00AB692C /* TCCmapTable.m */,
-				631D27F8166C665400AB692C /* TCID.h */,
-				631D27F9166C665500AB692C /* TCID.m */,
+				03C40BF61F3795C800CD6BAC /* TCID.swift */,
 				03C40BF41F36F99A00CD6BAC /* TCLocaTable.swift */,
 				03C40BF21F36A84300CD6BAC /* TCMaxpTable.swift */,
 				030A32A61F312A4E006B2BAC /* TCNameTable.swift */,
@@ -550,6 +548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C40BF71F3795C800CD6BAC /* TCID.swift in Sources */,
 				03B311F51F2A7128001E6712 /* TCDocument.swift in Sources */,
 				030A32A71F312A4E006B2BAC /* TCNameTable.swift in Sources */,
 				03B311F31F29B5AD001E6712 /* TCGlyph.swift in Sources */,
@@ -563,7 +562,6 @@
 				03FF3A241F2F9C2C005F07AB /* TCDirectoryEntry.swift in Sources */,
 				631D27F3166C561E00AB692C /* TCCmapTable.m in Sources */,
 				631D27F7166C5DA500AB692C /* TCCmapIndexEntry.m in Sources */,
-				631D27FA166C665500AB692C /* TCID.m in Sources */,
 				630B9A83166C826D00E8587A /* TCCmapFormat.m in Sources */,
 				0348BE711F33E12100446B58 /* TCGlyphDescription.swift in Sources */,
 				0348BE6F1F33DD5800446B58 /* TCProgram.swift in Sources */,

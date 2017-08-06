@@ -9,34 +9,34 @@
 import Foundation
 
 class TCNameRecord {
-  let platformId: Int16
-  let encodingId: Int16
-  let languageId: Int16
-  let nameId: Int16
-  let stringLength: Int16
-  let stringOffset: Int16
+  let platformId: Int
+  let encodingId: Int
+  let languageId: Int
+  let nameId: Int
+  let stringLength: Int
+  let stringOffset: Int
   var record: String?
 
   init(dataInput: TCDataInput, stringData: Data) {
-    platformId = dataInput.readInt16()
-    encodingId = dataInput.readInt16()
-    languageId = dataInput.readInt16()
-    nameId = dataInput.readInt16()
-    stringLength = dataInput.readInt16()
-    stringOffset = dataInput.readInt16()
+    platformId = Int(dataInput.readInt16())
+    encodingId = Int(dataInput.readInt16())
+    languageId = Int(dataInput.readInt16())
+    nameId = Int(dataInput.readInt16())
+    stringLength = Int(dataInput.readInt16())
+    stringOffset = Int(dataInput.readInt16())
 
-    let stringSubData = stringData.subdata(in: Int(stringOffset)..<Int(stringOffset+stringLength))
+    let stringSubData = stringData.subdata(in: stringOffset..<(stringOffset + stringLength))
     switch platformId {
-    case TCPlatformUnicode:
+    case TCID.platformUnicode:
       // Unicode (big-endian)
       record = String(data: stringSubData, encoding: .utf16BigEndian)
-    case TCPlatformMacintosh:
+    case TCID.platformMacintosh:
       // Macintosh encoding, ASCII
       record = String(data: stringSubData, encoding: .ascii)
-    case TCPlatformISO:
+    case TCID.platformISO:
       // ISO encoding, ASCII
       record = String(data: stringSubData, encoding: .ascii)
-    case TCPlatformMicrosoft:
+    case TCID.platformMicrosoft:
       // Microsoft encoding, Unicode
       record = String(data: stringSubData, encoding: .utf16LittleEndian)
     default:
@@ -74,7 +74,7 @@ class TCNameTable: TCTable {
     }
   }
 
-  func record(nameId: Int16) -> TCNameRecord? {
+  func record(nameId: Int) -> TCNameRecord? {
     // Search for the first instance of this name ID
     for record in nameRecords {
       if record.nameId == nameId {

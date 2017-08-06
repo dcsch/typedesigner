@@ -8,7 +8,6 @@
 
 #import "TCCmapIndexEntry.h"
 #import "Type_Designer-Swift.h"
-#import "TCID.h"
 
 @implementation TCCmapIndexEntry
 
@@ -36,12 +35,12 @@
 
 - (NSString *)platformDescription
 {
-    return [TCID platformNameForID:_platformId];
+    return [TCID platformNameWithPlatformID:_platformId];
 }
 
 - (NSString *)encodingDescription
 {
-    return [TCID encodingNameForPlatformID:_platformId encodingID:_encodingId];
+    return [TCID encodingNameWithPlatformID:_platformId encodingID:_encodingId];
 }
 
 - (NSString *)description
@@ -49,9 +48,9 @@
     return [NSString stringWithFormat:
             @"platform id: %d (%@), encoding id: %d (%@), offset: %d",
             _platformId,
-            [TCID platformNameForID:_platformId],
+            [TCID platformNameWithPlatformID:_platformId],
             _encodingId,
-            [TCID encodingNameForPlatformID:_platformId encodingID:_encodingId],
+            [TCID encodingNameWithPlatformID:_platformId encodingID:_encodingId],
             _offset];
 }
 

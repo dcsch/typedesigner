@@ -6,5 +6,4 @@
 #import "TCCmapTable.h"
 #import "TCCffTable.h"
 #import "TCTablesWindowController.h"
-#import "TCID.h"
 #import "TCDisassembler.h"
