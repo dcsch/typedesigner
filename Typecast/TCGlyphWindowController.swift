@@ -43,7 +43,7 @@ class TCGlyphWindowController: NSWindowController {
     // TODO: Don't just select the first font
     if let font = fontCollection?.fonts[0] {
 
-      let glyphIndex = Int((glyphDescription?.glyphIndex())!)
+      let glyphIndex = Int((glyphDescription?.glyphIndex)!)
 
       let glyph = TCGlyph(glyphDescription: glyphDescription!,
                           leftSideBearing: Int((font.hmtxTable?.leftSideBearing(index: glyphIndex))!),
@@ -55,7 +55,7 @@ class TCGlyphWindowController: NSWindowController {
   }
 
   override func windowTitle(forDocumentDisplayName displayName: String) -> String {
-    if let index = glyphDescription?.glyphIndex() {
+    if let index = glyphDescription?.glyphIndex {
       return "\(displayName) – \(index)"
     } else {
       return "\(displayName)"

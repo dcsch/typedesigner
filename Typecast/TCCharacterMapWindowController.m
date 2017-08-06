@@ -9,8 +9,6 @@
 #import "TCCharacterMapWindowController.h"
 #import "TCCmapIndexEntry.h"
 #import "TCCmapFormat.h"
-#import "TCGlyphDescription.h"
-#import "TCGlyfTable.h"
 #import "Type_Designer-Swift.h"
 
 @interface TCCharacterMapping : NSObject
@@ -38,11 +36,12 @@
 
 - (TCGlyph *)glyph
 {
-    id<TCGlyphDescription> glyphDescription = [[[_font glyfTable] descript] objectAtIndex:_glyphCode];
-    TCGlyph *glyph = [[TCGlyph alloc] initWithGlyphDescription:glyphDescription
-                                               leftSideBearing:[[_font hmtxTable] leftSideBearingWithIndex:[glyphDescription glyphIndex]]
-                                                  advanceWidth:[[_font hmtxTable] advanceWidthWithIndex:[glyphDescription glyphIndex]]];
-    return glyph;
+//    id<TCGlyphDescription> glyphDescription = [[[_font glyfTable] descript] objectAtIndex:_glyphCode];
+//    TCGlyph *glyph = [[TCGlyph alloc] initWithGlyphDescription:glyphDescription
+//                                               leftSideBearing:[[_font hmtxTable] leftSideBearingWithIndex:[glyphDescription glyphIndex]]
+//                                                  advanceWidth:[[_font hmtxTable] advanceWidthWithIndex:[glyphDescription glyphIndex]]];
+//    return glyph;
+  return nil;
 }
 
 @end

@@ -50,7 +50,6 @@ class TCFontCollection: NSObject {
       ttcHeader = TCTTCHeader(data: data)
       for i in 0 ..< Int((ttcHeader?.directoryCount)!) {
         let offset = ttcHeader?.tableDirectory[i]
-//        font.read(dataInput: dataInput, directoryOffset: Int(offset), tablesOrigin: 0)
         let fontData = data.subdata(in: Int(offset!)..<data.count)
         if let font = TCFont(data: fontData, tablesOrigin: UInt(offset!)) {
           fonts.append(font)

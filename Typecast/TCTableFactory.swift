@@ -76,9 +76,9 @@ class TCTableFactory {
       case .glyf:
         table = TCGlyfTable(data: data,
                             directoryEntry: entry,
-                            maxpTable: font.maxpTable,
-                            locaTable: font.locaTable,
-                            postTable: font.postTable)
+                            maxpTable: font.maxpTable!,
+                            locaTable: font.locaTable!,
+                            postTable: font.postTable!)
         break;
         //        case Table.hdmx:
         //            t = new HdmxTable(de, dis, font.getMaxpTable());

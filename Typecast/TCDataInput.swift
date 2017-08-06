@@ -18,6 +18,10 @@ class TCDataInput: NSObject {
   }
 
   func read(length: Int) -> [UInt8] {
+    if length < 0 {
+      os_log("Error: read length less than zero: %d", length)
+      return []
+    }
     var buf = Array<UInt8>(repeating: 0, count: length)
     let read = inputStream.read(&buf, maxLength: length)
     if read != length {

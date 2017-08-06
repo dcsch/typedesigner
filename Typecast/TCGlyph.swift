@@ -58,14 +58,14 @@ class TCGlyph: NSObject {
   func read(description: TCGlyphDescription) {
     var endPtIndex = 0
     points.removeAll()
-    for i in 0 ..< description.pointCount() {
-      let endPt = description.endPtOfContours(at: Int32(endPtIndex)) == i
+    for i in 0..<description.pointCount {
+      let endPt = description.endPtOfContours(index: endPtIndex) == i
       if endPt {
         endPtIndex += 1
       }
-      let point = TCPoint(x: Int(description.xCoordinate(at: i)),
-                          y: Int(description.yCoordinate(at: i)),
-                          onCurve: (UInt8(description.flags(at: i)) & onCurve) != 0,
+      let point = TCPoint(x: description.xCoordinate(index: i),
+                          y: description.yCoordinate(index: i),
+                          onCurve: Int(description.flags(index: i) & TCGlyphFlag.onCurvePoint.rawValue) != 0,
                           endOfContour: endPt)
       points.append(point)
     }
