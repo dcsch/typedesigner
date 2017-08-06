@@ -3,10 +3,6 @@
 //
 
 #import "TCTable.h"
-#import "TCMaxpTable.h"
-#import "TCLocaTable.h"
-#import "TCLocaTable.h"
-#import "TCVheaTable.h"
 #import "TCCmapTable.h"
 #import "TCCffTable.h"
 #import "TCTablesWindowController.h"

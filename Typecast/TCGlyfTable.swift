@@ -25,9 +25,9 @@ class TCGlyfTable: TCTable {
 
     // Process all the simple glyphs
     for i in 0..<Int(maxpTable.numGlyphs) {
-      let len = locaTable.offset(at: UInt(i + 1)) - locaTable.offset(at: UInt(i))
+      let len = locaTable.offset(at: i + 1) - locaTable.offset(at: i)
       if len > 0 {
-        let offset = locaTable.offset(at: UInt(i))
+        let offset = locaTable.offset(at: i)
         let glyfData = data.subdata(in: Int(offset)..<Int(offset + len))
         let dataInput = TCDataInput(data: glyfData)
         let numberOfContours = Int(dataInput.readInt16())

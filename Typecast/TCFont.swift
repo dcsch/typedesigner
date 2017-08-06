@@ -91,7 +91,7 @@ class TCFont: NSObject {
       if let table = TCTableFactory.createTable(font: self,
                                                 data: tableData,
                                                 directoryEntry: entry) {
-        tables.append(table)
+        tables.append(table as! TCTable)
       }
     }
 
@@ -123,7 +123,7 @@ class TCFont: NSObject {
         Int(offset)..<Int(offset + UInt(entry.length)))
       return TCTableFactory.createTable(font: self,
                                         data: tableData,
-                                        directoryEntry: entry)
+                                        directoryEntry: entry) as? TCTable
     }
     return nil
   }

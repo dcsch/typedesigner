@@ -11,9 +11,9 @@ import Foundation
 class TCTableFactory {
 
   class func createTable(font: TCFont, data: Data,
-                         directoryEntry entry: TCDirectoryEntry) -> TCTable?
+                         directoryEntry entry: TCDirectoryEntry) -> TCTableProtocol?
   {
-    var table: TCTable?
+    var table: TCTableProtocol?
 
     if let tableType = TCTableType(rawValue: entry.tag) {
 
@@ -66,7 +66,8 @@ class TCTableFactory {
         //        case Table.cvt:
         //            t = new CvtTable(de, dis);
       //            break;
-//      case .fpgm:
+      case .fpgm: break
+//        let dataInput = TCDataInput(data: data)
 //        table = TCFpgmTable(dataInput: dataInput, directoryEntry:entry)
         //        case Table.fvar:
         //            break;
@@ -102,14 +103,15 @@ class TCTableFactory {
         let dataInput = TCDataInput(data: data)
         table = TCLocaTable(dataInput: dataInput,
                             directoryEntry: entry,
-                            headTable: font.headTable,
-                            maxpTable: font.maxpTable)
+                            headTable: font.headTable!,
+                            maxpTable: font.maxpTable!)
       case .maxp:
         let dataInput = TCDataInput(data: data)
         table = TCMaxpTable(dataInput: dataInput, directoryEntry: entry)
       case .name:
         table = TCNameTable(data: data, directoryEntry: entry)
-//      case .prep:
+      case .prep: break
+//        let dataInput = TCDataInput(data: data)
 //        table = TCPrepTable(dataInput: dataInput, directoryEntry: entry)
       case .post:
         let dataInput = TCDataInput(data: data)
