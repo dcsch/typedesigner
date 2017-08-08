@@ -7,7 +7,7 @@
 //
 
 #import "CFFCharset.h"
-#import "TCDataInput.h"
+#import "Type_Designer-Swift.h"
 
 @implementation CFFCharset
 
@@ -40,7 +40,7 @@
     {
         _glyphs = [[NSMutableArray alloc] initWithCapacity:glyphCount - 1]; // minus 1 because .notdef is omitted
         for (int i = 0; i < glyphCount - 1; ++i)
-            [_glyphs addObject:[NSNumber numberWithUnsignedShort:[dataInput readUnsignedShort]]];
+            [_glyphs addObject:[NSNumber numberWithUnsignedShort:[dataInput readUInt16]]];
     }
     return self;
 }
@@ -79,8 +79,8 @@
         int glyphsCovered = glyphCount - 1;  // minus 1 because .notdef is omitted
         while (glyphsCovered > 0)
         {
-            int first = [dataInput readUnsignedShort];
-            int left = [dataInput readUnsignedByte];
+            int first = [dataInput readUInt16];
+            int left = [dataInput readUInt8];
             NSRange range = NSMakeRange(first, left);
             [_charsetRanges addObject:[NSValue valueWithRange:range]];
             glyphsCovered -= left + 1;
@@ -137,8 +137,8 @@
         int glyphsCovered = glyphCount - 1;  // minus 1 because .notdef is omitted
         while (glyphsCovered > 0)
         {
-            int first = [dataInput readUnsignedShort];
-            int left = [dataInput readUnsignedShort];
+            int first = [dataInput readUInt16];
+            int left = [dataInput readUInt16];
             NSRange range = NSMakeRange(first, left);
             [_charsetRanges addObject:[NSValue valueWithRange:range]];
             glyphsCovered -= left + 1;

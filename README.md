@@ -1,4 +1,4 @@
 Type Designer
 =============
 
-OpenType Font Design System for OS X.
+OpenType Font Design System for macOS.

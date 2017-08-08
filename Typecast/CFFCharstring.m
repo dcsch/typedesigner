@@ -7,7 +7,7 @@
 //
 
 #import "CFFCharstring.h"
-#import "CFFIndex.h"
+#import "Type_Designer-Swift.h"
 
 @implementation CFFCharstring
 

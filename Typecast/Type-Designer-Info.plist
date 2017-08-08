@@ -18,7 +18,7 @@
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
+			<string>Type_Designer.TCDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
@@ -32,7 +32,7 @@
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
+			<string>Type_Designer.TCDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -46,7 +46,7 @@
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
+			<string>Type_Designer.TCDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -60,7 +60,7 @@
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
+			<string>Type_Designer.TCDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -78,7 +78,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
-			<string>TCDocument</string>
+			<string>Type_Designer.TCDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -104,7 +104,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012 David Schweinsberg. All rights reserved.</string>
+	<string>Copyright © 2012–2017 David Schweinsberg. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
