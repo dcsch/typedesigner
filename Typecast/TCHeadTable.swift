@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCHeadTable: TCTable {
+class TCHeadTable: TCBaseTable {
   var versionNumber: UInt32
   var fontRevision: UInt32
   var checkSumAdjustment: UInt32
@@ -45,8 +45,7 @@ class TCHeadTable: TCTable {
     fontDirectionHint = dataInput.readInt16()
     indexToLocFormat = dataInput.readInt16()
     glyphDataFormat = dataInput.readInt16()
-    super.init()
-    self.directoryEntry = directoryEntry.copy() as? TCDirectoryEntry
+    super.init(directoryEntry: directoryEntry)
   }
 
   override var type: UInt32 {

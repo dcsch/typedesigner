@@ -51,7 +51,7 @@ class TCPanose {
   }
 }
 
-class TCOs2Table: TCTable {
+class TCOs2Table: TCBaseTable {
   let version: UInt16
   let xAvgCharWidth: Int16
   let usWeightClass: UInt16
@@ -138,8 +138,7 @@ class TCOs2Table: TCTable {
       usBreakChar = 0
       usMaxContext = 0
     }
-    super.init()
-    self.directoryEntry = entry.copy() as! TCDirectoryEntry
+    super.init(directoryEntry: entry)
   }
 
   override var type: UInt32 {

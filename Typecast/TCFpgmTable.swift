@@ -8,39 +8,43 @@
 
 import Foundation
 
-class TCFpgmTable: TCProgram, TCTableProtocol {
+class TCFpgmTable: TCProgram, TCTable {
+
   let entry: TCDirectoryEntry
 
   init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
-    self.entry = directoryEntry.copy() as! TCDirectoryEntry
+    self.entry = directoryEntry
     super.init()
     readInstructions(dataInput: dataInput, count: Int(entry.length))
   }
 
-  func type() -> UInt32 {
-    return TCTableType.fpgm.rawValue
+  var type: UInt32 {
+    get {
+      return TCTableType.fpgm.rawValue
+    }
   }
 
-  func directoryEntry() -> TCDirectoryEntry {
-    return self.entry
+  var directoryEntry: TCDirectoryEntry {
+    get {
+      return self.entry
+    }
   }
 
   var name: String {
     get {
-      let type = self.type()
+      let type = self.type
       return String(format: "%c%c%c%c",
-                    CChar(Int(type) >> 24),
-                    CChar(Int(type) >> 16),
-                    CChar(Int(type) >> 8),
-                    CChar(type))
+                    CChar(truncatingBitPattern:type >> 24),
+                    CChar(truncatingBitPattern:type >> 16),
+                    CChar(truncatingBitPattern:type >> 8),
+                    CChar(truncatingBitPattern:type))
     }
   }
 
   override var description: String {
     get {
-//      return TCDisassembler.disassemble(instructions: instructions,
-//                                        leadingSpaceCount: 0)
-      return ""
+      return TCDisassembler.disassemble(instructions: instructions,
+                                        leadingSpaceCount: 0)
     }
   }
 }

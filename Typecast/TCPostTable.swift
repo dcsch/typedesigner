@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCPostTable: TCTable {
+class TCPostTable: TCBaseTable {
   let version: UInt32
   let italicAngle: UInt32
   let underlinePosition: Int16
@@ -340,8 +340,7 @@ class TCPostTable: TCTable {
       glyphNameIndex = []
       psGlyphName = []
     }
-    super.init()
-    self.directoryEntry = directoryEntry.copy() as! TCDirectoryEntry
+    super.init(directoryEntry: directoryEntry)
   }
 
   override var type: UInt32 {

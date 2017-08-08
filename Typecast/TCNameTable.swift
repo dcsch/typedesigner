@@ -45,7 +45,7 @@ class TCNameRecord {
   }
 }
 
-class TCNameTable: TCTable {
+class TCNameTable: TCBaseTable {
   let formatSelector: Int16
   let numberOfNameRecords: Int16
   let stringStorageOffset: Int16
@@ -64,8 +64,7 @@ class TCNameTable: TCTable {
     for _ in 0..<numberOfNameRecords {
       nameRecords.append(TCNameRecord(dataInput: dataInput, stringData: stringData))
     }
-    super.init()
-    self.directoryEntry = entry.copy() as! TCDirectoryEntry
+    super.init(directoryEntry: entry)
   }
 
   override var type: UInt32 {

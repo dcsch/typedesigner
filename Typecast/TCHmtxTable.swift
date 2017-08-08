@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCHmtxTable: TCTable {
+class TCHmtxTable: TCBaseTable {
   var hMetrics: [UInt32] = []
   var leftSideBearings: [Int16] = []
 
@@ -25,8 +25,7 @@ class TCHmtxTable: TCTable {
     for _ in 0..<lsbCount {
       leftSideBearings.append(dataInput.readInt16())
     }
-    super.init()
-    self.directoryEntry = directoryEntry.copy() as? TCDirectoryEntry
+    super.init(directoryEntry: directoryEntry)
   }
 
   func advanceWidth(index: Int) -> UInt16 {

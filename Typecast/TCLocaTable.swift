@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCLocaTable: TCTable {
+class TCLocaTable: TCBaseTable {
   let offsets: [Int]
   let factor: Int
 
@@ -30,8 +30,7 @@ class TCLocaTable: TCTable {
       }
     }
     self.offsets = offsets;
-    super.init()
-    self.directoryEntry = directoryEntry.copy() as! TCDirectoryEntry
+    super.init(directoryEntry: directoryEntry)
   }
 
   func offset(at index: Int) -> Int {

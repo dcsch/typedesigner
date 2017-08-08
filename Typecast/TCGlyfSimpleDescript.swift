@@ -110,7 +110,7 @@ class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
       for i in 0..<endPtsOfContours.count {
         str.append(String(format: "\n          %d: %d", i, endPtsOfContours[i]))
       }
-      str.append(String(format: "\n\n          Length of Instructions: %ld\n", (instructions?.count)!))
+      str.append(String(format: "\n\n          Length of Instructions: %ld\n", instructions.count))
 //      str.append(TCDisassembler.disassemble(instructions:instructions, leadingSpaceCount: 8))
 
       str.append("\n        Flags\n        -----")

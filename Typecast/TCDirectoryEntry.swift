@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCDirectoryEntry: NSObject, NSCopying {
+struct TCDirectoryEntry {
   let tag: UInt32
   let checksum: UInt32
   let offset: UInt32
@@ -37,7 +37,7 @@ class TCDirectoryEntry: NSObject, NSCopying {
     self.length = length
   }
 
-  override var description: String {
+  var description: String {
     get {
       return String(format:"'%s' - chksm = 0x%x, off = 0x%x, len = %d",
                     tagAsString,
@@ -45,10 +45,5 @@ class TCDirectoryEntry: NSObject, NSCopying {
                     offset,
                     length)
     }
-  }
-
-  func copy(with zone: NSZone? = nil) -> Any {
-    return TCDirectoryEntry(tag: tag, checksum: checksum, offset: offset,
-                            length: length)
   }
 }

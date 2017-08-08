@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCHheaTable: TCTable {
+class TCHheaTable: TCBaseTable {
   var version: UInt32
   var ascender: Int16
   var descender: Int16
@@ -38,8 +38,7 @@ class TCHheaTable: TCTable {
     }
     metricDataFormat = dataInput.readInt16()
     numberOfHMetrics = dataInput.readUInt16()
-    super.init()
-    self.directoryEntry = directoryEntry.copy() as? TCDirectoryEntry
+    super.init(directoryEntry: directoryEntry)
   }
 
   override var type: UInt32 {

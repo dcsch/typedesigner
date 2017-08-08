@@ -113,14 +113,39 @@ enum TCTableType: UInt32 {
   case vmtx = 0x766d7478
 }
 
-//@objc protocol TCTableProtocol {
-//  var type: UInt32 { get }
-//  var directoryEntry: TCDirectoryEntry? { get set }
-//}
-//
-//// A simple base implememtation of TCTable, for classes that don't need to be
-//// derived from any other base classes.
-//class TCTable: TCTableProtocol {
-//  var type: UInt32 { get { return 0 } }
-//  var directoryEntry: TCDirectoryEntry? = nil
-//}
+// TCTable must be @objc and TCBaseTable must be derived from NSObject to let
+// Cocoa bindings work
+
+@objc protocol TCTable {
+  var type: UInt32 { get }
+}
+
+/**
+ * A simple base implementation of TCTable, for classes that don't need to be
+ * derived from any other base classes.
+ */
+class TCBaseTable: NSObject, TCTable {
+  var type: UInt32 { get { return 0 } }
+  var directoryEntry: TCDirectoryEntry
+
+  var name: String {
+    get {
+      let type = self.type
+      return String(format: "%c%c%c%c",
+                    CChar(truncatingBitPattern:type >> 24),
+                    CChar(truncatingBitPattern:type >> 16),
+                    CChar(truncatingBitPattern:type >> 8),
+                    CChar(truncatingBitPattern:type))
+    }
+  }
+
+  override var description: String {
+    get {
+      return "TCTable type: '\(type)'"
+    }
+  }
+
+  init(directoryEntry: TCDirectoryEntry) {
+    self.directoryEntry = directoryEntry
+  }
+}

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCVheaTable: TCTable {
+class TCVheaTable: TCBaseTable {
   let version: UInt32
   let ascent: Int16
   let descent: Int16
@@ -38,8 +38,7 @@ class TCVheaTable: TCTable {
     }
     metricDataFormat = dataInput.readInt16()
     numberOfLongVerMetrics = dataInput.readUInt16()
-    super.init()
-    self.directoryEntry = directoryEntry.copy() as! TCDirectoryEntry
+    super.init(directoryEntry: directoryEntry)
   }
 
   override var type: UInt32 {

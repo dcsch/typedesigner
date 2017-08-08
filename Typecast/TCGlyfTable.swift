@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCGlyfTable: TCTable {
+class TCGlyfTable: TCBaseTable {
   var descript: [TCGlyfDescript]
   let postTable: TCPostTable
 
@@ -20,8 +20,7 @@ class TCGlyfTable: TCTable {
     self.descript = []
     self.postTable = postTable
 
-    super.init()
-    self.directoryEntry = directoryEntry.copy() as! TCDirectoryEntry
+    super.init(directoryEntry: directoryEntry)
 
     // Process all the simple glyphs
     for i in 0..<Int(maxpTable.numGlyphs) {
@@ -80,7 +79,7 @@ class TCGlyfTable: TCTable {
     }
   }
 
-  override func value(forUndefinedKey key: String) -> Any? {
-    return super.value(forUndefinedKey: key)
-  }
+//  override func value(forUndefinedKey key: String) -> Any? {
+//    return super.value(forUndefinedKey: key)
+//  }
 }

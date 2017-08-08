@@ -11,9 +11,9 @@ import Foundation
 class TCTableFactory {
 
   class func createTable(font: TCFont, data: Data,
-                         directoryEntry entry: TCDirectoryEntry) -> TCTableProtocol?
+                         directoryEntry entry: TCDirectoryEntry) -> TCTable?
   {
-    var table: TCTableProtocol?
+    var table: TCTable?
 
     if let tableType = TCTableType(rawValue: entry.tag) {
 
@@ -22,9 +22,8 @@ class TCTableFactory {
         //        case BASE:
         //            table = new BaseTable(de, dis);
       //            break;
-//      case .CFF:
-//        let dataInput = TCDataInput(data: data)
-//        table = TCCffTable(dataInput: dataInput, directoryEntry: entry)
+      case .CFF:
+        table = TCCffTable(data: data, directoryEntry: entry)
         //        case Table.DSIG:
         //            t = new DsigTable(de, dis);
         //            break;
@@ -66,9 +65,9 @@ class TCTableFactory {
         //        case Table.cvt:
         //            t = new CvtTable(de, dis);
       //            break;
-      case .fpgm: break
-//        let dataInput = TCDataInput(data: data)
-//        table = TCFpgmTable(dataInput: dataInput, directoryEntry:entry)
+      case .fpgm:
+        let dataInput = TCDataInput(data: data)
+        table = TCFpgmTable(dataInput: dataInput, directoryEntry:entry)
         //        case Table.fvar:
         //            break;
         //        case Table.gasp:
@@ -110,9 +109,9 @@ class TCTableFactory {
         table = TCMaxpTable(dataInput: dataInput, directoryEntry: entry)
       case .name:
         table = TCNameTable(data: data, directoryEntry: entry)
-      case .prep: break
-//        let dataInput = TCDataInput(data: data)
-//        table = TCPrepTable(dataInput: dataInput, directoryEntry: entry)
+      case .prep:
+        let dataInput = TCDataInput(data: data)
+        table = TCPrepTable(dataInput: dataInput, directoryEntry: entry)
       case .post:
         let dataInput = TCDataInput(data: data)
         table = TCPostTable(dataInput: dataInput, directoryEntry: entry)

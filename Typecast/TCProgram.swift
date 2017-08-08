@@ -9,7 +9,7 @@
 import Foundation
 
 class TCProgram: NSObject {
-  var instructions: [UInt8]?
+  var instructions = [UInt8]()
 
   func readInstructions(dataInput: TCDataInput, count: Int) {
     instructions = dataInput.read(length: count)

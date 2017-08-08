@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TCMaxpTable: TCTable {
+class TCMaxpTable: TCBaseTable {
   let versionNumber: UInt32
   let numGlyphs: UInt16
   let maxPoints: UInt16
@@ -75,8 +75,7 @@ class TCMaxpTable: TCTable {
       maxComponentElements = 0
       maxComponentDepth = 0
     }
-    super.init()
-    self.directoryEntry = directoryEntry.copy() as! TCDirectoryEntry
+    super.init(directoryEntry: directoryEntry)
   }
 
   override var type: UInt32 {

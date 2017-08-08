@@ -6,7 +6,7 @@
 //  Copyright © 2017 David Schweinsberg. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 import os.log
 
 @NSApplicationMain
