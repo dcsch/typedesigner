@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import os.log
 
+/**
+ * Compact Font Format Table
+ */
 class TCCffTable: TCBaseTable {
   let major: Int
   let minor: Int
@@ -17,8 +21,11 @@ class TCCffTable: TCBaseTable {
   let topDictIndex: CFFTopDictIndex
   let stringIndex: CFFStringIndex
   let globalSubrIndex: CFFIndex
+  var fonts: [CFFFont]
+  let data: Data
 
   init(data: Data, directoryEntry: TCDirectoryEntry) {
+    self.data = data
     let di = TCDataInput(data: data)
 
     // Header
@@ -48,57 +55,20 @@ class TCCffTable: TCBaseTable {
     // within the CFF data.
 
     // Load each of the fonts
-    var charStringsIndexArray = [CFFIndex]()
-    var charsets = [CFFCharset]()
-    var charstringsArray = [[CFFCharstring]]()
+    fonts = [CFFFont]()
+    super.init(directoryEntry: directoryEntry)
     for i in 0..<topDictIndex.count {
-
-      // Charstrings INDEX
-      // We load this before Charsets because we may need to know the number
-      // of glyphs
-      let topDict = topDictIndex.topDict(at: i)
-      let charStringsOffset = topDict.value(forKey: 17) as! Int
-      let charstringData = data.subdata(in: charStringsOffset..<data.count)
-      let charstringDataInput = TCDataInput(data: charstringData)
-      let charStringsIndex = CFFIndex(dataInput: charstringDataInput)
-      charStringsIndexArray.append(charStringsIndex)
-      let glyphCount = charStringsIndex.count
-
-      // Charsets
-      let charsetOffset = topDict.value(forKey: 15) as! Int
-      let charsetData = data.subdata(in: charsetOffset..<data.count)
-      let charsetDataInput = TCDataInput(data: charsetData)
-      let format = charsetDataInput.readUInt8()
-      var charset: CFFCharset?
-      switch format {
-      case 0:
-        charset = CFFCharsetFormat0(dataInput:charsetDataInput, glyphCount: Int32(glyphCount))
-      case 1:
-        charset = CFFCharsetFormat1(dataInput:charsetDataInput, glyphCount: Int32(glyphCount))
-      case 2:
-        charset = CFFCharsetFormat2(dataInput:charsetDataInput, glyphCount: Int32(glyphCount))
-      default:
-        charset = nil
-      }
-      charsets.append(charset!)
-
-      // Create the charstrings
-      var charstrings = [CFFCharstringType2]()
-      charstringsArray.append(charstrings)
-      for j in 0..<glyphCount {
-        let offset = charStringsIndex.offset[j] - 1
-        let len = charStringsIndex.offset[j + 1] - offset - 1
-        charstrings.append(
-          CFFCharstringType2(index: Int32(i),
-                             name:stringIndex.string(at: Int(charset!.sid(forGID: Int32(j)))),
-                             data: charStringsIndex.data,
-                             offset: Int32(offset),
-                             length: Int32(len),
-                             localSubrIndex: nil,
-                             globalSubrIndex: nil))
+      do {
+        try fonts.append(CFFFont(table: self, index: i, topDict: topDictIndex.topDict(at: i)))
+      } catch {
+        os_log("Error loading font: %d, i")
       }
     }
-    super.init(directoryEntry: directoryEntry)
+  }
+
+  func dataInput(at offset: Int) -> TCDataInput {
+    let fontData = data.subdata(in: offset..<Int(directoryEntry.length))
+    return TCDataInput(data: fontData)
   }
 
   override var type: UInt32 {

@@ -12,13 +12,13 @@ class CFFIndex: NSObject {
   let count: Int
   let offSize: Int
   let offset: [Int]
-  let data: Data? = nil
+  let data: [UInt8]
 
   init(dataInput: TCDataInput) {
-    count = Int(dataInput.readUInt16())
+    self.count = Int(dataInput.readUInt16())
     var offset = [Int]()
     offSize = Int(dataInput.readUInt8())
-    for _ in 0...count {
+    for _ in 0...self.count {
       var thisOffset = 0
       for j in 0..<offSize {
         thisOffset |= Int(dataInput.readUInt8()) << ((offSize - j - 1) * 8)
@@ -26,6 +26,8 @@ class CFFIndex: NSObject {
       offset.append(thisOffset)
     }
     self.offset = offset
+    let count = offset.last! - 1
+    self.data = dataInput.read(length: count)
   }
 
   var dataLength: Int {
@@ -38,9 +40,9 @@ class CFFIndex: NSObject {
 class CFFTopDictIndex: CFFIndex {
 
   func topDict(at index: Int) -> CFFDict {
-    let offset = self.offset[index] - 1
-    let len = self.offset[index + 1] - offset - 1
-    return CFFDict(data: data, offset: Int32(offset), length: Int32(len))
+    let off = offset[index] - 1
+    let len = offset[index + 1] - off - 1
+    return CFFDict(data: data, offset: off, length: len)
   }
 }
 
@@ -50,20 +52,20 @@ class CFFNameIndex: CFFIndex {
 
 class CFFStringIndex: CFFIndex {
 
-  func string(at index: Int) -> String? {
-    if index < Int(CFFStandardStrings.stringCount()) {
-      return CFFStandardStrings.string(at: UInt(index))
+  func string(at index: Int) -> String {
+    if index < CFFStandardStrings.standardStrings.count {
+      return CFFStandardStrings.standardStrings[index]
     } else {
-      let shiftedIndex = index - Int(CFFStandardStrings.stringCount())
+      let shiftedIndex = index - CFFStandardStrings.standardStrings.count
       if shiftedIndex >= self.count {
-        return nil
+        return "<empty name>"
       }
 
-      let begin = self.offset[index] - 1
-      let end = self.offset[index + 1] - 1
+      let begin = self.offset[shiftedIndex] - 1
+      let end = self.offset[shiftedIndex + 1] - 1
 
-      let stringData = self.data?.subdata(in: begin..<end)
-      return String(data: stringData!, encoding: .ascii)
+      let stringSlice = self.data[begin..<end]
+      return String(bytes: stringSlice, encoding: .ascii) ?? "<malformed name>"
     }
   }
 }

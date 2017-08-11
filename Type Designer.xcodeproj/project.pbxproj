@@ -35,6 +35,13 @@
 		03B311FD1F2AC13F001E6712 /* TCResourceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311FC1F2AC13F001E6712 /* TCResourceMap.swift */; };
 		03B311FF1F2AC451001E6712 /* TCResourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311FE1F2AC451001E6712 /* TCResourceType.swift */; };
 		03B312011F2AC6BE001E6712 /* TCResourceReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B312001F2AC6BE001E6712 /* TCResourceReference.swift */; };
+		03B619081F3AEF3000EA1D0E /* CFFDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B619071F3AEF3000EA1D0E /* CFFDict.swift */; };
+		03B6190A1F3B811100EA1D0E /* CFFFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B619091F3B811100EA1D0E /* CFFFont.swift */; };
+		03B6190C1F3BC70B00EA1D0E /* CFFCharstring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6190B1F3BC70B00EA1D0E /* CFFCharstring.swift */; };
+		03B6190E1F3BC7B400EA1D0E /* CFFCharstringType2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6190D1F3BC7B400EA1D0E /* CFFCharstringType2.swift */; };
+		03B619101F3CF1A500EA1D0E /* CFFCharset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B6190F1F3CF1A500EA1D0E /* CFFCharset.swift */; };
+		03B619121F3D07E100EA1D0E /* CFFStandardStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B619111F3D07E100EA1D0E /* CFFStandardStrings.swift */; };
+		03B619141F3D283D00EA1D0E /* TCCmapFormat12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B619131F3D283D00EA1D0E /* TCCmapFormat12.swift */; };
 		03C162911F2174BB00A44848 /* TCGlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C162901F2174BB00A44848 /* TCGlyphView.swift */; };
 		03C40BED1F35316F00CD6BAC /* TCGlyfNullDescript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BEC1F35316F00CD6BAC /* TCGlyfNullDescript.swift */; };
 		03C40BEF1F3532ED00CD6BAC /* TCGlyfBaseDescript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BEE1F3532ED00CD6BAC /* TCGlyfBaseDescript.swift */; };
@@ -68,9 +75,6 @@
 		6313472A168583760025CDFE /* CharacterMapWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63134728168583760025CDFE /* CharacterMapWindow.xib */; };
 		6313473016858EC10025CDFE /* CharacterMapListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6313472E16858EC10025CDFE /* CharacterMapListView.xib */; };
 		6365E66D167559690054AAB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6365E66C167559690054AAB3 /* README.md */; };
-		636FC57C169688BF00D5210E /* CFFCharset.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FC57B169688BF00D5210E /* CFFCharset.m */; };
-		636FC5841696B68000D5210E /* CFFCharstring.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FC5831696B68000D5210E /* CFFCharstring.m */; };
-		636FC5871696BC5500D5210E /* CFFStandardStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FC5861696BC5500D5210E /* CFFStandardStrings.m */; };
 		6373B1B0166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
 		6373B1BA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1B8166A11B5007EC53F /* InfoPlist.strings */; };
 		6373B1C6166A11B5007EC53F /* TCDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1C4166A11B5007EC53F /* TCDocument.xib */; };
@@ -79,8 +83,6 @@
 		6373B1DA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1D8166A11B5007EC53F /* InfoPlist.strings */; };
 		6373B1DD166A11B5007EC53F /* TypecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1DC166A11B5007EC53F /* TypecastTests.m */; };
 		63BFC2461690108800435BC8 /* CollectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63BFC2441690108700435BC8 /* CollectionWindow.xib */; };
-		63BFC24C16906E8000435BC8 /* CFFDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC24B16906E8000435BC8 /* CFFDict.m */; };
-		63C8FC6B16A6C61800343B7A /* CFFCharstringType2.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C8FC6A16A6C61800343B7A /* CFFCharstringType2.m */; };
 		63E96FA5167DEDE800874FBC /* GlyphListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E96FA3167DEDE800874FBC /* GlyphListView.xib */; };
 		63F16EE41681B42E00306A20 /* GlyphWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F16EE21681B42E00306A20 /* GlyphWindow.xib */; };
 /* End PBXBuildFile section */
@@ -125,6 +127,13 @@
 		03B311FC1F2AC13F001E6712 /* TCResourceMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCResourceMap.swift; sourceTree = "<group>"; };
 		03B311FE1F2AC451001E6712 /* TCResourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCResourceType.swift; sourceTree = "<group>"; };
 		03B312001F2AC6BE001E6712 /* TCResourceReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCResourceReference.swift; sourceTree = "<group>"; };
+		03B619071F3AEF3000EA1D0E /* CFFDict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFFDict.swift; sourceTree = "<group>"; };
+		03B619091F3B811100EA1D0E /* CFFFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFFFont.swift; sourceTree = "<group>"; };
+		03B6190B1F3BC70B00EA1D0E /* CFFCharstring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFFCharstring.swift; sourceTree = "<group>"; };
+		03B6190D1F3BC7B400EA1D0E /* CFFCharstringType2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFFCharstringType2.swift; sourceTree = "<group>"; };
+		03B6190F1F3CF1A500EA1D0E /* CFFCharset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFFCharset.swift; sourceTree = "<group>"; };
+		03B619111F3D07E100EA1D0E /* CFFStandardStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFFStandardStrings.swift; sourceTree = "<group>"; };
+		03B619131F3D283D00EA1D0E /* TCCmapFormat12.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapFormat12.swift; sourceTree = "<group>"; };
 		03C162901F2174BB00A44848 /* TCGlyphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyphView.swift; sourceTree = "<group>"; };
 		03C40BEC1F35316F00CD6BAC /* TCGlyfNullDescript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyfNullDescript.swift; sourceTree = "<group>"; };
 		03C40BEE1F3532ED00CD6BAC /* TCGlyfBaseDescript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyfBaseDescript.swift; sourceTree = "<group>"; };
@@ -158,12 +167,6 @@
 		63134728168583760025CDFE /* CharacterMapWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapWindow.xib; sourceTree = "<group>"; };
 		6313472E16858EC10025CDFE /* CharacterMapListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapListView.xib; sourceTree = "<group>"; };
 		6365E66C167559690054AAB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		636FC57A169688BF00D5210E /* CFFCharset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFCharset.h; sourceTree = "<group>"; };
-		636FC57B169688BF00D5210E /* CFFCharset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFCharset.m; sourceTree = "<group>"; };
-		636FC5821696B68000D5210E /* CFFCharstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFCharstring.h; sourceTree = "<group>"; };
-		636FC5831696B68000D5210E /* CFFCharstring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFCharstring.m; sourceTree = "<group>"; };
-		636FC5851696BC5500D5210E /* CFFStandardStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFStandardStrings.h; sourceTree = "<group>"; };
-		636FC5861696BC5500D5210E /* CFFStandardStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFStandardStrings.m; sourceTree = "<group>"; };
 		6373B1AB166A11B5007EC53F /* Type Designer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Type Designer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6373B1AF166A11B5007EC53F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6373B1B2166A11B5007EC53F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -180,10 +183,6 @@
 		6373B1DB166A11B5007EC53F /* TypecastTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypecastTests.h; sourceTree = "<group>"; };
 		6373B1DC166A11B5007EC53F /* TypecastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypecastTests.m; sourceTree = "<group>"; };
 		63BFC2441690108700435BC8 /* CollectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionWindow.xib; sourceTree = "<group>"; };
-		63BFC24A16906E7F00435BC8 /* CFFDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFDict.h; sourceTree = "<group>"; };
-		63BFC24B16906E8000435BC8 /* CFFDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFDict.m; sourceTree = "<group>"; };
-		63C8FC6916A6C61800343B7A /* CFFCharstringType2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFFCharstringType2.h; sourceTree = "<group>"; };
-		63C8FC6A16A6C61800343B7A /* CFFCharstringType2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFFCharstringType2.m; sourceTree = "<group>"; };
 		63E96FA3167DEDE800874FBC /* GlyphListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlyphListView.xib; sourceTree = "<group>"; };
 		63F16EE21681B42E00306A20 /* GlyphWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlyphWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,6 +216,7 @@
 				03F905D51F37E7CC0008FF3E /* TCCmapFormat2.swift */,
 				03F905D91F37FE930008FF3E /* TCCmapFormat4.swift */,
 				03F905D71F37FCFE0008FF3E /* TCCmapFormat6.swift */,
+				03B619131F3D283D00EA1D0E /* TCCmapFormat12.swift */,
 				03F905D31F37DA3D0008FF3E /* TCCmapFormatUnknown.swift */,
 				03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */,
 				03F905CB1F37A8840008FF3E /* TCCmapTable.swift */,
@@ -260,17 +260,13 @@
 		636FC5881696D06700D5210E /* CFF */ = {
 			isa = PBXGroup;
 			children = (
-				63BFC24A16906E7F00435BC8 /* CFFDict.h */,
-				63BFC24B16906E8000435BC8 /* CFFDict.m */,
+				03B619071F3AEF3000EA1D0E /* CFFDict.swift */,
 				03F6871F1F39653600F467BA /* CFFIndex.swift */,
-				636FC57A169688BF00D5210E /* CFFCharset.h */,
-				636FC57B169688BF00D5210E /* CFFCharset.m */,
-				636FC5821696B68000D5210E /* CFFCharstring.h */,
-				636FC5831696B68000D5210E /* CFFCharstring.m */,
-				636FC5851696BC5500D5210E /* CFFStandardStrings.h */,
-				636FC5861696BC5500D5210E /* CFFStandardStrings.m */,
-				63C8FC6916A6C61800343B7A /* CFFCharstringType2.h */,
-				63C8FC6A16A6C61800343B7A /* CFFCharstringType2.m */,
+				03B6190F1F3CF1A500EA1D0E /* CFFCharset.swift */,
+				03B6190B1F3BC70B00EA1D0E /* CFFCharstring.swift */,
+				03B619111F3D07E100EA1D0E /* CFFStandardStrings.swift */,
+				03B6190D1F3BC7B400EA1D0E /* CFFCharstringType2.swift */,
+				03B619091F3B811100EA1D0E /* CFFFont.swift */,
 			);
 			name = CFF;
 			sourceTree = "<group>";
@@ -512,6 +508,7 @@
 				03B311F51F2A7128001E6712 /* TCDocument.swift in Sources */,
 				03F905CC1F37A8840008FF3E /* TCCmapTable.swift in Sources */,
 				030A32A71F312A4E006B2BAC /* TCNameTable.swift in Sources */,
+				03B619101F3CF1A500EA1D0E /* CFFCharset.swift in Sources */,
 				03F905E61F391E790008FF3E /* TCCharacterMapWindowController.swift in Sources */,
 				03F905E81F3928E70008FF3E /* TCCharacterMapListViewController.swift in Sources */,
 				03B311F31F29B5AD001E6712 /* TCGlyph.swift in Sources */,
@@ -522,9 +519,12 @@
 				039845BA1F1977CE0040988F /* TCTable.swift in Sources */,
 				03FF3A281F2FBBD3005F07AB /* TCDataInput.swift in Sources */,
 				03FF3A241F2F9C2C005F07AB /* TCDirectoryEntry.swift in Sources */,
+				03B6190A1F3B811100EA1D0E /* CFFFont.swift in Sources */,
 				0348BE711F33E12100446B58 /* TCGlyphDescription.swift in Sources */,
 				0348BE6F1F33DD5800446B58 /* TCProgram.swift in Sources */,
 				03B311F71F2A9CC3001E6712 /* TCFont.swift in Sources */,
+				03B619141F3D283D00EA1D0E /* TCCmapFormat12.swift in Sources */,
+				03B6190C1F3BC70B00EA1D0E /* CFFCharstring.swift in Sources */,
 				03F905CE1F37AB410008FF3E /* TCCmapIndexEntry.swift in Sources */,
 				03B311FB1F2AC062001E6712 /* TCResourceHeader.swift in Sources */,
 				0348BE6D1F33DD3700446B58 /* TCGlyfDescript.swift in Sources */,
@@ -534,6 +534,7 @@
 				03F905D81F37FCFE0008FF3E /* TCCmapFormat6.swift in Sources */,
 				03F905E21F39010A0008FF3E /* TCTablesWindowController.swift in Sources */,
 				03B312011F2AC6BE001E6712 /* TCResourceReference.swift in Sources */,
+				03B619121F3D07E100EA1D0E /* CFFStandardStrings.swift in Sources */,
 				030A32A51F31054C006B2BAC /* TCOs2Table.swift in Sources */,
 				0348BE691F33C67F00446B58 /* TCGlyfTable.swift in Sources */,
 				03C40BF11F36A49F00CD6BAC /* TCVheaTable.swift in Sources */,
@@ -549,6 +550,7 @@
 				039845B81F195B6F0040988F /* TCHheaTable.swift in Sources */,
 				03C40BF31F36A84300CD6BAC /* TCMaxpTable.swift in Sources */,
 				03C40BED1F35316F00CD6BAC /* TCGlyfNullDescript.swift in Sources */,
+				03B6190E1F3BC7B400EA1D0E /* CFFCharstringType2.swift in Sources */,
 				0348BE651F32AB3B00446B58 /* TCTTCHeader.swift in Sources */,
 				03F905D41F37DA3D0008FF3E /* TCCmapFormatUnknown.swift in Sources */,
 				03F687201F39653600F467BA /* CFFIndex.swift in Sources */,
@@ -561,14 +563,10 @@
 				0348BE751F33EF6800446B58 /* TCPrepTable.swift in Sources */,
 				03B311F91F2A9D60001E6712 /* TCFontCollection.swift in Sources */,
 				030A32A91F314823006B2BAC /* TCAppDelegate.swift in Sources */,
-				63BFC24C16906E8000435BC8 /* CFFDict.m in Sources */,
 				03F905DC1F38DDF70008FF3E /* TCGlyphImageFactory.swift in Sources */,
-				636FC57C169688BF00D5210E /* CFFCharset.m in Sources */,
-				636FC5841696B68000D5210E /* CFFCharstring.m in Sources */,
+				03B619081F3AEF3000EA1D0E /* CFFDict.swift in Sources */,
 				03F905EA1F3932610008FF3E /* TCTable+UI.swift in Sources */,
-				636FC5871696BC5500D5210E /* CFFStandardStrings.m in Sources */,
 				03C40BEF1F3532ED00CD6BAC /* TCGlyfBaseDescript.swift in Sources */,
-				63C8FC6B16A6C61800343B7A /* CFFCharstringType2.m in Sources */,
 				03A6611F1F17FD43007864A8 /* TCHeadTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

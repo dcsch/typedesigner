@@ -32,6 +32,8 @@ class TCCmapFormatFactory {
       return TCCmapFormat4(dataInput: dataInput)
     case 6:
       return TCCmapFormat6(dataInput: dataInput)
+    case 12:
+      return TCCmapFormat12(dataInput: dataInput)
     default:
       return TCCmapFormatUnknown(type: formatType, dataInput: dataInput)
     }
