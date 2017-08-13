@@ -94,21 +94,26 @@ class CFFCharstringType2: NSObject, CFFCharstring {
     "-Reserved-"
   ]
 
-  let font: CFFFont
   let index: Int
   let name: String
   let data: [UInt8]
   let offset: Int
   let length: Int
 
-  init (font: CFFFont, index: Int, name: String, data: [UInt8], offset: Int,
-        length: Int) {
-    self.font = font
+  init(index: Int, name: String, data: [UInt8], offset: Int, length: Int) {
     self.index = index
     self.name = name
     self.data = data
     self.offset = offset
     self.length = length
+  }
+
+  override init() {
+    self.index = 0
+    self.name = "Empty"
+    self.data = []
+    self.offset = 0
+    self.length = 0
   }
 
   func disassemble(at startIP: Int) throws -> (Int, String) {
@@ -150,8 +155,10 @@ class CFFCharstringType2: NSObject, CFFCharstring {
     return (ip, str)
   }
 
-  func firstIndex() -> Int {
-    return offset
+  var firstIndex: Int {
+    get {
+      return offset
+    }
   }
 
   func isOperand(at ip: Int) -> Bool {
@@ -159,28 +166,29 @@ class CFFCharstringType2: NSObject, CFFCharstring {
     return (32 <= b0 && b0 <= 255) || b0 == 28
   }
 
-  func operand(at ip: Int) throws -> Any {
+  func operand(at ip: Int) throws -> NSNumber {
     let b0 = Int(data[ip])
     if 32 <= b0 && b0 <= 246 {
 
       // 1 byte integer
-      return b0 - 139
+      return NSNumber(value: b0 - 139)
     } else if 247 <= b0 && b0 <= 250 {
 
       // 2 byte integer
       let b1 = Int(data[ip + 1])
-      return (b0 - 247) * 256 + b1 + 108
+      return NSNumber(value: (b0 - 247) * 256 + b1 + 108)
     } else if 251 <= b0 && b0 <= 254 {
 
       // 2 byte integer
       let b1 = Int(data[ip + 1])
-      return -(b0 - 251) * 256 - b1 - 108
+      let value = -(b0 - 251) * 256 - b1 - 108
+      return NSNumber(value: value)
     } else if b0 == 28 {
 
       // 3 byte integer
       let b1 = Int(data[ip + 1])
       let b2 = Int(data[ip + 2])
-      return b1 << 8 | b2
+      return NSNumber(value: b1 << 8 | b2)
     } else if b0 == 255 {
 
       // 16-bit signed integer with 16 bits of fraction
@@ -188,7 +196,7 @@ class CFFCharstringType2: NSObject, CFFCharstring {
       let b2 = Int(data[ip + 2])
       let b3 = Int(data[ip + 3])
       let b4 = Int(data[ip + 4])
-      return Float(Int(b1) << 8 | Int(b2)) + Float(Int(b3) << 8 | Int(b4)) / 65536.0
+      return NSNumber(value: Float(Int(b1) << 8 | Int(b2)) + Float(Int(b3) << 8 | Int(b4)) / 65536.0)
     } else {
       throw CFFCharstringType2Error.noOperand
     }

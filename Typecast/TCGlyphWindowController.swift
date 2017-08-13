@@ -45,9 +45,9 @@ class TCGlyphWindowController: NSWindowController {
 
       let glyphIndex = Int((glyphDescription?.glyphIndex)!)
 
-      let glyph = TCGlyph(glyphDescription: glyphDescription!,
-                          leftSideBearing: Int((font.hmtxTable?.leftSideBearing(index: glyphIndex))!),
-                          advanceWidth: Int((font.hmtxTable?.advanceWidth(index: glyphIndex))!))
+      let glyph = TCTTGlyph(glyphDescription: glyphDescription!,
+                            leftSideBearing: Int((font.hmtxTable?.leftSideBearing(index: glyphIndex))!),
+                            advanceWidth: Int((font.hmtxTable?.advanceWidth(index: glyphIndex))!))
       glyphView?.glyph = glyph
 
       calculateGlyphViewSize()

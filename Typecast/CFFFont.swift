@@ -82,8 +82,7 @@ class CFFFont: NSObject {
       let offset = charStringsIndex.offset[i] - 1
       let len = charStringsIndex.offset[i + 1] - offset - 1
       charstrings.append(
-        CFFCharstringType2(font: self,
-                           index: index,
+        CFFCharstringType2(index: index,
                            name: name,
                            data: charStringsIndex.data,
                            offset: offset,
