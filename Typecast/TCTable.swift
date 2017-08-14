@@ -113,6 +113,11 @@ enum TCTableType: UInt32 {
   case vmtx = 0x766d7478
 }
 
+enum TCTableError: Error {
+  case unrecognizedTableType
+  case badOffset(message: String)
+}
+
 // TCTable must be @objc and TCBaseTable must be derived from NSObject to let
 // Cocoa bindings work
 

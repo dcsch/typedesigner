@@ -35,7 +35,7 @@ class TCGlyphView: NSView {
     if let context = NSGraphicsContext.current()?.cgContext {
 
       if let font = self.font {
-        let unitsPerEmBy2 = Int((font.headTable?.unitsPerEm)!) / 2
+        let unitsPerEmBy2 = Int(font.headTable.unitsPerEm) / 2
         //_translate = NSMakePoint(1 * unitsPerEmBy2, 1 * unitsPerEmBy2);
 
         context.scaleBy(x: CGFloat(scale), y: scale)

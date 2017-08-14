@@ -13,7 +13,7 @@ class TCCmapTable: TCBaseTable {
   let numTables: Int
   let entries: [TCCmapIndexEntry]
 
-  init?(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
+  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) throws {
     version = dataInput.readUInt16()
     numTables = Int(dataInput.readUInt16())
     var bytesRead = 4
@@ -40,11 +40,7 @@ class TCCmapTable: TCBaseTable {
         _ = dataInput.read(length: entry.offset - bytesRead)
       } else if entry.offset != bytesRead {
         // Something is amiss
-//        NSException *exception = [NSException exceptionWithName:@"TCCmapIndexEntryBad"
-//          reason:@"TCCmapIndexEntry offset is bad"
-//          userInfo:nil];
-//        @throw exception;
-        return nil
+        throw TCTableError.badOffset(message: "TCCmapIndexEntry offset is bad")
       }
       let formatType = Int(dataInput.readUInt16())
       lastFormat = TCCmapFormatFactory.cmapFormat(type: formatType, dataInput: dataInput)

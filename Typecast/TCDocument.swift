@@ -45,11 +45,7 @@ class TCDocument: NSDocument {
     if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
       suitcase = true
     }
-
-    fontCollection = TCFontCollection(data: data, isSuitcase: suitcase)
-    if fontCollection == nil {
-      // throw something
-    }
+    fontCollection = try TCFontCollection(data: data, isSuitcase: suitcase)
   }
 
   override func read(from url: URL, ofType typeName: String) throws {

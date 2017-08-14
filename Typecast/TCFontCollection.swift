@@ -13,7 +13,7 @@ class TCFontCollection: NSObject {
   var ttcHeader: TCTTCHeader?
   var suitcase: Bool
 
-  init(data: Data, isSuitcase: Bool) {
+  init(data: Data, isSuitcase: Bool) throws {
     fonts = []
     self.suitcase = isSuitcase
     super.init()
@@ -40,9 +40,8 @@ class TCFontCollection: NSObject {
       for resourceReference in (resourceType?.references)! {
         let offset = resourceHeader.dataOffset + UInt32(resourceReference.dataOffset + 4)
         let resData = data.subdata(in: Int(offset)..<data.count)
-        if let font = TCFont(data: resData, tablesOrigin: 0) {
-          fonts.append(font)
-        }
+        let font = try TCFont(data: resData, tablesOrigin: 0)
+        fonts.append(font)
       }
     } else if TCTTCHeader.isTTC(data: data) {
 
@@ -51,16 +50,14 @@ class TCFontCollection: NSObject {
       for i in 0 ..< Int((ttcHeader?.directoryCount)!) {
         let offset = ttcHeader?.tableDirectory[i]
         let fontData = data.subdata(in: Int(offset!)..<data.count)
-        if let font = TCFont(data: fontData, tablesOrigin: UInt(offset!)) {
-          fonts.append(font)
-        }
+        let font = try TCFont(data: fontData, tablesOrigin: UInt(offset!))
+        fonts.append(font)
       }
     } else {
 
       // This is a standalone font file
-      if let font = TCFont(data: data, tablesOrigin: 0) {
-        fonts.append(font)
-      }
+      let font = try TCFont(data: data, tablesOrigin: 0)
+      fonts.append(font)
     }
   }
 }

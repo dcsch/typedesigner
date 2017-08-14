@@ -38,6 +38,15 @@ class TCTableDirectory: NSObject {
     return nil
   }
 
+  func hasEntry(tag: UInt32) -> Bool {
+    for entry in entries {
+      if entry.tag == tag {
+        return true
+      }
+    }
+    return false
+  }
+
   override var description: String {
     get {
       var str = String(format:
