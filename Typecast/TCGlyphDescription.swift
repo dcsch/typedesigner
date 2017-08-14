@@ -17,6 +17,9 @@ enum TCGlyphFlag: UInt8 {
   case yDual = 0x20
 }
 
+/**
+ Specifies access to glyph description classes, simple and composite.
+ */
 @objc protocol TCGlyphDescription {
 
   var glyphIndex: Int { get }

@@ -46,8 +46,6 @@ class TCDocument: NSDocument {
       suitcase = true
     }
 
-    Swift.print(data.count)
-
     fontCollection = TCFontCollection(data: data, isSuitcase: suitcase)
     if fontCollection == nil {
       // throw something

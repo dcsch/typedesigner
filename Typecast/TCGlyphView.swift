@@ -11,12 +11,11 @@ import Cocoa
 class TCGlyphView: NSView {
 
   var glyph: TCGlyph?
+  var font: TCFont?
   var glyphPath: CGPath?
+  var translate = CGPoint(x: 0, y: 0)
+  var scale: CGFloat = 1.0
   var controlPointsVisible = true
-
-  override class func initialize() {
-    exposeBinding("glyph")
-  }
 
   override init(frame: NSRect) {
     super.init(frame:frame)
@@ -35,35 +34,38 @@ class TCGlyphView: NSView {
 
     if let context = NSGraphicsContext.current()?.cgContext {
 
-      //    if (_font)
-      //    {
-      //        int unitsPerEmBy2 = [[_font headTable] unitsPerEm] / 2;
-      //        //_translate = NSMakePoint(1 * unitsPerEmBy2, 1 * unitsPerEmBy2);
-      //        _translate = NSMakePoint(0, 0);
-      //
-      //        CGContextScaleCTM(context, _scaleFactor, _scaleFactor);
-      //        CGContextTranslateCTM(context, _translate.x, _translate.y);
-      //
-      //        // Draw grid
-      //        CGContextSetRGBStrokeColor(context, 0.5, 0.5, 0.5, 1.0);
-      //        CGContextMoveToPoint(context, -unitsPerEmBy2, 0);
-      //        CGContextAddLineToPoint(context, unitsPerEmBy2, 0);
-      //        CGContextMoveToPoint(context, 0, -unitsPerEmBy2);
-      //        CGContextAddLineToPoint(context, 0, unitsPerEmBy2);
-      //        CGContextStrokePath(context);
-      //
-      //        // Draw guides
-      //        CGContextSetRGBStrokeColor(context, 0.25, 0.25, 0.25, 1.0);
-      //        CGContextMoveToPoint(context, -unitsPerEmBy2, [_font ascent]);
-      //        CGContextAddLineToPoint(context, unitsPerEmBy2, [_font ascent]);
-      //        CGContextMoveToPoint(context, -unitsPerEmBy2, [_font descent]);
-      //        CGContextAddLineToPoint(context, unitsPerEmBy2, [_font descent]);
-      //        CGContextMoveToPoint(context, [_glyph leftSideBearing], -unitsPerEmBy2);
-      //        CGContextAddLineToPoint(context, [_glyph leftSideBearing], unitsPerEmBy2);
-      //        CGContextMoveToPoint(context, [_glyph advanceWidth], -unitsPerEmBy2);
-      //        CGContextAddLineToPoint(context, [_glyph advanceWidth], unitsPerEmBy2);
-      //        CGContextStrokePath(context);
-      //    }
+      if let font = self.font {
+        let unitsPerEmBy2 = Int((font.headTable?.unitsPerEm)!) / 2
+        //_translate = NSMakePoint(1 * unitsPerEmBy2, 1 * unitsPerEmBy2);
+
+        context.scaleBy(x: CGFloat(scale), y: scale)
+        context.translateBy(x: translate.x, y: translate.y)
+
+        context.setLineWidth(2)
+
+        // Draw grid
+        context.setStrokeColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
+        context.move(to: CGPoint(x: -unitsPerEmBy2, y: 0))
+        context.addLine(to: CGPoint(x: unitsPerEmBy2, y: 0))
+        context.move(to: CGPoint(x: 0, y: -unitsPerEmBy2))
+        context.addLine(to: CGPoint(x: 0, y: unitsPerEmBy2))
+        context.strokePath()
+
+        if let glyph = self.glyph {
+
+          // Draw guides
+          context.setStrokeColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0)
+          context.move(to: CGPoint(x: -unitsPerEmBy2, y: font.ascent))
+          context.addLine(to: CGPoint(x: unitsPerEmBy2, y: font.ascent))
+          context.move(to: CGPoint(x: -unitsPerEmBy2, y: font.descent))
+          context.addLine(to: CGPoint(x: unitsPerEmBy2, y: font.descent))
+          context.move(to: CGPoint(x: glyph.leftSideBearing, y: -unitsPerEmBy2))
+          context.addLine(to: CGPoint(x: glyph.leftSideBearing, y: unitsPerEmBy2))
+          context.move(to: CGPoint(x: glyph.advanceWidth, y: -unitsPerEmBy2))
+          context.addLine(to: CGPoint(x: glyph.advanceWidth, y: unitsPerEmBy2))
+          context.strokePath()
+        }
+      }
 
       // Draw contours
       if glyphPath == nil {
@@ -72,8 +74,8 @@ class TCGlyphView: NSView {
 
       // Render the glyph path
       context.addPath(glyphPath!)
-      context.strokePath()
-//      context.fillPath()
+//      context.strokePath()
+      context.fillPath()
 
       // TODO Implement control points in a different layer, in a different place entirely
       if controlPointsVisible {

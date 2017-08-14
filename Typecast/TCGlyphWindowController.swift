@@ -49,6 +49,7 @@ class TCGlyphWindowController: NSWindowController {
                             leftSideBearing: Int((font.hmtxTable?.leftSideBearing(index: glyphIndex))!),
                             advanceWidth: Int((font.hmtxTable?.advanceWidth(index: glyphIndex))!))
       glyphView?.glyph = glyph
+      glyphView?.font = font
 
       calculateGlyphViewSize()
     }
@@ -83,10 +84,10 @@ class TCGlyphWindowController: NSWindowController {
     }
 
     if let rect = scrollView?.bounds {
-      glyphView?.frame = NSRect(x: -rect.size.height,
+      glyphView?.frame = NSRect(x: -rect.size.width,
                                 y: -rect.size.height,
-                                width: 3 * rect.size.height,
-                                height: 3 * rect.size.height)
+                                width: rect.size.width,
+                                height: rect.size.height)
     }
     glyphView?.needsDisplay = true
   }

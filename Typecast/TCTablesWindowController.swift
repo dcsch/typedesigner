@@ -49,6 +49,12 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
           vc.document = document as? TCDocument
           containedViewController = vc
         }
+      } else if table.type == TCTableType.CFF.rawValue {
+          if let vc = TCGlyphListViewController(nibName: "GlyphListView", bundle: nil) {
+            vc.representedObject = table
+            vc.document = document as? TCDocument
+            containedViewController = vc
+          }
       } else if table.type == TCTableType.cmap.rawValue {
         if let vc = TCCharacterMapListViewController(nibName: "CharacterMapListView", bundle: nil) {
           vc.representedObject = table
