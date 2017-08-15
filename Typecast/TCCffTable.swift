@@ -71,9 +71,9 @@ class TCCffTable: TCBaseTable {
     return TCDataInput(data: fontData)
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.CFF.rawValue
+      return TCTableTag.CFF.rawValue
     }
   }
 }

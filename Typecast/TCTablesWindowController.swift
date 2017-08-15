@@ -43,19 +43,20 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
     containedViewController = nil
 
     if let table = (tableArrayController?.selectedObjects as! [TCTable]).last {
-      if table.type == TCTableType.glyf.rawValue {
+      let tag = type(of: table).tag
+      if tag == TCTableTag.glyf.rawValue {
         if let vc = TCGlyphListViewController(nibName: "GlyphListView", bundle: nil) {
           vc.representedObject = table
           vc.document = document as? TCDocument
           containedViewController = vc
         }
-      } else if table.type == TCTableType.CFF.rawValue {
+      } else if tag == TCTableTag.CFF.rawValue {
           if let vc = TCGlyphListViewController(nibName: "GlyphListView", bundle: nil) {
             vc.representedObject = table
             vc.document = document as? TCDocument
             containedViewController = vc
           }
-      } else if table.type == TCTableType.cmap.rawValue {
+      } else if tag == TCTableTag.cmap.rawValue {
         if let vc = TCCharacterMapListViewController(nibName: "CharacterMapListView", bundle: nil) {
           vc.representedObject = table
           vc.document = document as? TCDocument

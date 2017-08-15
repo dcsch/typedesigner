@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TCTableType: UInt32 {
+enum TCTableTag: UInt32 {
 
   // Baseline data [OpenType]
   case BASE = 0x42415345
@@ -122,31 +122,31 @@ enum TCTableError: Error {
 // Cocoa bindings work
 
 @objc protocol TCTable {
-  var type: UInt32 { get }
+  static var tag: UInt32 { get }
 }
 
 /**
- * A simple base implementation of TCTable, for classes that don't need to be
- * derived from any other base classes.
+ A simple base implementation of TCTable, for classes that don't need to be
+ derived from any other base classes.
  */
 class TCBaseTable: NSObject, TCTable {
-  var type: UInt32 { get { return 0 } }
+  class var tag: UInt32 { get { return 0 } }
   var directoryEntry: TCDirectoryEntry
 
   var name: String {
     get {
-      let type = self.type
+      let tag = type(of: self).tag
       return String(format: "%c%c%c%c",
-                    CChar(truncatingBitPattern:type >> 24),
-                    CChar(truncatingBitPattern:type >> 16),
-                    CChar(truncatingBitPattern:type >> 8),
-                    CChar(truncatingBitPattern:type))
+                    CChar(truncatingBitPattern:tag >> 24),
+                    CChar(truncatingBitPattern:tag >> 16),
+                    CChar(truncatingBitPattern:tag >> 8),
+                    CChar(truncatingBitPattern:tag))
     }
   }
 
   override var description: String {
     get {
-      return "TCTable type: '\(type)'"
+      return "TCTable type: '\(name)'"
     }
   }
 

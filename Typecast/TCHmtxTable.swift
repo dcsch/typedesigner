@@ -48,9 +48,9 @@ class TCHmtxTable: TCBaseTable {
     }
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.hmtx.rawValue
+      return TCTableTag.hmtx.rawValue
     }
   }
 

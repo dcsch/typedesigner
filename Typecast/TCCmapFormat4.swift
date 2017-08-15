@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Segment mapping to delta values.
+ */
 class TCCmapFormat4: TCCmapFormat {
   let length: Int
   let language: Int

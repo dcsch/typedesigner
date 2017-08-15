@@ -78,9 +78,9 @@ class TCMaxpTable: TCBaseTable {
     super.init(directoryEntry: directoryEntry)
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.maxp.rawValue
+      return TCTableTag.maxp.rawValue
     }
   }
 

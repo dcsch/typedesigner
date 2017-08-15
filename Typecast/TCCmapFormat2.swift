@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- * High-byte mapping through table cmap format.
+ High-byte mapping through table cmap format.
  */
 class TCCmapFormat2: TCCmapFormat {
 

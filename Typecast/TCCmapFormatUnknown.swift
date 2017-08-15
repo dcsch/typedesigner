@@ -9,8 +9,8 @@
 import Foundation
 
 /**
- * When we encounter a cmap format we don't understand, we can use this class
- * to hold the bare minimum information about it.
+ When we encounter a cmap format we don't understand, we can use this class
+ to hold the bare minimum information about it.
  */ 
 class TCCmapFormatUnknown: TCCmapFormat {
   let format: Int

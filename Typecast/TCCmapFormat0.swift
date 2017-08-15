@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- * Simple Macintosh cmap table, mapping only the ASCII character set to glyphs.
+ Simple Macintosh cmap table, mapping only the ASCII character set to glyphs.
  */
 class TCCmapFormat0: TCCmapFormat {
   let length: Int

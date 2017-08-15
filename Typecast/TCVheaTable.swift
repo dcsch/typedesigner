@@ -41,9 +41,9 @@ class TCVheaTable: TCBaseTable {
     super.init(directoryEntry: directoryEntry)
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.vhea.rawValue
+      return TCTableTag.vhea.rawValue
     }
   }
 

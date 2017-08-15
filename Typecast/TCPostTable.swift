@@ -343,9 +343,9 @@ class TCPostTable: TCBaseTable {
     super.init(directoryEntry: directoryEntry)
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.post.rawValue
+      return TCTableTag.post.rawValue
     }
   }
 

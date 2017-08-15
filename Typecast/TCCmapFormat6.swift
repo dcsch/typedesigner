@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- * Format 6: Trimmed table mapping
+ Format 6: Trimmed table mapping
  */
 class TCCmapFormat6: TCCmapFormat {
   let length: Int

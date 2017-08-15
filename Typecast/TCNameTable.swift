@@ -67,9 +67,9 @@ class TCNameTable: TCBaseTable {
     super.init(directoryEntry: entry)
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.name.rawValue
+      return TCTableTag.name.rawValue
     }
   }
 

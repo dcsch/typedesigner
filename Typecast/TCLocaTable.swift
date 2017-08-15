@@ -37,9 +37,9 @@ class TCLocaTable: TCBaseTable {
     return offsets[index] * factor
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.loca.rawValue
+      return TCTableTag.loca.rawValue
     }
   }
 

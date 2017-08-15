@@ -56,9 +56,9 @@ class TCGlyfTable: TCBaseTable {
 //        }
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.glyf.rawValue
+      return TCTableTag.glyf.rawValue
     }
   }
 

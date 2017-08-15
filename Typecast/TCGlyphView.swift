@@ -74,8 +74,8 @@ class TCGlyphView: NSView {
 
       // Render the glyph path
       context.addPath(glyphPath!)
-//      context.strokePath()
-      context.fillPath()
+      context.strokePath()
+//      context.fillPath()
 
       // TODO Implement control points in a different layer, in a different place entirely
       if controlPointsVisible {

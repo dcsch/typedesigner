@@ -54,42 +54,42 @@ class TCFont: NSObject {
     // (These are tables that are referenced by other tables, so we need to load
     // them first)
     headTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
-                                     type: .head, data: data,
+                                     tag: .head, data: data,
                                      tablesOrigin: tablesOrigin)
     tables.append(headTable)
     hheaTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
-                                     type: .hhea, data: data,
+                                     tag: .hhea, data: data,
                                      tablesOrigin: tablesOrigin)
     tables.append(hheaTable)
     maxpTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
-                                     type: .maxp, data: data,
+                                     tag: .maxp, data: data,
                                      tablesOrigin: tablesOrigin)
     tables.append(maxpTable)
-    if tableDirectory.hasEntry(tag: TCTableType.loca.rawValue) {
+    if tableDirectory.hasEntry(tag: TCTableTag.loca.rawValue) {
       locaTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
-                                       type: .loca, data: data,
+                                       tag: .loca, data: data,
                                        tablesOrigin: tablesOrigin)
       tables.append(locaTable!)
     }
-    if tableDirectory.hasEntry(tag: TCTableType.vhea.rawValue) {
+    if tableDirectory.hasEntry(tag: TCTableTag.vhea.rawValue) {
       vheaTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
-                                       type: .vhea, data: data,
+                                       tag: .vhea, data: data,
                                        tablesOrigin: tablesOrigin)
       tables.append(vheaTable!)
     }
     postTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
-                                     type: .post, data: data,
+                                     tag: .post, data: data,
                                      tablesOrigin: tablesOrigin)
     tables.append(postTable)
 
     // Load all other tables
     for entry in tableDirectory.entries {
-      if entry.tag == TCTableType.head.rawValue ||
-        entry.tag == TCTableType.hhea.rawValue ||
-        entry.tag == TCTableType.maxp.rawValue ||
-        entry.tag == TCTableType.loca.rawValue ||
-        entry.tag == TCTableType.vhea.rawValue ||
-        entry.tag == TCTableType.post.rawValue {
+      if entry.tag == TCTableTag.head.rawValue ||
+        entry.tag == TCTableTag.hhea.rawValue ||
+        entry.tag == TCTableTag.maxp.rawValue ||
+        entry.tag == TCTableTag.loca.rawValue ||
+        entry.tag == TCTableTag.vhea.rawValue ||
+        entry.tag == TCTableTag.post.rawValue {
         continue;
       }
 
@@ -108,21 +108,21 @@ class TCFont: NSObject {
 
     // Get references to commonly used tables (these happen to be all the
     // required tables)
-    cmapTable = try TCFont.table(tables: tables, type: TCTableType.cmap)
-    hmtxTable = try TCFont.table(tables: tables, type: TCTableType.hmtx)
-    nameTable = try TCFont.table(tables: tables, type: TCTableType.name)
-    os2Table = try TCFont.table(tables: tables, type: TCTableType.OS_2)
+    cmapTable = try TCFont.table(tables: tables, tag: TCTableTag.cmap)
+    hmtxTable = try TCFont.table(tables: tables, tag: TCTableTag.hmtx)
+    nameTable = try TCFont.table(tables: tables, tag: TCTableTag.name)
+    os2Table = try TCFont.table(tables: tables, tag: TCTableTag.OS_2)
 
     // If this is a TrueType outline, then we'll have at least the
     // 'glyf' table (along with the 'loca' table)
-    glyfTable = try TCFont.table(tables: tables, type: TCTableType.glyf)
+    glyfTable = try TCFont.table(tables: tables, tag: TCTableTag.glyf)
 
     super.init()
   }
 
-  class func table<T>(tables: [TCTable], type: TCTableType) throws -> T {
+  class func table<T>(tables: [TCTable], tag: TCTableTag) throws -> T {
     for table in tables {
-      if table.type == type.rawValue {
+      if type(of: table).tag == tag.rawValue {
         if let actualTable = table as? T {
           return actualTable
         }
@@ -132,8 +132,8 @@ class TCFont: NSObject {
   }
 
   class func readTable<T>(directory: TCTableDirectory, tables: [TCTable],
-                          type: TCTableType, data: Data, tablesOrigin: UInt) throws -> T {
-    if let entry = directory.entry(tag: type.rawValue) {
+                          tag: TCTableTag, data: Data, tablesOrigin: UInt) throws -> T {
+    if let entry = directory.entry(tag: tag.rawValue) {
       let offset = UInt(entry.offset) - tablesOrigin
       let tableData = data.subdata(in:
         Int(offset)..<Int(offset + UInt(entry.length)))

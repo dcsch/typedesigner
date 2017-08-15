@@ -14,10 +14,10 @@ class TCTableFactory {
                          directoryEntry entry: TCDirectoryEntry) throws -> TCTable {
     var table: TCTable
 
-    if let tableType = TCTableType(rawValue: entry.tag) {
+    if let tableTag = TCTableTag(rawValue: entry.tag) {
 
       // Create the table
-      switch tableType {
+      switch tableTag {
 //        case BASE:
 //            table = new BaseTable(de, dis);
 //            break;
@@ -73,9 +73,9 @@ class TCTableFactory {
 //            t = new GaspTable(de, dis);
 //            break;
       case .glyf:
-        let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, type: TCTableType.maxp)
-        let locaTable: TCLocaTable = try TCTableFactory.table(tables: tables, type: TCTableType.loca)
-        let postTable: TCPostTable = try TCTableFactory.table(tables: tables, type: TCTableType.post)
+        let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.maxp)
+        let locaTable: TCLocaTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.loca)
+        let postTable: TCPostTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.post)
         table = TCGlyfTable(data: data,
                             directoryEntry: entry,
                             maxpTable: maxpTable,
@@ -92,8 +92,8 @@ class TCTableFactory {
         table = TCHheaTable(dataInput: dataInput, directoryEntry: entry)
       case .hmtx:
         let dataInput = TCDataInput(data: data)
-        let hheaTable: TCHheaTable = try TCTableFactory.table(tables: tables, type: TCTableType.hhea)
-        let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, type: TCTableType.maxp)
+        let hheaTable: TCHheaTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.hhea)
+        let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.maxp)
         table = TCHmtxTable(dataInput: dataInput,
                             directoryEntry: entry,
                             hheaTable: hheaTable,
@@ -103,8 +103,8 @@ class TCTableFactory {
 //            break;
       case .loca:
         let dataInput = TCDataInput(data: data)
-        let headTable: TCHeadTable = try TCTableFactory.table(tables: tables, type: TCTableType.head)
-        let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, type: TCTableType.maxp)
+        let headTable: TCHeadTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.head)
+        let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.maxp)
         table = TCLocaTable(dataInput: dataInput,
                             directoryEntry: entry,
                             headTable: headTable,
@@ -135,9 +135,9 @@ class TCTableFactory {
     return table
   }
 
-  class func table<T>(tables: [TCTable], type: TCTableType) throws -> T {
+  class func table<T>(tables: [TCTable], tag: TCTableTag) throws -> T {
     for table in tables {
-      if table.type == type.rawValue {
+      if type(of: table).tag == tag.rawValue {
         if let actualTable = table as? T {
           return actualTable
         }

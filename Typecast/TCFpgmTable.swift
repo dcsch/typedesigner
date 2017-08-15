@@ -18,9 +18,9 @@ class TCFpgmTable: TCProgram, TCTable {
     readInstructions(dataInput: dataInput, count: Int(entry.length))
   }
 
-  var type: UInt32 {
+  class var tag: UInt32 {
     get {
-      return TCTableType.fpgm.rawValue
+      return TCTableTag.fpgm.rawValue
     }
   }
 
@@ -32,12 +32,12 @@ class TCFpgmTable: TCProgram, TCTable {
 
   var name: String {
     get {
-      let type = self.type
+      let tag = type(of: self).tag
       return String(format: "%c%c%c%c",
-                    CChar(truncatingBitPattern:type >> 24),
-                    CChar(truncatingBitPattern:type >> 16),
-                    CChar(truncatingBitPattern:type >> 8),
-                    CChar(truncatingBitPattern:type))
+                    CChar(truncatingBitPattern:tag >> 24),
+                    CChar(truncatingBitPattern:tag >> 16),
+                    CChar(truncatingBitPattern:tag >> 8),
+                    CChar(truncatingBitPattern:tag))
     }
   }
 

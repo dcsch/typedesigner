@@ -141,9 +141,9 @@ class TCOs2Table: TCBaseTable {
     super.init(directoryEntry: entry)
   }
 
-  override var type: UInt32 {
+  override class var tag: UInt32 {
     get {
-      return TCTableType.OS_2.rawValue
+      return TCTableTag.OS_2.rawValue
     }
   }
 

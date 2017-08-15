@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Segmented coverage.
+ */
 class TCCmapFormat12: TCCmapFormat {
   let length: Int
   let language: Int
