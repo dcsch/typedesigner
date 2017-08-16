@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import os.log
 
 class TCGlyphWindowController: NSWindowController {
 
@@ -34,9 +35,9 @@ class TCGlyphWindowController: NSWindowController {
       self.calculateGlyphViewSize()
     }
 
-    scrollView!.hasHorizontalRuler = true
-    scrollView!.hasVerticalRuler = true
-    scrollView!.rulersVisible = true
+//    scrollView!.hasHorizontalRuler = true
+//    scrollView!.hasVerticalRuler = true
+//    scrollView!.rulersVisible = true
 
     let fontCollection = (self.document as! TCDocument).fontCollection
 
@@ -66,28 +67,24 @@ class TCGlyphWindowController: NSWindowController {
   func calculateGlyphViewSize() {
 
     // Calculate a space in which to place the glyph in font design units. This
-    // will include a substantial blank space around the glyph.
+    // will be limited by the xMin, yMin, xMax, and yMax values in the
+    // head table.
 
     let fontCollection = (self.document as! TCDocument).fontCollection
-
-    // TODO: Don't just select the first font
-    if let font = fontCollection?.fonts[0] {
-
-      // Visible height: head.yMax - 2 * hhea.yDescender
-      let visibleBottom = Int(2 * font.hheaTable.descender)
-      let visibleHeight = Int(font.headTable.yMax) - visibleBottom
-      let visibleLeft = visibleBottom
-      let visibleWidth = visibleHeight
-
-      glyphView?.bounds = CGRect(origin: CGPoint(x: visibleLeft, y: visibleBottom),
-                                 size: CGSize(width: visibleWidth, height: visibleHeight))
-    }
 
     if let rect = scrollView?.bounds {
       glyphView?.frame = NSRect(x: -rect.size.width,
                                 y: -rect.size.height,
                                 width: rect.size.width,
                                 height: rect.size.height)
+    }
+
+    // TODO: Don't just select the first font
+    if let font = fontCollection?.fonts[0] {
+      let head = font.headTable
+      glyphView?.bounds = CGRect(x: Int(head.xMin), y: Int(head.yMin),
+                                 width: Int(head.xMax) - Int(head.xMin),
+                                 height: Int(head.yMax) - Int(head.yMin))
     }
     glyphView?.needsDisplay = true
   }

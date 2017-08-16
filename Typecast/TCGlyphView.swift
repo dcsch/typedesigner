@@ -44,17 +44,25 @@ class TCGlyphView: NSView {
         context.setLineWidth(2)
 
         // Draw grid
-        context.setStrokeColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
+        context.setStrokeColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 1.0)
         context.move(to: CGPoint(x: -unitsPerEmBy2, y: 0))
         context.addLine(to: CGPoint(x: unitsPerEmBy2, y: 0))
         context.move(to: CGPoint(x: 0, y: -unitsPerEmBy2))
         context.addLine(to: CGPoint(x: 0, y: unitsPerEmBy2))
         context.strokePath()
 
+        context.setStrokeColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
+        context.move(to: CGPoint(x: Int(font.headTable.xMin), y: Int(font.headTable.yMin)))
+        context.addLine(to: CGPoint(x: Int(font.headTable.xMax), y: Int(font.headTable.yMin)))
+        context.addLine(to: CGPoint(x: Int(font.headTable.xMax), y: Int(font.headTable.yMax)))
+        context.addLine(to: CGPoint(x: Int(font.headTable.xMin), y: Int(font.headTable.yMax)))
+        context.addLine(to: CGPoint(x: Int(font.headTable.xMin), y: Int(font.headTable.yMin)))
+        context.strokePath()
+
         if let glyph = self.glyph {
 
           // Draw guides
-          context.setStrokeColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0)
+          context.setStrokeColor(red: 0.25, green: 0.25, blue: 1.0, alpha: 1.0)
           context.move(to: CGPoint(x: -unitsPerEmBy2, y: font.ascent))
           context.addLine(to: CGPoint(x: unitsPerEmBy2, y: font.ascent))
           context.move(to: CGPoint(x: -unitsPerEmBy2, y: font.descent))
@@ -74,6 +82,8 @@ class TCGlyphView: NSView {
 
       // Render the glyph path
       context.addPath(glyphPath!)
+
+      context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
       context.strokePath()
 //      context.fillPath()
 
