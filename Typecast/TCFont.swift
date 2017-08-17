@@ -8,6 +8,7 @@
 
 import Foundation
 import os.log
+import IOUtils
 
 enum TCFontError: Error {
   case missingTable

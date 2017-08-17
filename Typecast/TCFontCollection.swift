@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCFontCollection: NSObject {
   var fonts: [TCFont]

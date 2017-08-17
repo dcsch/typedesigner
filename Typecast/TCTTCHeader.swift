@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCTTCHeader {
   let ttcTag: Int32

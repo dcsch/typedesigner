@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import IOUtils
 
-class CFFIndex: NSObject {
-  let count: Int
+public class CFFIndex: NSObject {
+  public let count: Int
   let offSize: Int
   let offset: [Int]
   let data: [UInt8]
 
-  init(dataInput: TCDataInput) {
+  public init(dataInput: TCDataInput) {
     self.count = Int(dataInput.readUInt16())
     var offset = [Int]()
     offSize = Int(dataInput.readUInt8())
@@ -37,22 +38,22 @@ class CFFIndex: NSObject {
   }
 }
 
-class CFFTopDictIndex: CFFIndex {
+public class CFFTopDictIndex: CFFIndex {
 
-  func topDict(at index: Int) -> CFFDict {
+  public func topDict(at index: Int) -> CFFDict {
     let off = offset[index] - 1
     let len = offset[index + 1] - off - 1
     return CFFDict(data: data, offset: off, length: len)
   }
 }
 
-class CFFNameIndex: CFFIndex {
+public class CFFNameIndex: CFFIndex {
 
 }
 
-class CFFStringIndex: CFFIndex {
+public class CFFStringIndex: CFFIndex {
 
-  func string(at index: Int) -> String {
+  public func string(at index: Int) -> String {
     if index < CFFStandardStrings.standardStrings.count {
       return CFFStandardStrings.standardStrings[index]
     } else {

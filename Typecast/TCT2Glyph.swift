@@ -8,6 +8,7 @@
 
 import Foundation
 import os.log
+import CFF
 
 /**
  An individual Type 2 Charstring glyph within a font.
@@ -15,7 +16,7 @@ import os.log
 class TCT2Glyph: NSObject, TCGlyph {
   var leftSideBearing: Int
   var advanceWidth: Int
-  var points: [TCPoint]
+  var points: [CFFPoint]
   var hstems: [Int]
   var vstems: [Int]
 

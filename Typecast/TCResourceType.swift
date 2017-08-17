@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCResourceType {
   let type: UInt32

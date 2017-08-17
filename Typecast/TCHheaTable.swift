@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCHheaTable: TCBaseTable {
   var version: UInt32

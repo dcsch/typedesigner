@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 /**
  When we encounter a cmap format we don't understand, we can use this class

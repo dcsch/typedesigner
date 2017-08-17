@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCPrepTable: TCProgram, TCTable {
   let entry: TCDirectoryEntry

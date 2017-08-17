@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCPostTable: TCBaseTable {
   let version: UInt32

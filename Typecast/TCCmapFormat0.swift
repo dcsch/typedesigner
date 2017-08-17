@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 /**
  Simple Macintosh cmap table, mapping only the ASCII character set to glyphs.

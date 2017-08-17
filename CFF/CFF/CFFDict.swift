@@ -7,18 +7,19 @@
 //
 
 import Foundation
+import IOUtils
 
 enum CFFDictError: Error {
   case badRealNumber
   case noOperand
 }
 
-class CFFDict: NSObject {
+public class CFFDict: NSObject {
   var entries: [Int:Any]
   let data: [UInt8]
   var index: Int
 
-  init(data: [UInt8], offset: Int, length: Int) {
+  public init(data: [UInt8], offset: Int, length: Int) {
     self.entries = [:]
     self.data = data
     self.index = offset
@@ -28,7 +29,7 @@ class CFFDict: NSObject {
     }
   }
 
-  init(dataInput: TCDataInput, length: Int) {
+  public init(dataInput: TCDataInput, length: Int) {
     self.entries = [:]
     self.data = dataInput.read(length: length)
     self.index = 0

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCResourceMap {
   let headerData: [UInt8]

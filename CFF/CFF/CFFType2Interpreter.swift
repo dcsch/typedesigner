@@ -68,7 +68,14 @@ class T2Mnemonic {
   static let FLEX1 = 0x25
 }
 
-enum CFFType2InterpreterError: Error {
+public struct CFFPoint {
+  public var x: Int
+  public var y: Int
+  public var onCurve: Bool
+  public var endOfContour: Bool
+}
+
+public enum CFFType2InterpreterError: Error {
   case badOperand
   case badOperator
 }
@@ -77,7 +84,7 @@ enum CFFType2InterpreterError: Error {
  Type 2 Charstring Interpreter.  Operator descriptions are quoted from
  Adobe's Type 2 Charstring Format document — 5117.Type2.pdf.
  */
-class CFFType2Interpreter {
+public class CFFType2Interpreter {
 
   static let ARGUMENT_STACK_LIMIT = 48
   static let SUBR_STACK_LIMIT = 10
@@ -90,10 +97,11 @@ class CFFType2Interpreter {
   var transientArray = [NSNumber]()
 
   var stemCount = 0
-  var hstems = [Int]()
-  var vstems = [Int]()
+  public var hstems = [Int]()
+  public var vstems = [Int]()
 
-  var points = [TCPoint]()
+//  var points = [(point: CGPoint, onCurve: Bool, endOfCurve: Bool)]()
+  var points = [CFFPoint]()
   let localSubrIndex: CFFIndex
   let globalSubrIndex: CFFIndex
   let localSubrs: CFFCharstringType2
@@ -104,7 +112,7 @@ class CFFType2Interpreter {
   /**
    Creates a new instance of T2Interpreter
    */
-  init(localSubrIndex: CFFIndex, globalSubrIndex: CFFIndex) {
+  public init(localSubrIndex: CFFIndex, globalSubrIndex: CFFIndex) {
     self.localSubrIndex = localSubrIndex
     self.globalSubrIndex = globalSubrIndex
     localSubrs = CFFCharstringType2(
@@ -1060,7 +1068,7 @@ class CFFType2Interpreter {
     (cs, ip) = popSubr()
   }
 
-  func execute(cs: CFFCharstringType2) throws -> [TCPoint] {
+  public func execute(cs: CFFCharstringType2) throws -> [CFFPoint] {
     self.cs = cs
 
     hstems = []
@@ -1249,22 +1257,22 @@ class CFFType2Interpreter {
 
   private func moveTo(x: Int, y: Int) {
     endContour()
-    points.append(TCPoint(x: x, y: y, onCurve: true, endOfContour: false))
+    points.append(CFFPoint(x: x, y: y, onCurve: true, endOfContour: false))
   }
 
   private func lineTo(x: Int, y: Int) {
-    points.append(TCPoint(x: x, y: y, onCurve: true, endOfContour: false))
+    points.append(CFFPoint(x: x, y: y, onCurve: true, endOfContour: false))
   }
 
   private func curveTo(cx1: Int, cy1: Int, cx2: Int, cy2: Int, x: Int, y: Int) {
-    points.append(TCPoint(x: cx1, y: cy1, onCurve: false, endOfContour: false))
-    points.append(TCPoint(x: cx2, y: cy2, onCurve: false, endOfContour: false))
-    points.append(TCPoint(x: x, y: y, onCurve: true, endOfContour: false))
+    points.append(CFFPoint(x: cx1, y: cy1, onCurve: false, endOfContour: false))
+    points.append(CFFPoint(x: cx2, y: cy2, onCurve: false, endOfContour: false))
+    points.append(CFFPoint(x: x, y: y, onCurve: true, endOfContour: false))
   }
 
   private func endContour() {
-    if let lastPoint = points.last {
-      lastPoint.endOfContour = true;
+    if var lastPoint = points.last {
+      lastPoint.endOfContour = true
     }
   }
 }

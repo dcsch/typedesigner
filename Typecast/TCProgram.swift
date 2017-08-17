@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCProgram: NSObject {
   var instructions = [UInt8]()

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCTableDirectory: NSObject {
   let version: UInt32

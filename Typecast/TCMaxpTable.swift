@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCMaxpTable: TCBaseTable {
   let versionNumber: UInt32

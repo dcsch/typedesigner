@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCHmtxTable: TCBaseTable {
   var hMetrics: [UInt32] = []

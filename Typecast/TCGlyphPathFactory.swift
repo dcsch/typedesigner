@@ -8,6 +8,7 @@
 
 import Foundation
 import os.log
+import CFF
 
 /**
  A factory for generating a CGPath from a glyph outline.
@@ -26,22 +27,29 @@ class TCGlyphPathFactory {
 
     // Iterate through all of the points in the glyph.  Each time we find a
     // contour end point, add the point range to the path.
-    var firstIndex = 0
-    var count = 0
-    for i in 0 ..< glyph.points.count {
-      count += 1
-      if glyph.points[i].endOfContour {
-
-        // TODO Rework this as something more efficient
-        if let ttGlyph = glyph as? TCTTGlyph {
+    if let ttGlyph = glyph as? TCTTGlyph {
+      var firstIndex = 0
+      var count = 0
+      for i in 0 ..< ttGlyph.points.count {
+        count += 1
+        if ttGlyph.points[i].endOfContour {
           addContourToPath(path: glyphPath, glyph: ttGlyph,
                            startIndex: firstIndex, count: count)
-        } else if let t2Glyph = glyph as? TCT2Glyph {
+          firstIndex = i + 1
+          count = 0
+        }
+      }
+    } else if let t2Glyph = glyph as? TCT2Glyph {
+      var firstIndex = 0
+      var count = 0
+      for i in 0 ..< t2Glyph.points.count {
+        count += 1
+        if t2Glyph.points[i].endOfContour {
           addContourToPath(path: glyphPath, glyph: t2Glyph,
                            startIndex: firstIndex, count: count)
+          firstIndex = i + 1
+          count = 0
         }
-        firstIndex = i + 1
-        count = 0
       }
     }
     return glyphPath

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCCmapTable: TCBaseTable {
   let version: UInt16

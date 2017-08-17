@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCVheaTable: TCBaseTable {
   let version: UInt32

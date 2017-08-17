@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 /**
  High-byte mapping through table cmap format.

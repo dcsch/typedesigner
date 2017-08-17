@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
   var endPtsOfContours: [Int]

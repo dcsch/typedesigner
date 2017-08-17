@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 protocol CFFCharset {
   var format: Int { get }

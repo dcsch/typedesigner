@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 struct TCDirectoryEntry {
   let tag: UInt32

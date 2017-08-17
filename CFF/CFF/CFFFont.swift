@@ -7,57 +7,59 @@
 //
 
 import Foundation
+import IOUtils
 
 enum CFFFontError: Error {
   case missingLocalSubrsIndex
   case unsupportedCharsetFormat
 }
 
-class CFFFont: NSObject {
-  let table: TCCffTable
+public class CFFFont: NSObject {
+  let data: Data
   let topDict: CFFDict
   let charStringsIndex: CFFIndex
   let privateDict: CFFDict
   let localSubrIndex: CFFIndex
-  let charset: CFFCharset?
+  let charset: CFFCharset
   var charstrings: [CFFCharstring]
 
   // TODO Decouple CFFFont from TCCffTable, keeping in mind that future CFF2
   // support depends on OpenType tables
 
-  init(table: TCCffTable, index: Int, topDict: CFFDict) throws {
-    self.table = table
+  public init(data: Data, index: Int, topDict: CFFDict, stringIndex: CFFStringIndex) throws {
+    self.data = data
     self.topDict = topDict
 
     // Charstrings INDEX
     // We load this before Charsets because we may need to know the number
     // of glyphs
     let charStringsOffset = topDict.value(key: 17) as! Int
-//    let charstringData = data.subdata(in: charStringsOffset..<data.count)
-//    let charstringDataInput = TCDataInput(data: charstringData)
-    var dataInput = table.dataInput(at: charStringsOffset)
-    self.charStringsIndex = CFFIndex(dataInput: dataInput)
+    let charstringData = data.subdata(in: charStringsOffset..<data.count)
+    let charstringDataInput = TCDataInput(data: charstringData)
+    self.charStringsIndex = CFFIndex(dataInput: charstringDataInput)
 //    charStringsIndexArray.append(charStringsIndex)
     let glyphCount = charStringsIndex.count
 
     // Private DICT
     let privateSizeAndOffset = topDict.value(key: 18) as! [Int]
-    dataInput = table.dataInput(at: privateSizeAndOffset[1])
-    privateDict = CFFDict(dataInput: dataInput, length: privateSizeAndOffset[0])
+    let privateDictData = data.subdata(in: privateSizeAndOffset[1]..<data.count)
+    let privateDictDataInput = TCDataInput(data: privateDictData)
+    privateDict = CFFDict(dataInput: privateDictDataInput,
+                          length: privateSizeAndOffset[0])
 
     // Local Subrs INDEX
     if let localSubrsOffset = privateDict.value(key: 19) as? Int {
-      dataInput = table.dataInput(at: privateSizeAndOffset[1] + localSubrsOffset)
-      localSubrIndex = CFFIndex(dataInput: dataInput)
+      let localSubrIndexData = data.subdata(in: privateSizeAndOffset[1] + localSubrsOffset..<data.count)
+      let localSubrIndexDataInput = TCDataInput(data: localSubrIndexData)
+      localSubrIndex = CFFIndex(dataInput: localSubrIndexDataInput)
     } else {
       throw CFFFontError.missingLocalSubrsIndex
     }
 
     // Charsets
     let charsetOffset = topDict.value(key: 15) as! Int
-//    let charsetData = data.subdata(in: charsetOffset..<data.count)
-//    let charsetDataInput = TCDataInput(data: charsetData)
-    let charsetDataInput = table.dataInput(at: charsetOffset)
+    let charsetData = data.subdata(in: charsetOffset..<data.count)
+    let charsetDataInput = TCDataInput(data: charsetData)
     let format = charsetDataInput.readUInt8()
     var charset: CFFCharset
     switch format {
@@ -78,7 +80,7 @@ class CFFFont: NSObject {
     super.init()
 
     for i in 0..<glyphCount {
-      let name = table.stringIndex.string(at: charset.sid(gid: i))
+      let name = stringIndex.string(at: charset.sid(gid: i))
       let offset = charStringsIndex.offset[i] - 1
       let len = charStringsIndex.offset[i + 1] - offset - 1
       charstrings.append(

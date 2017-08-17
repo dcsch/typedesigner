@@ -14,5 +14,5 @@ import Foundation
 protocol TCGlyph {
   var advanceWidth: Int { get }
   var leftSideBearing: Int { get }
-  var points: [TCPoint] { get }
+//  var points: [TCPoint] { get }
 }

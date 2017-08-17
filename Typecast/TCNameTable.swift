@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCNameRecord {
   let platformId: Int

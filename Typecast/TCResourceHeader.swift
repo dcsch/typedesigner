@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCResourceHeader {
   let dataOffset: UInt32

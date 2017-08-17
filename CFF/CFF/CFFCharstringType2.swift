@@ -9,14 +9,14 @@
 import Foundation
 import os.log
 
-enum CFFCharstringType2Error: Error {
+public enum CFFCharstringType2Error: Error {
   case noOperand
 }
 
 /**
  * CFF Type 2 Charstring
  */
-class CFFCharstringType2: NSObject, CFFCharstring {
+public class CFFCharstringType2: NSObject, CFFCharstring {
 
   static let oneByteOperators: [String] = [
     "-Reserved-",
@@ -94,8 +94,8 @@ class CFFCharstringType2: NSObject, CFFCharstring {
     "-Reserved-"
   ]
 
-  let index: Int
-  let name: String
+  public let index: Int
+  public let name: String
   let data: [UInt8]
   let offset: Int
   let length: Int

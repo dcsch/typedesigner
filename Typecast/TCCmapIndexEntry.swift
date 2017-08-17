@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCCmapIndexEntry: NSObject, Comparable {
   let platformID: Int

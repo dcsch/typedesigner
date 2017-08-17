@@ -90,34 +90,34 @@ class TCGlyphView: NSView {
       // TODO Implement control points in a different layer, in a different place entirely
       if controlPointsVisible {
 
-        // Draw control points
-        for point in (glyph?.points)! {
-
-          // Note: The original intention of scaling and translating the
-          // following was to first restore the transformation matrix
-          // so that no matter the scaling of the glyph, the control points
-          // would appear as rects of a fixed size.
-          //int x = (int) (_scaleFactor * ([point x] + _translate.x));
-          //int y = (int) (_scaleFactor * ([point y] + _translate.y));
-          let x = Int(point.x)
-          let y = Int(point.y)
-
-          // Set the point colour based on selection
-          //            if (_selectedPoints.contains(_glyph.getPoint(i))) {
-          //                g2d.setPaint(Color.blue);
-          //            } else {
-          //                g2d.setPaint(Color.black);
-          //            }
-
-          // Draw the point based on its type (on or off curve)
-          context.addRect(CGRect(x: x - 2, y: y - 2, width: 5, height: 5))
-          if point.onCurve {
-            context.fillPath()
-          } else {
-            context.strokePath()
-//            g2d.drawString(Integer.toString(i), x + 4, y - 4);
-          }
-        }
+//        // Draw control points
+//        for point in (glyph?.points)! {
+//
+//          // Note: The original intention of scaling and translating the
+//          // following was to first restore the transformation matrix
+//          // so that no matter the scaling of the glyph, the control points
+//          // would appear as rects of a fixed size.
+//          //int x = (int) (_scaleFactor * ([point x] + _translate.x));
+//          //int y = (int) (_scaleFactor * ([point y] + _translate.y));
+//          let x = Int(point.x)
+//          let y = Int(point.y)
+//
+//          // Set the point colour based on selection
+//          //            if (_selectedPoints.contains(_glyph.getPoint(i))) {
+//          //                g2d.setPaint(Color.blue);
+//          //            } else {
+//          //                g2d.setPaint(Color.black);
+//          //            }
+//
+//          // Draw the point based on its type (on or off curve)
+//          context.addRect(CGRect(x: x - 2, y: y - 2, width: 5, height: 5))
+//          if point.onCurve {
+//            context.fillPath()
+//          } else {
+//            context.strokePath()
+////            g2d.drawString(Integer.toString(i), x + 4, y - 4);
+//          }
+//        }
       }
     }
   }

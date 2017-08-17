@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 /**
  Format 6: Trimmed table mapping

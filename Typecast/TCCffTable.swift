@@ -8,6 +8,8 @@
 
 import Foundation
 import os.log
+import IOUtils
+import CFF
 
 /**
  * Compact Font Format Table
@@ -59,7 +61,9 @@ class TCCffTable: TCBaseTable {
     super.init(directoryEntry: directoryEntry)
     for i in 0..<topDictIndex.count {
       do {
-        try fonts.append(CFFFont(table: self, index: i, topDict: topDictIndex.topDict(at: i)))
+        try fonts.append(CFFFont(data: data, index: i,
+                                 topDict: topDictIndex.topDict(at: i),
+                                 stringIndex: stringIndex))
       } catch {
         os_log("Error loading font: %d, i")
       }

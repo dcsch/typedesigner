@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IOUtils
 
 class TCResourceReference {
   let resourceID: UInt16
