@@ -19,7 +19,7 @@ public class CFFFont: NSObject {
   let topDict: CFFDict
   let charStringsIndex: CFFIndex
   let privateDict: CFFDict
-  let localSubrIndex: CFFIndex
+  public let localSubrIndex: CFFIndex
   let charset: CFFCharset
   var charstrings: [CFFCharstring]
 
@@ -80,7 +80,8 @@ public class CFFFont: NSObject {
     super.init()
 
     for i in 0..<glyphCount {
-      let name = stringIndex.string(at: charset.sid(gid: i))
+      let sid = charset.sid(gid: i)
+      let name = stringIndex.string(at: sid)
       let offset = charStringsIndex.offset[i] - 1
       let len = charStringsIndex.offset[i + 1] - offset - 1
       charstrings.append(

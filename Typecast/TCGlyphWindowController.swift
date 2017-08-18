@@ -8,10 +8,12 @@
 
 import Cocoa
 import os.log
+import CFF
 
 class TCGlyphWindowController: NSWindowController {
 
   var glyphDescription: TCGlyphDescription?
+  var charstring: CFFCharstring?
   @IBOutlet weak var scrollView: NSScrollView?
   @IBOutlet weak var glyphView: TCGlyphView?
 
@@ -44,12 +46,31 @@ class TCGlyphWindowController: NSWindowController {
     // TODO: Don't just select the first font
     if let font = fontCollection?.fonts[0] {
 
-      let glyphIndex = Int((glyphDescription?.glyphIndex)!)
+      if let glyphDescription = self.glyphDescription {
 
-      let glyph = TCTTGlyph(glyphDescription: glyphDescription!,
-                            leftSideBearing: Int(font.hmtxTable.leftSideBearing(index: glyphIndex)),
-                            advanceWidth: Int(font.hmtxTable.advanceWidth(index: glyphIndex)))
-      glyphView?.glyph = glyph
+        // TrueType glyph outline
+        let glyphIndex = glyphDescription.glyphIndex
+        let glyph = TCTTGlyph(glyphDescription: glyphDescription,
+                              leftSideBearing: font.hmtxTable.leftSideBearing(at: glyphIndex),
+                              advanceWidth: font.hmtxTable.advanceWidth(at: glyphIndex))
+        glyphView?.glyph = glyph
+      } else if let charstring = self.charstring {
+
+        // CFF glyph outline
+        do {
+          let cffTable = try font.table() as TCCffTable
+          let globalSubrIndex = cffTable.globalSubrIndex
+          let font = cffTable.fonts[0]
+          let localSubrIndex = font.localSubrIndex
+          let glyph = TCT2Glyph(charstring: charstring,
+                                localSubrIndex: localSubrIndex,
+                                globalSubrIndex: globalSubrIndex,
+                                leftSideBearing: 0, advanceWidth: 0)
+          glyphView?.glyph = glyph
+        } catch {
+          os_log("Error loading CFF glyph")
+        }
+      }
       glyphView?.font = font
 
       calculateGlyphViewSize()

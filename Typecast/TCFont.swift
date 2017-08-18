@@ -27,7 +27,7 @@ class TCFont: NSObject {
   var nameTable: TCNameTable
   var os2Table: TCOs2Table
   var postTable: TCPostTable
-  var glyfTable: TCGlyfTable?
+//  var glyfTable: TCGlyfTable?
   var ascent: Int {
     get {
       return Int(hheaTable.ascender)
@@ -58,26 +58,31 @@ class TCFont: NSObject {
                                      tag: .head, data: data,
                                      tablesOrigin: tablesOrigin)
     tables.append(headTable)
+    // 'hhea' is required by 'hmtx'
     hheaTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
                                      tag: .hhea, data: data,
                                      tablesOrigin: tablesOrigin)
     tables.append(hheaTable)
+    // 'maxp' is required by 'glyf', 'hmtx', 'loca', and 'vmtx'
     maxpTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
                                      tag: .maxp, data: data,
                                      tablesOrigin: tablesOrigin)
     tables.append(maxpTable)
     if tableDirectory.hasEntry(tag: TCTableTag.loca.rawValue) {
+      // 'loca' is required by 'glyf'
       locaTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
                                        tag: .loca, data: data,
                                        tablesOrigin: tablesOrigin)
       tables.append(locaTable!)
     }
     if tableDirectory.hasEntry(tag: TCTableTag.vhea.rawValue) {
+      // 'vhea' is required by 'vmtx'
       vheaTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
                                        tag: .vhea, data: data,
                                        tablesOrigin: tablesOrigin)
       tables.append(vheaTable!)
     }
+    // 'post' is required by 'glyf'
     postTable = try TCFont.readTable(directory: tableDirectory, tables: tables,
                                      tag: .post, data: data,
                                      tablesOrigin: tablesOrigin)
@@ -116,7 +121,9 @@ class TCFont: NSObject {
 
     // If this is a TrueType outline, then we'll have at least the
     // 'glyf' table (along with the 'loca' table)
-    glyfTable = try TCFont.table(tables: tables, tag: TCTableTag.glyf)
+//    if tableDirectory.hasEntry(tag: TCTableTag.glyf.rawValue) {
+//      glyfTable = try TCFont.table(tables: tables, tag: TCTableTag.glyf)
+//    }
 
     super.init()
   }
@@ -128,6 +135,17 @@ class TCFont: NSObject {
           return actualTable
         }
       }
+    }
+    throw TCFontError.missingTable
+  }
+
+  func table<T>() throws -> T {
+    for table in tables {
+//      if type(of: table) == T.self {
+        if let actualTable = table as? T {
+          return actualTable
+        }
+//      }
     }
     throw TCFontError.missingTable
   }

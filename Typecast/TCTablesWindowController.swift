@@ -51,8 +51,8 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
           containedViewController = vc
         }
       } else if tag == TCTableTag.CFF.rawValue {
-          if let vc = TCGlyphListViewController(nibName: "GlyphListView", bundle: nil) {
-            vc.representedObject = table
+          if let vc = TCCharstringListViewController(nibName: "CharstringListView", bundle: nil) {
+            vc.representedObject = (table as! TCCffTable).fonts[0]
             vc.document = document as? TCDocument
             containedViewController = vc
           }

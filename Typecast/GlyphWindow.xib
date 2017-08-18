@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
@@ -27,22 +27,22 @@
                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29">
                         <rect key="frame" x="-1" y="-1" width="602" height="552"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="NUe-bw-0bZ">
-                            <rect key="frame" x="0.0" y="0.0" width="602" height="552"/>
+                            <rect key="frame" x="0.0" y="0.0" width="587" height="537"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22" customClass="TCGlyphView" customModule="Type_Designer" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="522" height="464"/>
+                                    <rect key="frame" x="0.0" y="-15" width="522" height="464"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 </customView>
                             </subviews>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="31">
-                            <rect key="frame" x="0.0" y="536" width="602" height="16"/>
+                            <rect key="frame" x="0.0" y="537" width="587" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="32">
-                            <rect key="frame" x="586" y="0.0" width="16" height="552"/>
+                            <rect key="frame" x="587" y="0.0" width="15" height="537"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>

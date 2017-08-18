@@ -14,7 +14,7 @@ public enum CFFCharstringType2Error: Error {
 }
 
 /**
- * CFF Type 2 Charstring
+ CFF Type 2 Charstring
  */
 public class CFFCharstringType2: NSObject, CFFCharstring {
 

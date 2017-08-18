@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- * CFF Charstring
+ CFF Charstring
  */
-public protocol CFFCharstring {
+@objc public protocol CFFCharstring {
   var index: Int { get }
   var name: String { get }
 }

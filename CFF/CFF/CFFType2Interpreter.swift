@@ -68,16 +68,24 @@ class T2Mnemonic {
   static let FLEX1 = 0x25
 }
 
-public struct CFFPoint {
+public class CFFPoint {
   public var x: Int
   public var y: Int
   public var onCurve: Bool
   public var endOfContour: Bool
+
+  init(x: Int, y: Int, onCurve: Bool, endOfContour: Bool) {
+    self.x = x
+    self.y = y
+    self.onCurve = onCurve
+    self.endOfContour = endOfContour
+  }
 }
 
 public enum CFFType2InterpreterError: Error {
   case badOperand
   case badOperator
+  case stackUnderflow
 }
 
 /**
@@ -91,9 +99,17 @@ public class CFFType2Interpreter {
   static let TRANSIENT_ARRAY_ELEMENT_COUNT = 32
 
   var argStack = [NSNumber]()
-  var argStackIndex = 0
+  var argStackIndex: Int {
+    get {
+      return argStack.count
+    }
+  }
   var subrStack = [(CFFCharstringType2, Int)]()
-  var subrStackIndex = 0
+  var subrStackIndex: Int {
+    get {
+      return subrStack.count
+    }
+  }
   var transientArray = [NSNumber]()
 
   var stemCount = 0
@@ -136,35 +152,35 @@ public class CFFType2Interpreter {
    Moves the current point to a position at the relative coordinates
    (dx1, dy1).
    */
-  private func _rmoveto() {
-    let dy1 = popArg().intValue
-    let dx1 = popArg().intValue
+  private func _rmoveto() throws {
+    let dy1 = try popArg().intValue
+    let dx1 = try popArg().intValue
     clearArg()
-    if let lastPoint = points.last {
-      moveTo(x: lastPoint.x + dx1, y: lastPoint.y + dy1)
-    }
+    let lastPoint = points.last ?? CFFPoint(x: 0, y: 0, onCurve: true,
+                                            endOfContour: false)
+    moveTo(x: lastPoint.x + dx1, y: lastPoint.y + dy1)
   }
 
   /**
    Moves the current point dx1 units in the horizontal direction.
    */
-  private func _hmoveto() {
-    let dx1 = popArg().intValue
+  private func _hmoveto() throws {
+    let dx1 = try popArg().intValue
     clearArg()
-    if let lastPoint = points.last {
-      moveTo(x: lastPoint.x + dx1, y: lastPoint.y)
-    }
+    let lastPoint = points.last ?? CFFPoint(x: 0, y: 0, onCurve: true,
+                                            endOfContour: false)
+    moveTo(x: lastPoint.x + dx1, y: lastPoint.y)
   }
 
   /**
    * Moves the current point dy1 units in the vertical direction.
    */
-  private func _vmoveto() {
-    let dy1 = popArg().intValue
+  private func _vmoveto() throws {
+    let dy1 = try popArg().intValue
     clearArg()
-    if let lastPoint = points.last {
-      moveTo(x: lastPoint.x, y: lastPoint.y + dy1)
-    }
+    let lastPoint = points.last ?? CFFPoint(x: 0, y: 0, onCurve: true,
+                                            endOfContour: false)
+    moveTo(x: lastPoint.x, y: lastPoint.y + dy1)
   }
 
   /**
@@ -173,13 +189,13 @@ public class CFFType2Interpreter {
    performed for all subsequent argument pairs. The number of
    lines is determined from the number of arguments on the stack.
    */
-  private func _rlineto() {
+  private func _rlineto() throws {
     let count = argCount / 2
     var dx = [Int]()
     var dy = [Int]()
     for _ in 0..<count {
-      dy.insert(popArg().intValue, at: 0)
-      dx.insert(popArg().intValue, at: 0)
+      try dy.insert(popArg().intValue, at: 0)
+      try dx.insert(popArg().intValue, at: 0)
     }
     for i in 0..<count {
       if let lastPoint = points.last {
@@ -199,11 +215,11 @@ public class CFFType2Interpreter {
    vertical lines. The number of lines is determined from the
    number of arguments on the stack.
    */
-  private func _hlineto() {
+  private func _hlineto() throws {
     let count = argCount
     var nums = [Int]()
     for _ in 0..<count {
-      nums.insert(popArg().intValue, at: 0)
+      try nums.insert(popArg().intValue, at: 0)
     }
     for i in 0..<count {
       if let lastPoint = points.last {
@@ -227,11 +243,11 @@ public class CFFType2Interpreter {
    horizontal lines. The number of lines is determined from the
    number of arguments on the stack.
    */
-  private func _vlineto() {
+  private func _vlineto() throws {
     let count = argCount
     var nums = [Int]()
     for _ in 0..<count {
-      nums.insert(popArg().intValue, at: 0)
+      try nums.insert(popArg().intValue, at: 0)
     }
     for i in 0..<count {
       if let lastPoint = points.last {
@@ -253,7 +269,7 @@ public class CFFType2Interpreter {
    number stack and is limited only by the size of the number
    stack.
    */
-  private func _rrcurveto() {
+  private func _rrcurveto() throws {
     let count = argCount / 6
     var dxa = [Int]()
     var dya = [Int]()
@@ -262,12 +278,12 @@ public class CFFType2Interpreter {
     var dxc = [Int]()
     var dyc = [Int]()
     for _ in 0..<count {
-      dyc.insert(popArg().intValue, at: 0)
-      dxc.insert(popArg().intValue, at: 0)
-      dyb.insert(popArg().intValue, at: 0)
-      dxb.insert(popArg().intValue, at: 0)
-      dya.insert(popArg().intValue, at: 0)
-      dxa.insert(popArg().intValue, at: 0)
+      try dyc.insert(popArg().intValue, at: 0)
+      try dxc.insert(popArg().intValue, at: 0)
+      try dyb.insert(popArg().intValue, at: 0)
+      try dxb.insert(popArg().intValue, at: 0)
+      try dya.insert(popArg().intValue, at: 0)
+      try dxa.insert(popArg().intValue, at: 0)
     }
     for i in 0..<count {
       if let lastPoint = points.last {
@@ -290,7 +306,7 @@ public class CFFType2Interpreter {
    The first curve need not start horizontal (the odd argument
    case). Note the argument order for the odd argument case.
    */
-  private func _hhcurveto() {
+  private func _hhcurveto() throws {
     let count = argCount / 4
     var dy1 = 0
     var dxa = [Int]()
@@ -298,13 +314,13 @@ public class CFFType2Interpreter {
     var dyb = [Int]()
     var dxc = [Int]()
     for _ in 0..<count {
-      dxc.insert(popArg().intValue, at: 0)
-      dyb.insert(popArg().intValue, at: 0)
-      dxb.insert(popArg().intValue, at: 0)
-      dxa.insert(popArg().intValue, at: 0)
+      try dxc.insert(popArg().intValue, at: 0)
+      try dyb.insert(popArg().intValue, at: 0)
+      try dxb.insert(popArg().intValue, at: 0)
+      try dxa.insert(popArg().intValue, at: 0)
     }
     if argCount == 1 {
-      dy1 = popArg().intValue
+      dy1 = try popArg().intValue
     }
     for i in 0..<count {
       if let lastPoint = points.last {
@@ -330,7 +346,7 @@ public class CFFType2Interpreter {
    end horizontal. The last curve (the odd argument case) need not
    end horizontal/vertical.
    */
-  private func _hvcurveto() {
+  private func _hvcurveto() throws {
     if argCount % 8 <= 1 {
       let count = argCount / 8
       var dxa = [Int]()
@@ -343,17 +359,17 @@ public class CFFType2Interpreter {
       var dxf = [Int]()
       var dyf = 0;
       if (argCount % 8 == 1) {
-        dyf = popArg().intValue
+        dyf = try popArg().intValue
       }
       for _ in 0..<count {
-        dxf.insert(popArg().intValue, at: 0)
-        dye.insert(popArg().intValue, at: 0)
-        dxe.insert(popArg().intValue, at: 0)
-        dyd.insert(popArg().intValue, at: 0)
-        dyc.insert(popArg().intValue, at: 0)
-        dyb.insert(popArg().intValue, at: 0)
-        dxb.insert(popArg().intValue, at: 0)
-        dxa.insert(popArg().intValue, at: 0)
+        try dxf.insert(popArg().intValue, at: 0)
+        try dye.insert(popArg().intValue, at: 0)
+        try dxe.insert(popArg().intValue, at: 0)
+        try dyd.insert(popArg().intValue, at: 0)
+        try dyc.insert(popArg().intValue, at: 0)
+        try dyb.insert(popArg().intValue, at: 0)
+        try dxb.insert(popArg().intValue, at: 0)
+        try dxa.insert(popArg().intValue, at: 0)
       }
       for i in 0..<count {
         if let lastPoint = points.last {
@@ -385,22 +401,22 @@ public class CFFType2Interpreter {
       var dyf = [Int]()
       var dxf = 0
       if argCount % 4 == 1 {
-        dxf = popArg().intValue
+        dxf = try popArg().intValue
       }
       for _ in 0..<count {
-        dyf.insert(popArg().intValue, at: 0)
-        dye.insert(popArg().intValue, at: 0)
-        dxe.insert(popArg().intValue, at: 0)
-        dxd.insert(popArg().intValue, at: 0)
-        dxc.insert(popArg().intValue, at: 0)
-        dyb.insert(popArg().intValue, at: 0)
-        dxb.insert(popArg().intValue, at: 0)
-        dya.insert(popArg().intValue, at: 0)
+        try dyf.insert(popArg().intValue, at: 0)
+        try dye.insert(popArg().intValue, at: 0)
+        try dxe.insert(popArg().intValue, at: 0)
+        try dxd.insert(popArg().intValue, at: 0)
+        try dxc.insert(popArg().intValue, at: 0)
+        try dyb.insert(popArg().intValue, at: 0)
+        try dxb.insert(popArg().intValue, at: 0)
+        try dya.insert(popArg().intValue, at: 0)
       }
-      let dy3 = popArg().intValue
-      let dy2 = popArg().intValue
-      let dx2 = popArg().intValue
-      let dx1 = popArg().intValue
+      let dy3 = try popArg().intValue
+      let dy2 = try popArg().intValue
+      let dx2 = try popArg().intValue
+      let dx1 = try popArg().intValue
 
       if let lastPoint = points.last {
         let x1 = lastPoint.x + dx1
@@ -440,7 +456,7 @@ public class CFFType2Interpreter {
    arguments. The number of curves is determined from the count
    on the argument stack.
    */
-  private func _rcurveline() {
+  private func _rcurveline() throws {
     let count = (argCount - 2) / 6
     var dxa = [Int]()
     var dya = [Int]()
@@ -448,15 +464,15 @@ public class CFFType2Interpreter {
     var dyb = [Int]()
     var dxc = [Int]()
     var dyc = [Int]()
-    let dyd = popArg().intValue
-    let dxd = popArg().intValue
+    let dyd = try popArg().intValue
+    let dxd = try popArg().intValue
     for _ in 0..<count {
-      dyc.insert(popArg().intValue, at: 0)
-      dxc.insert(popArg().intValue, at: 0)
-      dyb.insert(popArg().intValue, at: 0)
-      dxb.insert(popArg().intValue, at: 0)
-      dya.insert(popArg().intValue, at: 0)
-      dxa.insert(popArg().intValue, at: 0)
+      try dyc.insert(popArg().intValue, at: 0)
+      try dxc.insert(popArg().intValue, at: 0)
+      try dyb.insert(popArg().intValue, at: 0)
+      try dxb.insert(popArg().intValue, at: 0)
+      try dya.insert(popArg().intValue, at: 0)
+      try dxa.insert(popArg().intValue, at: 0)
     }
     var xc = 0
     var yc = 0
@@ -481,19 +497,19 @@ public class CFFType2Interpreter {
    command. The number of lines is determined from the count of
    items on the argument stack.
    */
-  private func _rlinecurve() {
+  private func _rlinecurve() throws {
     let count = (argCount - 6) / 2
     var dxa = [Int]()
     var dya = [Int]()
-    let dyd = popArg().intValue
-    let dxd = popArg().intValue
-    let dyc = popArg().intValue
-    let dxc = popArg().intValue
-    let dyb = popArg().intValue
-    let dxb = popArg().intValue
+    let dyd = try popArg().intValue
+    let dxd = try popArg().intValue
+    let dyc = try popArg().intValue
+    let dxc = try popArg().intValue
+    let dyb = try popArg().intValue
+    let dxb = try popArg().intValue
     for _ in 0..<count {
-      dya.insert(popArg().intValue, at: 0)
-      dxa.insert(popArg().intValue, at: 0)
+      try dya.insert(popArg().intValue, at: 0)
+      try dxa.insert(popArg().intValue, at: 0)
     }
     var xa = 0
     var ya = 0
@@ -520,7 +536,7 @@ public class CFFType2Interpreter {
    This command is the complement of hvcurveto; see the
    description of hvcurveto for more information.
    */
-  private func _vhcurveto() {
+  private func _vhcurveto() throws {
     if argCount % 8 <= 1 {
       let count = argCount / 8
       var dya = [Int]()
@@ -533,17 +549,17 @@ public class CFFType2Interpreter {
       var dyf = [Int]()
       var dxf = 0
       if argCount % 8 == 1 {
-        dxf = popArg().intValue
+        dxf = try popArg().intValue
       }
       for _ in 0..<count {
-        dyf.insert(popArg().intValue, at: 0)
-        dye.insert(popArg().intValue, at: 0)
-        dxe.insert(popArg().intValue, at: 0)
-        dxd.insert(popArg().intValue, at: 0)
-        dxc.insert(popArg().intValue, at: 0)
-        dyb.insert(popArg().intValue, at: 0)
-        dxb.insert(popArg().intValue, at: 0)
-        dya.insert(popArg().intValue, at: 0)
+        try dyf.insert(popArg().intValue, at: 0)
+        try dye.insert(popArg().intValue, at: 0)
+        try dxe.insert(popArg().intValue, at: 0)
+        try dxd.insert(popArg().intValue, at: 0)
+        try dxc.insert(popArg().intValue, at: 0)
+        try dyb.insert(popArg().intValue, at: 0)
+        try dxb.insert(popArg().intValue, at: 0)
+        try dya.insert(popArg().intValue, at: 0)
       }
       for i in 0..<count {
         if let lastPoint = points.last {
@@ -575,22 +591,22 @@ public class CFFType2Interpreter {
       var dxf = [Int]()
       var dyf = 0
       if argCount % 4 == 1 {
-        dyf = popArg().intValue
+        dyf = try popArg().intValue
       }
       for _ in 0..<count {
-        dxf.insert(popArg().intValue, at: 0)
-        dye.insert(popArg().intValue, at: 0)
-        dxe.insert(popArg().intValue, at: 0)
-        dyd.insert(popArg().intValue, at: 0)
-        dyc.insert(popArg().intValue, at: 0)
-        dyb.insert(popArg().intValue, at: 0)
-        dxb.insert(popArg().intValue, at: 0)
-        dxa.insert(popArg().intValue, at: 0)
+        try dxf.insert(popArg().intValue, at: 0)
+        try dye.insert(popArg().intValue, at: 0)
+        try dxe.insert(popArg().intValue, at: 0)
+        try dyd.insert(popArg().intValue, at: 0)
+        try dyc.insert(popArg().intValue, at: 0)
+        try dyb.insert(popArg().intValue, at: 0)
+        try dxb.insert(popArg().intValue, at: 0)
+        try dxa.insert(popArg().intValue, at: 0)
       }
-      let dx3 = popArg().intValue
-      let dy2 = popArg().intValue
-      let dx2 = popArg().intValue
-      let dy1 = popArg().intValue
+      let dx3 = try popArg().intValue
+      let dy2 = try popArg().intValue
+      let dx2 = try popArg().intValue
+      let dy1 = try popArg().intValue
 
       if let lastPoint = points.last {
         let x1 = lastPoint.x
@@ -630,7 +646,7 @@ public class CFFType2Interpreter {
    the argument count is odd, the first curve does not begin with a
    vertical tangent.
    */
-  private func _vvcurveto() {
+  private func _vvcurveto() throws {
     let count = argCount / 4
     var dx1 = 0
     var dya = [Int]()
@@ -638,13 +654,13 @@ public class CFFType2Interpreter {
     var dyb = [Int]()
     var dyc = [Int]()
     for _ in 0..<count {
-      dyc.insert(popArg().intValue, at: 0)
-      dyb.insert(popArg().intValue, at: 0)
-      dxb.insert(popArg().intValue, at: 0)
-      dya.insert(popArg().intValue, at: 0)
+      try dyc.insert(popArg().intValue, at: 0)
+      try dyb.insert(popArg().intValue, at: 0)
+      try dxb.insert(popArg().intValue, at: 0)
+      try dya.insert(popArg().intValue, at: 0)
     }
     if argCount == 1 {
-      dx1 = popArg().intValue
+      dx1 = try popArg().intValue
     }
     for i in 0..<count {
       if let lastPoint = points.last {
@@ -705,11 +721,11 @@ public class CFFType2Interpreter {
    Finishes a charstring outline definition, and must be the
    last operator in a character's outline.
    */
-  private func _endchar() {
+  private func _endchar() throws {
     endContour()
     clearArg()
     while subrStackIndex > 0 {
-      (cs, ip) = popSubr()
+      (cs, ip) = try popSubr()
     }
   }
 
@@ -718,17 +734,17 @@ public class CFFType2Interpreter {
    of numbers, limited by the stack depth, to be used as arguments to a
    single hstem operator.
    */
-  private func _hstem() {
+  private func _hstem() throws {
     let pairCount = argCount / 2
     for _ in 0..<pairCount {
-      hstems.insert(popArg().intValue, at: 0)
-      hstems.insert(popArg().intValue, at: 0)
+      try hstems.insert(popArg().intValue, at: 0)
+      try hstems.insert(popArg().intValue, at: 0)
     }
 
     if argCount > 0 {
 
       // This will be the width value
-      _ = popArg()
+      _ = try popArg()
     }
   }
 
@@ -736,17 +752,17 @@ public class CFFType2Interpreter {
    Specifies one or more vertical stem hints between the x coordinates x
    and x+dx, where x is relative to the origin of the coordinate axes.
    */
-  private func _vstem() {
+  private func _vstem() throws {
     let pairCount = argCount / 2
     for _ in 0..<pairCount {
-      vstems.insert(popArg().intValue, at: 0)
-      vstems.insert(popArg().intValue, at: 0)
+      try vstems.insert(popArg().intValue, at: 0)
+      try vstems.insert(popArg().intValue, at: 0)
     }
 
     if argCount > 0 {
 
       // This will be the width value
-      _ = popArg()
+      _ = try popArg()
     }
   }
 
@@ -754,18 +770,18 @@ public class CFFType2Interpreter {
    Has the same meaning as hstem, except that it must be used in place
    of hstem if the charstring contains one or more hintmask operators.
    */
-  private func _hstemhm() {
+  private func _hstemhm() throws {
     stemCount += argCount / 2
     let pairCount = argCount / 2
     for _ in 0..<pairCount {
-      hstems.insert(popArg().intValue, at: 0)
-      hstems.insert(popArg().intValue, at: 0)
+      try hstems.insert(popArg().intValue, at: 0)
+      try hstems.insert(popArg().intValue, at: 0)
     }
 
     if argCount > 0 {
 
       // This will be the width value
-      _ = popArg()
+      _ = try popArg()
     }
   }
 
@@ -773,18 +789,18 @@ public class CFFType2Interpreter {
    Has the same meaning as vstem, except that it must be used in place
    of vstem if the charstring contains one or more hintmask operators.
    */
-  private func _vstemhm() {
+  private func _vstemhm() throws {
     stemCount += argCount / 2
     let pairCount = argCount / 2
     for _ in 0..<pairCount {
-      vstems.insert(popArg().intValue, at: 0)
-      vstems.insert(popArg().intValue, at: 0)
+      try vstems.insert(popArg().intValue, at: 0)
+      try vstems.insert(popArg().intValue, at: 0)
     }
 
     if argCount > 0 {
 
       // This will be the width value
-      _ = popArg()
+      _ = try popArg()
     }
   }
 
@@ -810,26 +826,26 @@ public class CFFType2Interpreter {
   /**
    Returns the absolute value of num.
    */
-  private func _abs() {
-    let num = popArg().doubleValue
+  private func _abs() throws {
+    let num = try popArg().doubleValue
     pushArg(NSNumber(value: abs(num)))
   }
 
   /**
    Returns the sum of the two numbers num1 and num2.
    */
-  private func _add() {
-    let num2 = popArg().doubleValue
-    let num1 = popArg().doubleValue
+  private func _add() throws {
+    let num2 = try popArg().doubleValue
+    let num1 = try popArg().doubleValue
     pushArg(NSNumber(value: num1 + num2))
   }
 
   /**
    Returns the result of subtracting num2 from num1.
    */
-  private func _sub() {
-    let num2 = popArg().doubleValue
-    let num1 = popArg().doubleValue
+  private func _sub() throws {
+    let num2 = try popArg().doubleValue
+    let num1 = try popArg().doubleValue
     pushArg(NSNumber(value: num1 - num2))
   }
 
@@ -837,17 +853,17 @@ public class CFFType2Interpreter {
    Returns the quotient of num1 divided by num2. The result is
    undefined if overflow occurs and is zero for underflow.
    */
-  private func _div() {
-    let num2 = popArg().doubleValue
-    let num1 = popArg().doubleValue
+  private func _div() throws {
+    let num2 = try popArg().doubleValue
+    let num1 = try popArg().doubleValue
     pushArg(NSNumber(value: num1 / num2))
   }
 
   /**
    Returns the negative of num.
    */
-  private func _neg() {
-    let num = popArg().doubleValue
+  private func _neg() throws {
+    let num = try popArg().doubleValue
     pushArg(NSNumber(value: -num))
   }
 
@@ -863,9 +879,9 @@ public class CFFType2Interpreter {
    Returns the product of num1 and num2. If overflow occurs, the
    result is undefined, and zero is returned for underflow.
    */
-  private func _mul() {
-    let num2 = popArg().doubleValue
-    let num1 = popArg().doubleValue
+  private func _mul() throws {
+    let num2 = try popArg().doubleValue
+    let num1 = try popArg().doubleValue
     pushArg(NSNumber(value: num1 * num2))
   }
 
@@ -873,24 +889,24 @@ public class CFFType2Interpreter {
    Returns the square root of num. If num is negative, the result is
    undefined.
    */
-  private func _sqrt() {
-    let num = popArg().doubleValue
+  private func _sqrt() throws {
+    let num = try popArg().doubleValue
     pushArg(NSNumber(value: sqrt(num)))
   }
 
   /**
    Removes the top element num from the Type 2 argument stack.
    */
-  private func _drop() {
-    _ = popArg()
+  private func _drop() throws {
+    _ = try popArg()
   }
 
   /**
    Exchanges the top two elements on the argument stack.
    */
-  private func _exch() {
-    let num2 = popArg()
-    let num1 = popArg()
+  private func _exch() throws {
+    let num2 = try popArg()
+    let num1 = try popArg()
     pushArg(num2)
     pushArg(num1)
   }
@@ -901,11 +917,11 @@ public class CFFType2Interpreter {
    the top element is copied. If i is greater than X, the operation is
    undefined.
    */
-  private func _index() {
-    let i = popArg().intValue
+  private func _index() throws {
+    let i = try popArg().intValue
     var nums = [NSNumber]()
     for _ in 0..<i {
-      nums.append(popArg())
+      try nums.append(popArg())
     }
     for j in i - 1...0 {
       pushArg(nums[j])
@@ -920,12 +936,12 @@ public class CFFType2Interpreter {
    The value N must be a non-negative integer, otherwise the
    operation is undefined.
    */
-  private func _roll() {
-    let j = popArg().intValue
-    let n = popArg().intValue
+  private func _roll() throws {
+    let j = try popArg().intValue
+    let n = try popArg().intValue
     var nums = [NSNumber]()
     for _ in 0..<n {
-      nums.append(popArg())
+      try nums.append(popArg())
     }
     for i in n - 1...0 {
       pushArg(nums[(n + i + j) % n])
@@ -935,8 +951,8 @@ public class CFFType2Interpreter {
   /**
    Duplicates the top element on the argument stack.
    */
-  private func _dup() {
-    let any = popArg()
+  private func _dup() throws {
+    let any = try popArg()
     pushArg(any)
     pushArg(any)
   }
@@ -944,9 +960,9 @@ public class CFFType2Interpreter {
   /**
    Stores val into the transient array at the location given by i.
    */
-  private func _put() {
-    let i = popArg().intValue
-    let val = popArg()
+  private func _put() throws {
+    let i = try popArg().intValue
+    let val = try popArg()
     transientArray[i] = val
   }
 
@@ -956,8 +972,8 @@ public class CFFType2Interpreter {
    is executed prior to put for i during execution of the current
    charstring, the value returned is undefined.
    */
-  private func _get() {
-    let i = popArg().intValue
+  private func _get() throws {
+    let i = try popArg().intValue
     pushArg(transientArray[i])
   }
 
@@ -965,9 +981,9 @@ public class CFFType2Interpreter {
    Puts a 1 on the stack if num1 and num2 are both non-zero, and
    puts a 0 on the stack if either argument is zero.
    */
-  private func _and() {
-    let num2 = popArg().doubleValue
-    let num1 = popArg().doubleValue
+  private func _and() throws {
+    let num2 = try popArg().doubleValue
+    let num1 = try popArg().doubleValue
     pushArg((num1 != 0.0) && (num2 != 0.0) ? NSNumber(value: 1) : NSNumber(value: 0))
   }
 
@@ -975,17 +991,17 @@ public class CFFType2Interpreter {
    Puts a 1 on the stack if either num1 or num2 are non-zero, and
    puts a 0 on the stack if both arguments are zero.
    */
-  private func _or() {
-    let num2 = popArg().doubleValue
-    let num1 = popArg().doubleValue
+  private func _or() throws {
+    let num2 = try popArg().doubleValue
+    let num1 = try popArg().doubleValue
     pushArg((num1 != 0.0) || (num2 != 0.0) ? NSNumber(value: 1) : NSNumber(value: 0))
   }
 
   /**
    Returns a 0 if num1 is non-zero; returns a 1 if num1 is zero.
    */
-  private func _not() {
-    let num1 = popArg().doubleValue
+  private func _not() throws {
+    let num1 = try popArg().doubleValue
     pushArg((num1 != 0.0) ? NSNumber(value: 0) : NSNumber(value: 1))
   }
 
@@ -993,9 +1009,9 @@ public class CFFType2Interpreter {
    Puts a 1 on the stack if num1 equals num2, otherwise a 0 (zero)
    is put on the stack.
    */
-  private func _eq() {
-    let num2 = popArg().doubleValue
-    let num1 = popArg().doubleValue
+  private func _eq() throws {
+    let num2 = try popArg().doubleValue
+    let num1 = try popArg().doubleValue
     pushArg(num1 == num2 ? NSNumber(value: 1) : NSNumber(value: 0))
   }
 
@@ -1004,11 +1020,11 @@ public class CFFType2Interpreter {
    stack if v1 > v2. The value of s1 and s2 is usually the biased
    number of a subroutine.
    */
-  private func _ifelse() {
-    let v2 = popArg().doubleValue
-    let v1 = popArg().doubleValue
-    let s2 = popArg()
-    let s1 = popArg()
+  private func _ifelse() throws {
+    let v2 = try popArg().doubleValue
+    let v1 = try popArg().doubleValue
+    let s2 = try popArg()
+    let s1 = try popArg()
     pushArg(v1 <= v2 ? s1 : s2)
   }
 
@@ -1022,7 +1038,7 @@ public class CFFType2Interpreter {
    act according to the manner in which the subroutine is coded.
    Calling an undefined subr (gsubr) has undefined results.
    */
-  private func _callsubr() {
+  private func _callsubr() throws {
     var bias: Int
     let subrsCount = localSubrIndex.count
     if subrsCount < 1240 {
@@ -1032,7 +1048,7 @@ public class CFFType2Interpreter {
     } else {
       bias = 32768
     }
-    let i = popArg().intValue
+    let i = try popArg().intValue
     let offset = localSubrIndex.offset[i + bias] - 1
     pushSubr((cs, ip))
     cs = localSubrs
@@ -1043,7 +1059,7 @@ public class CFFType2Interpreter {
    Operates in the same manner as callsubr except that it calls a
    global subroutine.
    */
-  private func _callgsubr() {
+  private func _callgsubr() throws {
     var bias: Int
     let subrsCount = globalSubrIndex.count
     if subrsCount < 1240 {
@@ -1053,7 +1069,7 @@ public class CFFType2Interpreter {
     } else {
       bias = 32768
     }
-    let i = popArg().intValue
+    let i = try popArg().intValue
     let offset = globalSubrIndex.offset[i + bias] - 1
     pushSubr((cs, ip))
     cs = globalSubrs
@@ -1064,8 +1080,8 @@ public class CFFType2Interpreter {
    Returns from either a local or global charstring subroutine, and
    continues execution after the corresponding call(g)subr.
    */
-  private func _return() {
-    (cs, ip) = popSubr()
+  private func _return() throws {
+    (cs, ip) = try popSubr()
   }
 
   public func execute(cs: CFFCharstringType2) throws -> [CFFPoint] {
@@ -1075,69 +1091,69 @@ public class CFFType2Interpreter {
     vstems = []
 
     points = []
-    ip = cs.firstIndex
-    while cs.moreBytes(from: ip) {
+    ip = self.cs.firstIndex
+    while self.cs.moreBytes(from: ip) {
 
       // Operand(s)
-      while cs.isOperand(at: ip) {
+      while self.cs.isOperand(at: ip) {
         do {
-          pushArg(try cs.operand(at: ip))
+          pushArg(try self.cs.operand(at: ip))
         } catch {
           os_log("Error with operand")
           throw CFFType2InterpreterError.badOperand
         }
-        ip = cs.nextOperandIndex(ip)
+        ip = self.cs.nextOperandIndex(ip)
       }
 
       // Operator
-      var opr = Int(cs.byte(at: ip))
+      var opr = Int(self.cs.byte(at: ip))
       ip += 1
       if opr == 12 {
-        opr = Int(cs.byte(at: ip))
+        opr = Int(self.cs.byte(at: ip))
         ip += 1
 
         // Two-byte operators
         switch opr {
         case T2Mnemonic.AND:
-          _and()
+          try _and()
         case T2Mnemonic.OR:
-          _or()
+          try _or()
         case T2Mnemonic.NOT:
-          _not()
+          try _not()
         case T2Mnemonic.ABS:
-          _abs()
+          try _abs()
         case T2Mnemonic.ADD:
-          _add()
+          try _add()
         case T2Mnemonic.SUB:
-          _sub()
+          try _sub()
         case T2Mnemonic.DIV:
-          _div()
+          try _div()
         case T2Mnemonic.NEG:
-          _neg()
+          try _neg()
         case T2Mnemonic.EQ:
-          _eq()
+          try _eq()
         case T2Mnemonic.DROP:
-          _drop()
+          try _drop()
         case T2Mnemonic.PUT:
-          _put()
+          try _put()
         case T2Mnemonic.GET:
-          _get()
+          try _get()
         case T2Mnemonic.IFELSE:
-          _ifelse()
+          try _ifelse()
         case T2Mnemonic.RANDOM:
           _random()
         case T2Mnemonic.MUL:
-          _mul()
+          try _mul()
         case T2Mnemonic.SQRT:
-          _sqrt()
+          try _sqrt()
         case T2Mnemonic.DUP:
-          _dup()
+          try _dup()
         case T2Mnemonic.EXCH:
-          _exch()
+          try _exch()
         case T2Mnemonic.INDEX:
-          _index()
+          try _index()
         case T2Mnemonic.ROLL:
-          _roll()
+          try _roll()
         case T2Mnemonic.HFLEX:
           _hflex()
         case T2Mnemonic.FLEX:
@@ -1154,51 +1170,51 @@ public class CFFType2Interpreter {
         // One-byte operators
         switch (opr) {
         case T2Mnemonic.HSTEM:
-          _hstem()
+          try _hstem()
         case T2Mnemonic.VSTEM:
-          _vstem()
+          try _vstem()
         case T2Mnemonic.VMOVETO:
-          _vmoveto()
+          try _vmoveto()
         case T2Mnemonic.RLINETO:
-          _rlineto()
+          try _rlineto()
         case T2Mnemonic.HLINETO:
-          _hlineto()
+          try _hlineto()
         case T2Mnemonic.VLINETO:
-          _vlineto()
+          try _vlineto()
         case T2Mnemonic.RRCURVETO:
-          _rrcurveto()
+          try _rrcurveto()
         case T2Mnemonic.CALLSUBR:
-          _callsubr()
+          try _callsubr()
         case T2Mnemonic.RETURN:
-          _return()
+          try _return()
         case T2Mnemonic.ENDCHAR:
-          _endchar()
+          try _endchar()
         case T2Mnemonic.HSTEMHM:
-          _hstemhm()
+          try _hstemhm()
         case T2Mnemonic.HINTMASK:
           _hintmask()
         case T2Mnemonic.CNTRMASK:
           _cntrmask()
         case T2Mnemonic.RMOVETO:
-          _rmoveto()
+          try _rmoveto()
         case T2Mnemonic.HMOVETO:
-          _hmoveto()
+          try _hmoveto()
         case T2Mnemonic.VSTEMHM:
-          _vstemhm()
+          try _vstemhm()
         case T2Mnemonic.RCURVELINE:
-          _rcurveline()
+          try _rcurveline()
         case T2Mnemonic.RLINECURVE:
-          _rlinecurve()
+          try _rlinecurve()
         case T2Mnemonic.VVCURVETO:
-          _vvcurveto()
+          try _vvcurveto()
         case T2Mnemonic.HHCURVETO:
-          _hhcurveto()
+          try _hhcurveto()
         case T2Mnemonic.CALLGSUBR:
-          _callgsubr()
+          try _callgsubr()
         case T2Mnemonic.VHCURVETO:
-          _vhcurveto()
+          try _vhcurveto()
         case T2Mnemonic.HVCURVETO:
-          _hvcurveto()
+          try _hvcurveto()
         default:
           throw CFFType2InterpreterError.badOperator
         }
@@ -1212,47 +1228,53 @@ public class CFFType2Interpreter {
    */
   private var argCount: Int {
     get {
-      return argStackIndex
+      return argStack.count
     }
   }
 
   /**
    Pop a value off the argument stack
    */
-  private func popArg() -> NSNumber {
-    argStackIndex -= 1
-    return argStack[argStackIndex]
+  private func popArg() throws -> NSNumber {
+    if let arg = argStack.last {
+      argStack.removeLast()
+      return arg
+    } else {
+      throw CFFType2InterpreterError.stackUnderflow
+    }
   }
 
   /**
    Push a value on to the argument stack
    */
   private func pushArg(_ n: NSNumber) {
-    argStack[argStackIndex] = n
-    argStackIndex += 1
+    argStack.append(n)
   }
 
   /**
    Pop a value off the subroutine stack
    */
-  private func popSubr() -> (CFFCharstringType2, Int) {
-    subrStackIndex -= 1
-    return subrStack[subrStackIndex]
+  private func popSubr() throws -> (CFFCharstringType2, Int) {
+    if let subr = subrStack.last {
+      subrStack.removeLast()
+      return subr
+    } else {
+      throw CFFType2InterpreterError.stackUnderflow
+    }
   }
 
   /**
    Push a value on to the subroutine stack
    */
   private func pushSubr(_ sp: (CFFCharstringType2, Int)) {
-    subrStack[subrStackIndex] = sp
-    subrStackIndex += 1
+    subrStack.append(sp)
   }
 
   /**
    Clear the argument stack
    */
   private func clearArg() {
-    argStackIndex = 0
+    argStack.removeAll()
   }
 
   private func moveTo(x: Int, y: Int) {
@@ -1271,7 +1293,7 @@ public class CFFType2Interpreter {
   }
 
   private func endContour() {
-    if var lastPoint = points.last {
+    if let lastPoint = points.last {
       lastPoint.endOfContour = true
     }
   }

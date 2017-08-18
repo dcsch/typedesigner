@@ -9,6 +9,9 @@
 import Foundation
 import IOUtils
 
+/**
+ Horizontal Metrics
+ */
 class TCHmtxTable: TCBaseTable {
   var hMetrics: [UInt32] = []
   var leftSideBearings: [Int16] = []
@@ -29,23 +32,23 @@ class TCHmtxTable: TCBaseTable {
     super.init(directoryEntry: directoryEntry)
   }
 
-  func advanceWidth(index: Int) -> UInt16 {
+  func advanceWidth(at index: Int) -> Int {
     if index < hMetrics.count {
-      return UInt16(hMetrics[index] >> 16)
+      return Int(hMetrics[index] >> 16)
     } else if let last = hMetrics.last {
-      return UInt16(last >> 16)
+      return Int(last >> 16)
     } else {
-      return UInt16(hMetrics[hMetrics.count - 1] >> 16)
+      return Int(hMetrics[hMetrics.count - 1] >> 16)
     }
   }
 
-  func leftSideBearing(index: Int) -> UInt16 {
+  func leftSideBearing(at index: Int) -> Int {
     if index < hMetrics.count {
-      return UInt16(hMetrics[index] & 0xffff)
+      return Int(hMetrics[index] & 0xffff)
     } else if let last = hMetrics.last {
-      return UInt16(last)
+      return Int(last)
     } else {
-      return UInt16(leftSideBearings[index - hMetrics.count])
+      return Int(leftSideBearings[index - hMetrics.count])
     }
   }
 
@@ -63,10 +66,10 @@ class TCHmtxTable: TCBaseTable {
         directoryEntry.length,
         hMetrics.count)
       for i in 0..<hMetrics.count {
-        str.append("        \(i). advWid: \(advanceWidth(index: i)), LSdBear: \(leftSideBearing(index: i))\n")
+        str.append("        \(i). advWid: \(advanceWidth(at: i)), LSdBear: \(leftSideBearing(at: i))\n")
       }
       for i in 0..<leftSideBearings.count {
-        str.append("        LSdBear \(i + hMetrics.count): \(leftSideBearing(index: i))\n")
+        str.append("        LSdBear \(i + hMetrics.count): \(leftSideBearing(at: i))\n")
       }
       return str;
     }
