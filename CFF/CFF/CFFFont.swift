@@ -64,11 +64,11 @@ public class CFFFont: NSObject {
     var charset: CFFCharset
     switch format {
     case 0:
-      charset = CFFCharsetFormat0(dataInput:charsetDataInput, glyphCount: glyphCount)
+      charset = CFFCharsetFormat0(dataInput: charsetDataInput, glyphCount: glyphCount)
     case 1:
-      charset = CFFCharsetFormat1(dataInput:charsetDataInput, glyphCount: glyphCount)
+      charset = CFFCharsetFormat1(dataInput: charsetDataInput, glyphCount: glyphCount)
     case 2:
-      charset = CFFCharsetFormat2(dataInput:charsetDataInput, glyphCount: glyphCount)
+      charset = CFFCharsetFormat2(dataInput: charsetDataInput, glyphCount: glyphCount)
     default:
       throw CFFFontError.unsupportedCharsetFormat
     }
@@ -82,14 +82,12 @@ public class CFFFont: NSObject {
     for i in 0..<glyphCount {
       let sid = charset.sid(gid: i)
       let name = stringIndex.string(at: sid)
-      let offset = charStringsIndex.offset[i] - 1
-      let len = charStringsIndex.offset[i + 1] - offset - 1
+      let start = charStringsIndex.offset[i] - 1
+      let end = charStringsIndex.offset[i + 1] - 1
       charstrings.append(
         CFFCharstringType2(index: index,
                            name: name,
-                           data: charStringsIndex.data,
-                           offset: offset,
-                           length: len))
+                           data: charStringsIndex.data[start..<end]))
     }
   }
 }

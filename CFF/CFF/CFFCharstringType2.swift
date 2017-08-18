@@ -96,24 +96,18 @@ public class CFFCharstringType2: NSObject, CFFCharstring {
 
   public let index: Int
   public let name: String
-  let data: [UInt8]
-  let offset: Int
-  let length: Int
+  let data: ArraySlice<UInt8>
 
-  init(index: Int, name: String, data: [UInt8], offset: Int, length: Int) {
+  init(index: Int, name: String, data: ArraySlice<UInt8>) {
     self.index = index
     self.name = name
     self.data = data
-    self.offset = offset
-    self.length = length
   }
 
   override init() {
     self.index = 0
     self.name = "Empty"
     self.data = []
-    self.offset = 0
-    self.length = 0
   }
 
   func disassemble(at startIP: Int) throws -> (Int, String) {
@@ -157,7 +151,7 @@ public class CFFCharstringType2: NSObject, CFFCharstring {
 
   var firstIndex: Int {
     get {
-      return offset
+      return data.startIndex
     }
   }
 
@@ -233,7 +227,7 @@ public class CFFCharstringType2: NSObject, CFFCharstring {
   }
 
   func moreBytes(from ip: Int) -> Bool {
-    return ip < offset + length
+    return ip < data.endIndex
   }
 
 //  public String toString() {

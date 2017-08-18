@@ -131,18 +131,18 @@ public class CFFType2Interpreter {
   public init(localSubrIndex: CFFIndex, globalSubrIndex: CFFIndex) {
     self.localSubrIndex = localSubrIndex
     self.globalSubrIndex = globalSubrIndex
+    let localStart = localSubrIndex.offset[0] - 1
+    let localEnd = localSubrIndex.dataLength - localStart
     localSubrs = CFFCharstringType2(
       index: 0,
       name: "Local subrs",
-      data: localSubrIndex.data,
-      offset: localSubrIndex.offset[0] - 1,
-      length: localSubrIndex.dataLength)
+      data: localSubrIndex.data[localStart..<localEnd])
+    let globalStart = globalSubrIndex.offset[0] - 1
+    let globalEnd = globalSubrIndex.dataLength - globalStart
     globalSubrs = CFFCharstringType2(
       index: 0,
       name: "Global subrs",
-      data: globalSubrIndex.data,
-      offset: globalSubrIndex.offset[0] - 1,
-      length: globalSubrIndex.dataLength)
+      data: globalSubrIndex.data[globalStart..<globalEnd])
 
     // TODO redesign the class so we don't have this charstring as part of it
     cs = CFFCharstringType2()
@@ -173,7 +173,7 @@ public class CFFType2Interpreter {
   }
 
   /**
-   * Moves the current point dy1 units in the vertical direction.
+   Moves the current point dy1 units in the vertical direction.
    */
   private func _vmoveto() throws {
     let dy1 = try popArg().intValue
@@ -1236,8 +1236,7 @@ public class CFFType2Interpreter {
    Pop a value off the argument stack
    */
   private func popArg() throws -> NSNumber {
-    if let arg = argStack.last {
-      argStack.removeLast()
+    if let arg = argStack.popLast() {
       return arg
     } else {
       throw CFFType2InterpreterError.stackUnderflow
@@ -1255,8 +1254,7 @@ public class CFFType2Interpreter {
    Pop a value off the subroutine stack
    */
   private func popSubr() throws -> (CFFCharstringType2, Int) {
-    if let subr = subrStack.last {
-      subrStack.removeLast()
+    if let subr = subrStack.popLast() {
       return subr
     } else {
       throw CFFType2InterpreterError.stackUnderflow
