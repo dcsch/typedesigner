@@ -62,9 +62,9 @@ class TCTableFactory {
       case .cmap:
         let dataInput = TCDataInput(data: data)
         table = try TCCmapTable(dataInput: dataInput, directoryEntry:entry)
-//        case Table.cvt:
-//            t = new CvtTable(de, dis);
-//            break;
+      case .cvt:
+        let dataInput = TCDataInput(data: data)
+        table = TCCvtTable(dataInput: dataInput, directoryEntry:entry)
       case .fpgm:
         let dataInput = TCDataInput(data: data)
         table = TCFpgmTable(dataInput: dataInput, directoryEntry:entry)

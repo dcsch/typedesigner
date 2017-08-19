@@ -75,6 +75,7 @@
 		03FF502B1F477496009F5F0C /* TCVmtxTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF502A1F477496009F5F0C /* TCVmtxTable.swift */; };
 		03FF502D1F477B1C009F5F0C /* TCHdmxTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF502C1F477B1C009F5F0C /* TCHdmxTable.swift */; };
 		03FF502F1F479003009F5F0C /* TCVdmxTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF502E1F479003009F5F0C /* TCVdmxTable.swift */; };
+		03FF50311F47F339009F5F0C /* TCCvtTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF50301F47F339009F5F0C /* TCCvtTable.swift */; };
 		630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630AA393166B2483001BD6BF /* TablesWindow.xib */; };
 		6313472A168583760025CDFE /* CharacterMapWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63134728168583760025CDFE /* CharacterMapWindow.xib */; };
 		6313473016858EC10025CDFE /* CharacterMapListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6313472E16858EC10025CDFE /* CharacterMapListView.xib */; };
@@ -226,6 +227,7 @@
 		03FF502A1F477496009F5F0C /* TCVmtxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCVmtxTable.swift; sourceTree = "<group>"; };
 		03FF502C1F477B1C009F5F0C /* TCHdmxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCHdmxTable.swift; sourceTree = "<group>"; };
 		03FF502E1F479003009F5F0C /* TCVdmxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCVdmxTable.swift; sourceTree = "<group>"; };
+		03FF50301F47F339009F5F0C /* TCCvtTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCvtTable.swift; sourceTree = "<group>"; };
 		630AA393166B2483001BD6BF /* TablesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TablesWindow.xib; sourceTree = "<group>"; };
 		63134728168583760025CDFE /* CharacterMapWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapWindow.xib; sourceTree = "<group>"; };
 		6313472E16858EC10025CDFE /* CharacterMapListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapListView.xib; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				03FF502A1F477496009F5F0C /* TCVmtxTable.swift */,
 				03FF502C1F477B1C009F5F0C /* TCHdmxTable.swift */,
 				03FF502E1F479003009F5F0C /* TCVdmxTable.swift */,
+				03FF50301F47F339009F5F0C /* TCCvtTable.swift */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				039845FC1F1FD57E0040988F /* TCCollectionWindowController.swift in Sources */,
 				03B311F11F295747001E6712 /* TCGlyphWindowController.swift in Sources */,
 				03B311ED1F280D3F001E6712 /* TCGlyphPathFactory.swift in Sources */,
+				03FF50311F47F339009F5F0C /* TCCvtTable.swift in Sources */,
 				0348BE751F33EF6800446B58 /* TCPrepTable.swift in Sources */,
 				03B311F91F2A9D60001E6712 /* TCFontCollection.swift in Sources */,
 				030A32A91F314823006B2BAC /* TCAppDelegate.swift in Sources */,
