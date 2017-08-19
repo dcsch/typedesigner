@@ -24,9 +24,9 @@ class TCTableFactory {
 //            break;
       case .CFF:
         table = TCCffTable(data: data, directoryEntry: entry)
-//        case Table.DSIG:
-//            t = new DsigTable(de, dis);
-//            break;
+      case .DSIG:
+        let dataInput = TCDataInput(data: data)
+        table = TCDsigTable(dataInput: dataInput, directoryEntry:entry)
       case .EBDT:
         throw TCTableError.unimplementedTableType(tag: entry.tag)
       case .EBLC:
