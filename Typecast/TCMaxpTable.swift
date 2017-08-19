@@ -11,7 +11,7 @@ import IOUtils
 
 class TCMaxpTable: TCBaseTable {
   let versionNumber: UInt32
-  let numGlyphs: UInt16
+  let numGlyphs: Int
   let maxPoints: UInt16
   let maxContours: UInt16
   let maxCompositePoints: UInt16
@@ -31,7 +31,7 @@ class TCMaxpTable: TCBaseTable {
 
     // CFF fonts use version 0.5, TrueType fonts use version 1.0
     if versionNumber == 0x00005000 {
-      numGlyphs = dataInput.readUInt16()
+      numGlyphs = Int(dataInput.readUInt16())
       maxPoints = 0
       maxContours = 0
       maxCompositePoints = 0
@@ -46,7 +46,7 @@ class TCMaxpTable: TCBaseTable {
       maxComponentElements = 0
       maxComponentDepth = 0
     } else if versionNumber == 0x00010000 {
-      numGlyphs = dataInput.readUInt16()
+      numGlyphs = Int(dataInput.readUInt16())
       maxPoints = dataInput.readUInt16()
       maxContours = dataInput.readUInt16()
       maxCompositePoints = dataInput.readUInt16()

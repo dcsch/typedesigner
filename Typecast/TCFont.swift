@@ -107,6 +107,10 @@ class TCFont: NSObject {
                                                    data: tableData,
                                                    directoryEntry: entry)
         tables.append(table)
+      } catch TCTableError.unimplementedTableType(let tag) {
+        os_log("Unimplemented table: %@", TCTableError.tagAsString(tag))
+      } catch TCTableError.unrecognizedTableType(let tag) {
+        os_log("Unrecognized table: %@", TCTableError.tagAsString(tag))
       } catch {
 //        os_log("Ignorning table")
       }
@@ -141,11 +145,9 @@ class TCFont: NSObject {
 
   func table<T>() throws -> T {
     for table in tables {
-//      if type(of: table) == T.self {
-        if let actualTable = table as? T {
-          return actualTable
-        }
-//      }
+      if let actualTable = table as? T {
+        return actualTable
+      }
     }
     throw TCFontError.missingTable
   }

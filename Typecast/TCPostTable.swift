@@ -21,11 +21,10 @@ class TCPostTable: TCBaseTable {
   let maxMemType1: UInt32
 
   // v2
-  let numGlyphs: UInt16
-  let glyphNameIndex: [UInt16]
+  let numGlyphs: Int
+  let glyphNameIndex: [Int]
   let psGlyphName: [String]
 
-  // TODO: Mac Glyph names for 210 & 257
   static let macGlyphName = [
     ".notdef",      // 0
     "null",         // 1
@@ -237,7 +236,7 @@ class TCPostTable: TCBaseTable {
     "Igrave",       // 207
     "Oacute",       // 208
     "Ocircumflex",  // 209
-    "",             // 210
+    "apple",        // 210
     "Ograve",       // 211
     "Uacute",       // 212
     "Ucircumflex",  // 213
@@ -284,7 +283,7 @@ class TCPostTable: TCBaseTable {
     "cacute",       // 254
     "Ccaron",       // 255
     "ccaron",       // 256
-    ""              // 257
+    "dcroat"        // 257
   ]
 
   init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
@@ -299,17 +298,17 @@ class TCPostTable: TCBaseTable {
     maxMemType1 = dataInput.readUInt32()
 
     if version == 0x00020000 {
-      numGlyphs = dataInput.readUInt16()
-      var indicies = [UInt16]()
+      numGlyphs = Int(dataInput.readUInt16())
+      var indicies = [Int]()
       for _ in 0..<numGlyphs {
-        indicies.append(dataInput.readUInt16())
+        indicies.append(Int(dataInput.readUInt16()))
       }
-      glyphNameIndex = indicies;
+      glyphNameIndex = indicies
 
 //      var h = highestGlyphNameIndex()
 
-      var high: UInt16 = 0
-      for i in 0..<Int(numGlyphs) {
+      var high = 0
+      for i in 0..<numGlyphs {
         if high < glyphNameIndex[i] {
           high = glyphNameIndex[i]
         }
@@ -360,7 +359,7 @@ class TCPostTable: TCBaseTable {
 //    return high;
 //  }
 
-  func isMacGlyphName(index: Int) -> Bool {
+  func isMacGlyphName(at index: Int) -> Bool {
     if version == 0x00020000 {
       return glyphNameIndex[index] <= 257
     } else {
@@ -393,30 +392,25 @@ class TCPostTable: TCBaseTable {
 
       if version == 0x00020000 {
         str.append("\n\n        Format 2.0:  Non-Standard (for PostScript) TrueType Glyph Set.\n")
-        str.append(String(format: "        numGlyphs:      %d\n", numGlyphs))
-        for i in 0..<Int(numGlyphs) {
-          str.append(String(format: "        Glyf %d -> ", i))
-          if isMacGlyphName(index: i) {
-            str.append(String(format: "Mac Glyph # %@, '%@'\n",
-                              glyphNameIndex[i], TCPostTable.macGlyphName[Int(glyphNameIndex[i])]))
+        str.append("        numGlyphs:      \(numGlyphs)\n")
+        for i in 0..<numGlyphs {
+          str.append("        Glyf \(i) -> ")
+          if isMacGlyphName(at: i) {
+            let nameIndex = glyphNameIndex[i]
+            let name = TCPostTable.macGlyphName[nameIndex]
+            str.append("Mac Glyph # \(nameIndex), '\(name)'\n")
           } else {
-            str.append(String(format: "PSGlyf Name # %d, name= '%@'\n",
-                              glyphNameIndex[i] - 257,
-                              psGlyphName[Int(glyphNameIndex[i]) - 258]))
+            let nameIndex = glyphNameIndex[i] - 257
+            let name = psGlyphName[nameIndex - 1]
+            str.append("PSGlyf Name # \(nameIndex), name= '\(name)'\n")
           }
         }
         str.append("\n        Full List of PSGlyf Names\n        ------------------------\n")
-        var i = 0
-        for name in psGlyphName {
-          str.append(String(format: "        PSGlyf Name # %d: %@\n", i + 1, name))
-          i += 1
+        for (i, name) in psGlyphName.enumerated() {
+          str.append("        PSGlyf Name # \(i + 1): \(name)\n")
         }
       }
       return str
     }
-  }
-
-  class func macGlyphName(index: Int) -> String {
-    return macGlyphName[index]
   }
 }

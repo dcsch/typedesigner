@@ -23,9 +23,6 @@ public class CFFFont: NSObject {
   let charset: CFFCharset
   var charstrings: [CFFCharstring]
 
-  // TODO Decouple CFFFont from TCCffTable, keeping in mind that future CFF2
-  // support depends on OpenType tables
-
   public init(data: Data, index: Int, topDict: CFFDict, stringIndex: CFFStringIndex) throws {
     self.data = data
     self.topDict = topDict
@@ -37,7 +34,6 @@ public class CFFFont: NSObject {
     let charstringData = data.subdata(in: charStringsOffset..<data.count)
     let charstringDataInput = TCDataInput(data: charstringData)
     self.charStringsIndex = CFFIndex(dataInput: charstringDataInput)
-//    charStringsIndexArray.append(charStringsIndex)
     let glyphCount = charStringsIndex.count
 
     // Private DICT

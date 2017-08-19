@@ -21,7 +21,7 @@ class TCVheaTable: TCBaseTable {
   let caretSlopeRise: Int16
   let caretSlopeRun: Int16
   let metricDataFormat: Int16
-  let numberOfLongVerMetrics: UInt16
+  let numberOfLongVerMetrics: Int
 
   init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
     version = dataInput.readUInt32()
@@ -38,7 +38,7 @@ class TCVheaTable: TCBaseTable {
       _ = dataInput.readInt16()
     }
     metricDataFormat = dataInput.readInt16()
-    numberOfLongVerMetrics = dataInput.readUInt16()
+    numberOfLongVerMetrics = Int(dataInput.readUInt16())
     super.init(directoryEntry: directoryEntry)
   }
 

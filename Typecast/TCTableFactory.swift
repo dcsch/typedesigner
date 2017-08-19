@@ -27,38 +27,38 @@ class TCTableFactory {
 //        case Table.DSIG:
 //            t = new DsigTable(de, dis);
 //            break;
-//        case Table.EBDT:
-//            break;
-//        case Table.EBLC:
-//            break;
-//        case Table.EBSC:
-//            break;
-//        case Table.GDEF:
-//            break;
+      case .EBDT:
+        throw TCTableError.unimplementedTableType(tag: entry.tag)
+      case .EBLC:
+        throw TCTableError.unimplementedTableType(tag: entry.tag)
+      case .EBSC:
+        throw TCTableError.unimplementedTableType(tag: entry.tag)
+      case .GDEF:
+        throw TCTableError.unimplementedTableType(tag: entry.tag)
 //        case Table.GPOS:
 //            t = new GposTable(de, dis);
 //            break;
 //        case Table.GSUB:
 //            t = new GsubTable(de, dis);
 //            break;
-//        case Table.JSTF:
-//            break;
+      case .JSTF:
+        throw TCTableError.unimplementedTableType(tag: entry.tag)
 //        case Table.LTSH:
 //            t = new LtshTable(de, dis);
 //            break;
-//        case Table.MMFX:
-//            break;
-//        case Table.MMSD:
-//            break;
+      case .MMFX:
+        throw TCTableError.unimplementedTableType(tag: entry.tag)
+      case .MMSD:
+        throw TCTableError.unimplementedTableType(tag: entry.tag)
       case .OS_2:
         let dataInput = TCDataInput(data: data)
         table = TCOs2Table(dataInput: dataInput, directoryEntry:entry)
 //        case Table.PCLT:
 //            t = new PcltTable(de, dis);
 //            break;
-//        case Table.VDMX:
-//            t = new VdmxTable(de, dis);
-//            break;
+      case .VDMX:
+        let dataInput = TCDataInput(data: data)
+        table = TCVdmxTable(dataInput: dataInput, directoryEntry:entry)
       case .cmap:
         let dataInput = TCDataInput(data: data)
         table = try TCCmapTable(dataInput: dataInput, directoryEntry:entry)
@@ -68,8 +68,8 @@ class TCTableFactory {
       case .fpgm:
         let dataInput = TCDataInput(data: data)
         table = TCFpgmTable(dataInput: dataInput, directoryEntry:entry)
-//        case Table.fvar:
-//            break;
+      case .fvar:
+        throw TCTableError.unimplementedTableType(tag: entry.tag)
 //        case Table.gasp:
 //            t = new GaspTable(de, dis);
 //            break;
@@ -82,9 +82,13 @@ class TCTableFactory {
                             maxpTable: maxpTable,
                             locaTable: locaTable,
                             postTable: postTable)
-//        case Table.hdmx:
-//            t = new HdmxTable(de, dis, font.getMaxpTable());
-//            break;
+      case .hdmx:
+        let dataInput = TCDataInput(data: data)
+        let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables,
+                                                              tag: TCTableTag.maxp)
+        table = TCHdmxTable(dataInput: dataInput,
+                            directoryEntry: entry,
+                            maxpTable: maxpTable)
       case .head:
         let dataInput = TCDataInput(data: data)
         table = TCHeadTable(dataInput: dataInput, directoryEntry: entry)
@@ -124,14 +128,17 @@ class TCTableFactory {
       case .vhea:
         let dataInput = TCDataInput(data: data)
         table = TCVheaTable(dataInput: dataInput, directoryEntry: entry)
-//        case Table.vmtx:
-//            t = new VmtxTable(de, dis, font.getVheaTable(), font.getMaxpTable());
-//            break;
+      case .vmtx:
+        let dataInput = TCDataInput(data: data)
+        let vheaTable: TCVheaTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.vhea)
+        let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.maxp)
+        table = TCVmtxTable(dataInput: dataInput, directoryEntry: entry,
+                            vheaTable: vheaTable, maxpTable: maxpTable)
       default:
-        throw TCTableError.unrecognizedTableType
+        throw TCTableError.unrecognizedTableType(tag: entry.tag)
       }
     } else {
-      throw TCTableError.unrecognizedTableType
+      throw TCTableError.unrecognizedTableType(tag: entry.tag)
     }
     return table
   }

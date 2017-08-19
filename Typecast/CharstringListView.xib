@@ -17,10 +17,9 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQK-6j-jHk">
+                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQK-6j-jHk">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <clipView key="contentView" ambiguous="YES" id="Uci-Hu-823">
+                    <clipView key="contentView" id="Uci-Hu-823">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -101,6 +100,12 @@
                     </tableHeaderView>
                 </scrollView>
             </subviews>
+            <constraints>
+                <constraint firstItem="LQK-6j-jHk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="2x2-9v-XbH"/>
+                <constraint firstAttribute="bottom" secondItem="LQK-6j-jHk" secondAttribute="bottom" id="9yu-Vk-lon"/>
+                <constraint firstItem="LQK-6j-jHk" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="KrE-lx-tPA"/>
+                <constraint firstAttribute="trailing" secondItem="LQK-6j-jHk" secondAttribute="trailing" id="UYX-qV-a9e"/>
+            </constraints>
         </customView>
         <arrayController id="u5U-07-eCJ">
             <connections>

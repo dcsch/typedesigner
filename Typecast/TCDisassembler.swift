@@ -11,14 +11,14 @@ import Foundation
 class TCDisassembler {
 
   /**
-   * Advance the instruction pointer to the next executable opcode.
-   * This will be the next byte, unless the current opcode is a push
-   * instruction, in which case it will be the byte immediately beyond
-   * the last data byte.
-   * - parameters:
-   *   - ip: The current instruction pointer
-   *   - instructions: The program to advance through
-   * - returns: The new instruction pointer
+   Advance the instruction pointer to the next executable opcode.
+   This will be the next byte, unless the current opcode is a push
+   instruction, in which case it will be the byte immediately beyond
+   the last data byte.
+   - parameters:
+     - ip: The current instruction pointer
+     - instructions: The program to advance through
+   - returns: The new instruction pointer
    */
   class func advance(ip: Int, instructions: [UInt8]) -> Int {
 
@@ -67,19 +67,20 @@ class TCDisassembler {
     let instr = instructions[i]
     if TCMnemonic.NPUSHB.rawValue == instr {
       for j in 0..<count {
-        values[j] = Int(instructions[i + j + 2])
+        values.append(Int(instructions[i + j + 2]))
       }
     } else if TCMnemonic.PUSHB.rawValue == (instr & 0xf8) {
       for j in 0..<count {
-        values[j] = Int(instructions[i + j + 1])
+        values.append(Int(instructions[i + j + 1]))
       }
     } else if TCMnemonic.NPUSHW.rawValue == instr {
       for j in 0..<count {
-        values[j] = Int(Int16(Int8(bitPattern: instructions[i + j*2 + 2])) << 8) | Int(instructions[i + j*2 + 3])
+        values.append(Int(Int16(Int8(bitPattern: instructions[i + j*2 + 2])) << 8) |
+          Int(instructions[i + j*2 + 3]))
       }
     } else if TCMnemonic.PUSHW.rawValue == (instr & 0xf8) {
       for j in 0..<count {
-        values[j] = Int(Int16(Int8(bitPattern: instructions[i + j*2 + 1])) << 8) | Int(instructions[i + j*2 + 2])
+        values.append(Int(Int16(Int8(bitPattern: instructions[i + j*2 + 1])) << 8) | Int(instructions[i + j*2 + 2]))
       }
     }
     return values;

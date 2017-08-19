@@ -21,7 +21,7 @@ class TCHheaTable: TCBaseTable {
   var caretSlopeRise: Int16
   var caretSlopeRun: Int16
   var metricDataFormat: Int16
-  var numberOfHMetrics: UInt16
+  var numberOfHMetrics: Int
 
   init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
     version = dataInput.readUInt32()
@@ -38,7 +38,7 @@ class TCHheaTable: TCBaseTable {
       _ = dataInput.readInt16()
     }
     metricDataFormat = dataInput.readInt16()
-    numberOfHMetrics = dataInput.readUInt16()
+    numberOfHMetrics = Int(dataInput.readUInt16())
     super.init(directoryEntry: directoryEntry)
   }
 

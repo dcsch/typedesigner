@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os.log
 
 enum TCTableTag: UInt32 {
 
@@ -114,8 +115,17 @@ enum TCTableTag: UInt32 {
 }
 
 enum TCTableError: Error {
-  case unrecognizedTableType
+  case unrecognizedTableType(tag: UInt32)
+  case unimplementedTableType(tag: UInt32)
   case badOffset(message: String)
+
+  static func tagAsString(_ tag: UInt32) -> String {
+    return String(format: "%c%c%c%c",
+                  CChar(truncatingBitPattern:tag >> 24),
+                  CChar(truncatingBitPattern:tag >> 16),
+                  CChar(truncatingBitPattern:tag >> 8),
+                  CChar(truncatingBitPattern:tag))
+  }
 }
 
 // TCTable must be @objc and TCBaseTable must be derived from NSObject to let

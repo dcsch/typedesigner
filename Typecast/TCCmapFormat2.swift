@@ -48,10 +48,11 @@ class TCCmapFormat2: TCCmapFormat {
     // Read the subheader keys, noting the highest value, as this will
     // determine the number of subheaders to read.
     var highest = 0
-    for i in 0..<256 {
-      subHeaderKeys[i] = Int(dataInput.readUInt16())
-      highest = max(highest, subHeaderKeys[i])
-      pos += 2;
+    for _ in 0..<256 {
+      let subheaderKey = Int(dataInput.readUInt16())
+      subHeaderKeys.append(subheaderKey)
+      highest = max(highest, subheaderKey)
+      pos += 2
     }
     let subHeaderCount = highest / 8 + 1
 

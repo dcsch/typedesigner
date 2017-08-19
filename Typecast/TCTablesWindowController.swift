@@ -24,6 +24,7 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
         // Select the first font in the collection
         font = fontCollection.fonts[0]
       }
+      configureDetailView()
 
       // If this is the only font in the collection, then closing this
       // window should close the document
@@ -37,7 +38,7 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
     return "\(font!.name) (\(displayName))"
   }
 
-  func tableViewSelectionDidChange(_ notification: Notification) {
+  func configureDetailView() {
     containedViewController?.view.removeFromSuperview()
     containerView?.removeConstraints((containerView?.constraints)!)
     containedViewController = nil
@@ -58,6 +59,12 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
           }
       } else if tag == TCTableTag.cmap.rawValue {
         if let vc = TCCharacterMapListViewController(nibName: "CharacterMapListView", bundle: nil) {
+          vc.representedObject = table
+          vc.document = document as? TCDocument
+          containedViewController = vc
+        }
+      } else {
+        if let vc = TCDumpViewController(nibName: "DumpView", bundle: nil) {
           vc.representedObject = table
           vc.document = document as? TCDocument
           containedViewController = vc
@@ -108,5 +115,9 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
                            multiplier: 1.0,
                            constant: 0.0))
     }
+  }
+
+  func tableViewSelectionDidChange(_ notification: Notification) {
+    configureDetailView()
   }
 }
