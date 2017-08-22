@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TCCharacterMapWindowController" customModule="Type_Designer" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="6" id="mmP-g9-7Xr"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -17,24 +18,26 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
-            <view key="contentView" id="2">
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <view key="contentView" wantsLayer="YES" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                    <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5">
                         <rect key="frame" x="-1" y="-1" width="482" height="272"/>
-                        <clipView key="contentView" id="oqC-Np-QBX">
+                        <clipView key="contentView" drawsBackground="NO" id="oqC-Np-QBX">
                             <rect key="frame" x="0.0" y="0.0" width="482" height="272"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <collectionView id="6">
+                                <collectionView selectable="YES" id="6">
                                     <rect key="frame" x="0.0" y="0.0" width="482" height="272"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="rZ3-AZ-PvJ">
+                                        <size key="itemSize" width="80" height="80"/>
+                                    </collectionViewFlowLayout>
                                     <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <connections>
-                                        <binding destination="19" name="content" keyPath="arrangedObjects" id="49"/>
-                                        <outlet property="itemPrototype" destination="9" id="11"/>
+                                        <outlet property="dataSource" destination="-2" id="nrK-mv-bNB"/>
                                     </connections>
                                 </collectionView>
                             </subviews>
@@ -60,12 +63,8 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
+            <point key="canvasLocation" x="118" y="364"/>
         </window>
-        <collectionViewItem id="9">
-            <connections>
-                <outlet property="view" destination="10" id="12"/>
-            </connections>
-        </collectionViewItem>
         <view id="10">
             <rect key="frame" x="0.0" y="0.0" width="49" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
@@ -80,13 +79,6 @@
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
-                    <connections>
-                        <binding destination="9" name="value" keyPath="representedObject.characterCodeString" id="61">
-                            <dictionary key="options">
-                                <integer key="NSAllowsEditingMultipleValuesSelection" value="0"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
                 </textField>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="63" customClass="TCGlyphView" customModule="Type_Designer" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="49" height="48"/>
@@ -102,15 +94,5 @@
                 <constraint firstItem="63" firstAttribute="top" secondItem="10" secondAttribute="top" constant="12" id="76"/>
             </constraints>
         </view>
-        <arrayController objectClassName="TCCharacterMapping" editable="NO" id="19">
-            <declaredKeys>
-                <string>characterCode</string>
-                <string>glyphCode</string>
-                <string>characterCodeString</string>
-            </declaredKeys>
-            <connections>
-                <binding destination="-2" name="contentArray" keyPath="characterMappings" id="62"/>
-            </connections>
-        </arrayController>
     </objects>
 </document>

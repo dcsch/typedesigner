@@ -23,9 +23,9 @@ class TCGlyfBaseDescript: TCProgram, TCGlyfDescript {
        parentTable: TCGlyfTable,
        glyphIndex: Int,
        numberOfContours: Int) {
-    self.parentTable = parentTable;
-    self.glyphIndex = glyphIndex;
-    self.numberOfContours = numberOfContours;
+    self.parentTable = parentTable
+    self.glyphIndex = glyphIndex
+    self.numberOfContours = numberOfContours
     self.xMin = Int(dataInput.readInt16())
     self.yMin = Int(dataInput.readInt16())
     self.xMax = Int(dataInput.readInt16())
@@ -44,17 +44,11 @@ class TCGlyfBaseDescript: TCProgram, TCGlyfDescript {
 
   override var description: String {
     get {
-      return String(format:
-        "          numberOfContours: %d\n" +
-          "          xMin:             %d\n" +
-          "          yMin:             %d\n" +
-          "          xMax:             %d\n" +
-        "          yMax:             %d\n",
-                    numberOfContours,
-                    xMin,
-                    yMin,
-                    xMax,
-                    yMax)
+      return "          numberOfContours: \(numberOfContours)\n" +
+             "          xMin:             \(xMin)\n" +
+             "          yMin:             \(yMin)\n" +
+             "          xMax:             \(xMax)\n" +
+             "          yMax:             \(yMax)\n"
     }
   }
 }

@@ -14,6 +14,9 @@ enum TCFontError: Error {
   case missingTable
 }
 
+/**
+ An OpenType font.
+ */
 class TCFont: NSObject {
   var tableDirectory: TCTableDirectory
   var tables: [TCTable]
@@ -27,7 +30,7 @@ class TCFont: NSObject {
   var nameTable: TCNameTable
   var os2Table: TCOs2Table
   var postTable: TCPostTable
-//  var glyfTable: TCGlyfTable?
+  var glyfTable: TCGlyfTable?
   var ascent: Int {
     get {
       return Int(hheaTable.ascender)
@@ -44,6 +47,18 @@ class TCFont: NSObject {
     }
   }
 
+  /**
+   - parameters:
+     - data: OpenType/TrueType font file data.
+     - directoryOffset: The Table Directory offset within the file.  For a
+       regular TTF/OTF file this will be zero, but for a TTC (Font Collection)
+       the offset is retrieved from the TTC header.  For a Mac font resource,
+       offset is retrieved from the resource headers.
+     - tablesOrigin: The point the table offsets are calculated from.
+       In a regular TTF file, this will be zero.  In a TTC is is
+       also zero, but within a Mac resource, it is the beginning of the
+       individual font resource data.
+   */
   init(data: Data, tablesOrigin: UInt) throws {
 
     // Load the table directory
@@ -125,9 +140,9 @@ class TCFont: NSObject {
 
     // If this is a TrueType outline, then we'll have at least the
     // 'glyf' table (along with the 'loca' table)
-//    if tableDirectory.hasEntry(tag: TCTableTag.glyf.rawValue) {
-//      glyfTable = try TCFont.table(tables: tables, tag: TCTableTag.glyf)
-//    }
+    if tableDirectory.hasEntry(tag: TCTableTag.glyf.rawValue) {
+      glyfTable = try TCFont.table(tables: tables, tag: TCTableTag.glyf)
+    }
 
     super.init()
   }

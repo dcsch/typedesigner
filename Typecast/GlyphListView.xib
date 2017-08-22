@@ -68,12 +68,12 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <binding destination="18" name="doubleClickArgument" keyPath="selectedObjects" id="61">
+                                    <binding destination="18" name="doubleClickArgument" keyPath="selectedObjects" id="yIC-0c-miD">
                                         <dictionary key="options">
                                             <string key="NSSelectorName">showGlyphs:</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="doubleClickTarget" keyPath="self" previousBinding="61" id="62">
+                                    <binding destination="-2" name="doubleClickTarget" keyPath="self" previousBinding="yIC-0c-miD" id="2mZ-r6-gAi">
                                         <dictionary key="options">
                                             <string key="NSSelectorName">showGlyphs:</string>
                                         </dictionary>

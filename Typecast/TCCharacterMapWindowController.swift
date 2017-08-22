@@ -7,82 +7,86 @@
 //
 
 import Cocoa
+import os.log
 
-class TCCharacterMapping {
-  weak var font: TCFont?
-  var characterCode: Int
-  var glyphCode: Int
-
-  var characterCodeString: String {
-    get {
-      return String(format: "%04lX", characterCode)
-    }
-  }
-
-  var glyphImage: NSImage? {
-    get {
-      return nil
-    }
-  }
-
-  var glyph: TCGlyph? {
-    get {
-      //      let glyphDescription = font?.glyfTable?.descript[glyphCode]
-      //      let glyph = TCGlyph(glyphDescription: glyphDescription,
-      //                          leftSideBearing: font.hmtxTable.leftSideBearing(index: glyphDescription.glyphIndex),
-      //                          advanceWidth: font.hmtxTable.advanceWidth(index: glyphDescription.glyphIndex))
-      //      return glyph;
-      return nil
-    }
-  }
-
-  init(font: TCFont, characterCode: Int, glyphCode: Int) {
-    self.font = font
-    self.characterCode = characterCode
-    self.glyphCode = glyphCode
-  }
-}
-
-class TCCharacterMapWindowController: NSWindowController {
+/**
+ An editor for the character-to-glyph map, as represented in the CmapTable.
+ */
+class TCCharacterMapWindowController: NSWindowController, NSCollectionViewDataSource {
+  @IBOutlet weak var collectionView: NSCollectionView?
   weak var cmapIndexEntry: TCCmapIndexEntry?
-  var characterMappings = [TCCharacterMapping]()
+  var characterMappings = [(Int, Int)]()
+  var font: TCFont?
 
   override func windowDidLoad() {
     super.windowDidLoad()
 
+    // Register the collection view item for the character
+    let nib = NSNib(nibNamed: "CharacterMapItem", bundle: nil)
+    collectionView?.register(nib, forItemWithIdentifier: "charItem")
+
     if let fontCollection = (document as! TCDocument).fontCollection {
 
       // TODO: Don't just select the first font
-      let font = fontCollection.fonts[0]
+      font = fontCollection.fonts[0]
 
       characterMappings.removeAll()
       if let format = cmapIndexEntry?.format {
         for range in format.ranges {
           for i in range {
-            let mapping = TCCharacterMapping(font: font,
-                                             characterCode: i,
-                                             glyphCode: format.glyphCode(characterCode: i))
+            let mapping = (i, format.glyphCode(characterCode: i))
             characterMappings.append(mapping)
           }
         }
       }
+      collectionView?.reloadData()
     }
   }
 
-//  func insertObject(_ mapping: TCCharacterMapping, inCharacterMappingsAtIndex index: Int) {
-//    characterMappings.insert(mapping, at: index)
-//  }
-//
-//  - (void)removeObjectFromCharacterMappingsAtIndex:(NSUInteger)index
-//  {
-//  [_characterMappings removeObjectAtIndex:index];
-//  }
-
-  func setCharacterMappings(_ characterMappings: [TCCharacterMapping]) {
-    self.characterMappings = characterMappings
+  func collectionView(_ collectionView: NSCollectionView,
+                      numberOfItemsInSection section: Int) -> Int {
+    return characterMappings.count
   }
 
-  func CharacterMappings() -> [TCCharacterMapping] {
-    return characterMappings
+  func collectionView(_ collectionView: NSCollectionView,
+                      itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+    let item = collectionView.makeItem(withIdentifier: "charItem", for: indexPath)
+    let mapping = characterMappings[indexPath[1]]
+
+    // Character code
+    item.textField?.stringValue = String(format: "%04X", mapping.0)
+
+    // Glyph
+    if let font = self.font,
+      let descript = font.glyfTable?.descript[mapping.1] as? TCGlyphDescription {
+      let index = descript.glyphIndex
+      let head = font.headTable
+      let hmtx = font.hmtxTable
+      let glyph = TCTTGlyph(glyphDescription: descript,
+                            leftSideBearing: hmtx.leftSideBearing(at: index),
+                            advanceWidth: hmtx.advanceWidth(at: index))
+
+      let size = item.imageView?.bounds.size
+      let pixelSize = collectionView.convertToBacking(size!)
+
+      // Scale the glyph down and translate the origin of the bounding box
+      let scaleFactor = pixelSize.height / CGFloat(head.yMax - head.yMin)
+      var transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+      transform = transform.translatedBy(x: -(CGFloat)(head.xMin),
+                                         y: -(CGFloat)(head.yMin))
+
+      // Center the glyph bounding box within the image view
+      let imageWidthInUnits = pixelSize.width / scaleFactor
+      let tx = (imageWidthInUnits / 2) - (CGFloat(head.xMax - head.xMin) / 2)
+      transform = transform.translatedBy(x: tx, y: 0)
+
+      if let cgImage = TCGlyphImageFactory.buildImage(glyph: glyph,
+                                                      transform: transform,
+                                                      size: pixelSize) {
+        let image = NSImage(cgImage: cgImage, size: CGSize.zero)
+        item.imageView?.image = image
+      }
+    }
+    return item
   }
 }

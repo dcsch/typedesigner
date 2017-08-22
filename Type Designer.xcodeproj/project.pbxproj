@@ -77,6 +77,7 @@
 		03FF502F1F479003009F5F0C /* TCVdmxTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF502E1F479003009F5F0C /* TCVdmxTable.swift */; };
 		03FF50311F47F339009F5F0C /* TCCvtTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF50301F47F339009F5F0C /* TCCvtTable.swift */; };
 		03FF50331F48152C009F5F0C /* TCDsigTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF50321F48152C009F5F0C /* TCDsigTable.swift */; };
+		03FF506C1F4A5F66009F5F0C /* CharacterMapItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FF506B1F4A5F66009F5F0C /* CharacterMapItem.xib */; };
 		630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630AA393166B2483001BD6BF /* TablesWindow.xib */; };
 		6313472A168583760025CDFE /* CharacterMapWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63134728168583760025CDFE /* CharacterMapWindow.xib */; };
 		6313473016858EC10025CDFE /* CharacterMapListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6313472E16858EC10025CDFE /* CharacterMapListView.xib */; };
@@ -230,6 +231,7 @@
 		03FF502E1F479003009F5F0C /* TCVdmxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCVdmxTable.swift; sourceTree = "<group>"; };
 		03FF50301F47F339009F5F0C /* TCCvtTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCvtTable.swift; sourceTree = "<group>"; };
 		03FF50321F48152C009F5F0C /* TCDsigTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCDsigTable.swift; sourceTree = "<group>"; };
+		03FF506B1F4A5F66009F5F0C /* CharacterMapItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapItem.xib; sourceTree = "<group>"; };
 		630AA393166B2483001BD6BF /* TablesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TablesWindow.xib; sourceTree = "<group>"; };
 		63134728168583760025CDFE /* CharacterMapWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapWindow.xib; sourceTree = "<group>"; };
 		6313472E16858EC10025CDFE /* CharacterMapListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapListView.xib; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				03B311EC1F280D3F001E6712 /* TCGlyphPathFactory.swift */,
 				03F905E51F391E790008FF3E /* TCCharacterMapWindowController.swift */,
 				63134728168583760025CDFE /* CharacterMapWindow.xib */,
+				03FF506B1F4A5F66009F5F0C /* CharacterMapItem.xib */,
 				03F905E71F3928E70008FF3E /* TCCharacterMapListViewController.swift */,
 				6313472E16858EC10025CDFE /* CharacterMapListView.xib */,
 				03F905DB1F38DDF70008FF3E /* TCGlyphImageFactory.swift */,
@@ -594,6 +597,7 @@
 				630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */,
 				6365E66D167559690054AAB3 /* README.md in Resources */,
 				63E96FA5167DEDE800874FBC /* GlyphListView.xib in Resources */,
+				03FF506C1F4A5F66009F5F0C /* CharacterMapItem.xib in Resources */,
 				63F16EE41681B42E00306A20 /* GlyphWindow.xib in Resources */,
 				6313472A168583760025CDFE /* CharacterMapWindow.xib in Resources */,
 				03FF50251F46175C009F5F0C /* CharstringListView.xib in Resources */,

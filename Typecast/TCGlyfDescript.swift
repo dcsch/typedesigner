@@ -10,4 +10,5 @@ import Foundation
 
 @objc protocol TCGlyfDescript {
   var name: String { get }
+  var glyphIndex: Int { get }
 }

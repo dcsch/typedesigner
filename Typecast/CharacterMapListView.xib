@@ -87,12 +87,12 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <binding destination="18" name="doubleClickArgument" keyPath="selectedObjects" id="42">
+                                    <binding destination="18" name="doubleClickArgument" keyPath="selectedObjects" id="KtX-Bh-FRn">
                                         <dictionary key="options">
                                             <string key="NSSelectorName">showCharacterMaps:</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="doubleClickTarget" keyPath="self" previousBinding="42" id="43">
+                                    <binding destination="-2" name="doubleClickTarget" keyPath="self" previousBinding="KtX-Bh-FRn" id="Z7S-Ha-x3S">
                                         <dictionary key="options">
                                             <string key="NSSelectorName">showCharacterMaps:</string>
                                         </dictionary>
