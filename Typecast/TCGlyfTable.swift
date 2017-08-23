@@ -19,22 +19,19 @@ class TCGlyfTable: TCBaseTable {
   /**
    - parameters:
      - data: the raw table data
-     - directoryEntry: info about this table's length and offset within the
-       font file
      - maxpTable: the maxp table, specifying the glyph count
      - locaTable: the loca table, specifying the offsets to each glyph within
        the table data
      - postTable: the post table, a source of glyph names
    */
   init(data: Data,
-       directoryEntry: TCDirectoryEntry,
        maxpTable: TCMaxpTable,
        locaTable: TCLocaTable,
        postTable: TCPostTable) {
     self.descript = []
     self.postTable = postTable
 
-    super.init(directoryEntry: directoryEntry)
+    super.init()
 
     // Process all the simple glyphs
     for i in 0..<maxpTable.numGlyphs {

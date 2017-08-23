@@ -28,7 +28,8 @@ class TCHeadTable: TCBaseTable {
   var indexToLocFormat: Int16
   var glyphDataFormat: Int16
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     versionNumber = dataInput.readUInt32()
     fontRevision = dataInput.readUInt32()
     checkSumAdjustment = dataInput.readUInt32()
@@ -46,7 +47,7 @@ class TCHeadTable: TCBaseTable {
     fontDirectionHint = dataInput.readInt16()
     indexToLocFormat = dataInput.readInt16()
     glyphDataFormat = dataInput.readInt16()
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {

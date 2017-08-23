@@ -15,8 +15,11 @@ import IOUtils
 class TCHmtxTable: TCBaseTable {
   var hMetrics: [UInt32] = []
   var leftSideBearings: [Int16] = []
+  let dataCount: Int
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry, hheaTable: TCHheaTable, maxpTable: TCMaxpTable) {
+  init(data: Data, hheaTable: TCHheaTable, maxpTable: TCMaxpTable) {
+    dataCount = data.count
+    let dataInput = TCDataInput(data: data)
     for _ in 0 ..< hheaTable.numberOfHMetrics {
       let metric =
         UInt32(dataInput.readUInt8()) << 24
@@ -29,7 +32,7 @@ class TCHmtxTable: TCBaseTable {
     for _ in 0..<lsbCount {
       leftSideBearings.append(dataInput.readInt16())
     }
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   func advanceWidth(at index: Int) -> Int {
@@ -63,7 +66,7 @@ class TCHmtxTable: TCBaseTable {
       var str = String.localizedStringWithFormat(
         "'hmtx' Table - Horizontal Metrics\n---------------------------------\n" +
         "Size = %d bytes, %ld entries\n",
-        directoryEntry.length,
+        dataCount,
         hMetrics.count)
       for i in 0..<hMetrics.count {
         str.append("        \(i). advWid: \(advanceWidth(at: i)), LSdBear: \(leftSideBearing(at: i))\n")

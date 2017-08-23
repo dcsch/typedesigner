@@ -15,13 +15,14 @@ import IOUtils
 class TCCvtTable: TCBaseTable {
   var values = [Int]()
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
-    let len = Int(directoryEntry.length / 2)
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
+    let len = data.count / 2
     values.reserveCapacity(len)
     for _ in 0..<len {
       values.append(Int(dataInput.readInt16()))
     }
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {
@@ -33,7 +34,7 @@ class TCCvtTable: TCBaseTable {
   override var description: String {
     get {
       var str = "'cvt ' Table - Control Value Table\n----------------------------------\n"
-      str.append("Size = ? bytes, \(values.count) entries\n")
+      str.append("Size = \(2 * values.count) bytes, \(values.count) entries\n")
       str.append("        Values\n        ------\n")
       for (i, value) in values.enumerated() {
         str.append("        \(i): \(value)\n")

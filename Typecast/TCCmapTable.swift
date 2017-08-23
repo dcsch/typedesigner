@@ -14,7 +14,8 @@ class TCCmapTable: TCBaseTable {
   let numTables: Int
   let entries: [TCCmapIndexEntry]
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) throws {
+  init(data: Data) throws {
+    let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt16()
     numTables = Int(dataInput.readUInt16())
     var bytesRead = 4
@@ -50,7 +51,7 @@ class TCCmapTable: TCBaseTable {
       bytesRead += (lastFormat?.length)!
     }
     self.entries = entries
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {

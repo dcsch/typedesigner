@@ -34,8 +34,11 @@ class TCHdmxTable: TCBaseTable {
   let numRecords: Int
   let sizeDeviceRecords: Int
   var records = [DeviceRecord]()
+  let dataCount: Int
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry, maxpTable: TCMaxpTable) {
+  init(data: Data, maxpTable: TCMaxpTable) {
+    dataCount = data.count
+    let dataInput = TCDataInput(data: data)
     version = Int(dataInput.readUInt16())
     numRecords = Int(dataInput.readInt16())
     sizeDeviceRecords = Int(dataInput.readInt32())
@@ -46,7 +49,7 @@ class TCHdmxTable: TCBaseTable {
       records.append(DeviceRecord(numGlyphs: maxpTable.numGlyphs,
                                   dataInput: dataInput))
     }
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {
@@ -59,7 +62,7 @@ class TCHdmxTable: TCBaseTable {
     get {
       var str =
         "'hdmx' Table - Horizontal Device Metrics\n----------------------------------------\n" +
-        "Size = \(directoryEntry.length) bytes\n" +
+        "Size = \(dataCount) bytes\n" +
         "\t'hdmx' version:         \(version)\n" +
         "\t# device records:       \(numRecords)\n" +
         "\tRecord length:          \(sizeDeviceRecords)\n"

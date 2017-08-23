@@ -12,11 +12,11 @@ import IOUtils
 class TCLocaTable: TCBaseTable {
   let offsets: [Int]
   let factor: Int
+  let dataCount: Int
 
-  init(dataInput: TCDataInput,
-       directoryEntry: TCDirectoryEntry,
-       headTable: TCHeadTable,
-       maxpTable: TCMaxpTable) {
+  init(data: Data, headTable: TCHeadTable, maxpTable: TCMaxpTable) {
+    dataCount = data.count
+    let dataInput = TCDataInput(data: data)
     var offsets = [Int]()
     let shortEntries = headTable.indexToLocFormat == 0
     if shortEntries {
@@ -31,7 +31,7 @@ class TCLocaTable: TCBaseTable {
       }
     }
     self.offsets = offsets;
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   func offset(at index: Int) -> Int {
@@ -49,7 +49,7 @@ class TCLocaTable: TCBaseTable {
       var str = String(format:
         "'loca' Table - Index To Location Table\n--------------------------------------\n" +
         "Size = %d bytes, %ld entries\n",
-        directoryEntry.length,
+        dataCount,
         offsets.count)
       var i = 0
       for _ in offsets {

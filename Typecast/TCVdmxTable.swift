@@ -64,7 +64,8 @@ class TCVdmxTable: TCBaseTable {
   var offset = [Int]()
   var groups = [Group]()
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     version = Int(dataInput.readUInt16())
     numRecs = Int(dataInput.readUInt16())
     numRatios = Int(dataInput.readUInt16())
@@ -80,7 +81,7 @@ class TCVdmxTable: TCBaseTable {
     for _ in 0..<numRecs {
       groups.append(Group(dataInput: dataInput))
     }
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {

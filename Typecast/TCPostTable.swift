@@ -286,7 +286,8 @@ class TCPostTable: TCBaseTable {
     "dcroat"        // 257
   ]
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt32()
     italicAngle = dataInput.readUInt32()
     underlinePosition = dataInput.readInt16()
@@ -340,7 +341,7 @@ class TCPostTable: TCBaseTable {
       glyphNameIndex = []
       psGlyphName = []
     }
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {

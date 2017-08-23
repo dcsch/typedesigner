@@ -23,7 +23,8 @@ class TCHheaTable: TCBaseTable {
   var metricDataFormat: Int16
   var numberOfHMetrics: Int
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt32()
     ascender = dataInput.readInt16()
     descender = dataInput.readInt16()
@@ -39,7 +40,7 @@ class TCHheaTable: TCBaseTable {
     }
     metricDataFormat = dataInput.readInt16()
     numberOfHMetrics = Int(dataInput.readUInt16())
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {

@@ -10,23 +10,16 @@ import Foundation
 import IOUtils
 
 class TCPrepTable: TCProgram, TCTable {
-  let entry: TCDirectoryEntry
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
-    entry = directoryEntry
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     super.init()
-    readInstructions(dataInput: dataInput, count: Int(entry.length))
+    readInstructions(dataInput: dataInput, count: data.count)
   }
 
   class var tag: UInt32 {
     get {
       return TCTableTag.prep.rawValue
-    }
-  }
-
-  var directoryEntry: TCDirectoryEntry {
-    get {
-      return self.entry
     }
   }
 

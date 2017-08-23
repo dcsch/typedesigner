@@ -23,7 +23,8 @@ class TCVheaTable: TCBaseTable {
   let metricDataFormat: Int16
   let numberOfLongVerMetrics: Int
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt32()
     ascent = dataInput.readInt16()
     descent = dataInput.readInt16()
@@ -39,7 +40,7 @@ class TCVheaTable: TCBaseTable {
     }
     metricDataFormat = dataInput.readInt16()
     numberOfLongVerMetrics = Int(dataInput.readUInt16())
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {

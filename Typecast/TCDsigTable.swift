@@ -54,7 +54,8 @@ class TCDsigTable: TCBaseTable {
   var signatureRecords = [SignatureRecord]()
   var signatureBlocks = [SignatureBlockFormat1]()
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     version = Int(dataInput.readInt32())
     numSignatures = Int(dataInput.readUInt16())
     flags = Int(dataInput.readUInt16())
@@ -66,7 +67,7 @@ class TCDsigTable: TCBaseTable {
     for _ in 0..<numSignatures {
       signatureBlocks.append(SignatureBlockFormat1(dataInput: dataInput))
     }
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {

@@ -52,7 +52,7 @@ class TCNameTable: TCBaseTable {
   let stringStorageOffset: Int16
   var nameRecords: [TCNameRecord]
 
-  init(data: Data, directoryEntry entry: TCDirectoryEntry) {
+  init(data: Data) {
     let dataInput = TCDataInput(data: data)
     formatSelector = dataInput.readInt16()
     numberOfNameRecords = dataInput.readInt16()
@@ -65,7 +65,7 @@ class TCNameTable: TCBaseTable {
     for _ in 0..<numberOfNameRecords {
       nameRecords.append(TCNameRecord(dataInput: dataInput, stringData: stringData))
     }
-    super.init(directoryEntry: entry)
+    super.init()
   }
 
   override class var tag: UInt32 {

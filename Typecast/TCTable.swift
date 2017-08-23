@@ -141,7 +141,6 @@ enum TCTableError: Error {
  */
 class TCBaseTable: NSObject, TCTable {
   class var tag: UInt32 { get { return 0 } }
-  var directoryEntry: TCDirectoryEntry
 
   var name: String {
     get {
@@ -158,9 +157,5 @@ class TCBaseTable: NSObject, TCTable {
     get {
       return "TCTable type: '\(name)'"
     }
-  }
-
-  init(directoryEntry: TCDirectoryEntry) {
-    self.directoryEntry = directoryEntry
   }
 }

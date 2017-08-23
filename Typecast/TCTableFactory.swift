@@ -12,10 +12,10 @@ import IOUtils
 class TCTableFactory {
 
   class func createTable(tables: [TCTable], data: Data,
-                         directoryEntry entry: TCDirectoryEntry) throws -> TCTable {
+                         directoryEntry: TCDirectoryEntry) throws -> TCTable {
     var table: TCTable
 
-    if let tableTag = TCTableTag(rawValue: entry.tag) {
+    if let tableTag = TCTableTag(rawValue: directoryEntry.tag) {
 
       // Create the table
       switch tableTag {
@@ -23,18 +23,17 @@ class TCTableFactory {
 //            table = new BaseTable(de, dis);
 //            break;
       case .CFF:
-        table = TCCffTable(data: data, directoryEntry: entry)
+        table = TCCffTable(data: data)
       case .DSIG:
-        let dataInput = TCDataInput(data: data)
-        table = TCDsigTable(dataInput: dataInput, directoryEntry:entry)
+        table = TCDsigTable(data: data)
       case .EBDT:
-        throw TCTableError.unimplementedTableType(tag: entry.tag)
+        throw TCTableError.unimplementedTableType(tag: directoryEntry.tag)
       case .EBLC:
-        throw TCTableError.unimplementedTableType(tag: entry.tag)
+        throw TCTableError.unimplementedTableType(tag: directoryEntry.tag)
       case .EBSC:
-        throw TCTableError.unimplementedTableType(tag: entry.tag)
+        throw TCTableError.unimplementedTableType(tag: directoryEntry.tag)
       case .GDEF:
-        throw TCTableError.unimplementedTableType(tag: entry.tag)
+        throw TCTableError.unimplementedTableType(tag: directoryEntry.tag)
 //        case Table.GPOS:
 //            t = new GposTable(de, dis);
 //            break;
@@ -42,34 +41,29 @@ class TCTableFactory {
 //            t = new GsubTable(de, dis);
 //            break;
       case .JSTF:
-        throw TCTableError.unimplementedTableType(tag: entry.tag)
+        throw TCTableError.unimplementedTableType(tag: directoryEntry.tag)
 //        case Table.LTSH:
 //            t = new LtshTable(de, dis);
 //            break;
       case .MMFX:
-        throw TCTableError.unimplementedTableType(tag: entry.tag)
+        throw TCTableError.unimplementedTableType(tag: directoryEntry.tag)
       case .MMSD:
-        throw TCTableError.unimplementedTableType(tag: entry.tag)
+        throw TCTableError.unimplementedTableType(tag: directoryEntry.tag)
       case .OS_2:
-        let dataInput = TCDataInput(data: data)
-        table = TCOs2Table(dataInput: dataInput, directoryEntry:entry)
+        table = TCOs2Table(data: data)
 //        case Table.PCLT:
 //            t = new PcltTable(de, dis);
 //            break;
       case .VDMX:
-        let dataInput = TCDataInput(data: data)
-        table = TCVdmxTable(dataInput: dataInput, directoryEntry:entry)
+        table = TCVdmxTable(data: data)
       case .cmap:
-        let dataInput = TCDataInput(data: data)
-        table = try TCCmapTable(dataInput: dataInput, directoryEntry:entry)
+        table = try TCCmapTable(data: data)
       case .cvt:
-        let dataInput = TCDataInput(data: data)
-        table = TCCvtTable(dataInput: dataInput, directoryEntry:entry)
+        table = TCCvtTable(data: data)
       case .fpgm:
-        let dataInput = TCDataInput(data: data)
-        table = TCFpgmTable(dataInput: dataInput, directoryEntry:entry)
+        table = TCFpgmTable(data: data)
       case .fvar:
-        throw TCTableError.unimplementedTableType(tag: entry.tag)
+        throw TCTableError.unimplementedTableType(tag: directoryEntry.tag)
 //        case Table.gasp:
 //            t = new GaspTable(de, dis);
 //            break;
@@ -78,67 +72,49 @@ class TCTableFactory {
         let locaTable: TCLocaTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.loca)
         let postTable: TCPostTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.post)
         table = TCGlyfTable(data: data,
-                            directoryEntry: entry,
                             maxpTable: maxpTable,
                             locaTable: locaTable,
                             postTable: postTable)
       case .hdmx:
-        let dataInput = TCDataInput(data: data)
         let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables,
                                                               tag: TCTableTag.maxp)
-        table = TCHdmxTable(dataInput: dataInput,
-                            directoryEntry: entry,
-                            maxpTable: maxpTable)
+        table = TCHdmxTable(data: data, maxpTable: maxpTable)
       case .head:
-        let dataInput = TCDataInput(data: data)
-        table = TCHeadTable(dataInput: dataInput, directoryEntry: entry)
+        table = TCHeadTable(data: data)
       case .hhea:
-        let dataInput = TCDataInput(data: data)
-        table = TCHheaTable(dataInput: dataInput, directoryEntry: entry)
+        table = TCHheaTable(data: data)
       case .hmtx:
-        let dataInput = TCDataInput(data: data)
         let hheaTable: TCHheaTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.hhea)
         let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.maxp)
-        table = TCHmtxTable(dataInput: dataInput,
-                            directoryEntry: entry,
-                            hheaTable: hheaTable,
-                            maxpTable: maxpTable)
+        table = TCHmtxTable(data: data, hheaTable: hheaTable, maxpTable: maxpTable)
 //        case Table.kern:
 //            t = new KernTable(de, dis);
 //            break;
       case .loca:
-        let dataInput = TCDataInput(data: data)
         let headTable: TCHeadTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.head)
         let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.maxp)
-        table = TCLocaTable(dataInput: dataInput,
-                            directoryEntry: entry,
+        table = TCLocaTable(data: data,
                             headTable: headTable,
                             maxpTable: maxpTable)
       case .maxp:
-        let dataInput = TCDataInput(data: data)
-        table = TCMaxpTable(dataInput: dataInput, directoryEntry: entry)
+        table = TCMaxpTable(data: data)
       case .name:
-        table = TCNameTable(data: data, directoryEntry: entry)
+        table = TCNameTable(data: data)
       case .prep:
-        let dataInput = TCDataInput(data: data)
-        table = TCPrepTable(dataInput: dataInput, directoryEntry: entry)
+        table = TCPrepTable(data: data)
       case .post:
-        let dataInput = TCDataInput(data: data)
-        table = TCPostTable(dataInput: dataInput, directoryEntry: entry)
+        table = TCPostTable(data: data)
       case .vhea:
-        let dataInput = TCDataInput(data: data)
-        table = TCVheaTable(dataInput: dataInput, directoryEntry: entry)
+        table = TCVheaTable(data: data)
       case .vmtx:
-        let dataInput = TCDataInput(data: data)
         let vheaTable: TCVheaTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.vhea)
         let maxpTable: TCMaxpTable = try TCTableFactory.table(tables: tables, tag: TCTableTag.maxp)
-        table = TCVmtxTable(dataInput: dataInput, directoryEntry: entry,
-                            vheaTable: vheaTable, maxpTable: maxpTable)
+        table = TCVmtxTable(data: data, vheaTable: vheaTable, maxpTable: maxpTable)
       default:
-        throw TCTableError.unrecognizedTableType(tag: entry.tag)
+        throw TCTableError.unrecognizedTableType(tag: directoryEntry.tag)
       }
     } else {
-      throw TCTableError.unrecognizedTableType(tag: entry.tag)
+      throw TCTableError.unrecognizedTableType(tag: directoryEntry.tag)
     }
     return table
   }

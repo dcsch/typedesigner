@@ -91,7 +91,8 @@ class TCOs2Table: TCBaseTable {
   let usBreakChar: UInt16
   let usMaxContext: UInt16
 
-  init(dataInput: TCDataInput, directoryEntry entry: TCDirectoryEntry) {
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt16()
     xAvgCharWidth = dataInput.readInt16()
     usWeightClass = dataInput.readUInt16()
@@ -139,7 +140,7 @@ class TCOs2Table: TCBaseTable {
       usBreakChar = 0
       usMaxContext = 0
     }
-    super.init(directoryEntry: entry)
+    super.init()
   }
 
   override class var tag: UInt32 {

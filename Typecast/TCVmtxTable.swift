@@ -15,8 +15,11 @@ import IOUtils
 class TCVmtxTable: TCBaseTable {
   var vMetrics: [UInt32] = []
   var topSideBearings: [Int16] = []
+  let dataCount: Int
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry, vheaTable: TCVheaTable, maxpTable: TCMaxpTable) {
+  init(data: Data, vheaTable: TCVheaTable, maxpTable: TCMaxpTable) {
+    dataCount = data.count
+    let dataInput = TCDataInput(data: data)
     for _ in 0..<vheaTable.numberOfLongVerMetrics {
       let metric =
         UInt32(dataInput.readUInt8()) << 24
@@ -29,7 +32,7 @@ class TCVmtxTable: TCBaseTable {
     for _ in 0..<tsbCount {
       topSideBearings.append(dataInput.readInt16())
     }
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   func advanceHeight(at index: Int) -> Int {
@@ -62,7 +65,7 @@ class TCVmtxTable: TCBaseTable {
     get {
       var str =
         "'vmtx' Table - Vertical Metrics\n-------------------------------\n" +
-        "Size = \(directoryEntry.length) bytes, \(vMetrics.count) entries\n"
+        "Size = \(dataCount) bytes, \(vMetrics.count) entries\n"
       for i in 0..<vMetrics.count {
         str.append("        \(i). advHeight: \(advanceHeight(at: i)), TSdBear: \(topSideBearing(at: i))\n")
       }

@@ -26,7 +26,7 @@ class TCCffTable: TCBaseTable {
   var fonts: [CFFFont]
   let data: Data
 
-  init(data: Data, directoryEntry: TCDirectoryEntry) {
+  init(data: Data) {
     self.data = data
     let di = TCDataInput(data: data)
 
@@ -58,7 +58,7 @@ class TCCffTable: TCBaseTable {
 
     // Load each of the fonts
     fonts = [CFFFont]()
-    super.init(directoryEntry: directoryEntry)
+    super.init()
     for i in 0..<topDictIndex.count {
       do {
         try fonts.append(CFFFont(data: data, index: i,
@@ -71,7 +71,7 @@ class TCCffTable: TCBaseTable {
   }
 
   func dataInput(at offset: Int) -> TCDataInput {
-    let fontData = data.subdata(in: offset..<Int(directoryEntry.length))
+    let fontData = data.subdata(in: offset..<data.count)
     return TCDataInput(data: fontData)
   }
 

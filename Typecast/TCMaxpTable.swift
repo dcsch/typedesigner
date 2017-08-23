@@ -26,7 +26,8 @@ class TCMaxpTable: TCBaseTable {
   let maxComponentElements: UInt16
   let maxComponentDepth: UInt16
 
-  init(dataInput: TCDataInput, directoryEntry: TCDirectoryEntry) {
+  init(data: Data) {
+    let dataInput = TCDataInput(data: data)
     versionNumber = dataInput.readUInt32()
 
     // CFF fonts use version 0.5, TrueType fonts use version 1.0
@@ -76,7 +77,7 @@ class TCMaxpTable: TCBaseTable {
       maxComponentElements = 0
       maxComponentDepth = 0
     }
-    super.init(directoryEntry: directoryEntry)
+    super.init()
   }
 
   override class var tag: UInt32 {
