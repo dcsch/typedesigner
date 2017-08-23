@@ -36,12 +36,12 @@ class TCTTGlyph: NSObject, TCGlyph {
     var endPtIndex = 0
     points.removeAll()
     for i in 0..<description.pointCount {
-      let endPt = description.endPtOfContours(index: endPtIndex) == i
+      let endPt = description.endPtOfContours(at: endPtIndex) == i
       if endPt {
         endPtIndex += 1
       }
-      let point = TCPoint(x: description.xCoordinate(index: i),
-                          y: description.yCoordinate(index: i),
+      let point = TCPoint(x: description.xCoordinate(at: i),
+                          y: description.yCoordinate(at: i),
                           onCurve: Int(description.flags(index: i) & TCGlyphFlag.onCurvePoint.rawValue) != 0,
                           endOfContour: endPt)
       points.append(point)

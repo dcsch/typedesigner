@@ -21,7 +21,7 @@ public class CFFFont: NSObject {
   let privateDict: CFFDict
   public let localSubrIndex: CFFIndex
   let charset: CFFCharset
-  var charstrings: [CFFCharstring]
+  public var charstrings: [CFFCharstring]
 
   public init(data: Data, index: Int, topDict: CFFDict, stringIndex: CFFStringIndex) throws {
     self.data = data

@@ -24,13 +24,13 @@ enum TCGlyphFlag: UInt8 {
 
   var glyphIndex: Int { get }
 
-  func endPtOfContours(index: Int) -> Int
+  func endPtOfContours(at index: Int) -> Int
 
   func flags(index: Int) -> UInt8
 
-  func xCoordinate(index: Int) -> Int
+  func xCoordinate(at index: Int) -> Int
 
-  func yCoordinate(index: Int) -> Int
+  func yCoordinate(at index: Int) -> Int
 
   var xMaximum: Int { get }
 

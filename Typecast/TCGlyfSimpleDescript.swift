@@ -144,7 +144,7 @@ class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
     }
   }
 
-  func endPtOfContours(index: Int) -> Int {
+  func endPtOfContours(at index: Int) -> Int {
     return endPtsOfContours[index]
   }
 
@@ -152,11 +152,11 @@ class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
     return flags[index]
   }
 
-  func xCoordinate(index: Int) -> Int {
+  func xCoordinate(at index: Int) -> Int {
     return xCoordinates[index]
   }
 
-  func yCoordinate(index: Int) -> Int {
+  func yCoordinate(at index: Int) -> Int {
     return yCoordinates[index]
   }
 

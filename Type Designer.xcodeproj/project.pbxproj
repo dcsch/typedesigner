@@ -78,6 +78,7 @@
 		03FF50311F47F339009F5F0C /* TCCvtTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF50301F47F339009F5F0C /* TCCvtTable.swift */; };
 		03FF50331F48152C009F5F0C /* TCDsigTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF50321F48152C009F5F0C /* TCDsigTable.swift */; };
 		03FF506C1F4A5F66009F5F0C /* CharacterMapItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FF506B1F4A5F66009F5F0C /* CharacterMapItem.xib */; };
+		03FF506E1F4BE212009F5F0C /* TCGlyfCompositeDescript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF506D1F4BE212009F5F0C /* TCGlyfCompositeDescript.swift */; };
 		630AA395166B2483001BD6BF /* TablesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 630AA393166B2483001BD6BF /* TablesWindow.xib */; };
 		6313472A168583760025CDFE /* CharacterMapWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63134728168583760025CDFE /* CharacterMapWindow.xib */; };
 		6313473016858EC10025CDFE /* CharacterMapListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6313472E16858EC10025CDFE /* CharacterMapListView.xib */; };
@@ -232,6 +233,7 @@
 		03FF50301F47F339009F5F0C /* TCCvtTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCvtTable.swift; sourceTree = "<group>"; };
 		03FF50321F48152C009F5F0C /* TCDsigTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCDsigTable.swift; sourceTree = "<group>"; };
 		03FF506B1F4A5F66009F5F0C /* CharacterMapItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapItem.xib; sourceTree = "<group>"; };
+		03FF506D1F4BE212009F5F0C /* TCGlyfCompositeDescript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyfCompositeDescript.swift; sourceTree = "<group>"; };
 		630AA393166B2483001BD6BF /* TablesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TablesWindow.xib; sourceTree = "<group>"; };
 		63134728168583760025CDFE /* CharacterMapWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapWindow.xib; sourceTree = "<group>"; };
 		6313472E16858EC10025CDFE /* CharacterMapListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterMapListView.xib; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				03C40BEC1F35316F00CD6BAC /* TCGlyfNullDescript.swift */,
 				03C40BEE1F3532ED00CD6BAC /* TCGlyfBaseDescript.swift */,
 				0348BE6A1F33D6DB00446B58 /* TCGlyfSimpleDescript.swift */,
+				03FF506D1F4BE212009F5F0C /* TCGlyfCompositeDescript.swift */,
 				0348BE701F33E12100446B58 /* TCGlyphDescription.swift */,
 				0348BE641F32AB3B00446B58 /* TCTTCHeader.swift */,
 				0348BE741F33EF6800446B58 /* TCPrepTable.swift */,
@@ -653,6 +656,7 @@
 				0348BE711F33E12100446B58 /* TCGlyphDescription.swift in Sources */,
 				0348BE6F1F33DD5800446B58 /* TCProgram.swift in Sources */,
 				03B311F71F2A9CC3001E6712 /* TCFont.swift in Sources */,
+				03FF506E1F4BE212009F5F0C /* TCGlyfCompositeDescript.swift in Sources */,
 				03B619141F3D283D00EA1D0E /* TCCmapFormat12.swift in Sources */,
 				03F905CE1F37AB410008FF3E /* TCCmapIndexEntry.swift in Sources */,
 				03B311FB1F2AC062001E6712 /* TCResourceHeader.swift in Sources */,

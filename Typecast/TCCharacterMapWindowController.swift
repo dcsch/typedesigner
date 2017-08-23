@@ -37,6 +37,7 @@ class TCCharacterMapWindowController: NSWindowController, NSCollectionViewDataSo
             let mapping = (i, format.glyphCode(characterCode: i))
             characterMappings.append(mapping)
           }
+//          os_log("char range: %d...%d", range.lowerBound, range.upperBound)
         }
       }
       collectionView?.reloadData()
@@ -57,15 +58,8 @@ class TCCharacterMapWindowController: NSWindowController, NSCollectionViewDataSo
     item.textField?.stringValue = String(format: "%04X", mapping.0)
 
     // Glyph
-    if let font = self.font,
-      let descript = font.glyfTable?.descript[mapping.1] as? TCGlyphDescription {
-      let index = descript.glyphIndex
-      let head = font.headTable
-      let hmtx = font.hmtxTable
-      let glyph = TCTTGlyph(glyphDescription: descript,
-                            leftSideBearing: hmtx.leftSideBearing(at: index),
-                            advanceWidth: hmtx.advanceWidth(at: index))
-
+    if let glyph = font?.glyph(at: mapping.1),
+      let head = font?.headTable {
       let size = item.imageView?.bounds.size
       let pixelSize = collectionView.convertToBacking(size!)
 
@@ -86,6 +80,8 @@ class TCCharacterMapWindowController: NSWindowController, NSCollectionViewDataSo
         let image = NSImage(cgImage: cgImage, size: CGSize.zero)
         item.imageView?.image = image
       }
+    } else {
+      item.imageView?.image = nil
     }
     return item
   }

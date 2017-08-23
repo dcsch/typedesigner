@@ -31,6 +31,7 @@ class TCFont: NSObject {
   var os2Table: TCOs2Table
   var postTable: TCPostTable
   var glyfTable: TCGlyfTable?
+  var cffTable: TCCffTable?
   var ascent: Int {
     get {
       return Int(hheaTable.ascender)
@@ -144,7 +145,40 @@ class TCFont: NSObject {
       glyfTable = try TCFont.table(tables: tables, tag: TCTableTag.glyf)
     }
 
+    // If this is a CFF outline, then we'll have a 'CFF' table
+    if tableDirectory.hasEntry(tag: TCTableTag.CFF.rawValue) {
+      cffTable = try TCFont.table(tables: tables, tag: TCTableTag.CFF)
+    }
+
     super.init()
+  }
+
+  /**
+   Retrieve a glyph from this font. This works for both TrueType and CFF
+   outlines.
+   - returns: a glyph
+   - parameter at: the glyph index
+   */
+  func glyph(at index: Int) -> TCGlyph? {
+    if let glyfTable = self.glyfTable,
+      let description = glyfTable.description(at: index) as? TCGlyphDescription {
+      return TCTTGlyph(glyphDescription: description,
+                       leftSideBearing: hmtxTable.leftSideBearing(at: index),
+                       advanceWidth: hmtxTable.advanceWidth(at: index))
+    } else if let cffTable = self.cffTable {
+
+      let font = cffTable.fonts[0]
+      let charstring = font.charstrings[index]
+      let localSubrIndex = font.localSubrIndex
+      let globalSubrIndex = cffTable.globalSubrIndex
+      let glyph = TCT2Glyph(charstring: charstring,
+                            localSubrIndex: localSubrIndex,
+                            globalSubrIndex: globalSubrIndex,
+                            leftSideBearing: 0, advanceWidth: 0)
+      return glyph
+    } else {
+      return nil
+    }
   }
 
   class func table<T>(tables: [TCTable], tag: TCTableTag) throws -> T {
