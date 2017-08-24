@@ -12,8 +12,8 @@ import IOUtils
 class TCTTCHeader {
   let ttcTag: Int32
   let version: Int32
-  let directoryCount: Int32
-  var tableDirectory: [Int32]
+  let directoryCount: Int
+  var tableDirectory: [Int]
   let dsigTag: Int32
   let dsigLength: Int32
   let dsigOffset: Int32
@@ -29,10 +29,10 @@ class TCTTCHeader {
     let dataInput = TCDataInput(data: data)
     ttcTag = dataInput.readInt32()
     version = dataInput.readInt32()
-    directoryCount = dataInput.readInt32()
+    directoryCount = Int(dataInput.readInt32())
     tableDirectory = []
     for _ in 0..<directoryCount {
-      tableDirectory.append(dataInput.readInt32())
+      tableDirectory.append(Int(dataInput.readInt32()))
     }
     if version == 0x00020000 {
       dsigTag = dataInput.readInt32()

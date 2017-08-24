@@ -47,13 +47,13 @@ class TCFontCollection: NSObject {
     } else if TCTTCHeader.isTTC(data: data) {
 
       // This is a TrueType font collection
-      ttcHeader = TCTTCHeader(data: data)
-      for i in 0 ..< Int((ttcHeader?.directoryCount)!) {
-        let offset = ttcHeader?.tableDirectory[i]
-        let fontData = data.subdata(in: Int(offset!)..<data.count)
-        let font = try TCFont(data: fontData, tablesOrigin: UInt(offset!))
+      let header = TCTTCHeader(data: data)
+      for offset in header.tableDirectory {
+        let fontData = data.subdata(in: offset..<data.count)
+        let font = try TCFont(data: fontData, tablesOrigin: offset)
         fonts.append(font)
       }
+      ttcHeader = header
     } else {
 
       // This is a standalone font file

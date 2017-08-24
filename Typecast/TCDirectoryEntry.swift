@@ -12,8 +12,8 @@ import IOUtils
 struct TCDirectoryEntry {
   let tag: UInt32
   let checksum: UInt32
-  let offset: UInt32
-  let length: UInt32
+  let offset: Int
+  let length: Int
   var tagAsString: String {
     get {
       return String(format: "%c%c%c%c",
@@ -27,11 +27,11 @@ struct TCDirectoryEntry {
   init(dataInput: TCDataInput) {
     tag = dataInput.readUInt32()
     checksum = dataInput.readUInt32()
-    offset = dataInput.readUInt32()
-    length = dataInput.readUInt32()
+    offset = Int(dataInput.readUInt32())
+    length = Int(dataInput.readUInt32())
   }
 
-  init(tag: UInt32, checksum: UInt32, offset: UInt32, length: UInt32) {
+  init(tag: UInt32, checksum: UInt32, offset: Int, length: Int) {
     self.tag = tag
     self.checksum = checksum
     self.offset = offset

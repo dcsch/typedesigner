@@ -60,7 +60,7 @@ class TCFont: NSObject {
        also zero, but within a Mac resource, it is the beginning of the
        individual font resource data.
    */
-  init(data: Data, tablesOrigin: UInt) throws {
+  init(data: Data, tablesOrigin: Int) throws {
 
     // Load the table directory
     let dataInput = TCDataInput(data: data)
@@ -115,9 +115,8 @@ class TCFont: NSObject {
         continue;
       }
 
-      let offset = UInt(entry.offset) - tablesOrigin
-      let tableData = data.subdata(in:
-        Int(offset)..<Int(offset + UInt(entry.length)))
+      let offset = entry.offset - tablesOrigin
+      let tableData = data.subdata(in: offset..<offset + entry.length)
       do {
         let table = try TCTableFactory.createTable(tables: tables,
                                                    data: tableData,
@@ -202,11 +201,10 @@ class TCFont: NSObject {
   }
 
   class func readTable<T>(directory: TCTableDirectory, tables: [TCTable],
-                          tag: TCTableTag, data: Data, tablesOrigin: UInt) throws -> T {
+                          tag: TCTableTag, data: Data, tablesOrigin: Int) throws -> T {
     if let entry = directory.entry(tag: tag.rawValue) {
-      let offset = UInt(entry.offset) - tablesOrigin
-      let tableData = data.subdata(in:
-        Int(offset)..<Int(offset + UInt(entry.length)))
+      let offset = entry.offset - tablesOrigin
+      let tableData = data.subdata(in: offset..<offset + entry.length)
       let table = try TCTableFactory.createTable(tables: tables,
                                                  data: tableData,
                                                  directoryEntry: entry)
