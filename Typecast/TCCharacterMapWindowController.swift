@@ -12,7 +12,8 @@ import os.log
 /**
  An editor for the character-to-glyph map, as represented in the CmapTable.
  */
-class TCCharacterMapWindowController: NSWindowController, NSCollectionViewDataSource {
+class TCCharacterMapWindowController: NSWindowController,
+    NSCollectionViewDataSource, NSCollectionViewDelegate {
   @IBOutlet weak var collectionView: NSCollectionView?
   weak var cmapIndexEntry: TCCmapIndexEntry?
   var characterMappings = [(Int, Int)]()
@@ -52,7 +53,7 @@ class TCCharacterMapWindowController: NSWindowController, NSCollectionViewDataSo
   func collectionView(_ collectionView: NSCollectionView,
                       itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
     let item = collectionView.makeItem(withIdentifier: "charItem", for: indexPath)
-    let mapping = characterMappings[indexPath[1]]
+    let mapping = characterMappings[indexPath.item]
 
     // Character code
     item.textField?.stringValue = String(format: "%04X", mapping.0)
@@ -84,5 +85,22 @@ class TCCharacterMapWindowController: NSWindowController, NSCollectionViewDataSo
       item.imageView?.image = nil
     }
     return item
+  }
+
+  func collectionView(_ collectionView: NSCollectionView,
+                      didSelectItemsAt indexPaths: Set<IndexPath>) {
+    if let item = indexPaths.first?.item {
+      let glyphIndex = characterMappings[item].1
+      if let glyph = font?.glyph(at: glyphIndex) {
+        show(glyph: glyph)
+      }
+    }
+  }
+
+  func show(glyph: TCGlyph) {
+    let windowController = TCGlyphWindowController(windowNibName: "GlyphWindow")
+    document?.addWindowController(windowController)
+    windowController.glyph = glyph
+    windowController.showWindow(self)
   }
 }

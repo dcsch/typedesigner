@@ -17,9 +17,9 @@ class TCGlyphListViewController: NSViewController {
   }
 
   func showGlyphs(_ glyphs: [TCGlyphDescription]) {
-    let windowController = TCGlyphWindowController(windowNibName: "GlyphWindow")
-    document?.addWindowController(windowController)
-    windowController.glyphDescription = glyphs.last
-    windowController.showWindow(self)
+//    let windowController = TCGlyphWindowController(windowNibName: "GlyphWindow")
+//    document?.addWindowController(windowController)
+//    windowController.glyphDescription = glyphs.last
+//    windowController.showWindow(self)
   }
 }

@@ -17,13 +17,18 @@ class TCDocument: NSDocument {
     if let collection = fontCollection {
 
       // If this is a font collection, show the collection window, otherwise,
-      // show the table window
+      // show the character map window
       if collection.fonts.count > 1 {
         let controller = TCCollectionWindowController(windowNibName: "CollectionWindow")
         addWindowController(controller)
       } else if collection.fonts.count == 1 {
-        let controller = TCTablesWindowController(windowNibName: "TablesWindow")
-        controller.font = collection.fonts[0]
+//        let controller = TCTablesWindowController(windowNibName: "TablesWindow")
+//        controller.font = collection.fonts[0]
+//        addWindowController(controller)
+
+        let controller = TCCharacterMapWindowController(windowNibName: "CharacterMapWindow")
+        let font = collection.fonts[0]
+        controller.cmapIndexEntry = font.cmapTable.entries.first
         addWindowController(controller)
       }
     }

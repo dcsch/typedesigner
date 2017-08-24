@@ -18,9 +18,9 @@ class TCCharstringListViewController: NSViewController {
   }
 
   func showGlyphs(_ charstrings: [CFFCharstring]) {
-    let windowController = TCGlyphWindowController(windowNibName: "GlyphWindow")
-    document?.addWindowController(windowController)
-    windowController.charstring = charstrings.last
-    windowController.showWindow(self)
+//    let windowController = TCGlyphWindowController(windowNibName: "GlyphWindow")
+//    document?.addWindowController(windowController)
+//    windowController.charstring = charstrings.last
+//    windowController.showWindow(self)
   }
 }

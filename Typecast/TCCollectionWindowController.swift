@@ -26,9 +26,9 @@ class TCCollectionWindowController: NSWindowController {
   }
 
   func showFonts(_ fonts: [TCFont]) {
-    let windowController = TCTablesWindowController(windowNibName: "TablesWindow")
-    self.document?.addWindowController(windowController)
-    windowController.font = fonts.last
-    windowController.showWindow(self)
+    let controller = TCCharacterMapWindowController(windowNibName: "CharacterMapWindow")
+    controller.cmapIndexEntry = fonts.last?.cmapTable.entries.first
+    self.document?.addWindowController(controller)
+    controller.showWindow(self)
   }
 }
