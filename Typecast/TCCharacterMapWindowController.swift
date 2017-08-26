@@ -55,6 +55,10 @@ class TCCharacterMapWindowController: NSWindowController,
     let item = collectionView.makeItem(withIdentifier: "charItem", for: indexPath)
     let mapping = characterMappings[indexPath.item]
 
+    item.representedObject = (document, 0, mapping.1)
+
+    os_log("item %d", mapping.1)
+
     // Character code
     item.textField?.stringValue = String(format: "%04X", mapping.0)
 
@@ -81,6 +85,23 @@ class TCCharacterMapWindowController: NSWindowController,
         let image = NSImage(cgImage: cgImage, size: CGSize.zero)
         item.imageView?.image = image
       }
+
+//      // Are we selected?
+//      if item.isSelected {
+//        os_log("selected")
+//      } else {
+//      }
+
+//      switch item.highlightState {
+//      case .none: break
+//        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//      case .forSelection:
+//        item.view.layer?.backgroundColor = CGColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+//      case .forDeselection: break
+//        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//      case .asDropTarget: break
+//        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//      }
     } else {
       item.imageView?.image = nil
     }
@@ -89,18 +110,9 @@ class TCCharacterMapWindowController: NSWindowController,
 
   func collectionView(_ collectionView: NSCollectionView,
                       didSelectItemsAt indexPaths: Set<IndexPath>) {
-    if let item = indexPaths.first?.item {
-      let glyphIndex = characterMappings[item].1
-      if let glyph = font?.glyph(at: glyphIndex) {
-        show(glyph: glyph)
-      }
-    }
   }
 
-  func show(glyph: TCGlyph) {
-    let windowController = TCGlyphWindowController(windowNibName: "GlyphWindow")
-    document?.addWindowController(windowController)
-    windowController.glyph = glyph
-    windowController.showWindow(self)
+  func collectionView(_ collectionView: NSCollectionView,
+                      didDeselectItemsAt indexPaths: Set<IndexPath>) {
   }
 }

@@ -44,7 +44,7 @@
             </constraints>
             <point key="canvasLocation" x="-62" y="78"/>
         </customView>
-        <collectionViewItem id="bhL-UP-wsw">
+        <collectionViewItem id="bhL-UP-wsw" customClass="CharacterMapItem" customModule="Type_Designer" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="wHR-LU-bu6" id="Tm6-8i-dmv"/>
                 <outlet property="textField" destination="GEK-rS-jSa" id="mZF-C7-8wq"/>

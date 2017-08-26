@@ -45,6 +45,7 @@
 		03C40BF31F36A84300CD6BAC /* TCMaxpTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF21F36A84300CD6BAC /* TCMaxpTable.swift */; };
 		03C40BF51F36F99A00CD6BAC /* TCLocaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF41F36F99A00CD6BAC /* TCLocaTable.swift */; };
 		03C40BF71F3795C800CD6BAC /* TCID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF61F3795C800CD6BAC /* TCID.swift */; };
+		03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D07AA91F4F87580070F49D /* CharacterMapItem.swift */; };
 		03F687211F39654200F467BA /* TCCffTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6871D1F39565000F467BA /* TCCffTable.swift */; };
 		03F905CC1F37A8840008FF3E /* TCCmapTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CB1F37A8840008FF3E /* TCCmapTable.swift */; };
 		03F905CE1F37AB410008FF3E /* TCCmapIndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */; };
@@ -203,6 +204,7 @@
 		03C40BF21F36A84300CD6BAC /* TCMaxpTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCMaxpTable.swift; sourceTree = "<group>"; };
 		03C40BF41F36F99A00CD6BAC /* TCLocaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCLocaTable.swift; sourceTree = "<group>"; };
 		03C40BF61F3795C800CD6BAC /* TCID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCID.swift; sourceTree = "<group>"; };
+		03D07AA91F4F87580070F49D /* CharacterMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMapItem.swift; sourceTree = "<group>"; };
 		03F6871D1F39565000F467BA /* TCCffTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCffTable.swift; sourceTree = "<group>"; };
 		03F905CB1F37A8840008FF3E /* TCCmapTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapTable.swift; sourceTree = "<group>"; };
 		03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapIndexEntry.swift; sourceTree = "<group>"; };
@@ -289,6 +291,72 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		03D07AA31F4F80110070F49D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				030A32A81F314823006B2BAC /* TCAppDelegate.swift */,
+				03F905E11F39010A0008FF3E /* TCTablesWindowController.swift */,
+				03F905E31F391C040008FF3E /* TCGlyphListViewController.swift */,
+				03FF50221F46175C009F5F0C /* TCCharstringListViewController.swift */,
+				03B311F01F295747001E6712 /* TCGlyphWindowController.swift */,
+				03FF50261F47629E009F5F0C /* TCDumpViewController.swift */,
+				03F905E51F391E790008FF3E /* TCCharacterMapWindowController.swift */,
+				03D07AA91F4F87580070F49D /* CharacterMapItem.swift */,
+				03F905E71F3928E70008FF3E /* TCCharacterMapListViewController.swift */,
+				039845FB1F1FD57E0040988F /* TCCollectionWindowController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		03D07AA61F4F80340070F49D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6373B1C4166A11B5007EC53F /* TCDocument.xib */,
+				6373B1C7166A11B5007EC53F /* MainMenu.xib */,
+				630AA393166B2483001BD6BF /* TablesWindow.xib */,
+				63E96FA3167DEDE800874FBC /* GlyphListView.xib */,
+				03FF50231F46175C009F5F0C /* CharstringListView.xib */,
+				63F16EE21681B42E00306A20 /* GlyphWindow.xib */,
+				03FF50271F47629E009F5F0C /* DumpView.xib */,
+				63134728168583760025CDFE /* CharacterMapWindow.xib */,
+				03FF506B1F4A5F66009F5F0C /* CharacterMapItem.xib */,
+				6313472E16858EC10025CDFE /* CharacterMapListView.xib */,
+				63BFC2441690108700435BC8 /* CollectionWindow.xib */,
+				6373B1B7166A11B5007EC53F /* Type-Designer-Info.plist */,
+				6373B1B8166A11B5007EC53F /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		03D07AA71F4F80610070F49D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				03C162901F2174BB00A44848 /* TCGlyphView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		03D07AA81F4F80F50070F49D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				03B311F41F2A7128001E6712 /* TCDocument.swift */,
+				03B311F61F2A9CC3001E6712 /* TCFont.swift */,
+				03FF3A231F2F9C2C005F07AB /* TCDirectoryEntry.swift */,
+				03B311F81F2A9D60001E6712 /* TCFontCollection.swift */,
+				03FF3A251F2FA86A005F07AB /* TCTableDirectory.swift */,
+				03FF3A211F2F8CCB005F07AB /* TCTableFactory.swift */,
+				03B311F21F29B5AD001E6712 /* TCGlyph.swift */,
+				03B619151F3E10BC00EA1D0E /* TCTTGlyph.swift */,
+				03B619171F3E128200EA1D0E /* TCT2Glyph.swift */,
+				03B311EE1F294C58001E6712 /* TCPoint.swift */,
+				03B311EC1F280D3F001E6712 /* TCGlyphPathFactory.swift */,
+				03F905DB1F38DDF70008FF3E /* TCGlyphImageFactory.swift */,
+				03F905DD1F38DEC40008FF3E /* TCMnemonic.swift */,
+				03F905DF1F38E8E50008FF3E /* TCDisassembler.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		03FF50001F44C2EC009F5F0C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,9 +424,9 @@
 		6373B1A0166A11B5007EC53F = {
 			isa = PBXGroup;
 			children = (
+				6365E66C167559690054AAB3 /* README.md */,
 				03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */,
 				03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */,
-				6365E66C167559690054AAB3 /* README.md */,
 				6373B1B5166A11B5007EC53F /* Type Designer */,
 				6373B1D5166A11B5007EC53F /* Type Designer Tests */,
 				6373B1AE166A11B5007EC53F /* Frameworks */,
@@ -397,45 +465,13 @@
 		6373B1B5166A11B5007EC53F /* Type Designer */ = {
 			isa = PBXGroup;
 			children = (
-				03A6611D1F17FD43007864A8 /* Type Designer-Bridging-Header.h */,
 				630AA399166B5A17001BD6BF /* Tables */,
 				63534560168DB12C00C66A9F /* Suitcase */,
-				03B311F41F2A7128001E6712 /* TCDocument.swift */,
-				6373B1C4166A11B5007EC53F /* TCDocument.xib */,
-				6373B1C7166A11B5007EC53F /* MainMenu.xib */,
 				6373B1B6166A11B5007EC53F /* Supporting Files */,
-				03B311F61F2A9CC3001E6712 /* TCFont.swift */,
-				03FF3A231F2F9C2C005F07AB /* TCDirectoryEntry.swift */,
-				03B311F81F2A9D60001E6712 /* TCFontCollection.swift */,
-				03FF3A251F2FA86A005F07AB /* TCTableDirectory.swift */,
-				030A32A81F314823006B2BAC /* TCAppDelegate.swift */,
-				03F905E11F39010A0008FF3E /* TCTablesWindowController.swift */,
-				630AA393166B2483001BD6BF /* TablesWindow.xib */,
-				03FF3A211F2F8CCB005F07AB /* TCTableFactory.swift */,
-				03F905E31F391C040008FF3E /* TCGlyphListViewController.swift */,
-				63E96FA3167DEDE800874FBC /* GlyphListView.xib */,
-				03FF50221F46175C009F5F0C /* TCCharstringListViewController.swift */,
-				03FF50231F46175C009F5F0C /* CharstringListView.xib */,
-				03B311F01F295747001E6712 /* TCGlyphWindowController.swift */,
-				63F16EE21681B42E00306A20 /* GlyphWindow.xib */,
-				03FF50261F47629E009F5F0C /* TCDumpViewController.swift */,
-				03FF50271F47629E009F5F0C /* DumpView.xib */,
-				03C162901F2174BB00A44848 /* TCGlyphView.swift */,
-				03B311F21F29B5AD001E6712 /* TCGlyph.swift */,
-				03B619151F3E10BC00EA1D0E /* TCTTGlyph.swift */,
-				03B619171F3E128200EA1D0E /* TCT2Glyph.swift */,
-				03B311EE1F294C58001E6712 /* TCPoint.swift */,
-				03B311EC1F280D3F001E6712 /* TCGlyphPathFactory.swift */,
-				03F905E51F391E790008FF3E /* TCCharacterMapWindowController.swift */,
-				63134728168583760025CDFE /* CharacterMapWindow.xib */,
-				03FF506B1F4A5F66009F5F0C /* CharacterMapItem.xib */,
-				03F905E71F3928E70008FF3E /* TCCharacterMapListViewController.swift */,
-				6313472E16858EC10025CDFE /* CharacterMapListView.xib */,
-				03F905DB1F38DDF70008FF3E /* TCGlyphImageFactory.swift */,
-				03F905DD1F38DEC40008FF3E /* TCMnemonic.swift */,
-				03F905DF1F38E8E50008FF3E /* TCDisassembler.swift */,
-				039845FB1F1FD57E0040988F /* TCCollectionWindowController.swift */,
-				63BFC2441690108700435BC8 /* CollectionWindow.xib */,
+				03D07AA31F4F80110070F49D /* Controllers */,
+				03D07AA71F4F80610070F49D /* Views */,
+				03D07AA81F4F80F50070F49D /* Model */,
+				03D07AA61F4F80340070F49D /* Resources */,
 			);
 			name = "Type Designer";
 			path = Typecast;
@@ -444,8 +480,7 @@
 		6373B1B6166A11B5007EC53F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6373B1B7166A11B5007EC53F /* Type-Designer-Info.plist */,
-				6373B1B8166A11B5007EC53F /* InfoPlist.strings */,
+				03A6611D1F17FD43007864A8 /* Type Designer-Bridging-Header.h */,
 				6373B1BD166A11B5007EC53F /* Type-Designer-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -701,6 +736,7 @@
 				0348BE751F33EF6800446B58 /* TCPrepTable.swift in Sources */,
 				03B311F91F2A9D60001E6712 /* TCFontCollection.swift in Sources */,
 				030A32A91F314823006B2BAC /* TCAppDelegate.swift in Sources */,
+				03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */,
 				03F905DC1F38DDF70008FF3E /* TCGlyphImageFactory.swift in Sources */,
 				03C40BEF1F3532ED00CD6BAC /* TCGlyfBaseDescript.swift in Sources */,
 				03FF502B1F477496009F5F0C /* TCVmtxTable.swift in Sources */,

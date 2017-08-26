@@ -66,4 +66,12 @@ class TCDocument: NSDocument {
   override class func autosavesInPlace() -> Bool {
     return true
   }
+
+  func showGlyphWindow(fontIndex: Int, glyphIndex: Int) {
+    let glyph = fontCollection?.fonts[fontIndex].glyph(at: glyphIndex)
+    let controller = TCGlyphWindowController(windowNibName: "GlyphWindow")
+    controller.glyph = glyph
+    addWindowController(controller)
+    controller.showWindow(self)
+  }
 }

@@ -8,7 +8,6 @@
 
 import Cocoa
 import os.log
-import CFF
 
 class TCGlyphWindowController: NSWindowController {
   var glyph: TCGlyph?
