@@ -22,10 +22,6 @@ class TCDocument: NSDocument {
         let controller = TCCollectionWindowController(windowNibName: "CollectionWindow")
         addWindowController(controller)
       } else if collection.fonts.count == 1 {
-//        let controller = TCTablesWindowController(windowNibName: "TablesWindow")
-//        controller.font = collection.fonts[0]
-//        addWindowController(controller)
-
         let controller = TCCharacterMapWindowController(windowNibName: "CharacterMapWindow")
         let font = collection.fonts[0]
         controller.cmapIndexEntry = font.cmapTable.entries.first
@@ -67,7 +63,43 @@ class TCDocument: NSDocument {
     return true
   }
 
+  @IBAction func showTablesWindow(_ sender: Any?) {
+
+    // Show an existing tables window
+    for controller in windowControllers {
+      if controller is TCTablesWindowController {
+        controller.showWindow(self)
+        return
+      }
+    }
+
+    // Otherwise we create a new one
+    if let collection = fontCollection {
+
+      // TODO Manage collections
+      if collection.fonts.count == 1 {
+        let controller = TCTablesWindowController(windowNibName: "TablesWindow")
+        controller.font = collection.fonts[0]
+        addWindowController(controller)
+        controller.showWindow(self)
+      }
+    }
+  }
+
   func showGlyphWindow(fontIndex: Int, glyphIndex: Int) {
+
+    // TODO We need to uniquely identify glyphs without them being instantiated
+//    // Show an existing glyph window of this glyph
+//    for controller in windowControllers {
+//      if let glyphWindowController as? TCGlyphWindowController {
+//        if glyphWindowController something something {
+//          glyphWindowController.showWindow(self)
+//          return
+//        }
+//      }
+//    }
+
+    // Otherwise create a new window
     let glyph = fontCollection?.fonts[fontIndex].glyph(at: glyphIndex)
     let controller = TCGlyphWindowController(windowNibName: "GlyphWindow")
     controller.glyph = glyph
