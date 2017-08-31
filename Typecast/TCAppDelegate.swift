@@ -20,11 +20,14 @@ class TCAppDelegate: NSObject, NSApplicationDelegate {
     // Insert code here to tear down your application
   }
 
+  func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+    return false
+  }
+
   @IBAction func showPreferencePanel(sender: Any?) {
     //    if (!preferenceController)
     //        preferenceController = [[PreferencesWindowController alloc] init];
     //    [preferenceController showWindow:self];
     os_log("No preference panel as yet")
   }
-
 }

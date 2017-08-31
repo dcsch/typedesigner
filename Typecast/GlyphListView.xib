@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TCGlyphListViewController" customModule="Type_Designer" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="4" id="KDb-aA-2RE"/>
                 <outlet property="view" destination="1" id="2"/>
             </connections>
         </customObject>
@@ -23,14 +24,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="6" id="4">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="6" viewBased="YES" id="4">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="249"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="74.85546875" minWidth="40" maxWidth="1000" id="8">
+                                    <tableColumn identifier="GlyphIndex" editable="NO" width="74.85546875" minWidth="40" maxWidth="1000" id="8">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Glyph Index">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -42,15 +43,28 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        <connections>
-                                            <binding destination="18" name="value" keyPath="arrangedObjects.glyphIndex" id="30">
-                                                <dictionary key="options">
-                                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                </dictionary>
-                                            </binding>
-                                        </connections>
+                                        <prototypeCellViews>
+                                            <tableCellView id="52D-ed-0ww">
+                                                <rect key="frame" x="1" y="1" width="75" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZg-AF-qDO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View" id="0HE-4G-Gw4">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </subviews>
+                                                <connections>
+                                                    <outlet property="textField" destination="cZg-AF-qDO" id="Vmm-YD-uwF"/>
+                                                </connections>
+                                            </tableCellView>
+                                        </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="399" minWidth="40" maxWidth="1000" id="9">
+                                    <tableColumn identifier="GlyphName" editable="NO" width="399" minWidth="40" maxWidth="1000" id="9">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Glyph Name">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,22 +76,32 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                        <connections>
-                                            <binding destination="18" name="value" keyPath="arrangedObjects.name" id="47"/>
-                                        </connections>
+                                        <prototypeCellViews>
+                                            <tableCellView id="ENr-Mt-c4D">
+                                                <rect key="frame" x="79" y="1" width="399" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wo9-Nu-9gD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="399" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="z0t-jr-tUW">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </subviews>
+                                                <connections>
+                                                    <outlet property="textField" destination="Wo9-Nu-9gD" id="nLL-KT-F78"/>
+                                                </connections>
+                                            </tableCellView>
+                                        </prototypeCellViews>
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <binding destination="18" name="doubleClickArgument" keyPath="selectedObjects" id="yIC-0c-miD">
-                                        <dictionary key="options">
-                                            <string key="NSSelectorName">showGlyphs:</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="doubleClickTarget" keyPath="self" previousBinding="yIC-0c-miD" id="2mZ-r6-gAi">
-                                        <dictionary key="options">
-                                            <string key="NSSelectorName">showGlyphs:</string>
-                                        </dictionary>
-                                    </binding>
+                                    <action trigger="doubleAction" selector="showGlyphWindow:" target="-2" id="gQ3-7a-UY1"/>
+                                    <outlet property="dataSource" destination="-2" id="hts-JK-vQO"/>
+                                    <outlet property="delegate" destination="-2" id="4Gu-cU-BdV"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -103,11 +127,5 @@
                 <constraint firstItem="3" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" id="17"/>
             </constraints>
         </customView>
-        <arrayController objectClassName="TCGlyfDescript" editable="NO" id="18">
-            <connections>
-                <binding destination="-2" name="contentArray" keyPath="representedObject.descript" id="25"/>
-            </connections>
-        </arrayController>
-        <userDefaultsController representsSharedInstance="YES" id="19"/>
     </objects>
 </document>

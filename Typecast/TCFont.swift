@@ -170,7 +170,8 @@ class TCFont: NSObject {
       let charstring = font.charstrings[index]
       let localSubrIndex = font.localSubrIndex
       let globalSubrIndex = cffTable.globalSubrIndex
-      let glyph = TCT2Glyph(charstring: charstring,
+      let glyph = TCT2Glyph(glyphIndex: index,
+                            charstring: charstring,
                             localSubrIndex: localSubrIndex,
                             globalSubrIndex: globalSubrIndex,
                             leftSideBearing: 0, advanceWidth: 0)

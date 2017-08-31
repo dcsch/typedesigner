@@ -10,6 +10,7 @@ import Cocoa
 import os.log
 
 class CharacterMapItem: NSCollectionViewItem {
+  var characterMapViewController: CharacterMapViewController?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -17,9 +18,9 @@ class CharacterMapItem: NSCollectionViewItem {
   }
 
   override func mouseDown(with event: NSEvent) {
-    if event.clickCount == 2 {
-      let (document, fontIndex, glyphIndex) = representedObject as! (TCDocument, Int, Int)
-      document.showGlyphWindow(fontIndex: fontIndex, glyphIndex: glyphIndex)
+    if event.clickCount == 2,
+      let controller = characterMapViewController {
+      controller.performSegue(withIdentifier: "ShowGlyph", sender: self)
     } else {
       super.mouseDown(with: event)
     }

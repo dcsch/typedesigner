@@ -9,7 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TCTablesWindowController" customModule="Type_Designer" customModuleProvider="target">
             <connections>
                 <outlet property="containerView" destination="148" id="163"/>
-                <outlet property="tableArrayController" destination="zEF-eC-gI5" id="6Ut-a7-uVD"/>
+                <outlet property="tableView" destination="131" id="sva-Bj-bLO"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -34,7 +34,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="105" height="272"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="131">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="131">
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="272"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -53,16 +53,30 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                    <connections>
-                                                        <binding destination="zEF-eC-gI5" name="value" keyPath="arrangedObjects.name" id="6le-pQ-rHb">
-                                                            <dictionary key="options">
-                                                                <bool key="NSConditionallySetsEditable" value="YES"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
+                                                    <prototypeCellViews>
+                                                        <tableCellView identifier="TableName" id="gyE-dL-RXo">
+                                                            <rect key="frame" x="1" y="1" width="102" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AX-PS-hkt">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="102" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="kYy-MK-Wnh">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="5AX-PS-hkt" id="Z5v-KO-lHf"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <outlet property="dataSource" destination="-2" id="BeD-pn-yNl"/>
                                                 <outlet property="delegate" destination="-2" id="165"/>
                                             </connections>
                                         </tableView>
@@ -100,11 +114,5 @@
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
         </window>
-        <userDefaultsController representsSharedInstance="YES" id="20"/>
-        <arrayController id="zEF-eC-gI5">
-            <connections>
-                <binding destination="-2" name="contentArray" keyPath="font.tables" id="GWC-CP-pJm"/>
-            </connections>
-        </arrayController>
     </objects>
 </document>

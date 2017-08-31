@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import os.log
 
 class TCDocument: NSDocument {
 
@@ -14,19 +15,29 @@ class TCDocument: NSDocument {
 
   override func makeWindowControllers() {
 
-    if let collection = fontCollection {
+//    if let collection = fontCollection {
+//
+//      // If this is a font collection, show the collection window, otherwise,
+//      // show the character map window
+//      if collection.fonts.count > 1 {
+//        let controller = TCCollectionWindowController(windowNibName: "CollectionWindow")
+//        addWindowController(controller)
+//      } else if collection.fonts.count == 1 {
+//        let controller = TCCharacterMapWindowController(windowNibName: "CharacterMapWindow")
+//        let font = collection.fonts[0]
+//        controller.cmapIndexEntry = font.cmapTable.entries.first
+//        addWindowController(controller)
+//      }
+//    }
 
-      // If this is a font collection, show the collection window, otherwise,
-      // show the character map window
-      if collection.fonts.count > 1 {
-        let controller = TCCollectionWindowController(windowNibName: "CollectionWindow")
-        addWindowController(controller)
-      } else if collection.fonts.count == 1 {
-        let controller = TCCharacterMapWindowController(windowNibName: "CharacterMapWindow")
-        let font = collection.fonts[0]
-        controller.cmapIndexEntry = font.cmapTable.entries.first
-        addWindowController(controller)
-      }
+    // Returns the Storyboard that contains your Document window.
+    let storyboard = NSStoryboard(name: "Main", bundle: nil)
+    let windowController = storyboard.instantiateController(withIdentifier: "Document Window Controller") as! NSWindowController
+    self.addWindowController(windowController)
+
+    // Set the document
+    if let viewController = windowController.contentViewController as? CharacterMapViewController {
+      viewController.document = self
     }
   }
 

@@ -8,11 +8,12 @@
 
 import Cocoa
 
-class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
+class TCTablesWindowController: NSWindowController, NSTableViewDelegate,
+    NSTableViewDataSource {
   var font: TCFont?
   var containedViewController: NSViewController?
   @IBOutlet weak var containerView: NSView?
-  @IBOutlet weak var tableArrayController: NSArrayController?
+  @IBOutlet weak var tableView: NSTableView?
 
   override func windowDidLoad() {
     super.windowDidLoad()
@@ -28,9 +29,9 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
 
       // If this is the only font in the collection, then closing this
       // window should close the document
-      if fontCollection.fonts.count == 1 {
-        self.shouldCloseDocument = true
-      }
+//      if fontCollection.fonts.count == 1 {
+//        self.shouldCloseDocument = true
+//      }
     }
   }
 
@@ -43,12 +44,13 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
     containerView?.removeConstraints((containerView?.constraints)!)
     containedViewController = nil
 
-    if let table = (tableArrayController?.selectedObjects as! [TCTable]).last {
+    if let tableView = self.tableView,
+      tableView.selectedRow >= 0,
+      let table = font?.tables[tableView.selectedRow] {
       let tag = type(of: table).tag
       if tag == TCTableTag.glyf.rawValue {
         if let vc = TCGlyphListViewController(nibName: "GlyphListView", bundle: nil) {
-          vc.representedObject = table
-          vc.document = document as? TCDocument
+          vc.representedObject = (document, table)
           containedViewController = vc
         }
       } else if tag == TCTableTag.CFF.rawValue {
@@ -115,6 +117,29 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate {
                            multiplier: 1.0,
                            constant: 0.0))
     }
+  }
+
+  func numberOfRows(in tableView: NSTableView) -> Int {
+    if let count = font?.tables.count {
+      return count
+    } else {
+      return 0
+    }
+  }
+
+  func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    if let view = tableView.make(withIdentifier: "TableName", owner: self) as? NSTableCellView,
+      let font = self.font {
+      let tag = type(of: font.tables[row]).tag
+      let name = String(format: "%c%c%c%c",
+                        CChar(truncatingBitPattern:tag >> 24),
+                        CChar(truncatingBitPattern:tag >> 16),
+                        CChar(truncatingBitPattern:tag >> 8),
+                        CChar(truncatingBitPattern:tag))
+      view.textField?.stringValue = name
+      return view
+    }
+    return nil
   }
 
   func tableViewSelectionDidChange(_ notification: Notification) {

@@ -14,6 +14,7 @@ import CFF
  An individual Type 2 Charstring glyph within a font.
  */
 class TCT2Glyph: NSObject, TCGlyph {
+  let glyphIndex: Int
   var leftSideBearing: Int
   var advanceWidth: Int
   var points: [CFFPoint]
@@ -27,11 +28,13 @@ class TCT2Glyph: NSObject, TCGlyph {
      - leftSideBearing: The Left Side Bearing.
      - advanceWidth: The advance width.
    */
-  init?(charstring: CFFCharstring,
+  init?(glyphIndex: Int,
+        charstring: CFFCharstring,
         localSubrIndex: CFFIndex,
         globalSubrIndex: CFFIndex,
         leftSideBearing: Int,
         advanceWidth: Int) {
+    self.glyphIndex = glyphIndex
     self.leftSideBearing = leftSideBearing
     self.advanceWidth = advanceWidth
     if let cst2 = charstring as? CFFCharstringType2 {

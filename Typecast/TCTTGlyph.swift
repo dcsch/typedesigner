@@ -12,6 +12,7 @@ import Foundation
  An individual TrueType glyph within a font.
  */
 class TCTTGlyph: NSObject, TCGlyph {
+  var glyphIndex: Int
   var leftSideBearing: Int
   var advanceWidth: Int
   var points = [TCPoint]()
@@ -28,11 +29,13 @@ class TCTTGlyph: NSObject, TCGlyph {
        advanceWidth: Int) {
     self.leftSideBearing = leftSideBearing
     self.advanceWidth = advanceWidth
+    self.glyphIndex = -1
     super.init()
     self.read(description: description)
   }
 
   func read(description: TCGlyphDescription) {
+    self.glyphIndex = description.glyphIndex
     var endPtIndex = 0
     points.removeAll()
     for i in 0..<description.pointCount {
