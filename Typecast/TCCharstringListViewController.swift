@@ -10,7 +10,7 @@ import Cocoa
 import CFF
 
 class TCCharstringListViewController: NSViewController {
-  weak var document: TCDocument?
+  weak var document: FontDocument?
 
   override func viewDidLoad() {
       super.viewDidLoad()

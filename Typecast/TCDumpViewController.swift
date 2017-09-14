@@ -9,7 +9,7 @@
 import Cocoa
 
 class TCDumpViewController: NSViewController {
-  weak var document: TCDocument?
+  weak var document: FontDocument?
   @IBOutlet weak var textView: NSTextView?
 
   override func viewDidLoad() {

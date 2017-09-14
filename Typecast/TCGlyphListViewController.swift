@@ -18,7 +18,7 @@ class TCGlyphListViewController: NSViewController, NSTableViewDelegate,
   }
 
   func numberOfRows(in tableView: NSTableView) -> Int {
-    if let (_, table) = representedObject as? (TCDocument, TCGlyfTable) {
+    if let (_, table) = representedObject as? (FontDocument, TCGlyfTable) {
       return table.descript.count
     } else {
       return 0
@@ -26,7 +26,7 @@ class TCGlyphListViewController: NSViewController, NSTableViewDelegate,
   }
 
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-    if let (_, table) = representedObject as? (TCDocument, TCGlyfTable),
+    if let (_, table) = representedObject as? (FontDocument, TCGlyfTable),
       let tableColumn = tableColumn {
       if tableColumn.identifier == "GlyphIndex",
         let view = tableView.make(withIdentifier: "GlyphIndex", owner: self) as? NSTableCellView {
@@ -44,10 +44,9 @@ class TCGlyphListViewController: NSViewController, NSTableViewDelegate,
   }
 
   @IBAction func showGlyphWindow(_ sender: Any?) {
-    if let (document, _) = representedObject as? (TCDocument, TCGlyfTable),
+    if let (document, _) = representedObject as? (FontDocument, TCGlyfTable),
       let tableView = tableView,
       tableView.selectedRow >= 0 {
-        document.showGlyphWindow(fontIndex: 0, glyphIndex: tableView.selectedRow)
     }
   }
 }

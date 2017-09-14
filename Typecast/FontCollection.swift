@@ -1,5 +1,5 @@
 //
-//  TCFontCollection.swift
+//  FontCollection.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/27/17.
@@ -9,8 +9,8 @@
 import Foundation
 import IOUtils
 
-class TCFontCollection: NSObject {
-  var fonts: [TCFont]
+class FontCollection: NSObject {
+  var fonts: [Font]
   var ttcHeader: TCTTCHeader?
   var suitcase: Bool
 
@@ -41,7 +41,7 @@ class TCFontCollection: NSObject {
       for resourceReference in (resourceType?.references)! {
         let offset = resourceHeader.dataOffset + UInt32(resourceReference.dataOffset + 4)
         let resData = data.subdata(in: Int(offset)..<data.count)
-        let font = try TCFont(data: resData, tablesOrigin: 0)
+        let font = try Font(data: resData, tablesOrigin: 0)
         fonts.append(font)
       }
     } else if TCTTCHeader.isTTC(data: data) {
@@ -50,14 +50,14 @@ class TCFontCollection: NSObject {
       let header = TCTTCHeader(data: data)
       for offset in header.tableDirectory {
         let fontData = data.subdata(in: offset..<data.count)
-        let font = try TCFont(data: fontData, tablesOrigin: offset)
+        let font = try Font(data: fontData, tablesOrigin: offset)
         fonts.append(font)
       }
       ttcHeader = header
     } else {
 
       // This is a standalone font file
-      let font = try TCFont(data: data, tablesOrigin: 0)
+      let font = try Font(data: data, tablesOrigin: 0)
       fonts.append(font)
     }
   }

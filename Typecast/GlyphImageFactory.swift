@@ -1,5 +1,5 @@
 //
-//  TCGlyphImageFactory.swift
+//  GlyphImageFactory.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/7/17.
@@ -11,19 +11,19 @@ import Cocoa
 /**
  A factory for generating bitmaps from glyph outlines.
  */
-class TCGlyphImageFactory {
+class GlyphImageFactory {
 
   /**
    Build a [CGImage](https://developer.apple.com/documentation/coregraphics/cgimage)
-   from a TCGlyph.
+   from a Glyph.
    - returns: A CGImage of the glyph
    - parameters:
      - glyph: The glyph to render to an image
      - transform: The transformation to apply to the glyph before rendering
      - size: The size of the image to render into
    */
-  class func buildImage(glyph: TCGlyph, transform: CGAffineTransform, size: CGSize) -> CGImage? {
-    let path = TCGlyphPathFactory.buildPath(with: glyph)
+  class func buildImage(glyph: Glyph, transform: CGAffineTransform, size: CGSize) -> CGImage? {
+    let path = GlyphPathFactory.buildPath(with: glyph)
     let colorspace = CGColorSpaceCreateDeviceRGB()
     let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue)
     if let context = CGContext(data: nil,

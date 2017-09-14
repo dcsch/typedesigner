@@ -7,13 +7,25 @@
 //
 
 import Cocoa
+import os.log
 
-class GlyphViewController: NSViewController {
+class GlyphViewController: NSViewController, FontControllerConsumer {
+
   @IBOutlet weak var scrollView: NSScrollView?
-  @IBOutlet weak var glyphView: TCGlyphView?
+  @IBOutlet weak var glyphView: GlyphView?
+
+  var fontController: FontController? {
+    didSet {
+      if let old = oldValue { old.removeSubscriber(self) }
+      if let new = fontController { new.addSubscriber(self) }
+      updateGlyph()
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    glyphView?.layerContentsRedrawPolicy = .onSetNeedsDisplay
 
     // Listen to view resize notifications
     view.postsFrameChangedNotifications = true
@@ -29,13 +41,12 @@ class GlyphViewController: NSViewController {
 //    scrollView!.rulersVisible = true
   }
 
-  var glyphReference: (TCFont?, TCGlyph?) {
-    didSet {
-      if let font = glyphReference.0 {
-        glyphView?.glyph = glyphReference.1
-        glyphView?.font = font
-        calculateGlyphViewSize()
-      }
+  func updateGlyph() {
+    if let font = fontController?.font,
+      let glyphIndex = fontController?.glyphIndex {
+      glyphView?.glyph = font.glyph(at: glyphIndex)
+      glyphView?.font = font
+      calculateGlyphViewSize()
     }
   }
 
@@ -51,12 +62,19 @@ class GlyphViewController: NSViewController {
                                 height: rect.size.height)
     }
 
-    if let font = glyphReference.0 {
+    if let font = fontController?.font {
       let head = font.headTable
       glyphView?.bounds = CGRect(x: Int(head.xMin), y: Int(head.yMin),
                                  width: Int(head.xMax) - Int(head.xMin),
                                  height: Int(head.yMax) - Int(head.yMin))
     }
     glyphView?.needsDisplay = true
+  }
+}
+
+extension GlyphViewController: FontSubscriber {
+  func font(_ font: Font, didChangeGlyphIndex glyphIndex: Int) {
+    os_log("GlyphViewController:didChangeGlyphIndex:")
+    updateGlyph()
   }
 }

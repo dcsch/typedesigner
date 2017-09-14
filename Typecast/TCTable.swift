@@ -117,6 +117,7 @@ enum TCTableTag: UInt32 {
 enum TCTableError: Error {
   case unrecognizedTableType(tag: UInt32)
   case unimplementedTableType(tag: UInt32)
+  case missingTable(tag: UInt32)
   case badOffset(message: String)
 
   static func tagAsString(_ tag: UInt32) -> String {

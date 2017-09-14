@@ -1,5 +1,5 @@
 //
-//  TCGlyph.swift
+//  Glyph.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/26/17.
@@ -11,7 +11,7 @@ import Foundation
 /**
  An individual glyph within a font.
  */
-protocol TCGlyph {
+protocol Glyph {
   var glyphIndex: Int { get }
   var advanceWidth: Int { get }
   var leftSideBearing: Int { get }

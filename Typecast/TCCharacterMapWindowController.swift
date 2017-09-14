@@ -17,7 +17,7 @@ class TCCharacterMapWindowController: NSWindowController,
   @IBOutlet weak var collectionView: NSCollectionView?
   weak var cmapIndexEntry: TCCmapIndexEntry?
   var characterMappings = [(Int, Int)]()
-  var font: TCFont?
+  var font: Font?
 
   override func windowDidLoad() {
     super.windowDidLoad()
@@ -26,10 +26,9 @@ class TCCharacterMapWindowController: NSWindowController,
     let nib = NSNib(nibNamed: "CharacterMapItem", bundle: nil)
     collectionView?.register(nib, forItemWithIdentifier: "charItem")
 
-    if let fontCollection = (document as! TCDocument).fontCollection {
+    if let font = (document as! FontDocument).font {
 
-      // TODO: Don't just select the first font
-      font = fontCollection.fonts[0]
+      self.font = font
 
       characterMappings.removeAll()
       if let format = cmapIndexEntry?.format {
@@ -79,9 +78,9 @@ class TCCharacterMapWindowController: NSWindowController,
       let tx = (imageWidthInUnits / 2) - (CGFloat(head.xMax - head.xMin) / 2)
       transform = transform.translatedBy(x: tx, y: 0)
 
-      if let cgImage = TCGlyphImageFactory.buildImage(glyph: glyph,
-                                                      transform: transform,
-                                                      size: pixelSize) {
+      if let cgImage = GlyphImageFactory.buildImage(glyph: glyph,
+                                                    transform: transform,
+                                                    size: pixelSize) {
         let image = NSImage(cgImage: cgImage, size: CGSize.zero)
         item.imageView?.image = image
       }

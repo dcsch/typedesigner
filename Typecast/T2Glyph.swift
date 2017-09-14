@@ -1,5 +1,5 @@
 //
-//  TCT2Glyph.swift
+//  T2Glyph.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/11/17.
@@ -13,7 +13,7 @@ import CFF
 /**
  An individual Type 2 Charstring glyph within a font.
  */
-class TCT2Glyph: NSObject, TCGlyph {
+class T2Glyph: NSObject, Glyph {
   let glyphIndex: Int
   var leftSideBearing: Int
   var advanceWidth: Int

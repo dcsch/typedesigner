@@ -127,6 +127,6 @@ class TCTableFactory {
         }
       }
     }
-    throw TCFontError.missingTable
+    throw TCTableError.missingTable(tag: tag.rawValue)
   }
 }

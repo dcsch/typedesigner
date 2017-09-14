@@ -10,7 +10,7 @@ import Cocoa
 
 class TCTablesWindowController: NSWindowController, NSTableViewDelegate,
     NSTableViewDataSource {
-  var font: TCFont?
+  var font: Font?
   var containedViewController: NSViewController?
   @IBOutlet weak var containerView: NSView?
   @IBOutlet weak var tableView: NSTableView?
@@ -18,12 +18,12 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate,
   override func windowDidLoad() {
     super.windowDidLoad()
 
-    if let fontCollection = (document as! TCDocument).fontCollection {
+    if let font = (document as! FontDocument).font {
 
-      if font == nil {
+      if self.font == nil {
 
         // Select the first font in the collection
-        font = fontCollection.fonts[0]
+        self.font = font
       }
       configureDetailView()
 
@@ -56,19 +56,19 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate,
       } else if tag == TCTableTag.CFF.rawValue {
           if let vc = TCCharstringListViewController(nibName: "CharstringListView", bundle: nil) {
             vc.representedObject = (table as! TCCffTable).fonts[0]
-            vc.document = document as? TCDocument
+            vc.document = document as? FontDocument
             containedViewController = vc
           }
       } else if tag == TCTableTag.cmap.rawValue {
         if let vc = TCCharacterMapListViewController(nibName: "CharacterMapListView", bundle: nil) {
           vc.representedObject = table
-          vc.document = document as? TCDocument
+          vc.document = document as? FontDocument
           containedViewController = vc
         }
       } else {
         if let vc = TCDumpViewController(nibName: "DumpView", bundle: nil) {
           vc.representedObject = table
-          vc.document = document as? TCDocument
+          vc.document = document as? FontDocument
           containedViewController = vc
         }
       }

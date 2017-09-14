@@ -18,7 +18,7 @@
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.TCDocument</string>
+			<string>Type_Designer.FontDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
@@ -32,7 +32,7 @@
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.TCDocument</string>
+			<string>Type_Designer.FontDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -46,7 +46,7 @@
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.TCDocument</string>
+			<string>Type_Designer.FontDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -60,7 +60,7 @@
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.TCDocument</string>
+			<string>Type_Designer.FontDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -78,7 +78,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.TCDocument</string>
+			<string>Type_Designer.FontDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

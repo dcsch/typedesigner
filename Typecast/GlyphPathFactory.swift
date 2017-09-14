@@ -1,5 +1,5 @@
 //
-//  TCGlyphPathFactory.swift
+//  GlyphPathFactory.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/25/17.
@@ -13,21 +13,21 @@ import CFF
 /**
  A factory for generating a CGPath from a glyph outline.
  */
-class TCGlyphPathFactory {
+class GlyphPathFactory {
 
   /**
    Build a [CGPath](https://developer.apple.com/documentation/coregraphics/cgpath)
-   from a TCGlyph.  This glyph path can then be transformed and rendered.
+   from a Glyph.  This glyph path can then be transformed and rendered.
    - returns: The glyph path
    - parameter glyph: The glyph for which to build a path
    */
-  class func buildPath(with glyph: TCGlyph) -> CGPath {
+  class func buildPath(with glyph: Glyph) -> CGPath {
 
     let glyphPath = CGMutablePath()
 
     // Iterate through all of the points in the glyph.  Each time we find a
     // contour end point, add the point range to the path.
-    if let ttGlyph = glyph as? TCTTGlyph {
+    if let ttGlyph = glyph as? TTGlyph {
       var firstIndex = 0
       var count = 0
       for i in 0 ..< ttGlyph.points.count {
@@ -39,7 +39,7 @@ class TCGlyphPathFactory {
           count = 0
         }
       }
-    } else if let t2Glyph = glyph as? TCT2Glyph {
+    } else if let t2Glyph = glyph as? T2Glyph {
       var firstIndex = 0
       var count = 0
       for i in 0 ..< t2Glyph.points.count {
@@ -59,7 +59,7 @@ class TCGlyphPathFactory {
     return a + (b - a) / 2
   }
 
-  private class func addContourToPath(path: CGMutablePath, glyph: TCTTGlyph,
+  private class func addContourToPath(path: CGMutablePath, glyph: TTGlyph,
                                       startIndex: Int, count: Int) {
     var offset = 0
     while offset < count {
@@ -98,7 +98,7 @@ class TCGlyphPathFactory {
     }
   }
 
-  private class func addContourToPath(path: CGMutablePath, glyph: TCT2Glyph,
+  private class func addContourToPath(path: CGMutablePath, glyph: T2Glyph,
                                       startIndex: Int, count: Int) {
     var offset = 0
     while offset < count {

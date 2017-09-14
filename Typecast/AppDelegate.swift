@@ -1,5 +1,5 @@
 //
-//  TCAppDelegate.swift
+//  AppDelegate.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/1/17.
@@ -10,10 +10,14 @@ import Cocoa
 import os.log
 
 @NSApplicationMain
-class TCAppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
+
+  var fontDocumentController: FontDocumentController?
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
-    // Insert code here to initialize your application
+
+    // Hold a reference to our document controller
+    fontDocumentController = FontDocumentController()
   }
 
   func applicationWillTerminate(_ aNotification: Notification) {
@@ -22,12 +26,5 @@ class TCAppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
     return false
-  }
-
-  @IBAction func showPreferencePanel(sender: Any?) {
-    //    if (!preferenceController)
-    //        preferenceController = [[PreferencesWindowController alloc] init];
-    //    [preferenceController showWindow:self];
-    os_log("No preference panel as yet")
   }
 }

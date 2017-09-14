@@ -9,36 +9,22 @@
 import Cocoa
 import os.log
 
-class CharacterMapViewController: NSViewController,
-    NSCollectionViewDataSource, NSCollectionViewDelegate {
+class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
+    NSCollectionViewDelegate, FontControllerConsumer {
   @IBOutlet weak var collectionView: NSCollectionView?
   weak var cmapIndexEntry: TCCmapIndexEntry?
   var characterMappings = [(Int, Int)]()
-  var font: TCFont?
+  var font: Font?
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
-
-  override var representedObject: Any? {
+  var fontController: FontController? {
     didSet {
-    }
-  }
-
-  weak var document: TCDocument? {
-    didSet {
-      if let fontCollection = document?.fontCollection {
-
-        // Should we close the document on closing this view?
-        if fontCollection.fonts.count == 1 {
-          self.view.window?.windowController?.shouldCloseDocument = true
-        }
-
-        // TODO: Don't just select the first font
-        font = fontCollection.fonts[0]
+      if let old = oldValue { old.removeSubscriber(self) }
+      if let new = fontController { new.addSubscriber(self) }
+      if let font = fontController?.font {
+        self.font = font
 
         // TODO: The cmap should be selectable
-        cmapIndexEntry = font?.cmapTable.entries.first
+        cmapIndexEntry = font.cmapTable.entries.first
 
         characterMappings.removeAll()
         if let format = cmapIndexEntry?.format {
@@ -50,7 +36,27 @@ class CharacterMapViewController: NSViewController,
           }
         }
         collectionView?.reloadData()
+      } else {
+        self.font = nil
+        cmapIndexEntry = nil
       }
+    }
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.view.window?.windowController?.shouldCloseDocument = true
+  }
+
+  override func viewDidAppear() {
+//    if let fontCollection = document?.fontCollection,
+//      fontCollection.fonts.count > 1 {
+//      performSegue(withIdentifier: "ImportFont", sender: self)
+//    }
+  }
+
+  override var representedObject: Any? {
+    didSet {
     }
   }
 
@@ -58,17 +64,17 @@ class CharacterMapViewController: NSViewController,
 
     // Look through the existing window controllers. If this glyph is already
     // displayed, we want to show that window
-    for windowController in (document?.windowControllers)! {
-      if identifier == "ShowGlyph",
-        let viewController = windowController.contentViewController as? GlyphViewController,
-        let glyphIndex = viewController.glyphView?.glyph?.glyphIndex,
-        let selectionIndex = collectionView?.selectionIndexes.first,
-        selectionIndex >= 0,
-        glyphIndex == characterMappings[selectionIndex].1 {
-        windowController.showWindow(self)
-        return false
-      }
-    }
+//    for windowController in (document?.windowControllers)! {
+//      if identifier == "ShowGlyph",
+//        let viewController = windowController.contentViewController as? GlyphViewController,
+//        let glyphIndex = viewController.glyphView?.glyph?.glyphIndex,
+//        let selectionIndex = collectionView?.selectionIndexes.first,
+//        selectionIndex >= 0,
+//        glyphIndex == characterMappings[selectionIndex].1 {
+//        windowController.showWindow(self)
+//        return false
+//      }
+//    }
     return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
   }
 
@@ -79,11 +85,11 @@ class CharacterMapViewController: NSViewController,
         let index = collectionView?.selectionIndexes.first,
         index >= 0 {
 
-        // We're all part of the same document
-        document?.addWindowController(windowController)
-
-        let glyph = font?.glyph(at: characterMappings[index].1)
-        viewController.glyphReference = (font, glyph)
+//        // We're all part of the same document
+//        document?.addWindowController(windowController)
+//
+//        let glyph = font?.glyph(at: characterMappings[index].1)
+//        viewController.glyphReference = (font, glyph)
       }
     }
   }
@@ -122,9 +128,9 @@ class CharacterMapViewController: NSViewController,
       let tx = (imageWidthInUnits / 2) - (CGFloat(head.xMax - head.xMin) / 2)
       transform = transform.translatedBy(x: tx, y: 0)
 
-      if let cgImage = TCGlyphImageFactory.buildImage(glyph: glyph,
-                                                      transform: transform,
-                                                      size: pixelSize) {
+      if let cgImage = GlyphImageFactory.buildImage(glyph: glyph,
+                                                    transform: transform,
+                                                    size: pixelSize) {
         let image = NSImage(cgImage: cgImage, size: CGSize.zero)
         item.imageView?.image = image
       }
@@ -154,10 +160,21 @@ class CharacterMapViewController: NSViewController,
   func collectionView(_ collectionView: NSCollectionView,
                       didSelectItemsAt indexPaths: Set<IndexPath>) {
     os_log("Selected: %@", indexPaths)
+    if let indexPath = indexPaths.first,
+      indexPath.item > -1 {
+      let glyphIndex = characterMappings[indexPath.item].1
+      fontController?.setGlyphIndex(glyphIndex)
+    }
   }
   
   func collectionView(_ collectionView: NSCollectionView,
                       didDeselectItemsAt indexPaths: Set<IndexPath>) {
     os_log("Deselected: %@", indexPaths)
+  }
+}
+
+extension CharacterMapViewController: FontSubscriber {
+  func font(_ font: Font, didChangeGlyphIndex glyphIndex: Int) {
+    os_log("CharacterMapViewController.font:didChangeGlyphIndex:")
   }
 }

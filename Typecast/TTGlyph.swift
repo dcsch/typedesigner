@@ -1,5 +1,5 @@
 //
-//  TCTTGlyph.swift
+//  TTGlyph.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/11/17.
@@ -11,11 +11,11 @@ import Foundation
 /**
  An individual TrueType glyph within a font.
  */
-class TCTTGlyph: NSObject, TCGlyph {
+class TTGlyph: NSObject, Glyph {
   var glyphIndex: Int
   var leftSideBearing: Int
   var advanceWidth: Int
-  var points = [TCPoint]()
+  var points = [Point]()
 
   /**
    Construct a Glyph from a TrueType outline described by
@@ -43,7 +43,7 @@ class TCTTGlyph: NSObject, TCGlyph {
       if endPt {
         endPtIndex += 1
       }
-      let point = TCPoint(x: description.xCoordinate(at: i),
+      let point = Point(x: description.xCoordinate(at: i),
                           y: description.yCoordinate(at: i),
                           onCurve: Int(description.flags(index: i) & TCGlyphFlag.onCurvePoint.rawValue) != 0,
                           endOfContour: endPt)
@@ -51,10 +51,10 @@ class TCTTGlyph: NSObject, TCGlyph {
     }
 
     // Append the origin and advanceWidth points (n & n+1)
-    let oPoint = TCPoint(x: 0, y: 0, onCurve: true, endOfContour: true)
+    let oPoint = Point(x: 0, y: 0, onCurve: true, endOfContour: true)
     points.append(oPoint)
 
-    let awPoint = TCPoint(x: advanceWidth, y: 0, onCurve: true, endOfContour: true)
+    let awPoint = Point(x: advanceWidth, y: 0, onCurve: true, endOfContour: true)
     points.append(awPoint)
   }
 }
