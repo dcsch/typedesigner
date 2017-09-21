@@ -33,7 +33,11 @@ public class TCDataInput: NSObject {
   public func readInt32() -> Int32 {
     var buf: [UInt8] = [0, 0, 0, 0]
     inputStream.read(&buf, maxLength: buf.capacity)
-    let value = Int32(buf[0]) << 24 | Int32(buf[1]) << 16 | Int32(buf[2]) << 8 | Int32(buf[3])
+    let v0 = Int32(buf[0]) << 24
+    let v1 = Int32(buf[1]) << 16
+    let v2 = Int32(buf[2]) << 8
+    let v3 = Int32(buf[3])
+    let value = v0 | v1 | v2 | v3
     return value
   }
 
@@ -53,8 +57,15 @@ public class TCDataInput: NSObject {
   public func readUInt64() -> UInt64 {
     var buf: [UInt8] = [0, 0, 0, 0, 0, 0, 0, 0]
     inputStream.read(&buf, maxLength: buf.capacity)
-    let value = UInt64(buf[0]) << 56 | UInt64(buf[1]) << 48 | UInt64(buf[2]) << 40 | UInt64(buf[3]) << 32 |
-      UInt64(buf[4]) << 24 | UInt64(buf[5]) << 16 | UInt64(buf[6]) << 8 | UInt64(buf[7])
+    let v0 = UInt64(buf[0]) << 56
+    let v1 = UInt64(buf[1]) << 48
+    let v2 = UInt64(buf[2]) << 40
+    let v3 = UInt64(buf[3]) << 32
+    let v4 = UInt64(buf[4]) << 24
+    let v5 = UInt64(buf[5]) << 16
+    let v6 = UInt64(buf[6]) << 8
+    let v7 = UInt64(buf[7])
+    let value = v0 | v1 | v2 | v3 | v4 | v5 | v6 | v7
     return value
   }
 
@@ -64,7 +75,11 @@ public class TCDataInput: NSObject {
     if ret == -1 {
       os_log("Stream error: %s", inputStream.streamError.debugDescription)
     }
-    let value = UInt32(buf[0]) << 24 | UInt32(buf[1]) << 16 | UInt32(buf[2]) << 8 | UInt32(buf[3])
+    let v0 = UInt32(buf[0]) << 24
+    let v1 = UInt32(buf[1]) << 16
+    let v2 = UInt32(buf[2]) << 8
+    let v3 = UInt32(buf[3])
+    let value = v0 | v1 | v2 | v3
     return value
   }
 

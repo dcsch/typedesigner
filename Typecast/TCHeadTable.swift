@@ -28,6 +28,27 @@ class TCHeadTable: TCBaseTable {
   var indexToLocFormat: Int16
   var glyphDataFormat: Int16
 
+  override init() {
+    versionNumber = 0
+    fontRevision = 0
+    checkSumAdjustment = 0
+    magicNumber = 0
+    flags = 0
+    unitsPerEm = 0
+    created = 0
+    modified = 0
+    xMin = 0
+    yMin = 0
+    xMax = 0
+    yMax = 0
+    macStyle = 0
+    lowestRecPPEM = 0
+    fontDirectionHint = 0
+    indexToLocFormat = 0
+    glyphDataFormat = 0
+    super.init()
+  }
+
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
     versionNumber = dataInput.readUInt32()

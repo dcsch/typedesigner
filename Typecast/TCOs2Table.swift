@@ -21,6 +21,19 @@ class TCPanose {
   let bMidline: UInt8
   let bXHeight: UInt8
 
+  init() {
+    bFamilyType = 0
+    bSerifStyle = 0
+    bWeight = 0
+    bProportion = 0
+    bContrast = 0
+    bStrokeVariation = 0
+    bArmStyle = 0
+    bLetterform = 0
+    bMidline = 0
+    bXHeight = 0
+  }
+
   init(bytes: [UInt8]) {
     bFamilyType = bytes[0]
     bSerifStyle = bytes[1]
@@ -90,6 +103,47 @@ class TCOs2Table: TCBaseTable {
   let usDefaultChar: UInt16
   let usBreakChar: UInt16
   let usMaxContext: UInt16
+
+  override init() {
+    version = 0
+    xAvgCharWidth = 0
+    usWeightClass = 0
+    usWidthClass = 0
+    fsType = 0
+    ySubscriptXSize = 0
+    ySubscriptYSize = 0
+    ySubscriptXOffset = 0
+    ySubscriptYOffset = 0
+    ySuperscriptXSize = 0
+    ySuperscriptYSize = 0
+    ySuperscriptXOffset = 0
+    ySuperscriptYOffset = 0
+    yStrikeoutSize = 0
+    yStrikeoutPosition = 0
+    sFamilyClass = 0
+    panose = TCPanose()
+    ulUnicodeRange1 = 0
+    ulUnicodeRange2 = 0
+    ulUnicodeRange3 = 0
+    ulUnicodeRange4 = 0
+    achVendorID = 0
+    fsSelection = 0
+    usFirstCharIndex = 0
+    usLastCharIndex = 0
+    sTypoAscender = 0
+    sTypoDescender = 0
+    sTypoLineGap = 0
+    usWinAscent = 0
+    usWinDescent = 0
+    ulCodePageRange1 = 0
+    ulCodePageRange2 = 0
+    sxHeight = 0
+    sCapHeight = 0
+    usDefaultChar = 0
+    usBreakChar = 0
+    usMaxContext = 0
+    super.init()
+  }
 
   init(data: Data) {
     let dataInput = TCDataInput(data: data)

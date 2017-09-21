@@ -18,7 +18,6 @@ enum FontError: Error {
  An OpenType font.
  */
 class Font: NSObject {
-  var tableDirectory: TCTableDirectory
   var tables: [TCTable]
   var headTable: TCHeadTable
   var hheaTable: TCHheaTable
@@ -49,6 +48,29 @@ class Font: NSObject {
   }
 
   /**
+   Create an empty font.
+   */
+  override init() {
+    tables = []
+    headTable = TCHeadTable()
+    tables.append(headTable)
+    hheaTable = TCHheaTable()
+    tables.append(hheaTable)
+    maxpTable = TCMaxpTable()
+    tables.append(maxpTable)
+    cmapTable = TCCmapTable()
+    tables.append(cmapTable)
+    hmtxTable = TCHmtxTable()
+    tables.append(hmtxTable)
+    nameTable = TCNameTable()
+    tables.append(nameTable)
+    os2Table = TCOs2Table()
+    tables.append(os2Table)
+    postTable = TCPostTable()
+    tables.append(postTable)
+  }
+
+  /**
    - parameters:
      - data: OpenType/TrueType font file data.
      - directoryOffset: The Table Directory offset within the file.  For a
@@ -64,7 +86,7 @@ class Font: NSObject {
 
     // Load the table directory
     let dataInput = TCDataInput(data: data)
-    tableDirectory = TCTableDirectory(dataInput: dataInput)
+    let tableDirectory = TCTableDirectory(dataInput: dataInput)
     tables = []
 
     // Load some prerequisite tables

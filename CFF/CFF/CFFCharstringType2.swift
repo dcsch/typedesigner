@@ -190,7 +190,9 @@ public class CFFCharstringType2: NSObject, CFFCharstring {
       let b2 = Int(data[ip + 2])
       let b3 = Int(data[ip + 3])
       let b4 = Int(data[ip + 4])
-      return NSNumber(value: Float(Int(b1) << 8 | Int(b2)) + Float(Int(b3) << 8 | Int(b4)) / 65536.0)
+      let f1 = Float(Int(b1) << 8 | Int(b2))
+      let f2 = Float(Int(b3) << 8 | Int(b4))
+      return NSNumber(value: f1 + f2 / 65536.0)
     } else {
       throw CFFCharstringType2Error.noOperand
     }

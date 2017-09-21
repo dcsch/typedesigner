@@ -122,10 +122,10 @@ enum TCTableError: Error {
 
   static func tagAsString(_ tag: UInt32) -> String {
     return String(format: "%c%c%c%c",
-                  CChar(truncatingBitPattern:tag >> 24),
-                  CChar(truncatingBitPattern:tag >> 16),
-                  CChar(truncatingBitPattern:tag >> 8),
-                  CChar(truncatingBitPattern:tag))
+                  CChar(truncatingIfNeeded:tag >> 24),
+                  CChar(truncatingIfNeeded:tag >> 16),
+                  CChar(truncatingIfNeeded:tag >> 8),
+                  CChar(truncatingIfNeeded:tag))
   }
 }
 
@@ -147,10 +147,10 @@ class TCBaseTable: NSObject, TCTable {
     get {
       let tag = type(of: self).tag
       return String(format: "%c%c%c%c",
-                    CChar(truncatingBitPattern:tag >> 24),
-                    CChar(truncatingBitPattern:tag >> 16),
-                    CChar(truncatingBitPattern:tag >> 8),
-                    CChar(truncatingBitPattern:tag))
+                    CChar(truncatingIfNeeded:tag >> 24),
+                    CChar(truncatingIfNeeded:tag >> 16),
+                    CChar(truncatingIfNeeded:tag >> 8),
+                    CChar(truncatingIfNeeded:tag))
     }
   }
 

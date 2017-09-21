@@ -23,8 +23,8 @@ class TCCharacterMapWindowController: NSWindowController,
     super.windowDidLoad()
 
     // Register the collection view item for the character
-    let nib = NSNib(nibNamed: "CharacterMapItem", bundle: nil)
-    collectionView?.register(nib, forItemWithIdentifier: "charItem")
+    let nib = NSNib(nibNamed: NSNib.Name(rawValue: "CharacterMapItem"), bundle: nil)
+    collectionView?.register(nib, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "charItem"))
 
     if let font = (document as! FontDocument).font {
 
@@ -51,7 +51,7 @@ class TCCharacterMapWindowController: NSWindowController,
 
   func collectionView(_ collectionView: NSCollectionView,
                       itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-    let item = collectionView.makeItem(withIdentifier: "charItem", for: indexPath)
+    let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "charItem"), for: indexPath)
     let mapping = characterMappings[indexPath.item]
 
     item.representedObject = (document, 0, mapping.1)

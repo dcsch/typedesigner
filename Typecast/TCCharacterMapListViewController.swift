@@ -17,7 +17,7 @@ class TCCharacterMapListViewController: NSViewController {
   }
 
   func showCharacterMaps(_ maps: [TCCmapIndexEntry]) {
-    let windowController = TCCharacterMapWindowController(windowNibName: "CharacterMapWindow")
+    let windowController = TCCharacterMapWindowController(windowNibName: NSNib.Name(rawValue: "CharacterMapWindow"))
     document?.addWindowController(windowController)
     windowController.cmapIndexEntry = maps.last
     windowController.showWindow(self)

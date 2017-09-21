@@ -23,6 +23,22 @@ class TCHheaTable: TCBaseTable {
   var metricDataFormat: Int16
   var numberOfHMetrics: Int
 
+  override init() {
+    version = 0
+    ascender = 0
+    descender = 0
+    lineGap = 0
+    advanceWidthMax = 0
+    minLeftSideBearing = 0
+    minRightSideBearing = 0
+    xMaxExtent = 0
+    caretSlopeRise = 0
+    caretSlopeRun = 0
+    metricDataFormat = 0
+    numberOfHMetrics = 0
+    super.init()
+  }
+
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt32()

@@ -9,16 +9,30 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>font-project</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Font Project</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>NSDocumentClass</key>
+			<string>Type_Designer.FontDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>ttc</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>TrueType font collection</string>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>Viewer</string>
 			<key>LSHandlerRank</key>
-			<string>Default</string>
+			<string>Alternate</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.FontDocument</string>
+			<string>Type_Designer.ImportDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
@@ -28,11 +42,11 @@
 				<string>FFIL</string>
 			</array>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>Viewer</string>
 			<key>LSHandlerRank</key>
-			<string>Default</string>
+			<string>Alternate</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.FontDocument</string>
+			<string>Type_Designer.ImportDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -42,11 +56,11 @@
 			<key>CFBundleTypeName</key>
 			<string>OpenType font</string>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>Viewer</string>
 			<key>LSHandlerRank</key>
-			<string>Default</string>
+			<string>Alternate</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.FontDocument</string>
+			<string>Type_Designer.ImportDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -58,17 +72,15 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
-			<string>Default</string>
+			<string>Alternate</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.FontDocument</string>
+			<string>Type_Designer.ImportDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>dfont</string>
 			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string></string>
 			<key>CFBundleTypeName</key>
 			<string>Datafork TrueType font</string>
 			<key>CFBundleTypeOSTypes</key>
@@ -76,9 +88,11 @@
 				<string>????</string>
 			</array>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.FontDocument</string>
+			<string>Type_Designer.ImportDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

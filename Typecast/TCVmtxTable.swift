@@ -21,11 +21,11 @@ class TCVmtxTable: TCBaseTable {
     dataCount = data.count
     let dataInput = TCDataInput(data: data)
     for _ in 0..<vheaTable.numberOfLongVerMetrics {
-      let metric =
-        UInt32(dataInput.readUInt8()) << 24
-          | UInt32(dataInput.readUInt8()) << 16
-          | UInt32(dataInput.readUInt8()) << 8
-          | UInt32(dataInput.readUInt8())
+      let v1 = UInt32(dataInput.readUInt8()) << 24
+      let v2 = UInt32(dataInput.readUInt8()) << 16
+      let v3 = UInt32(dataInput.readUInt8()) << 8
+      let v4 = UInt32(dataInput.readUInt8())
+      let metric = v1 | v2 | v3 | v4
       vMetrics.append(metric)
     }
     let tsbCount = maxpTable.numGlyphs - vheaTable.numberOfLongVerMetrics

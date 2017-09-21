@@ -14,6 +14,13 @@ class TCCmapTable: TCBaseTable {
   let numTables: Int
   let entries: [TCCmapIndexEntry]
 
+  override init() {
+    version = 0
+    numTables = 0
+    entries = []
+    super.init()
+  }
+
   init(data: Data) throws {
     let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt16()

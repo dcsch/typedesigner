@@ -60,7 +60,7 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
     }
   }
 
-  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+  override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
 
     // Look through the existing window controllers. If this glyph is already
     // displayed, we want to show that window
@@ -79,7 +79,7 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
   }
 
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ShowGlyph" {
+    if segue.identifier?.rawValue == "ShowGlyph" {
       if let windowController = segue.destinationController as? NSWindowController,
         let viewController = windowController.contentViewController as? GlyphViewController,
         let index = collectionView?.selectionIndexes.first,
@@ -101,7 +101,7 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 
   func collectionView(_ collectionView: NSCollectionView,
                       itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-    let item = collectionView.makeItem(withIdentifier: "CharacterMapItem", for: indexPath)
+    let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CharacterMapItem"), for: indexPath)
     let mapping = characterMappings[indexPath.item]
 
     if let characterMapItem = item as? CharacterMapItem {

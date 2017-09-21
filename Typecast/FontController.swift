@@ -35,7 +35,7 @@ class FontController {
     }
   }
 
-  // Mark: - Actions
+  // MARK: - Actions
 
   func setGlyphIndex(_ glyphIndex: Int) {
     self.glyphIndex = glyphIndex

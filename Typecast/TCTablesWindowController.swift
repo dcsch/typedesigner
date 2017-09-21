@@ -49,28 +49,24 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate,
       let table = font?.tables[tableView.selectedRow] {
       let tag = type(of: table).tag
       if tag == TCTableTag.glyf.rawValue {
-        if let vc = TCGlyphListViewController(nibName: "GlyphListView", bundle: nil) {
-          vc.representedObject = (document, table)
-          containedViewController = vc
-        }
+        let vc = TCGlyphListViewController(nibName: NSNib.Name(rawValue: "GlyphListView"), bundle: nil)
+        vc.representedObject = (document, table)
+        containedViewController = vc
       } else if tag == TCTableTag.CFF.rawValue {
-          if let vc = TCCharstringListViewController(nibName: "CharstringListView", bundle: nil) {
-            vc.representedObject = (table as! TCCffTable).fonts[0]
-            vc.document = document as? FontDocument
-            containedViewController = vc
-          }
+          let vc = TCCharstringListViewController(nibName: NSNib.Name(rawValue: "CharstringListView"), bundle: nil)
+          vc.representedObject = (table as! TCCffTable).fonts[0]
+          vc.document = document as? FontDocument
+          containedViewController = vc
       } else if tag == TCTableTag.cmap.rawValue {
-        if let vc = TCCharacterMapListViewController(nibName: "CharacterMapListView", bundle: nil) {
-          vc.representedObject = table
-          vc.document = document as? FontDocument
-          containedViewController = vc
-        }
+        let vc = TCCharacterMapListViewController(nibName: NSNib.Name(rawValue: "CharacterMapListView"), bundle: nil)
+        vc.representedObject = table
+        vc.document = document as? FontDocument
+        containedViewController = vc
       } else {
-        if let vc = TCDumpViewController(nibName: "DumpView", bundle: nil) {
-          vc.representedObject = table
-          vc.document = document as? FontDocument
-          containedViewController = vc
-        }
+         let vc = TCDumpViewController(nibName: NSNib.Name(rawValue: "DumpView"), bundle: nil)
+        vc.representedObject = table
+        vc.document = document as? FontDocument
+        containedViewController = vc
       }
     }
 
@@ -128,14 +124,14 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate,
   }
 
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-    if let view = tableView.make(withIdentifier: "TableName", owner: self) as? NSTableCellView,
+    if let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TableName"), owner: self) as? NSTableCellView,
       let font = self.font {
       let tag = type(of: font.tables[row]).tag
       let name = String(format: "%c%c%c%c",
-                        CChar(truncatingBitPattern:tag >> 24),
-                        CChar(truncatingBitPattern:tag >> 16),
-                        CChar(truncatingBitPattern:tag >> 8),
-                        CChar(truncatingBitPattern:tag))
+                        CChar(truncatingIfNeeded:tag >> 24),
+                        CChar(truncatingIfNeeded:tag >> 16),
+                        CChar(truncatingIfNeeded:tag >> 8),
+                        CChar(truncatingIfNeeded:tag))
       view.textField?.stringValue = name
       return view
     }

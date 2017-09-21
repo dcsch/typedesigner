@@ -30,7 +30,7 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
     // Listen to view resize notifications
     view.postsFrameChangedNotifications = true
     let nc = NotificationCenter.default
-    nc.addObserver(forName: .NSViewFrameDidChange,
+    nc.addObserver(forName: NSView.frameDidChangeNotification,
                    object: view,
                    queue: nil) { (Notification) in
       self.calculateGlyphViewSize()

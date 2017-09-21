@@ -52,6 +52,14 @@ class TCNameTable: TCBaseTable {
   let stringStorageOffset: Int16
   var nameRecords: [TCNameRecord]
 
+  override init() {
+    formatSelector = 0
+    numberOfNameRecords = 0
+    stringStorageOffset = 0
+    nameRecords = []
+    super.init()
+  }
+
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
     formatSelector = dataInput.readInt16()

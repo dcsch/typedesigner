@@ -19,7 +19,7 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
 
   func windowDidChangeOcclusionState(_ notification: Notification) {
     let window = notification.object as! NSWindow
-    if window.occlusionState.contains(.visible) {
+    if window.occlusionState.contains(NSWindow.OcclusionState.visible) {
     }
   }
 
@@ -53,9 +53,9 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
   override var document: AnyObject? {
     didSet {
       guard let fontDocument = document as? FontDocument else { return }
-//      if fontDocument.font == nil {
-//        fontDocument.font = Font()
-//      }
+      if fontDocument.font == nil {
+        fontDocument.font = Font()
+      }
       fontController = FontController(font: fontDocument.font!)
     }
   }

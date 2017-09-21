@@ -286,6 +286,22 @@ class TCPostTable: TCBaseTable {
     "dcroat"        // 257
   ]
 
+  override init() {
+    version = 0
+    italicAngle = 0
+    underlinePosition = 0
+    underlineThickness = 0
+    isFixedPitch = 0
+    minMemType42 = 0
+    maxMemType42 = 0
+    minMemType1 = 0
+    maxMemType1 = 0
+    numGlyphs = 0
+    glyphNameIndex = []
+    psGlyphName = []
+    super.init()
+  }
+
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt32()

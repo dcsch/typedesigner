@@ -23,6 +23,8 @@
 		0348BE711F33E12100446B58 /* TCGlyphDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348BE701F33E12100446B58 /* TCGlyphDescription.swift */; };
 		0348BE731F33ED9100446B58 /* TCFpgmTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348BE721F33ED9100446B58 /* TCFpgmTable.swift */; };
 		0348BE751F33EF6800446B58 /* TCPrepTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348BE741F33EF6800446B58 /* TCPrepTable.swift */; };
+		034EC2C81F730F97008570B3 /* TypeDesignerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC2C71F730F97008570B3 /* TypeDesignerUITests.swift */; };
+		034EC2D61F73103F008570B3 /* TypeDesignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC2D51F73103F008570B3 /* TypeDesignerTests.swift */; };
 		039845B81F195B6F0040988F /* TCHheaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845B71F195B6F0040988F /* TCHheaTable.swift */; };
 		039845BA1F1977CE0040988F /* TCTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845B91F1977CE0040988F /* TCTable.swift */; };
 		039845BC1F19802E0040988F /* TCHmtxTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845BB1F19802E0040988F /* TCHmtxTable.swift */; };
@@ -53,6 +55,8 @@
 		03C40BF31F36A84300CD6BAC /* TCMaxpTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF21F36A84300CD6BAC /* TCMaxpTable.swift */; };
 		03C40BF51F36F99A00CD6BAC /* TCLocaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF41F36F99A00CD6BAC /* TCLocaTable.swift */; };
 		03C40BF71F3795C800CD6BAC /* TCID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF61F3795C800CD6BAC /* TCID.swift */; };
+		03C567491F6B37E8004C915B /* ImportWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C567481F6B37E8004C915B /* ImportWindowController.swift */; };
+		03C5674D1F6B5195004C915B /* ImportDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5674C1F6B5195004C915B /* ImportDocument.swift */; };
 		03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D07AA91F4F87580070F49D /* CharacterMapItem.swift */; };
 		03F687211F39654200F467BA /* TCCffTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6871D1F39565000F467BA /* TCCffTable.swift */; };
 		03F905CC1F37A8840008FF3E /* TCCmapTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CB1F37A8840008FF3E /* TCCmapTable.swift */; };
@@ -92,14 +96,25 @@
 		6313473016858EC10025CDFE /* CharacterMapListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6313472E16858EC10025CDFE /* CharacterMapListView.xib */; };
 		6373B1B0166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
 		6373B1BA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1B8166A11B5007EC53F /* InfoPlist.strings */; };
-		6373B1D2166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
-		6373B1DA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1D8166A11B5007EC53F /* InfoPlist.strings */; };
-		6373B1DD166A11B5007EC53F /* TypecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373B1DC166A11B5007EC53F /* TypecastTests.m */; };
 		63BFC2461690108800435BC8 /* CollectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63BFC2441690108700435BC8 /* CollectionWindow.xib */; };
 		63E96FA5167DEDE800874FBC /* GlyphListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E96FA3167DEDE800874FBC /* GlyphListView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		034EC2CA1F730F97008570B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6373B1A2166A11B5007EC53F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6373B1AA166A11B5007EC53F;
+			remoteInfo = "Type Designer";
+		};
+		034EC2D81F73103F008570B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6373B1A2166A11B5007EC53F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6373B1AA166A11B5007EC53F;
+			remoteInfo = "Type Designer";
+		};
 		03C2F5161F43FDDD00B2A3BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */;
@@ -142,13 +157,6 @@
 			remoteGlobalIDString = 03C2F4F61F43FDDB00B2A3BC;
 			remoteInfo = CFF;
 		};
-		6373B1D3166A11B5007EC53F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6373B1A2166A11B5007EC53F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6373B1AA166A11B5007EC53F;
-			remoteInfo = Typecast;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -183,6 +191,12 @@
 		0348BE701F33E12100446B58 /* TCGlyphDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCGlyphDescription.swift; sourceTree = "<group>"; };
 		0348BE721F33ED9100446B58 /* TCFpgmTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCFpgmTable.swift; sourceTree = "<group>"; };
 		0348BE741F33EF6800446B58 /* TCPrepTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPrepTable.swift; sourceTree = "<group>"; };
+		034EC2C51F730F97008570B3 /* TypeDesignerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypeDesignerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		034EC2C71F730F97008570B3 /* TypeDesignerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDesignerUITests.swift; sourceTree = "<group>"; };
+		034EC2C91F730F97008570B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		034EC2D31F73103F008570B3 /* TypeDesignerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypeDesignerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		034EC2D51F73103F008570B3 /* TypeDesignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDesignerTests.swift; sourceTree = "<group>"; };
+		034EC2D71F73103F008570B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		039845B71F195B6F0040988F /* TCHheaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCHheaTable.swift; sourceTree = "<group>"; };
 		039845B91F1977CE0040988F /* TCTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCTable.swift; sourceTree = "<group>"; };
 		039845BB1F19802E0040988F /* TCHmtxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCHmtxTable.swift; sourceTree = "<group>"; };
@@ -215,6 +229,8 @@
 		03C40BF21F36A84300CD6BAC /* TCMaxpTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCMaxpTable.swift; sourceTree = "<group>"; };
 		03C40BF41F36F99A00CD6BAC /* TCLocaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCLocaTable.swift; sourceTree = "<group>"; };
 		03C40BF61F3795C800CD6BAC /* TCID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCID.swift; sourceTree = "<group>"; };
+		03C567481F6B37E8004C915B /* ImportWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportWindowController.swift; sourceTree = "<group>"; };
+		03C5674C1F6B5195004C915B /* ImportDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportDocument.swift; sourceTree = "<group>"; };
 		03D07AA91F4F87580070F49D /* CharacterMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMapItem.swift; sourceTree = "<group>"; };
 		03F6871D1F39565000F467BA /* TCCffTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCffTable.swift; sourceTree = "<group>"; };
 		03F905CB1F37A8840008FF3E /* TCCmapTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapTable.swift; sourceTree = "<group>"; };
@@ -255,19 +271,28 @@
 		6373B1B2166A11B5007EC53F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		6373B1B3166A11B5007EC53F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6373B1B4166A11B5007EC53F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		6373B1B7166A11B5007EC53F /* Type-Designer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Type-Designer-Info.plist"; sourceTree = "<group>"; };
+		6373B1B7166A11B5007EC53F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6373B1B9166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373B1BD166A11B5007EC53F /* Type-Designer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Type-Designer-Prefix.pch"; sourceTree = "<group>"; };
-		6373B1CF166A11B5007EC53F /* Type DesignerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Type DesignerTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6373B1D7166A11B5007EC53F /* Type-DesignerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Type-DesignerTests-Info.plist"; sourceTree = "<group>"; };
-		6373B1D9166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6373B1DB166A11B5007EC53F /* TypecastTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypecastTests.h; sourceTree = "<group>"; };
-		6373B1DC166A11B5007EC53F /* TypecastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypecastTests.m; sourceTree = "<group>"; };
 		63BFC2441690108700435BC8 /* CollectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionWindow.xib; sourceTree = "<group>"; };
 		63E96FA3167DEDE800874FBC /* GlyphListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlyphListView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		034EC2C21F730F97008570B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		034EC2D01F73103F008570B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6373B1A8166A11B5007EC53F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,17 +303,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6373B1CB166A11B5007EC53F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6373B1D2166A11B5007EC53F /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		034EC2C61F730F97008570B3 /* TypeDesignerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				034EC2C71F730F97008570B3 /* TypeDesignerUITests.swift */,
+				034EC2C91F730F97008570B3 /* Info.plist */,
+			);
+			path = TypeDesignerUITests;
+			sourceTree = "<group>";
+		};
+		034EC2D41F73103F008570B3 /* TypeDesignerTests */ = {
+			isa = PBXGroup;
+			children = (
+				034EC2D51F73103F008570B3 /* TypeDesignerTests.swift */,
+				034EC2D71F73103F008570B3 /* Info.plist */,
+			);
+			path = TypeDesignerTests;
+			sourceTree = "<group>";
+		};
 		03C2F5121F43FDDC00B2A3BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +350,7 @@
 				03A72DD01F5A0A5E003ABF74 /* FontDocumentController.swift */,
 				03A72DD21F5A17A9003ABF74 /* FontDocumentWindowController.swift */,
 				03A72DD41F5A1C8D003ABF74 /* ImportViewController.swift */,
+				03C567481F6B37E8004C915B /* ImportWindowController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -332,7 +368,7 @@
 				03A72DCE1F578E8C003ABF74 /* CharacterMapItem.xib */,
 				033CF1091F5628C3005D15ED /* Assets.xcassets */,
 				033CF10D1F56293E005D15ED /* Main.storyboard */,
-				6373B1B7166A11B5007EC53F /* Type-Designer-Info.plist */,
+				6373B1B7166A11B5007EC53F /* Info.plist */,
 				6373B1B8166A11B5007EC53F /* InfoPlist.strings */,
 			);
 			name = Resources;
@@ -351,6 +387,7 @@
 			children = (
 				03B311F61F2A9CC3001E6712 /* Font.swift */,
 				03B311F41F2A7128001E6712 /* FontDocument.swift */,
+				03C5674C1F6B5195004C915B /* ImportDocument.swift */,
 				03A72DD61F5CB781003ABF74 /* FontController.swift */,
 				03B311F81F2A9D60001E6712 /* FontCollection.swift */,
 				03B311F21F29B5AD001E6712 /* Glyph.swift */,
@@ -439,7 +476,8 @@
 				03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */,
 				03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */,
 				6373B1B5166A11B5007EC53F /* Type Designer */,
-				6373B1D5166A11B5007EC53F /* Type Designer Tests */,
+				034EC2C61F730F97008570B3 /* TypeDesignerUITests */,
+				034EC2D41F73103F008570B3 /* TypeDesignerTests */,
 				6373B1AE166A11B5007EC53F /* Frameworks */,
 				6373B1AC166A11B5007EC53F /* Products */,
 			);
@@ -449,7 +487,8 @@
 			isa = PBXGroup;
 			children = (
 				6373B1AB166A11B5007EC53F /* Type Designer.app */,
-				6373B1CF166A11B5007EC53F /* Type DesignerTests.octest */,
+				034EC2C51F730F97008570B3 /* TypeDesignerUITests.xctest */,
+				034EC2D31F73103F008570B3 /* TypeDesignerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -497,29 +536,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6373B1D5166A11B5007EC53F /* Type Designer Tests */ = {
-			isa = PBXGroup;
-			children = (
-				6373B1DB166A11B5007EC53F /* TypecastTests.h */,
-				6373B1DC166A11B5007EC53F /* TypecastTests.m */,
-				6373B1D6166A11B5007EC53F /* Supporting Files */,
-			);
-			name = "Type Designer Tests";
-			path = TypecastTests;
-			sourceTree = "<group>";
-		};
-		6373B1D6166A11B5007EC53F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6373B1D7166A11B5007EC53F /* Type-DesignerTests-Info.plist */,
-				6373B1D8166A11B5007EC53F /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		034EC2C41F730F97008570B3 /* TypeDesignerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 034EC2CC1F730F97008570B3 /* Build configuration list for PBXNativeTarget "TypeDesignerUITests" */;
+			buildPhases = (
+				034EC2C11F730F97008570B3 /* Sources */,
+				034EC2C21F730F97008570B3 /* Frameworks */,
+				034EC2C31F730F97008570B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				034EC2CB1F730F97008570B3 /* PBXTargetDependency */,
+			);
+			name = TypeDesignerUITests;
+			productName = TypeDesignerUITests;
+			productReference = 034EC2C51F730F97008570B3 /* TypeDesignerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		034EC2D21F73103F008570B3 /* TypeDesignerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 034EC2DA1F73103F008570B3 /* Build configuration list for PBXNativeTarget "TypeDesignerTests" */;
+			buildPhases = (
+				034EC2CF1F73103F008570B3 /* Sources */,
+				034EC2D01F73103F008570B3 /* Frameworks */,
+				034EC2D11F73103F008570B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				034EC2D91F73103F008570B3 /* PBXTargetDependency */,
+			);
+			name = TypeDesignerTests;
+			productName = TypeDesignerTests;
+			productReference = 034EC2D31F73103F008570B3 /* TypeDesignerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6373B1AA166A11B5007EC53F /* Type Designer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6373B1E0166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Type Designer" */;
@@ -540,38 +595,34 @@
 			productReference = 6373B1AB166A11B5007EC53F /* Type Designer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6373B1CE166A11B5007EC53F /* Type DesignerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6373B1E3166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Type DesignerTests" */;
-			buildPhases = (
-				6373B1CA166A11B5007EC53F /* Sources */,
-				6373B1CB166A11B5007EC53F /* Frameworks */,
-				6373B1CC166A11B5007EC53F /* Resources */,
-				6373B1CD166A11B5007EC53F /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6373B1D4166A11B5007EC53F /* PBXTargetDependency */,
-			);
-			name = "Type DesignerTests";
-			productName = TypecastTests;
-			productReference = 6373B1CF166A11B5007EC53F /* Type DesignerTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		6373B1A2166A11B5007EC53F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = TC;
+				CLASSPREFIX = "";
+				LastSwiftUpdateCheck = 0900;
 				LastTestingUpgradeCheck = 0710;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "David Schweinsberg";
 				TargetAttributes = {
+					034EC2C41F730F97008570B3 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 9MWCHY26A8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6373B1AA166A11B5007EC53F;
+					};
+					034EC2D21F73103F008570B3 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 9MWCHY26A8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6373B1AA166A11B5007EC53F;
+					};
 					6373B1AA166A11B5007EC53F = {
-						LastSwiftMigration = 0830;
+						DevelopmentTeam = 9MWCHY26A8;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -598,7 +649,8 @@
 			projectRoot = "";
 			targets = (
 				6373B1AA166A11B5007EC53F /* Type Designer */,
-				6373B1CE166A11B5007EC53F /* Type DesignerTests */,
+				034EC2C41F730F97008570B3 /* TypeDesignerUITests */,
+				034EC2D21F73103F008570B3 /* TypeDesignerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -635,6 +687,20 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		034EC2C31F730F97008570B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		034EC2D11F73103F008570B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6373B1A9166A11B5007EC53F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,33 +719,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6373B1CC166A11B5007EC53F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6373B1DA166A11B5007EC53F /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		6373B1CD166A11B5007EC53F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
+/* Begin PBXSourcesBuildPhase section */
+		034EC2C11F730F97008570B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
+				034EC2C81F730F97008570B3 /* TypeDesignerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
+		034EC2CF1F73103F008570B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				034EC2D61F73103F008570B3 /* TypeDesignerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6373B1A7166A11B5007EC53F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -701,6 +759,7 @@
 				0348BE711F33E12100446B58 /* TCGlyphDescription.swift in Sources */,
 				0348BE6F1F33DD5800446B58 /* TCProgram.swift in Sources */,
 				03B311F71F2A9CC3001E6712 /* Font.swift in Sources */,
+				03C5674D1F6B5195004C915B /* ImportDocument.swift in Sources */,
 				03FF506E1F4BE212009F5F0C /* TCGlyfCompositeDescript.swift in Sources */,
 				03B619141F3D283D00EA1D0E /* TCCmapFormat12.swift in Sources */,
 				03F905CE1F37AB410008FF3E /* TCCmapIndexEntry.swift in Sources */,
@@ -746,6 +805,7 @@
 				03FF50311F47F339009F5F0C /* TCCvtTable.swift in Sources */,
 				0348BE751F33EF6800446B58 /* TCPrepTable.swift in Sources */,
 				03A72DD51F5A1C8D003ABF74 /* ImportViewController.swift in Sources */,
+				03C567491F6B37E8004C915B /* ImportWindowController.swift in Sources */,
 				033CF1101F568C45005D15ED /* CharacterMapViewController.swift in Sources */,
 				03B311F91F2A9D60001E6712 /* FontCollection.swift in Sources */,
 				030A32A91F314823006B2BAC /* AppDelegate.swift in Sources */,
@@ -758,17 +818,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6373B1CA166A11B5007EC53F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6373B1DD166A11B5007EC53F /* TypecastTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		034EC2CB1F730F97008570B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6373B1AA166A11B5007EC53F /* Type Designer */;
+			targetProxy = 034EC2CA1F730F97008570B3 /* PBXContainerItemProxy */;
+		};
+		034EC2D91F73103F008570B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6373B1AA166A11B5007EC53F /* Type Designer */;
+			targetProxy = 034EC2D81F73103F008570B3 /* PBXContainerItemProxy */;
+		};
 		03FF501C1F45188E009F5F0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = IOUtils;
@@ -778,11 +840,6 @@
 			isa = PBXTargetDependency;
 			name = CFF;
 			targetProxy = 03FF501F1F45188E009F5F0C /* PBXContainerItemProxy */;
-		};
-		6373B1D4166A11B5007EC53F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6373B1AA166A11B5007EC53F /* Type Designer */;
-			targetProxy = 6373B1D3166A11B5007EC53F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -795,17 +852,133 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		6373B1D8166A11B5007EC53F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6373B1D9166A11B5007EC53F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		034EC2CD1F730F97008570B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = TypeDesignerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.TypeDesignerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = "Type Designer";
+			};
+			name = Debug;
+		};
+		034EC2CE1F730F97008570B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = TypeDesignerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.TypeDesignerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = "Type Designer";
+			};
+			name = Release;
+		};
+		034EC2DB1F73103F008570B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = TypeDesignerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.TypeDesignerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Type Designer.app/Contents/MacOS/Type Designer";
+			};
+			name = Debug;
+		};
+		034EC2DC1F73103F008570B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = TypeDesignerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.TypeDesignerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Type Designer.app/Contents/MacOS/Type Designer";
+			};
+			name = Release;
+		};
 		6373B1DE166A11B5007EC53F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -813,12 +986,18 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -854,12 +1033,18 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -887,17 +1072,21 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Typecast/Type-Designer-Prefix.pch";
-				INFOPLIST_FILE = "Typecast/Type-Designer-Info.plist";
+				INFOPLIST_FILE = Typecast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.typista.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Type Designer";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Typecast/Type Designer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -908,55 +1097,45 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Typecast/Type-Designer-Prefix.pch";
-				INFOPLIST_FILE = "Typecast/Type-Designer-Info.plist";
+				INFOPLIST_FILE = Typecast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.typista.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Type Designer";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Typecast/Type Designer-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		6373B1E4166A11B5007EC53F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Typecast.app/Contents/MacOS/Typecast";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Typecast/Typecast-Prefix.pch";
-				INFOPLIST_FILE = "TypecastTests/Type-DesignerTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "au.com.dssd.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "Type DesignerTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		6373B1E5166A11B5007EC53F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Typecast.app/Contents/MacOS/Typecast";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Typecast/Typecast-Prefix.pch";
-				INFOPLIST_FILE = "TypecastTests/Type-DesignerTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "au.com.dssd.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "Type DesignerTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		034EC2CC1F730F97008570B3 /* Build configuration list for PBXNativeTarget "TypeDesignerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				034EC2CD1F730F97008570B3 /* Debug */,
+				034EC2CE1F730F97008570B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		034EC2DA1F73103F008570B3 /* Build configuration list for PBXNativeTarget "TypeDesignerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				034EC2DB1F73103F008570B3 /* Debug */,
+				034EC2DC1F73103F008570B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6373B1A5166A11B5007EC53F /* Build configuration list for PBXProject "Type Designer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -971,15 +1150,6 @@
 			buildConfigurations = (
 				6373B1E1166A11B5007EC53F /* Debug */,
 				6373B1E2166A11B5007EC53F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6373B1E3166A11B5007EC53F /* Build configuration list for PBXNativeTarget "Type DesignerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6373B1E4166A11B5007EC53F /* Debug */,
-				6373B1E5166A11B5007EC53F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -28,13 +28,13 @@ class TCGlyphListViewController: NSViewController, NSTableViewDelegate,
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
     if let (_, table) = representedObject as? (FontDocument, TCGlyfTable),
       let tableColumn = tableColumn {
-      if tableColumn.identifier == "GlyphIndex",
-        let view = tableView.make(withIdentifier: "GlyphIndex", owner: self) as? NSTableCellView {
+      if tableColumn.identifier.rawValue == "GlyphIndex",
+        let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GlyphIndex"), owner: self) as? NSTableCellView {
         let descript = table.description(at: row)
         view.textField?.stringValue = String(descript.glyphIndex)
         return view
-      } else if tableColumn.identifier == "GlyphName",
-        let view = tableView.make(withIdentifier: "GlyphName", owner: self) as? NSTableCellView {
+      } else if tableColumn.identifier.rawValue == "GlyphName",
+        let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GlyphName"), owner: self) as? NSTableCellView {
         let descript = table.description(at: row)
         view.textField?.stringValue = descript.name
         return view

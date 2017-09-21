@@ -339,7 +339,7 @@
         <!--Window Controller-->
         <scene sceneID="pLq-oA-4Lc">
             <objects>
-                <windowController storyboardIdentifier="Document Import Controller" id="JNq-vd-evj" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Document Import Controller" id="JNq-vd-evj" customClass="ImportWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="5a6-7j-A2s">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -443,7 +443,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="392" minWidth="40" maxWidth="1000" id="W38-AU-43y">
+                                                <tableColumn identifier="Name" width="392" minWidth="40" maxWidth="1000" id="W38-AU-43y">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -482,6 +482,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <action trigger="doubleAction" selector="open:" target="Pqg-ou-ZKb" id="lkB-VH-ehI"/>
                                                 <outlet property="dataSource" destination="Pqg-ou-ZKb" id="4gk-Lb-vNy"/>
                                                 <outlet property="delegate" destination="Pqg-ou-ZKb" id="l5p-BT-SEH"/>
                                             </connections>
@@ -518,7 +519,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="dismissController:" target="Pqg-ou-ZKb" id="OSu-Af-ZgM"/>
+                                    <action selector="open:" target="Pqg-ou-ZKb" id="jBM-F3-VCr"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Dg-ff-PTg">
@@ -532,12 +533,13 @@ Gw
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="dismissController:" target="Pqg-ou-ZKb" id="SZh-SV-v5y"/>
+                                    <action selector="cancel:" target="Pqg-ou-ZKb" id="OGX-qB-ueP"/>
                                 </connections>
                             </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="openButton" destination="5Bh-9l-GWC" id="fKa-sB-wea"/>
                         <outlet property="tableView" destination="Ot5-Gz-RUE" id="BFh-R1-Bdx"/>
                     </connections>
                 </viewController>

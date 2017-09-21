@@ -26,6 +26,25 @@ class TCMaxpTable: TCBaseTable {
   let maxComponentElements: UInt16
   let maxComponentDepth: UInt16
 
+  override init() {
+    versionNumber = 0
+    numGlyphs = 0
+    maxPoints = 0
+    maxContours = 0
+    maxCompositePoints = 0
+    maxCompositeContours = 0
+    maxZones = 0
+    maxTwilightPoints = 0
+    maxStorage = 0
+    maxFunctionDefs = 0
+    maxInstructionDefs = 0
+    maxStackElements = 0
+    maxSizeOfInstructions = 0
+    maxComponentElements = 0
+    maxComponentDepth = 0
+    super.init()
+  }
+
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
     versionNumber = dataInput.readUInt32()

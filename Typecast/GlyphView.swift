@@ -12,7 +12,9 @@ class GlyphView: NSView {
 
   var glyph: Glyph? {
     didSet {
-      glyphPath = GlyphPathFactory.buildPath(with: glyph!)
+      if let actualGlyph = glyph {
+        glyphPath = GlyphPathFactory.buildPath(with: actualGlyph)
+      }
     }
   }
   var font: Font?
@@ -35,7 +37,7 @@ class GlyphView: NSView {
     guard let glyph = self.glyph,
       let font = self.font,
       let glyphPath = self.glyphPath,
-      let context = NSGraphicsContext.current()?.cgContext else {
+      let context = NSGraphicsContext.current?.cgContext else {
       return
     }
 

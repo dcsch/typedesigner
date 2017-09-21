@@ -10,9 +10,7 @@ import Cocoa
 import os.log
 
 class FontDocument: NSDocument {
-
   var font: Font?
-  var fontCollection: FontCollection?
 
   override init() {
     super.init()
@@ -20,16 +18,12 @@ class FontDocument: NSDocument {
   }
 
   override func makeWindowControllers() {
-    let storyboard = NSStoryboard(name: "Main", bundle: nil)
-    if let fontCollection = fontCollection {
+    let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+    let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "Document Window Controller")) as! NSWindowController
 
-      // Choose which font to import from the collection
-      let windowController = storyboard.instantiateController(withIdentifier: "Document Import Controller") as! NSWindowController
-      self.addWindowController(windowController)
-   } else {
-      let windowController = storyboard.instantiateController(withIdentifier: "Document Window Controller") as! NSWindowController
-      self.addWindowController(windowController)
-    }
+    // This will set the window controller's document property, so the data
+    // must be set up by that point
+    self.addWindowController(windowController)
   }
 
   override func windowControllerDidLoadNib(_ aController: NSWindowController) {
@@ -50,7 +44,7 @@ class FontDocument: NSDocument {
     }
     let fontCollection = try FontCollection(data: data, isSuitcase: suitcase)
     if fontCollection.fonts.count > 1 {
-      self.fontCollection = fontCollection
+//      self.fontCollection = fontCollection
     } else {
       self.font = fontCollection.fonts[0]
     }
@@ -60,7 +54,7 @@ class FontDocument: NSDocument {
     try super.read(from: url, ofType: typeName)
   }
 
-  override class func autosavesInPlace() -> Bool {
+  override class var autosavesInPlace: Bool {
     return true
   }
 
