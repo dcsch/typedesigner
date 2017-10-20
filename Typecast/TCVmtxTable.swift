@@ -12,7 +12,7 @@ import IOUtils
 /**
  Vertical Metrics
  */
-class TCVmtxTable: TCBaseTable {
+class TCVmtxTable: TCBaseTable, Codable {
   var vMetrics: [UInt32] = []
   var topSideBearings: [Int16] = []
   let dataCount: Int

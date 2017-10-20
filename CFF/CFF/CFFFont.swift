@@ -14,7 +14,7 @@ enum CFFFontError: Error {
   case unsupportedCharsetFormat
 }
 
-public class CFFFont: NSObject {
+public class CFFFont {
   let data: Data
   let topDict: CFFDict
   let charStringsIndex: CFFIndex
@@ -72,8 +72,6 @@ public class CFFFont: NSObject {
 
     // Create the charstrings
     charstrings = [CFFCharstringType2]()
-
-    super.init()
 
     for i in 0..<glyphCount {
       let sid = charset.sid(gid: i)

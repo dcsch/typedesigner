@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-public class CFFIndex: NSObject {
+public class CFFIndex {
   public let count: Int
   let offSize: Int
   let offset: [Int]

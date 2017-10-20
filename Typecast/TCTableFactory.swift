@@ -80,6 +80,7 @@ class TCTableFactory {
                                                               tag: TCTableTag.maxp)
         table = TCHdmxTable(data: data, maxpTable: maxpTable)
       case .head:
+//        let decoder = 
         table = TCHeadTable(data: data)
       case .hhea:
         table = TCHheaTable(data: data)

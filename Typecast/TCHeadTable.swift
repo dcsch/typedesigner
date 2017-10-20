@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCHeadTable: TCBaseTable {
+class TCHeadTable: TCBaseTable, Codable {
   var versionNumber: UInt32
   var fontRevision: UInt32
   var checkSumAdjustment: UInt32
@@ -71,6 +71,27 @@ class TCHeadTable: TCBaseTable {
     super.init()
   }
 
+//  required init(from decoder: Decoder) throws {
+//    var container = try decoder.unkeyedContainer()
+//    versionNumber = try container.decode(UInt32.self)
+//    fontRevision = try container.decode(UInt32.self)
+//    checkSumAdjustment = try container.decode(UInt32.self)
+//    magicNumber = try container.decode(UInt32.self)
+//    flags = try container.decode(UInt16.self)
+//    unitsPerEm = try container.decode(UInt16.self)
+//    created = try container.decode(UInt64.self)
+//    modified = try container.decode(UInt64.self)
+//    xMin = try container.decode(Int16.self)
+//    yMin = try container.decode(Int16.self)
+//    xMax = try container.decode(Int16.self)
+//    yMax = try container.decode(Int16.self)
+//    macStyle = try container.decode(UInt16.self)
+//    lowestRecPPEM = try container.decode(UInt16.self)
+//    fontDirectionHint = try container.decode(Int16.self)
+//    indexToLocFormat = try container.decode(Int16.self)
+//    glyphDataFormat = try container.decode(Int16.self)
+//  }
+
   override class var tag: UInt32 {
     get {
       return TCTableTag.head.rawValue
@@ -118,3 +139,27 @@ class TCHeadTable: TCBaseTable {
     }
   }
 }
+
+//extension TCHeadTable: Encodable {
+//  public func encode(to encoder: Encoder) throws {
+//    var container = encoder.unkeyedContainer()
+//    try container.encode(versionNumber)
+//    try container.encode(fontRevision)
+//    try container.encode(checkSumAdjustment)
+//    try container.encode(magicNumber)
+//    try container.encode(flags)
+//    try container.encode(unitsPerEm)
+//    try container.encode(created)
+//    try container.encode(modified)
+//    try container.encode(xMin)
+//    try container.encode(yMin)
+//    try container.encode(xMax)
+//    try container.encode(yMax)
+//    try container.encode(macStyle)
+//    try container.encode(lowestRecPPEM)
+//    try container.encode(fontDirectionHint)
+//    try container.encode(indexToLocFormat)
+//    try container.encode(glyphDataFormat)
+//  }
+//}
+

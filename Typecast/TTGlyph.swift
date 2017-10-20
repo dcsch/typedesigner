@@ -11,7 +11,7 @@ import Foundation
 /**
  An individual TrueType glyph within a font.
  */
-class TTGlyph: NSObject, Glyph {
+class TTGlyph: Glyph {
   var glyphIndex: Int
   var leftSideBearing: Int
   var advanceWidth: Int
@@ -24,37 +24,38 @@ class TTGlyph: NSObject, Glyph {
    - parameter leftSideBearing: The Left Side Bearing.
    - parameter advanceWidth: The advance width.
    */
-  init(glyphDescription description: TCGlyphDescription,
+  init(glyphDescription description: TCGlyfDescript,
        leftSideBearing: Int,
        advanceWidth: Int) {
     self.leftSideBearing = leftSideBearing
     self.advanceWidth = advanceWidth
     self.glyphIndex = -1
-    super.init()
     self.read(description: description)
   }
 
-  func read(description: TCGlyphDescription) {
+  func read(description: TCGlyfDescript) {
     self.glyphIndex = description.glyphIndex
     var endPtIndex = 0
     points.removeAll()
-    for i in 0..<description.pointCount {
-      let endPt = description.endPtOfContours(at: endPtIndex) == i
-      if endPt {
-        endPtIndex += 1
+    if let simpleDesc = description as? TCGlyfSimpleDescript {
+      for i in 0..<simpleDesc.pointCount {
+        let endPt = simpleDesc.endPtOfContours(at: endPtIndex) == i
+        if endPt {
+          endPtIndex += 1
+        }
+        let point = Point(x: simpleDesc.xCoordinate(at: i),
+                            y: simpleDesc.yCoordinate(at: i),
+                            onCurve: Int(simpleDesc.flags(index: i) & TCGlyphFlag.onCurvePoint.rawValue) != 0,
+                            endOfContour: endPt)
+        points.append(point)
       }
-      let point = Point(x: description.xCoordinate(at: i),
-                          y: description.yCoordinate(at: i),
-                          onCurve: Int(description.flags(index: i) & TCGlyphFlag.onCurvePoint.rawValue) != 0,
-                          endOfContour: endPt)
-      points.append(point)
+
+      // Append the origin and advanceWidth points (n & n+1)
+      let oPoint = Point(x: 0, y: 0, onCurve: true, endOfContour: true)
+      points.append(oPoint)
+
+      let awPoint = Point(x: advanceWidth, y: 0, onCurve: true, endOfContour: true)
+      points.append(awPoint)
     }
-
-    // Append the origin and advanceWidth points (n & n+1)
-    let oPoint = Point(x: 0, y: 0, onCurve: true, endOfContour: true)
-    points.append(oPoint)
-
-    let awPoint = Point(x: advanceWidth, y: 0, onCurve: true, endOfContour: true)
-    points.append(awPoint)
   }
 }

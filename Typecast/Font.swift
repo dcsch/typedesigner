@@ -17,7 +17,7 @@ enum FontError: Error {
 /**
  An OpenType font.
  */
-class Font: NSObject {
+class Font {
   var tables: [TCTable]
   var headTable: TCHeadTable
   var hheaTable: TCHheaTable
@@ -50,7 +50,7 @@ class Font: NSObject {
   /**
    Create an empty font.
    */
-  override init() {
+  init() {
     tables = []
     headTable = TCHeadTable()
     tables.append(headTable)
@@ -170,8 +170,6 @@ class Font: NSObject {
     if tableDirectory.hasEntry(tag: TCTableTag.CFF.rawValue) {
       cffTable = try Font.table(tables: tables, tag: TCTableTag.CFF)
     }
-
-    super.init()
   }
 
   /**
@@ -181,8 +179,8 @@ class Font: NSObject {
    - parameter at: the glyph index
    */
   func glyph(at index: Int) -> Glyph? {
-    if let glyfTable = self.glyfTable,
-      let description = glyfTable.description(at: index) as? TCGlyphDescription {
+    if let glyfTable = self.glyfTable {
+      let description = glyfTable.description(at: index)
       return TTGlyph(glyphDescription: description,
                        leftSideBearing: hmtxTable.leftSideBearing(at: index),
                        advanceWidth: hmtxTable.advanceWidth(at: index))
@@ -236,5 +234,33 @@ class Font: NSObject {
       }
     }
     throw FontError.missingTable
+  }
+}
+
+extension Font: Encodable {
+  enum CodingKeys: String, CodingKey {
+    case cmap
+    case glyf
+    case head
+    case hhea
+    case hmtx
+    case maxp
+    case name
+    case OS_2 = "OS/2"
+    case post
+  }
+
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(cmapTable, forKey: .cmap)
+    try container.encode(headTable, forKey: .head)
+    try container.encode(hheaTable, forKey: .hhea)
+    try container.encode(hmtxTable, forKey: .hmtx)
+    try container.encode(maxpTable, forKey: .maxp)
+    try container.encode(nameTable, forKey: .name)
+    try container.encode(os2Table, forKey: .OS_2)
+    try container.encode(postTable, forKey: .post)
+
+    try container.encode(glyfTable, forKey: .glyf)
   }
 }

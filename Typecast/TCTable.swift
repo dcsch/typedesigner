@@ -129,10 +129,7 @@ enum TCTableError: Error {
   }
 }
 
-// TCTable must be @objc and TCBaseTable must be derived from NSObject to let
-// Cocoa bindings work
-
-@objc protocol TCTable {
+protocol TCTable {
   static var tag: UInt32 { get }
 }
 
@@ -140,7 +137,7 @@ enum TCTableError: Error {
  A simple base implementation of TCTable, for classes that don't need to be
  derived from any other base classes.
  */
-class TCBaseTable: NSObject, TCTable {
+class TCBaseTable: TCTable, CustomStringConvertible {
   class var tag: UInt32 { get { return 0 } }
 
   var name: String {
@@ -154,7 +151,7 @@ class TCBaseTable: NSObject, TCTable {
     }
   }
 
-  override var description: String {
+  var description: String {
     get {
       return "TCTable type: '\(name)'"
     }

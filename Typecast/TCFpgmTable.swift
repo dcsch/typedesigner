@@ -9,21 +9,21 @@
 import Foundation
 import IOUtils
 
-class TCFpgmTable: TCProgram, TCTable {
+class TCFpgmTable: TCBaseTable, Codable {
+  var instructions = [UInt8]()
 
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
-    super.init()
-    readInstructions(dataInput: dataInput, count: data.count)
+    instructions = dataInput.read(length: data.count)
   }
 
-  class var tag: UInt32 {
+  override class var tag: UInt32 {
     get {
       return TCTableTag.fpgm.rawValue
     }
   }
 
-  var name: String {
+  override var name: String {
     get {
       let tag = type(of: self).tag
       return String(format: "%c%c%c%c",

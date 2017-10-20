@@ -12,9 +12,9 @@ import IOUtils
 /**
  Digital Signature Table.
  */
-class TCDsigTable: TCBaseTable {
+class TCDsigTable: TCBaseTable, Codable {
 
-  class SignatureRecord {
+  class SignatureRecord: Codable {
     let format: Int
     let length: Int
     let offset: Int
@@ -26,7 +26,7 @@ class TCDsigTable: TCBaseTable {
     }
   }
 
-  class SignatureBlockFormat1: CustomStringConvertible {
+  class SignatureBlockFormat1: CustomStringConvertible, Codable {
     let signatureLen: Int
     var signature: [UInt8]
 

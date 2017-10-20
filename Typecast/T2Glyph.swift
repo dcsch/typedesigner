@@ -13,7 +13,7 @@ import CFF
 /**
  An individual Type 2 Charstring glyph within a font.
  */
-class T2Glyph: NSObject, Glyph {
+class T2Glyph: Glyph {
   let glyphIndex: Int
   var leftSideBearing: Int
   var advanceWidth: Int
@@ -51,7 +51,6 @@ class T2Glyph: NSObject, Glyph {
     } else {
       return nil
     }
-    super.init()
   }
 
 //  var bounds: CGRect {

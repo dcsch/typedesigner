@@ -9,26 +9,32 @@
 import Foundation
 import IOUtils
 
-class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
+class TCGlyfSimpleDescript: TCGlyfDescript {
+  let numberOfContours: Int
+  let xMin: Int
+  let yMin: Int
+  let xMax: Int
+  let yMax: Int
   var endPtsOfContours: [Int]
   var flags: [UInt8]
   var xCoordinates: [Int]
   var yCoordinates: [Int]
   var count: Int
+  var instructions = [UInt8]()
 
-  override init(dataInput: TCDataInput,
-                parentTable: TCGlyfTable,
-                glyphIndex: Int,
-                numberOfContours: Int) {
+  init(dataInput: TCDataInput,
+       glyphIndex: Int,
+       numberOfContours: Int) {
+    self.numberOfContours = numberOfContours
+    self.xMin = Int(dataInput.readInt16())
+    self.yMin = Int(dataInput.readInt16())
+    self.xMax = Int(dataInput.readInt16())
+    self.yMax = Int(dataInput.readInt16())
     endPtsOfContours = []
     flags = []
     xCoordinates = []
     yCoordinates = []
     count = 0
-    super.init(dataInput: dataInput,
-               parentTable: parentTable,
-               glyphIndex: glyphIndex,
-               numberOfContours: numberOfContours)
 
     // Simple glyph description
     for _ in 0..<numberOfContours {
@@ -39,11 +45,16 @@ class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
     count = Int(endPtsOfContours[numberOfContours - 1]) + 1
 
     let instructionCount = Int(dataInput.readInt16())
-    readInstructions(dataInput: dataInput, count: instructionCount)
+    instructions = dataInput.read(length: instructionCount)
+    super.init(glyphIndex: glyphIndex)
     readFlags(dataInput: dataInput, count: count)
     readCoords(dataInput: dataInput, count: count)
   }
-
+  
+  required init(from decoder: Decoder) throws {
+    fatalError("init(from:) has not been implemented")
+  }
+  
   // The flags are run-length encoded
   func readFlags(dataInput: TCDataInput, count: Int) {
     flags.removeAll()
@@ -103,9 +114,13 @@ class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
     self.yCoordinates = yCoordinates
   }
 
-  override var description: String {
+  var description: String {
     get {
-      var str = super.description
+      var str = "          numberOfContours: \(numberOfContours)\n" +
+        "          xMin:             \(xMin)\n" +
+        "          yMin:             \(yMin)\n" +
+        "          xMax:             \(xMax)\n" +
+        "          yMax:             \(yMax)\n"
 
       str.append("\n        EndPoints\n        ---------")
       for i in 0..<endPtsOfContours.count {
@@ -160,31 +175,31 @@ class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
     return yCoordinates[index]
   }
 
-  var xMaximum: Int {
+  override var xMaximum: Int {
     get {
       return xMax
     }
   }
 
-  var xMinimum: Int {
+  override var xMinimum: Int {
     get {
       return xMin
     }
   }
 
-  var yMaximum: Int {
+  override var yMaximum: Int {
     get {
       return yMax
     }
   }
 
-  var yMinimum: Int {
+  override var yMinimum: Int {
     get {
       return yMin
     }
   }
 
-  var isComposite: Bool {
+  override var isComposite: Bool {
     get {
       return false
     }
@@ -200,5 +215,34 @@ class TCGlyfSimpleDescript: TCGlyfBaseDescript, TCGlyphDescription {
     get {
       return numberOfContours
     }
+  }
+
+  enum ExtraCodingKeys: String, CodingKey {
+    case glyphIndex
+    case xMaximum
+    case xMinimum
+    case yMaximum
+    case yMinimum
+    case endPtsOfContours
+    case flags
+    case xCoordinates
+    case yCoordinates
+    case count
+    case instructions
+  }
+
+  override func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: ExtraCodingKeys.self)
+    try container.encode(glyphIndex, forKey: .glyphIndex)
+    try container.encode(xMaximum, forKey: .xMaximum)
+    try container.encode(xMinimum, forKey: .xMinimum)
+    try container.encode(yMaximum, forKey: .yMaximum)
+    try container.encode(yMinimum, forKey: .yMinimum)
+    try container.encode(endPtsOfContours, forKey: .glyphIndex)
+    try container.encode(flags, forKey: .glyphIndex)
+    try container.encode(xCoordinates, forKey: .glyphIndex)
+    try container.encode(yCoordinates, forKey: .glyphIndex)
+    try container.encode(count, forKey: .glyphIndex)
+    try container.encode(instructions, forKey: .glyphIndex)
   }
 }

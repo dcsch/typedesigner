@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCCmapIndexEntry: NSObject, Comparable {
+class TCCmapIndexEntry: Comparable {
   let platformID: Int
   let encodingID: Int
   let offset: Int
@@ -33,7 +33,7 @@ class TCCmapIndexEntry: NSObject, Comparable {
     offset = Int(dataInput.readUInt32())
   }
 
-  override var description: String {
+  var description: String {
     get {
       return String(format: "platform id: %d (%@), encoding id: %d (%@), offset: %d",
                     platformID,
@@ -42,6 +42,10 @@ class TCCmapIndexEntry: NSObject, Comparable {
                     TCID.encodingName(platformID: platformID, encodingID: encodingID),
                     offset)
     }
+  }
+
+  static func ==(lhs: TCCmapIndexEntry, rhs: TCCmapIndexEntry) -> Bool {
+    return lhs.offset == rhs.offset
   }
 
   static func <(lhs: TCCmapIndexEntry, rhs: TCCmapIndexEntry) -> Bool {

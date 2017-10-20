@@ -9,15 +9,15 @@
 import Foundation
 import IOUtils
 
-class TCCmapTable: TCBaseTable {
+class TCCmapTable: TCBaseTable, Codable {
   let version: UInt16
   let numTables: Int
-  let entries: [TCCmapIndexEntry]
+  var mappings: [CharacterToGlyphMapping]
 
   override init() {
     version = 0
     numTables = 0
-    entries = []
+    mappings = []
     super.init()
   }
 
@@ -27,6 +27,7 @@ class TCCmapTable: TCBaseTable {
     numTables = Int(dataInput.readUInt16())
     var bytesRead = 4
     var entries = [TCCmapIndexEntry]()
+    mappings = []
 
     // Get each of the index entries
     for _ in 0..<numTables {
@@ -56,8 +57,11 @@ class TCCmapTable: TCBaseTable {
       lastOffset = entry.offset
       entry.format = lastFormat
       bytesRead += (lastFormat?.length)!
+
+      if let format = lastFormat {
+        mappings.append(CharacterToGlyphMapping(encodedMap: format))
+      }
     }
-    self.entries = entries
     super.init()
   }
 
@@ -69,13 +73,13 @@ class TCCmapTable: TCBaseTable {
 
   override var description: String {
     get {
-      var str = "cmap\n"
+      let str = "cmap\n"
 
       // Get each of the index entries
-      for entry in entries {
-        str.append(entry.description)
-        str.append("\n")
-      }
+//      for entry in entries {
+//        str.append(entry.description)
+//        str.append("\n")
+//      }
 
       return str;
     }

@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCHheaTable: TCBaseTable {
+class TCHheaTable: TCBaseTable, Codable {
   var version: UInt32
   var ascender: Int16
   var descender: Int16

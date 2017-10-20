@@ -36,7 +36,7 @@ class TCGlyphListViewController: NSViewController, NSTableViewDelegate,
       } else if tableColumn.identifier.rawValue == "GlyphName",
         let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GlyphName"), owner: self) as? NSTableCellView {
         let descript = table.description(at: row)
-        view.textField?.stringValue = descript.name
+//        view.textField?.stringValue = descript.name
         return view
       }
     }

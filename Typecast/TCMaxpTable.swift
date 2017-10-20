@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCMaxpTable: TCBaseTable {
+class TCMaxpTable: TCBaseTable, Codable {
   let versionNumber: UInt32
   let numGlyphs: Int
   let maxPoints: UInt16

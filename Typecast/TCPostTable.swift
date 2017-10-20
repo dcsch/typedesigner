@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCPostTable: TCBaseTable {
+class TCPostTable: TCBaseTable, Codable {
   let version: UInt32
   let italicAngle: UInt32
   let underlinePosition: Int16

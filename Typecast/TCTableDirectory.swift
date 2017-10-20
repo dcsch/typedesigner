@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCTableDirectory: NSObject {
+class TCTableDirectory {
   let version: UInt32
   let numTables: Int
   let searchRange: UInt16
@@ -48,7 +48,7 @@ class TCTableDirectory: NSObject {
     return false
   }
 
-  override var description: String {
+  var description: String {
     get {
       var str = String(format:
         "Offset Table\n------ -----" +

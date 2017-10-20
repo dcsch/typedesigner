@@ -13,6 +13,10 @@ import IOUtils
  Information describing the glyphs in TrueType outline format.
  */
 class TCGlyfTable: TCBaseTable {
+  enum CodingKeys: String, CodingKey {
+    case descript
+  }
+
   var descript: [TCGlyfDescript]
   let postTable: TCPostTable
 
@@ -33,41 +37,23 @@ class TCGlyfTable: TCBaseTable {
 
     super.init()
 
-    // Process all the simple glyphs
+    // Process each individual glyph
     for i in 0..<maxpTable.numGlyphs {
       let len = locaTable.offset(at: i + 1) - locaTable.offset(at: i)
       if len > 0 {
         let offset = locaTable.offset(at: i)
-        let glyfData = data.subdata(in: Int(offset)..<Int(offset + len))
+        let glyfData = data.subdata(in: offset..<offset + len)
         let dataInput = TCDataInput(data: glyfData)
         let numberOfContours = Int(dataInput.readInt16())
         if numberOfContours >= 0 {
           descript.append(TCGlyfSimpleDescript(dataInput: dataInput,
-                                               parentTable: self,
                                                glyphIndex: i,
                                                numberOfContours: numberOfContours))
         } else {
-          // Temporary placeholder
-          descript.append(TCGlyfNullDescript(glyphIndex: i))
+          descript.append(TCGlyfCompositeDescript(dataInput: dataInput, glyphIndex: i))
         }
       } else {
         descript.append(TCGlyfNullDescript(glyphIndex: i))
-      }
-    }
-
-    // Now do all the composite glyphs
-    for i in 0..<maxpTable.numGlyphs {
-      let len = locaTable.offset(at: i + 1) - locaTable.offset(at: i)
-      if len > 0 {
-        let offset = locaTable.offset(at: i)
-        let glyfData = data.subdata(in: Int(offset)..<Int(offset + len))
-        let dataInput = TCDataInput(data: glyfData)
-        let numberOfContours = Int(dataInput.readInt16())
-        if numberOfContours < 0 {
-          descript[i] = TCGlyfCompositeDescript(dataInput: dataInput,
-                                                parentTable: self,
-                                                glyphIndex: i)
-        }
       }
     }
   }
@@ -93,14 +79,22 @@ class TCGlyfTable: TCBaseTable {
     }
   }
 
-  func objectInGlyphNames(index: Int) -> String? {
+  func objectInGlyphNames(at index: Int) -> String {
     if postTable.version == 0x00020000 {
       let nameIndex = Int(postTable.glyphNameIndex[index])
       return (nameIndex > 257) ?
         postTable.psGlyphName[nameIndex - 258] :
         TCPostTable.macGlyphName[nameIndex]
     } else {
-      return nil
+      return ""
     }
   }
 }
+
+extension TCGlyfTable: Encodable {
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(descript, forKey: .descript)
+  }
+}
+

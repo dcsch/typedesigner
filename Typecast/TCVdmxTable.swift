@@ -12,9 +12,9 @@ import IOUtils
 /**
  The Vertical Device Metrics table for TrueType outlines.
  */
-class TCVdmxTable: TCBaseTable {
+class TCVdmxTable: TCBaseTable, Codable {
 
-  class Ratio {
+  class Ratio: Codable {
     let bCharSet: Int
     let xRatio: Int
     let yStartRatio: Int
@@ -28,7 +28,7 @@ class TCVdmxTable: TCBaseTable {
     }
   }
 
-  class VTableRecord {
+  class VTableRecord: Codable {
     let yPelHeight: Int
     let yMax: Int
     let yMin: Int
@@ -40,7 +40,7 @@ class TCVdmxTable: TCBaseTable {
     }
   }
 
-  class Group {
+  class Group: Codable {
     let recs: Int
     let startsz: Int
     let endsz: Int

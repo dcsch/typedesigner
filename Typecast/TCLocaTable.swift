@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCLocaTable: TCBaseTable {
+class TCLocaTable: TCBaseTable, Codable {
   let offsets: [Int]
   let factor: Int
   let dataCount: Int

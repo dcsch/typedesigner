@@ -14,9 +14,9 @@ import IOUtils
  or more simple glyphs, usually with some sort of transformation applied to
  each.
  */
-class TCGlyfCompositeDescript: TCGlyfBaseDescript, TCGlyphDescription {
+class TCGlyfCompositeDescript: TCGlyfDescript {
 
-  class Component {
+  class Component: Codable {
 
     static let ARG_1_AND_2_ARE_WORDS = 0x0001
     static let ARGS_ARE_XY_VALUES = 0x0002
@@ -28,8 +28,8 @@ class TCGlyfCompositeDescript: TCGlyfBaseDescript, TCGlyphDescription {
     static let WE_HAVE_INSTRUCTIONS = 0x0100
     static let USE_MY_METRICS = 0x0200
 
-    let firstIndex: Int
-    let firstContour: Int
+//    let firstIndex: Int
+//    let firstContour: Int
     let argument1: Int
     let argument2: Int
     let flags: Int
@@ -43,9 +43,9 @@ class TCGlyfCompositeDescript: TCGlyfBaseDescript, TCGlyphDescription {
     let point1: Int
     let point2: Int
 
-    init(firstIndex: Int, firstContour: Int, dataInput: TCDataInput) {
-      self.firstIndex = firstIndex
-      self.firstContour = firstContour
+    init(dataInput: TCDataInput) {
+//      self.firstIndex = firstIndex
+//      self.firstContour = firstContour
       self.flags = Int(dataInput.readUInt16())
       self.glyphIndex = Int(dataInput.readUInt16())
 
@@ -125,146 +125,188 @@ class TCGlyfCompositeDescript: TCGlyfBaseDescript, TCGlyphDescription {
     }
   }
 
+  var numberOfContours: Int {
+    get {
+      return -1
+    }
+  }
+  let xMin: Int
+  let yMin: Int
+  let xMax: Int
+  let yMax: Int
   var components = [Component]()
+  var instructions = [UInt8]()
 
-  init(dataInput: TCDataInput, parentTable: TCGlyfTable, glyphIndex: Int) {
-
-    super.init(dataInput: dataInput, parentTable: parentTable,
-               glyphIndex: glyphIndex, numberOfContours: -1)
+  init(dataInput: TCDataInput, glyphIndex: Int) {
+    self.xMin = Int(dataInput.readInt16())
+    self.yMin = Int(dataInput.readInt16())
+    self.xMax = Int(dataInput.readInt16())
+    self.yMax = Int(dataInput.readInt16())
 
     // Get all of the composite components
     var comp: Component
-    var firstIndex = 0
-    var firstContour = 0
+//    var firstIndex = 0
+//    var firstContour = 0
     repeat {
-      comp = Component(firstIndex: firstIndex, firstContour: firstContour, dataInput: dataInput)
+      comp = Component(dataInput: dataInput)
       components.append(comp)
-      if let desc = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-        firstIndex += desc.pointCount
-        firstContour += desc.contourCount
-      }
+//      let desc = parentTable.descript[comp.glyphIndex]
+//      firstIndex += desc.pointCount
+//      firstContour += desc.contourCount
     } while comp.flags & Component.MORE_COMPONENTS != 0
 
     // Are there hinting intructions to read?
     if comp.flags & Component.WE_HAVE_INSTRUCTIONS != 0 {
       let instructionCount = Int(dataInput.readInt16())
-      readInstructions(dataInput: dataInput, count: instructionCount)
+      instructions = dataInput.read(length: instructionCount)
+    }
+    super.init(glyphIndex: glyphIndex)
+  }
+  
+  required init(from decoder: Decoder) throws {
+    fatalError("init(from:) has not been implemented")
+  }
+  
+//  func compositeComp(at index: Int) -> Component? {
+//    for comp in components {
+//      let gd = parentTable.descript[comp.glyphIndex]
+//      if comp.firstIndex <= index && index < comp.firstIndex + gd.pointCount {
+//        return comp
+//      }
+//    }
+//    return nil
+//  }
+//
+//  func compositeCompEndPt(at index: Int) -> Component? {
+//    for comp in components {
+//      let gd = parentTable.descript[comp.glyphIndex]
+//      if comp.firstContour <= index && index < comp.firstContour + gd.contourCount {
+//        return comp
+//      }
+//    }
+//    return nil
+//  }
+
+  var description: String {
+    get {
+      let str = "          numberOfContours: \(numberOfContours)\n" +
+        "          xMin:             \(xMin)\n" +
+        "          yMin:             \(yMin)\n" +
+        "          xMax:             \(xMax)\n" +
+        "          yMax:             \(yMax)\n"
+      return str;
     }
   }
 
-  func compositeComp(at index: Int) -> Component? {
-    for comp in components {
-      if let gd = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-        if comp.firstIndex <= index && index < comp.firstIndex + gd.pointCount {
-          return comp
-        }
-      }
-    }
-    return nil
-  }
+//  func endPtOfContours(at index: Int) -> Int {
+//    if let comp = compositeCompEndPt(at: index) {
+//      let gd = parentTable.descript[comp.glyphIndex]
+//      return gd.endPtOfContours(at: index - comp.firstContour) + comp.firstIndex
+//    }
+//    return 0
+//  }
+//
+//  func flags(index: Int) -> UInt8 {
+//    if let comp = compositeComp(at: index) {
+//      let gd = parentTable.descript[comp.glyphIndex]
+//      return gd.flags(index: index - comp.firstIndex)
+//    }
+//    return 0
+//  }
+//
+//  func xCoordinate(at index: Int) -> Int {
+//    if let comp = compositeComp(at: index) {
+//      let gd = parentTable.descript[comp.glyphIndex]
+//      let n = index - comp.firstIndex
+//      let x = gd.xCoordinate(at: n)
+//      let y = gd.yCoordinate(at: n)
+//      var x1 = comp.scaleX(x: x, y: y)
+//      x1 += comp.xtranslate
+//      return x1
+//    }
+//    return 0
+//  }
+//
+//  func yCoordinate(at index: Int) -> Int {
+//    if let comp = compositeComp(at: index) {
+//      let gd = parentTable.descript[comp.glyphIndex]
+//      let n = index - comp.firstIndex
+//      let x = gd.xCoordinate(at: n)
+//      let y = gd.yCoordinate(at: n)
+//      var y1 = comp.scaleY(x: x, y: y)
+//      y1 += comp.ytranslate
+//      return y1
+//    }
+//    return 0
+//  }
 
-  func compositeCompEndPt(at index: Int) -> Component? {
-    for comp in components {
-      if let gd = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-        if comp.firstContour <= index && index < comp.firstContour + gd.contourCount {
-          return comp
-        }
-      }
-    }
-    return nil
-  }
-
-  func endPtOfContours(at index: Int) -> Int {
-    if let comp = compositeCompEndPt(at: index),
-      let gd = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-      return gd.endPtOfContours(at: index - comp.firstContour) + comp.firstIndex
-    }
-    return 0
-  }
-
-  func flags(index: Int) -> UInt8 {
-    if let comp = compositeComp(at: index),
-      let gd = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-      return gd.flags(index: index - comp.firstIndex)
-    }
-    return 0
-  }
-
-  func xCoordinate(at index: Int) -> Int {
-    if let comp = compositeComp(at: index),
-      let gd = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-      let n = index - comp.firstIndex
-      let x = gd.xCoordinate(at: n)
-      let y = gd.yCoordinate(at: n)
-      var x1 = comp.scaleX(x: x, y: y)
-      x1 += comp.xtranslate
-      return x1
-    }
-    return 0
-  }
-
-  func yCoordinate(at index: Int) -> Int {
-    if let comp = compositeComp(at: index),
-      let gd = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-      let n = index - comp.firstIndex
-      let x = gd.xCoordinate(at: n)
-      let y = gd.yCoordinate(at: n)
-      var y1 = comp.scaleY(x: x, y: y)
-      y1 += comp.ytranslate
-      return y1
-    }
-    return 0
-  }
-
-  var xMaximum: Int {
+  override var xMaximum: Int {
     get {
       return xMax
     }
   }
 
-  var xMinimum: Int {
+  override var xMinimum: Int {
     get {
       return xMin
     }
   }
 
-  var yMaximum: Int {
+  override var yMaximum: Int {
     get {
       return yMax
     }
   }
 
-  var yMinimum: Int {
+  override var yMinimum: Int {
     get {
       return yMin
     }
   }
 
-  var isComposite: Bool {
+  override var isComposite: Bool {
     get {
       return true
     }
   }
 
-  var pointCount: Int {
-    get {
-      if let comp = components.last,
-        let gd = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-        return comp.firstIndex + gd.pointCount
-      } else {
-        return 0
-      }
-    }
+//  var pointCount: Int {
+//    get {
+//      if let comp = components.last {
+//        let gd = parentTable.descript[comp.glyphIndex]
+//        return comp.firstIndex + gd.pointCount
+//      } else {
+//        return 0
+//      }
+//    }
+//  }
+//
+//  var contourCount: Int {
+//    get {
+//      if let comp = components.last {
+//        let gd = parentTable.descript[comp.glyphIndex]
+//        return comp.firstContour + gd.contourCount
+//      } else {
+//        return 0
+//      }
+//    }
+//  }
+
+  enum ExtraCodingKeys: String, CodingKey {
+    case glyphIndex
+    case xMaximum
+    case xMinimum
+    case yMaximum
+    case yMinimum
   }
 
-  var contourCount: Int {
-    get {
-      if let comp = components.last,
-        let gd = parentTable.descript[comp.glyphIndex] as? TCGlyphDescription {
-        return comp.firstContour + gd.contourCount
-      } else {
-        return 0
-      }
-    }
+  override func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: ExtraCodingKeys.self)
+    try container.encode(glyphIndex, forKey: .glyphIndex)
+    try container.encode(xMaximum, forKey: .xMaximum)
+    try container.encode(xMinimum, forKey: .xMinimum)
+    try container.encode(yMaximum, forKey: .yMaximum)
+    try container.encode(yMinimum, forKey: .yMinimum)
   }
 }
+

@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCNameRecord {
+class TCNameRecord: Codable {
   let platformId: Int
   let encodingId: Int
   let languageId: Int
@@ -46,7 +46,7 @@ class TCNameRecord {
   }
 }
 
-class TCNameTable: TCBaseTable {
+class TCNameTable: TCBaseTable, Codable {
   let formatSelector: Int16
   let numberOfNameRecords: Int16
   let stringStorageOffset: Int16

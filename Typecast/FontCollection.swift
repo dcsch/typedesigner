@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class FontCollection: NSObject {
+class FontCollection {
   var fonts: [Font]
   var ttcHeader: TCTTCHeader?
   var suitcase: Bool
@@ -17,7 +17,6 @@ class FontCollection: NSObject {
   init(data: Data, isSuitcase: Bool) throws {
     fonts = []
     self.suitcase = isSuitcase
-    super.init()
 
     if suitcase {
       // This is a Macintosh font suitcase resource

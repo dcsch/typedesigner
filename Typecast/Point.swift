@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Point: NSObject {
+class Point {
   var x: Int
   var y: Int
   var onCurve: Bool

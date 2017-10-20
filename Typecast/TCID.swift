@@ -9,7 +9,7 @@
 import Foundation
 
 // TODO Rework this as a fancy enum
-class TCID: NSObject {
+class TCID {
 
   // Platform IDs
   static let platformUnicode = 0

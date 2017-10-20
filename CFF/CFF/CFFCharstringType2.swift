@@ -16,7 +16,7 @@ public enum CFFCharstringType2Error: Error {
 /**
  CFF Type 2 Charstring
  */
-public class CFFCharstringType2: NSObject, CFFCharstring {
+public class CFFCharstringType2: CFFCharstring {
 
   static let oneByteOperators: [String] = [
     "-Reserved-",
@@ -104,7 +104,7 @@ public class CFFCharstringType2: NSObject, CFFCharstring {
     self.data = data
   }
 
-  override init() {
+  init() {
     self.index = 0
     self.name = "Empty"
     self.data = []

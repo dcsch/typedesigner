@@ -13,9 +13,9 @@ import IOUtils
  The Horizontal Device Metrics table for TrueType outlines.  This stores
  integer advance widths scaled to specific pixel sizes.
  */
-class TCHdmxTable: TCBaseTable {
+class TCHdmxTable: TCBaseTable, Codable {
 
-  class DeviceRecord {
+  class DeviceRecord: Codable {
     let pixelSize: Int
     let maxWidth: Int
     var widths = [Int]()

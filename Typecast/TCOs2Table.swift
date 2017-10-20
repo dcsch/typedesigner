@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCPanose {
+class TCPanose: Codable {
   let bFamilyType: UInt8
   let bSerifStyle: UInt8
   let bWeight: UInt8
@@ -65,7 +65,7 @@ class TCPanose {
   }
 }
 
-class TCOs2Table: TCBaseTable {
+class TCOs2Table: TCBaseTable, Codable {
   let version: UInt16
   let xAvgCharWidth: Int16
   let usWeightClass: UInt16

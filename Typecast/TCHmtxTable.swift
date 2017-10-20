@@ -12,7 +12,7 @@ import IOUtils
 /**
  Horizontal Metrics
  */
-class TCHmtxTable: TCBaseTable {
+class TCHmtxTable: TCBaseTable, Codable {
   var hMetrics: [UInt32] = []
   var leftSideBearings: [Int16] = []
   let dataCount: Int

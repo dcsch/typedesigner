@@ -54,6 +54,12 @@ class FontDocument: NSDocument {
     try super.read(from: url, ofType: typeName)
   }
 
+  override func fileWrapper(ofType typeName: String) throws -> FileWrapper {
+    let encoder = JSONEncoder()
+    let data = try encoder.encode(font)
+    return FileWrapper(regularFileWithContents: data)
+  }
+
   override class var autosavesInPlace: Bool {
     return true
   }

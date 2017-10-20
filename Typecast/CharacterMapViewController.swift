@@ -12,7 +12,7 @@ import os.log
 class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
     NSCollectionViewDelegate, FontControllerConsumer {
   @IBOutlet weak var collectionView: NSCollectionView?
-  weak var cmapIndexEntry: TCCmapIndexEntry?
+//  weak var cmapIndexEntry: TCCmapIndexEntry?
   var characterMappings = [(Int, Int)]()
   var font: Font?
 
@@ -24,21 +24,28 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
         self.font = font
 
         // TODO: The cmap should be selectable
-        cmapIndexEntry = font.cmapTable.entries.first
+//        cmapIndexEntry = font.cmapTable.entries.first
+        let mapping = font.cmapTable.mappings[0]
 
         characterMappings.removeAll()
-        if let format = cmapIndexEntry?.format {
-          for range in format.ranges {
-            for i in range {
-              let mapping = (i, format.glyphCode(characterCode: i))
-              characterMappings.append(mapping)
-            }
+//        if let format = cmapIndexEntry?.format {
+//          for range in format.ranges {
+//            for i in range {
+//              let mapping = (i, format.glyphCode(characterCode: i))
+//              characterMappings.append(mapping)
+//            }
+//          }
+//        }
+        let charCodes = mapping.glyphCodes.keys.sorted()
+        for charCode in charCodes {
+          if let glyphCode = mapping.glyphCodes[charCode] {
+            characterMappings.append((charCode, glyphCode))
           }
         }
         collectionView?.reloadData()
       } else {
         self.font = nil
-        cmapIndexEntry = nil
+//        cmapIndexEntry = nil
       }
     }
   }

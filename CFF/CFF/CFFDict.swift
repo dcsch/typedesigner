@@ -14,7 +14,7 @@ enum CFFDictError: Error {
   case noOperand
 }
 
-public class CFFDict: NSObject {
+public class CFFDict {
   var entries: [Int:Any]
   let data: [UInt8]
   var index: Int
@@ -23,7 +23,6 @@ public class CFFDict: NSObject {
     self.entries = [:]
     self.data = data
     self.index = offset
-    super.init()
     while self.index < offset + length {
       addKeyAndValueEntry()
     }
@@ -33,7 +32,6 @@ public class CFFDict: NSObject {
     self.entries = [:]
     self.data = dataInput.read(length: length)
     self.index = 0
-    super.init()
     while self.index < length {
       addKeyAndValueEntry()
     }

@@ -12,7 +12,7 @@ import IOUtils
 /**
  The Control Value Table.
  */
-class TCCvtTable: TCBaseTable {
+class TCCvtTable: TCBaseTable, Codable {
   var values = [Int]()
 
   init(data: Data) {
