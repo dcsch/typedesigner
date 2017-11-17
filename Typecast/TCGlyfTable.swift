@@ -18,7 +18,7 @@ class TCGlyfTable: TCBaseTable {
   }
 
   var descript: [TCGlyfDescript]
-  let postTable: TCPostTable
+//  let postTable: TCPostTable
 
   /**
    - parameters:
@@ -30,10 +30,9 @@ class TCGlyfTable: TCBaseTable {
    */
   init(data: Data,
        maxpTable: TCMaxpTable,
-       locaTable: TCLocaTable,
-       postTable: TCPostTable) {
+       locaTable: TCLocaTable) {
     self.descript = []
-    self.postTable = postTable
+//    self.postTable = postTable
 
     super.init()
 
@@ -73,22 +72,22 @@ class TCGlyfTable: TCBaseTable {
     }
   }
 
-  var countOfGlyphNames: Int {
-    get {
-      return Int(postTable.numGlyphs)
-    }
-  }
-
-  func objectInGlyphNames(at index: Int) -> String {
-    if postTable.version == 0x00020000 {
-      let nameIndex = Int(postTable.glyphNameIndex[index])
-      return (nameIndex > 257) ?
-        postTable.psGlyphName[nameIndex - 258] :
-        TCPostTable.macGlyphName[nameIndex]
-    } else {
-      return ""
-    }
-  }
+//  var countOfGlyphNames: Int {
+//    get {
+//      return Int(postTable.numGlyphs)
+//    }
+//  }
+//
+//  func objectInGlyphNames(at index: Int) -> String {
+//    if postTable.version == 0x00020000 {
+//      let nameIndex = Int(postTable.glyphNameIndex[index])
+//      return (nameIndex > 257) ?
+//        postTable.psGlyphName[nameIndex - 258] :
+//        TCPostTable.macGlyphName[nameIndex]
+//    } else {
+//      return ""
+//    }
+//  }
 }
 
 extension TCGlyfTable: Encodable {

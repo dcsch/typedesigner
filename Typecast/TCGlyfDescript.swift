@@ -68,21 +68,21 @@ class TCGlyfDescript: Encodable {
     self.glyphIndex = glyphIndex
   }
 
-  enum CodingKeys: String, CodingKey {
-    case glyphIndex
-    case xMaximum
-    case xMinimum
-    case yMaximum
-    case yMinimum
-  }
+//  enum CodingKeys: String, CodingKey {
+//    case glyphIndex
+//    case xMaximum
+//    case xMinimum
+//    case yMaximum
+//    case yMinimum
+//  }
 
   func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(glyphIndex, forKey: .glyphIndex)
-    try container.encode(xMaximum, forKey: .xMaximum)
-    try container.encode(xMinimum, forKey: .xMinimum)
-    try container.encode(yMaximum, forKey: .yMaximum)
-    try container.encode(yMinimum, forKey: .yMinimum)
+//    var container = encoder.container(keyedBy: CodingKeys.self)
+//    try container.encode(glyphIndex, forKey: .glyphIndex)
+//    try container.encode(xMaximum, forKey: .xMaximum)
+//    try container.encode(xMinimum, forKey: .xMinimum)
+//    try container.encode(yMaximum, forKey: .yMaximum)
+//    try container.encode(yMinimum, forKey: .yMinimum)
   }
 }
 

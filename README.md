@@ -1,4 +1,3 @@
-Type Designer
-=============
+# Type Designer
 
-OpenType Font Design System for macOS.
+OpenType Font Design System for macOS. *Under construction — not yet a useful application!*

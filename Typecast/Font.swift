@@ -18,19 +18,15 @@ enum FontError: Error {
  An OpenType font.
  */
 class Font {
-  var tables: [TCTable]
   var headTable: TCHeadTable
   var hheaTable: TCHheaTable
   var maxpTable: TCMaxpTable
-  var locaTable: TCLocaTable?
   var vheaTable: TCVheaTable?
   var cmapTable: TCCmapTable
   var hmtxTable: TCHmtxTable
   var nameTable: TCNameTable
   var os2Table: TCOs2Table
   var postTable: TCPostTable
-  var glyfTable: TCGlyfTable?
-  var cffTable: TCCffTable?
   var ascent: Int {
     get {
       return Int(hheaTable.ascender)
@@ -51,23 +47,14 @@ class Font {
    Create an empty font.
    */
   init() {
-    tables = []
     headTable = TCHeadTable()
-    tables.append(headTable)
     hheaTable = TCHheaTable()
-    tables.append(hheaTable)
     maxpTable = TCMaxpTable()
-    tables.append(maxpTable)
     cmapTable = TCCmapTable()
-    tables.append(cmapTable)
     hmtxTable = TCHmtxTable()
-    tables.append(hmtxTable)
     nameTable = TCNameTable()
-    tables.append(nameTable)
     os2Table = TCOs2Table()
-    tables.append(os2Table)
     postTable = TCPostTable()
-    tables.append(postTable)
   }
 
   /**
@@ -87,151 +74,77 @@ class Font {
     // Load the table directory
     let dataInput = TCDataInput(data: data)
     let tableDirectory = TCTableDirectory(dataInput: dataInput)
-    tables = []
 
     // Load some prerequisite tables
     // (These are tables that are referenced by other tables, so we need to load
     // them first)
-    headTable = try Font.readTable(directory: tableDirectory, tables: tables,
-                                     tag: .head, data: data,
-                                     tablesOrigin: tablesOrigin)
-    tables.append(headTable)
+    var tableData = try Font.tableData(directory: tableDirectory, tag: .head,
+                                       data: data, tablesOrigin: tablesOrigin)
+    headTable = TCHeadTable(data: tableData)
+
     // 'hhea' is required by 'hmtx'
-    hheaTable = try Font.readTable(directory: tableDirectory, tables: tables,
-                                     tag: .hhea, data: data,
-                                     tablesOrigin: tablesOrigin)
-    tables.append(hheaTable)
+    tableData = try Font.tableData(directory: tableDirectory, tag: .hhea,
+                                   data: data, tablesOrigin: tablesOrigin)
+    hheaTable = TCHheaTable(data: tableData)
+
     // 'maxp' is required by 'glyf', 'hmtx', 'loca', and 'vmtx'
-    maxpTable = try Font.readTable(directory: tableDirectory, tables: tables,
-                                     tag: .maxp, data: data,
-                                     tablesOrigin: tablesOrigin)
-    tables.append(maxpTable)
-    if tableDirectory.hasEntry(tag: TCTableTag.loca.rawValue) {
-      // 'loca' is required by 'glyf'
-      locaTable = try Font.readTable(directory: tableDirectory, tables: tables,
-                                       tag: .loca, data: data,
-                                       tablesOrigin: tablesOrigin)
-      tables.append(locaTable!)
-    }
+    tableData = try Font.tableData(directory: tableDirectory, tag: .maxp,
+                                   data: data, tablesOrigin: tablesOrigin)
+    maxpTable = TCMaxpTable(data: tableData)
+
     if tableDirectory.hasEntry(tag: TCTableTag.vhea.rawValue) {
       // 'vhea' is required by 'vmtx'
-      vheaTable = try Font.readTable(directory: tableDirectory, tables: tables,
-                                       tag: .vhea, data: data,
-                                       tablesOrigin: tablesOrigin)
-      tables.append(vheaTable!)
+      tableData = try Font.tableData(directory: tableDirectory, tag: .vhea,
+                                     data: data, tablesOrigin: tablesOrigin)
+      vheaTable = TCVheaTable(data: tableData)
     }
     // 'post' is required by 'glyf'
-    postTable = try Font.readTable(directory: tableDirectory, tables: tables,
-                                     tag: .post, data: data,
-                                     tablesOrigin: tablesOrigin)
-    tables.append(postTable)
+    tableData = try Font.tableData(directory: tableDirectory, tag: .post,
+                                   data: data, tablesOrigin: tablesOrigin)
+    postTable = TCPostTable(data: tableData)
 
-    // Load all other tables
-    for entry in tableDirectory.entries {
-      if entry.tag == TCTableTag.head.rawValue ||
-        entry.tag == TCTableTag.hhea.rawValue ||
-        entry.tag == TCTableTag.maxp.rawValue ||
-        entry.tag == TCTableTag.loca.rawValue ||
-        entry.tag == TCTableTag.vhea.rawValue ||
-        entry.tag == TCTableTag.post.rawValue {
-        continue;
-      }
-
-      let offset = entry.offset - tablesOrigin
-      let tableData = data.subdata(in: offset..<offset + entry.length)
-      do {
-        let table = try TCTableFactory.createTable(tables: tables,
-                                                   data: tableData,
-                                                   directoryEntry: entry)
-        tables.append(table)
-      } catch TCTableError.unimplementedTableType(let tag) {
-        os_log("Unimplemented table: %@", TCTableError.tagAsString(tag))
-      } catch TCTableError.unrecognizedTableType(let tag) {
-        os_log("Unrecognized table: %@", TCTableError.tagAsString(tag))
-      } catch {
-//        os_log("Ignorning table")
-      }
-    }
-
-    // Get references to commonly used tables (these happen to be all the
-    // required tables)
-    cmapTable = try Font.table(tables: tables, tag: TCTableTag.cmap)
-    hmtxTable = try Font.table(tables: tables, tag: TCTableTag.hmtx)
-    nameTable = try Font.table(tables: tables, tag: TCTableTag.name)
-    os2Table = try Font.table(tables: tables, tag: TCTableTag.OS_2)
-
-    // If this is a TrueType outline, then we'll have at least the
-    // 'glyf' table (along with the 'loca' table)
-    if tableDirectory.hasEntry(tag: TCTableTag.glyf.rawValue) {
-      glyfTable = try Font.table(tables: tables, tag: TCTableTag.glyf)
-    }
-
-    // If this is a CFF outline, then we'll have a 'CFF' table
-    if tableDirectory.hasEntry(tag: TCTableTag.CFF.rawValue) {
-      cffTable = try Font.table(tables: tables, tag: TCTableTag.CFF)
-    }
+    // Load all the other required tables
+    tableData = try Font.tableData(directory: tableDirectory, tag: .cmap,
+                                   data: data, tablesOrigin: tablesOrigin)
+    cmapTable = try TCCmapTable(data: tableData)
+    tableData = try Font.tableData(directory: tableDirectory, tag: .hmtx,
+                                   data: data, tablesOrigin: tablesOrigin)
+    hmtxTable = TCHmtxTable(data: tableData, hheaTable: hheaTable, maxpTable: maxpTable)
+    tableData = try Font.tableData(directory: tableDirectory, tag: .name,
+                                   data: data, tablesOrigin: tablesOrigin)
+    nameTable = TCNameTable(data: tableData)
+    tableData = try Font.tableData(directory: tableDirectory, tag: .OS_2,
+                                   data: data, tablesOrigin: tablesOrigin)
+    os2Table = TCOs2Table(data: tableData)
   }
 
+//  required init(from decoder: Decoder) throws {
+//    let container = try decoder.container(keyedBy: CodingKeys.self)
+//    cmapTable = try container.decode(TCCmapTable.self, forKey: .cmap)
+//    headTable = try container.decode(TCHeadTable.self, forKey: .head)
+//    hheaTable = try container.decode(TCHheaTable.self, forKey: .hhea)
+//    hmtxTable = try container.decode(TCHmtxTable.self, forKey: .hmtx)
+//    maxpTable = try container.decode(TCMaxpTable.self, forKey: .maxp)
+//    nameTable = try container.decode(TCNameTable.self, forKey: .name)
+//    os2Table = try container.decode(TCOs2Table.self, forKey: .OS_2)
+//    postTable = try container.decode(TCPostTable.self, forKey: .post)
+//    glyfTable = try container.decode(TCGlyfTable.self, forKey: .glyf)
+//  }
+
   /**
-   Retrieve a glyph from this font. This works for both TrueType and CFF
-   outlines.
+   Retrieve a glyph from this font. The concrete subclasses for TrueType and CFF
+   outlines return the actual glyph.
    - returns: a glyph
    - parameter at: the glyph index
    */
   func glyph(at index: Int) -> Glyph? {
-    if let glyfTable = self.glyfTable {
-      let description = glyfTable.description(at: index)
-      return TTGlyph(glyphDescription: description,
-                       leftSideBearing: hmtxTable.leftSideBearing(at: index),
-                       advanceWidth: hmtxTable.advanceWidth(at: index))
-    } else if let cffTable = self.cffTable {
-
-      let font = cffTable.fonts[0]
-      let charstring = font.charstrings[index]
-      let localSubrIndex = font.localSubrIndex
-      let globalSubrIndex = cffTable.globalSubrIndex
-      let glyph = T2Glyph(glyphIndex: index,
-                            charstring: charstring,
-                            localSubrIndex: localSubrIndex,
-                            globalSubrIndex: globalSubrIndex,
-                            leftSideBearing: 0, advanceWidth: 0)
-      return glyph
-    } else {
-      return nil
-    }
+    return nil
   }
 
-  class func table<T>(tables: [TCTable], tag: TCTableTag) throws -> T {
-    for table in tables {
-      if type(of: table).tag == tag.rawValue {
-        if let actualTable = table as? T {
-          return actualTable
-        }
-      }
-    }
-    throw FontError.missingTable
-  }
-
-  func table<T>() throws -> T {
-    for table in tables {
-      if let actualTable = table as? T {
-        return actualTable
-      }
-    }
-    throw FontError.missingTable
-  }
-
-  class func readTable<T>(directory: TCTableDirectory, tables: [TCTable],
-                          tag: TCTableTag, data: Data, tablesOrigin: Int) throws -> T {
+  class func tableData(directory: TCTableDirectory, tag: TCTableTag, data: Data, tablesOrigin: Int) throws -> Data {
     if let entry = directory.entry(tag: tag.rawValue) {
       let offset = entry.offset - tablesOrigin
-      let tableData = data.subdata(in: offset..<offset + entry.length)
-      let table = try TCTableFactory.createTable(tables: tables,
-                                                 data: tableData,
-                                                 directoryEntry: entry)
-      if let actualTable = table as? T {
-        return actualTable
-      }
+      return data.subdata(in: offset..<offset + entry.length)
     }
     throw FontError.missingTable
   }
@@ -260,7 +173,5 @@ extension Font: Encodable {
     try container.encode(nameTable, forKey: .name)
     try container.encode(os2Table, forKey: .OS_2)
     try container.encode(postTable, forKey: .post)
-
-    try container.encode(glyfTable, forKey: .glyf)
   }
 }

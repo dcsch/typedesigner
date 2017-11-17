@@ -51,7 +51,7 @@ class TCGlyfNullDescript: TCGlyfDescript {
     }
   }
 
-  enum ExtraCodingKeys: String, CodingKey {
+  enum CodingKeys: String, CodingKey {
     case glyphIndex
     case xMaximum
     case xMinimum
@@ -60,7 +60,7 @@ class TCGlyfNullDescript: TCGlyfDescript {
   }
 
   override func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: ExtraCodingKeys.self)
+    var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(glyphIndex, forKey: .glyphIndex)
     try container.encode(xMaximum, forKey: .xMaximum)
     try container.encode(xMinimum, forKey: .xMinimum)
