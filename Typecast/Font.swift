@@ -17,7 +17,7 @@ enum FontError: Error {
 /**
  An OpenType font.
  */
-class Font {
+class Font: Codable {
   var headTable: TCHeadTable
   var hheaTable: TCHheaTable
   var maxpTable: TCMaxpTable
@@ -118,19 +118,6 @@ class Font {
     os2Table = TCOs2Table(data: tableData)
   }
 
-//  required init(from decoder: Decoder) throws {
-//    let container = try decoder.container(keyedBy: CodingKeys.self)
-//    cmapTable = try container.decode(TCCmapTable.self, forKey: .cmap)
-//    headTable = try container.decode(TCHeadTable.self, forKey: .head)
-//    hheaTable = try container.decode(TCHheaTable.self, forKey: .hhea)
-//    hmtxTable = try container.decode(TCHmtxTable.self, forKey: .hmtx)
-//    maxpTable = try container.decode(TCMaxpTable.self, forKey: .maxp)
-//    nameTable = try container.decode(TCNameTable.self, forKey: .name)
-//    os2Table = try container.decode(TCOs2Table.self, forKey: .OS_2)
-//    postTable = try container.decode(TCPostTable.self, forKey: .post)
-//    glyfTable = try container.decode(TCGlyfTable.self, forKey: .glyf)
-//  }
-
   /**
    Retrieve a glyph from this font. The concrete subclasses for TrueType and CFF
    outlines return the actual glyph.
@@ -148,9 +135,7 @@ class Font {
     }
     throw FontError.missingTable
   }
-}
 
-extension Font: Encodable {
   enum CodingKeys: String, CodingKey {
     case cmap
     case glyf
@@ -161,6 +146,18 @@ extension Font: Encodable {
     case name
     case OS_2 = "OS/2"
     case post
+  }
+
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    cmapTable = try container.decode(TCCmapTable.self, forKey: .cmap)
+    headTable = try container.decode(TCHeadTable.self, forKey: .head)
+    hheaTable = try container.decode(TCHheaTable.self, forKey: .hhea)
+    hmtxTable = try container.decode(TCHmtxTable.self, forKey: .hmtx)
+    maxpTable = try container.decode(TCMaxpTable.self, forKey: .maxp)
+    nameTable = try container.decode(TCNameTable.self, forKey: .name)
+    os2Table = try container.decode(TCOs2Table.self, forKey: .OS_2)
+    postTable = try container.decode(TCPostTable.self, forKey: .post)
   }
 
   func encode(to encoder: Encoder) throws {

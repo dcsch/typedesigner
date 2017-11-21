@@ -44,9 +44,9 @@ class TTGlyph: Glyph {
           endPtIndex += 1
         }
         let point = Point(x: simpleDesc.xCoordinate(at: i),
-                            y: simpleDesc.yCoordinate(at: i),
-                            onCurve: Int(simpleDesc.flags(index: i) & TCGlyphFlag.onCurvePoint.rawValue) != 0,
-                            endOfContour: endPt)
+                          y: simpleDesc.yCoordinate(at: i),
+                          onCurve: Int(simpleDesc.flags(index: i) & TCGlyphFlag.onCurvePoint.rawValue) != 0,
+                          endOfContour: endPt)
         points.append(point)
       }
 

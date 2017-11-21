@@ -39,10 +39,26 @@ class T2Font: Font {
     let localSubrIndex = font.localSubrIndex
     let globalSubrIndex = cffTable.globalSubrIndex
     let glyph = T2Glyph(glyphIndex: index,
-                          charstring: charstring,
-                          localSubrIndex: localSubrIndex,
-                          globalSubrIndex: globalSubrIndex,
-                          leftSideBearing: 0, advanceWidth: 0)
+                        charstring: charstring,
+                        localSubrIndex: localSubrIndex,
+                        globalSubrIndex: globalSubrIndex,
+                        leftSideBearing: 0, advanceWidth: 0)
     return glyph
+  }
+  enum T2CodingKeys: String, CodingKey {
+    case cff
+  }
+
+  required init(from decoder: Decoder) throws {
+//    let container = try decoder.container(keyedBy: T2CodingKeys.self)
+//    cffTable = try container.decode(TCCffTable.self, forKey: .cff)
+    cffTable = TCCffTable(data: Data())
+    try super.init(from: decoder)
+  }
+
+  override func encode(to encoder: Encoder) throws {
+//    var container = encoder.container(keyedBy: T2CodingKeys.self)
+//    try container.encode(cffTable, forKey: .cff)
+    try super.encode(to: encoder)
   }
 }

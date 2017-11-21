@@ -12,11 +12,7 @@ import IOUtils
 /**
  Information describing the glyphs in TrueType outline format.
  */
-class TCGlyfTable: TCBaseTable {
-  enum CodingKeys: String, CodingKey {
-    case descript
-  }
-
+class TCGlyfTable: TCBaseTable, Codable {
   var descript: [TCGlyfDescript]
 //  let postTable: TCPostTable
 
@@ -88,12 +84,57 @@ class TCGlyfTable: TCBaseTable {
 //      return ""
 //    }
 //  }
-}
 
-extension TCGlyfTable: Encodable {
+  private enum CodingKeys: String, CodingKey {
+    case descript
+  }
+
+  enum DescriptTypeKey: CodingKey {
+    case type
+    case value
+  }
+
+  enum DescriptTypes: String, Codable {
+    case null
+    case simple
+    case composite
+  }
+
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    var nestedArrayContainer = try container.nestedUnkeyedContainer(forKey: CodingKeys.descript)
+    var descripts = [TCGlyfDescript]()
+    while(!nestedArrayContainer.isAtEnd) {
+      let nestedDescriptContainer = try nestedArrayContainer.nestedContainer(keyedBy: DescriptTypeKey.self)
+      let type = try nestedDescriptContainer.decode(DescriptTypes.self, forKey: DescriptTypeKey.type)
+      switch type {
+      case .null:
+        descripts.append(try nestedDescriptContainer.decode(TCGlyfNullDescript.self,
+                                                            forKey: DescriptTypeKey.value))
+      case .simple:
+        descripts.append(try nestedDescriptContainer.decode(TCGlyfSimpleDescript.self,
+                                                            forKey: DescriptTypeKey.value))
+      case .composite:
+        descripts.append(try nestedDescriptContainer.decode(TCGlyfCompositeDescript.self,
+                                                            forKey: DescriptTypeKey.value))
+      }
+    }
+    self.descript = descripts
+  }
+
   func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(descript, forKey: .descript)
+    var nestedArrayContainer = container.nestedUnkeyedContainer(forKey: CodingKeys.descript)
+    for d in descript {
+      var nestedDescriptContainer = nestedArrayContainer.nestedContainer(keyedBy: DescriptTypeKey.self)
+      if d is TCGlyfNullDescript {
+        try nestedDescriptContainer.encode(DescriptTypes.null, forKey: DescriptTypeKey.type)
+      } else if d is TCGlyfSimpleDescript {
+        try nestedDescriptContainer.encode(DescriptTypes.simple, forKey: DescriptTypeKey.type)
+      } else if d is TCGlyfCompositeDescript {
+        try nestedDescriptContainer.encode(DescriptTypes.composite, forKey: DescriptTypeKey.type)
+      }
+      try nestedDescriptContainer.encode(d, forKey: DescriptTypeKey.value)
+    }
   }
 }
-

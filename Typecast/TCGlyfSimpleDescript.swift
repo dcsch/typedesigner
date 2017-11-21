@@ -11,10 +11,10 @@ import IOUtils
 
 class TCGlyfSimpleDescript: TCGlyfDescript {
   let numberOfContours: Int
-  let xMin: Int
-  let yMin: Int
-  let xMax: Int
-  let yMax: Int
+  var xMin: Int
+  var yMin: Int
+  var xMax: Int
+  var yMax: Int
   var endPtsOfContours: [Int]
   var flags: [UInt8]
   var xCoordinates: [Int]
@@ -49,10 +49,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     super.init(glyphIndex: glyphIndex)
     readFlags(dataInput: dataInput, count: count)
     readCoords(dataInput: dataInput, count: count)
-  }
-  
-  required init(from decoder: Decoder) throws {
-    fatalError("init(from:) has not been implemented")
   }
   
   // The flags are run-length encoded
@@ -175,30 +171,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     return yCoordinates[index]
   }
 
-  override var xMaximum: Int {
-    get {
-      return xMax
-    }
-  }
-
-  override var xMinimum: Int {
-    get {
-      return xMin
-    }
-  }
-
-  override var yMaximum: Int {
-    get {
-      return yMax
-    }
-  }
-
-  override var yMinimum: Int {
-    get {
-      return yMin
-    }
-  }
-
   override var isComposite: Bool {
     get {
       return false
@@ -217,8 +189,8 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     }
   }
 
-  enum CodingKeys: String, CodingKey {
-    case glyphIndex
+  private enum CodingKeys: String, CodingKey {
+    case numberOfContours
     case xMaximum
     case xMinimum
     case yMaximum
@@ -231,18 +203,37 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     case instructions
   }
 
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    numberOfContours = try container.decode(Int.self, forKey: .numberOfContours)
+    xMax = try container.decode(Int.self, forKey: .xMaximum)
+    xMin = try container.decode(Int.self, forKey: .xMinimum)
+    yMax = try container.decode(Int.self, forKey: .yMaximum)
+    yMin = try container.decode(Int.self, forKey: .yMinimum)
+    endPtsOfContours = try container.decode([Int].self, forKey: .endPtsOfContours)
+    flags = try container.decode([UInt8].self, forKey: .flags)
+    xCoordinates = try container.decode([Int].self, forKey: .xCoordinates)
+    yCoordinates = try container.decode([Int].self, forKey: .yCoordinates)
+    count = try container.decode(Int.self, forKey: .count)
+    instructions = try container.decode([UInt8].self, forKey: .instructions)
+    let superDecoder = try container.superDecoder()
+    try super.init(from: superDecoder)
+  }
+
   override func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(glyphIndex, forKey: .glyphIndex)
-    try container.encode(xMaximum, forKey: .xMaximum)
-    try container.encode(xMinimum, forKey: .xMinimum)
-    try container.encode(yMaximum, forKey: .yMaximum)
-    try container.encode(yMinimum, forKey: .yMinimum)
-    try container.encode(endPtsOfContours, forKey: .glyphIndex)
-    try container.encode(flags, forKey: .glyphIndex)
-    try container.encode(xCoordinates, forKey: .glyphIndex)
-    try container.encode(yCoordinates, forKey: .glyphIndex)
-    try container.encode(count, forKey: .glyphIndex)
-    try container.encode(instructions, forKey: .glyphIndex)
+    try container.encode(numberOfContours, forKey: .numberOfContours)
+    try container.encode(xMax, forKey: .xMaximum)
+    try container.encode(xMin, forKey: .xMinimum)
+    try container.encode(yMax, forKey: .yMaximum)
+    try container.encode(yMin, forKey: .yMinimum)
+    try container.encode(endPtsOfContours, forKey: .endPtsOfContours)
+    try container.encode(flags, forKey: .flags)
+    try container.encode(xCoordinates, forKey: .xCoordinates)
+    try container.encode(yCoordinates, forKey: .yCoordinates)
+    try container.encode(count, forKey: .count)
+    try container.encode(instructions, forKey: .instructions)
+    let superEncoder = container.superEncoder()
+    try super.encode(to: superEncoder)
   }
 }

@@ -17,46 +17,8 @@ enum TCGlyphFlag: UInt8 {
   case yDual = 0x20
 }
 
-//protocol TCGlyfDescript {
-//  var glyphIndex: Int { get }
-//
-//  var xMaximum: Int { get }
-//
-//  var xMinimum: Int { get }
-//
-//  var yMaximum: Int { get }
-//
-//  var yMinimum: Int { get }
-//
-//  var isComposite: Bool { get }
-//}
-
-class TCGlyfDescript: Encodable {
+class TCGlyfDescript: Codable {
   var glyphIndex: Int
-
-  var xMaximum: Int {
-    get {
-      return 0
-    }
-  }
-
-  var xMinimum: Int {
-    get {
-      return 0
-    }
-  }
-
-  var yMaximum: Int {
-    get {
-      return 0
-    }
-  }
-
-  var yMinimum: Int {
-    get {
-      return 0
-    }
-  }
 
   var isComposite: Bool {
     get {
@@ -68,21 +30,17 @@ class TCGlyfDescript: Encodable {
     self.glyphIndex = glyphIndex
   }
 
-//  enum CodingKeys: String, CodingKey {
-//    case glyphIndex
-//    case xMaximum
-//    case xMinimum
-//    case yMaximum
-//    case yMinimum
-//  }
+  private enum CodingKeys: String, CodingKey {
+    case glyphIndex
+  }
+
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    glyphIndex = try container.decode(Int.self, forKey: .glyphIndex)
+  }
 
   func encode(to encoder: Encoder) throws {
-//    var container = encoder.container(keyedBy: CodingKeys.self)
-//    try container.encode(glyphIndex, forKey: .glyphIndex)
-//    try container.encode(xMaximum, forKey: .xMaximum)
-//    try container.encode(xMinimum, forKey: .xMinimum)
-//    try container.encode(yMaximum, forKey: .yMaximum)
-//    try container.encode(yMinimum, forKey: .yMinimum)
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(glyphIndex, forKey: .glyphIndex)
   }
 }
-

@@ -9,41 +9,10 @@
 import Foundation
 
 class TCGlyfNullDescript: TCGlyfDescript {
-//  var xMaximum: Int {
-//    get {
-//      return 0
-//    }
-//  }
-//
-//  var xMinimum: Int {
-//    get {
-//      return 0
-//    }
-//  }
-//
-//  var yMaximum: Int {
-//    get {
-//      return 0
-//    }
-//  }
-//
-//  var yMinimum: Int {
-//    get {
-//      return 0
-//    }
-//  }
-//
-//  var isComposite: Bool {
-//    get {
-//      return false
-//    }
-//  }
-//
-//  let glyphIndex: Int
-//
-//  init(glyphIndex: Int) {
-//    self.glyphIndex = glyphIndex
-//  }
+
+  override init(glyphIndex: Int) {
+    super.init(glyphIndex: glyphIndex)
+  }
 
   var description: String {
     get {
@@ -51,20 +20,18 @@ class TCGlyfNullDescript: TCGlyfDescript {
     }
   }
 
-  enum CodingKeys: String, CodingKey {
-    case glyphIndex
-    case xMaximum
-    case xMinimum
-    case yMaximum
-    case yMinimum
+  private enum CodingKeys: CodingKey {
+  }
+
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    let superDecoder = try container.superDecoder()
+    try super.init(from: superDecoder)
   }
 
   override func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(glyphIndex, forKey: .glyphIndex)
-    try container.encode(xMaximum, forKey: .xMaximum)
-    try container.encode(xMinimum, forKey: .xMinimum)
-    try container.encode(yMaximum, forKey: .yMaximum)
-    try container.encode(yMinimum, forKey: .yMinimum)
+    let superEncoder = container.superEncoder()
+    try super.encode(to: superEncoder)
   }
 }

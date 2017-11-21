@@ -163,10 +163,6 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
     super.init(glyphIndex: glyphIndex)
   }
   
-  required init(from decoder: Decoder) throws {
-    fatalError("init(from:) has not been implemented")
-  }
-  
 //  func compositeComp(at index: Int) -> Component? {
 //    for comp in components {
 //      let gd = parentTable.descript[comp.glyphIndex]
@@ -240,35 +236,35 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
 //    return 0
 //  }
 
-  override var xMaximum: Int {
-    get {
-      return xMax
-    }
-  }
-
-  override var xMinimum: Int {
-    get {
-      return xMin
-    }
-  }
-
-  override var yMaximum: Int {
-    get {
-      return yMax
-    }
-  }
-
-  override var yMinimum: Int {
-    get {
-      return yMin
-    }
-  }
-
-  override var isComposite: Bool {
-    get {
-      return true
-    }
-  }
+//  override var xMaximum: Int {
+//    get {
+//      return xMax
+//    }
+//  }
+//
+//  override var xMinimum: Int {
+//    get {
+//      return xMin
+//    }
+//  }
+//
+//  override var yMaximum: Int {
+//    get {
+//      return yMax
+//    }
+//  }
+//
+//  override var yMinimum: Int {
+//    get {
+//      return yMin
+//    }
+//  }
+//
+//  override var isComposite: Bool {
+//    get {
+//      return true
+//    }
+//  }
 
 //  var pointCount: Int {
 //    get {
@@ -292,21 +288,36 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
 //    }
 //  }
 
-  enum CodingKeys: String, CodingKey {
-    case glyphIndex
+  private enum CodingKeys: String, CodingKey {
     case xMaximum
     case xMinimum
     case yMaximum
     case yMinimum
+    case components
+    case instructions
+  }
+
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    xMax = try container.decode(Int.self, forKey: .xMaximum)
+    xMin = try container.decode(Int.self, forKey: .xMinimum)
+    yMax = try container.decode(Int.self, forKey: .yMaximum)
+    yMin = try container.decode(Int.self, forKey: .yMinimum)
+    components = try container.decode([Component].self, forKey: .components)
+    instructions = try container.decode([UInt8].self, forKey: .instructions)
+    let superDecoder = try container.superDecoder()
+    try super.init(from: superDecoder)
   }
 
   override func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(glyphIndex, forKey: .glyphIndex)
-    try container.encode(xMaximum, forKey: .xMaximum)
-    try container.encode(xMinimum, forKey: .xMinimum)
-    try container.encode(yMaximum, forKey: .yMaximum)
-    try container.encode(yMinimum, forKey: .yMinimum)
+    try container.encode(xMax, forKey: .xMaximum)
+    try container.encode(xMin, forKey: .xMinimum)
+    try container.encode(yMax, forKey: .yMaximum)
+    try container.encode(yMin, forKey: .yMinimum)
+    try container.encode(components, forKey: .components)
+    try container.encode(instructions, forKey: .instructions)
+    let superEncoder = container.superEncoder()
+    try super.encode(to: superEncoder)
   }
 }
-

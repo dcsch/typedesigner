@@ -38,6 +38,13 @@ class FontDocument: NSDocument {
   }
     
   override func read(from data: Data, ofType typeName: String) throws {
+    if typeName == "Font Project" {
+      let decoder = JSONDecoder()
+//      let decoder = PropertyListDecoder()
+      self.font = try decoder.decode(TTFont.self, from: data)
+      return
+    }
+
     var suitcase = false
     if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
       suitcase = true
@@ -56,6 +63,7 @@ class FontDocument: NSDocument {
 
   override func fileWrapper(ofType typeName: String) throws -> FileWrapper {
     let encoder = JSONEncoder()
+//    let encoder = PropertyListEncoder()
     let data = try encoder.encode(font)
     return FileWrapper(regularFileWithContents: data)
   }
