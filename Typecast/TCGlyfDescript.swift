@@ -11,12 +11,6 @@ import Foundation
 class TCGlyfDescript: Codable {
   var glyphIndex: Int
 
-  var isComposite: Bool {
-    get {
-      return false
-    }
-  }
-
   init(glyphIndex: Int) {
     self.glyphIndex = glyphIndex
   }

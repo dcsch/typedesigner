@@ -9,23 +9,26 @@
 import Foundation
 import IOUtils
 
-enum TCGlyphFlag: UInt8 {
-  case onCurvePoint = 0x01
-  case xShortVector = 0x02
-  case yShortVector = 0x04
-  case repeatFlag = 0x08
-  case xDual = 0x10
-  case yDual = 0x20
-}
-
 class TCGlyfSimpleDescript: TCGlyfDescript {
+
+  struct Flags: OptionSet {
+    var rawValue: UInt8
+
+    static let onCurvePoint = Flags(rawValue: 1 << 0)
+    static let xShortVector = Flags(rawValue: 1 << 1)
+    static let yShortVector = Flags(rawValue: 1 << 2)
+    static let repeatFlag = Flags(rawValue: 1 << 3)
+    static let xDual = Flags(rawValue: 1 << 4)
+    static let yDual = Flags(rawValue: 1 << 5)
+  }
+
   let numberOfContours: Int
   var xMin: Int
   var yMin: Int
   var xMax: Int
   var yMax: Int
   var endPtsOfContours: [Int]
-  var flags: [UInt8]
+  var flags: [Flags]
   var xCoordinates: [Int]
   var yCoordinates: [Int]
   var count: Int
@@ -65,9 +68,9 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     flags.removeAll()
     var index = 0
     while index < count {
-      let flagByte = dataInput.readUInt8()
+      let flagByte = Flags(rawValue: dataInput.readUInt8())
       flags.append(flagByte)
-      if Int(flagByte & TCGlyphFlag.repeatFlag.rawValue) != 0 {
+      if flagByte.contains(.repeatFlag) {
         let repeats = Int(dataInput.readUInt8())
         for _ in 0..<repeats {
           flags.append(flagByte)
@@ -86,12 +89,12 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     var x = 0
     var y = 0
     for i in 0..<count {
-      if (self.flags[i] & TCGlyphFlag.xDual.rawValue) != 0 {
-        if (self.flags[i] & TCGlyphFlag.xShortVector.rawValue) != 0 {
+      if self.flags[i].contains(.xDual) {
+        if self.flags[i].contains(.xShortVector) {
           x += Int(dataInput.readUInt8())
         }
       } else {
-        if (self.flags[i] & TCGlyphFlag.xShortVector.rawValue) != 0 {
+        if self.flags[i].contains(.xShortVector) {
           x += -Int(dataInput.readUInt8())
         } else {
           x += Int(dataInput.readInt16())
@@ -101,12 +104,12 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     }
 
     for i in 0..<count {
-      if (self.flags[i] & TCGlyphFlag.yDual.rawValue) != 0 {
-        if (self.flags[i] & TCGlyphFlag.yShortVector.rawValue) != 0 {
+      if self.flags[i].contains(.yDual) {
+        if self.flags[i].contains(.yShortVector) {
           y += Int(dataInput.readUInt8())
         }
       } else {
-        if (self.flags[i] & TCGlyphFlag.yShortVector.rawValue) != 0 {
+        if self.flags[i].contains(.yShortVector) {
           y += -Int(dataInput.readUInt8())
         } else {
           y += Int(dataInput.readInt16())
@@ -139,12 +142,12 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
         let flags = self.flags[i]
         str.append(String(format:"\n          %d: %s%s%s%s%s%s",
                           i,
-                          ((flags & 0x20) != 0) ? "YDual " : "      ",
-                          ((flags & 0x10) != 0) ? "XDual " : "      ",
-                          ((flags & 0x08) != 0) ? "Repeat " : "       ",
-                          ((flags & 0x04) != 0) ? "Y-Short " : "        ",
-                          ((flags & 0x02) != 0) ? "X-Short " : "        ",
-                          ((flags & 0x01) != 0) ? "On" : "  "))
+                          flags.contains(.yDual) ? "YDual " : "      ",
+                          flags.contains(.xDual) ? "XDual " : "      ",
+                          flags.contains(.repeatFlag) ? "Repeat " : "       ",
+                          flags.contains(.yShortVector) ? "Y-Short " : "        ",
+                          flags.contains(.xShortVector) ? "X-Short " : "        ",
+                          flags.contains(.onCurvePoint) ? "On" : "  "))
       }
 
       str.append("\n\n        Coordinates\n        -----------")
@@ -161,40 +164,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
         oldY = yCoordinates[i]
       }
       return str;
-    }
-  }
-
-  func endPtOfContours(at index: Int) -> Int {
-    return endPtsOfContours[index]
-  }
-
-  func flags(index: Int) -> UInt8 {
-    return flags[index]
-  }
-
-  func xCoordinate(at index: Int) -> Int {
-    return xCoordinates[index]
-  }
-
-  func yCoordinate(at index: Int) -> Int {
-    return yCoordinates[index]
-  }
-
-  override var isComposite: Bool {
-    get {
-      return false
-    }
-  }
-
-  var pointCount: Int {
-    get {
-      return count
-    }
-  }
-
-  var contourCount: Int {
-    get {
-      return numberOfContours
     }
   }
 
@@ -220,7 +189,7 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     yMax = try container.decode(Int.self, forKey: .yMaximum)
     yMin = try container.decode(Int.self, forKey: .yMinimum)
     endPtsOfContours = try container.decode([Int].self, forKey: .endPtsOfContours)
-    flags = try container.decode([UInt8].self, forKey: .flags)
+    flags = try container.decode([Flags].self, forKey: .flags)
     xCoordinates = try container.decode([Int].self, forKey: .xCoordinates)
     yCoordinates = try container.decode([Int].self, forKey: .yCoordinates)
     count = try container.decode(Int.self, forKey: .count)

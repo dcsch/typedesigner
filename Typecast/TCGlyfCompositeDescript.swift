@@ -18,15 +18,19 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
 
   class Component: Codable {
 
-    static let ARG_1_AND_2_ARE_WORDS: UInt16 = 0x0001
-    static let ARGS_ARE_XY_VALUES: UInt16 = 0x0002
-    static let ROUND_XY_TO_GRID: UInt16 = 0x0004
-    static let WE_HAVE_A_SCALE: UInt16 = 0x0008
-    static let MORE_COMPONENTS: UInt16 = 0x0020
-    static let WE_HAVE_AN_X_AND_Y_SCALE: UInt16 = 0x0040
-    static let WE_HAVE_A_TWO_BY_TWO: UInt16 = 0x0080
-    static let WE_HAVE_INSTRUCTIONS: UInt16 = 0x0100
-    static let USE_MY_METRICS: UInt16 = 0x0200
+    struct Flags: OptionSet {
+      let rawValue: UInt16
+
+      static let arg1And2AreWords = Flags(rawValue: 1 << 0)
+      static let argsAreXYValues = Flags(rawValue: 1 << 1)
+      static let roundXYToGrid = Flags(rawValue: 1 << 2)
+      static let weHaveAScale = Flags(rawValue: 1 << 3)
+      static let moreComponents = Flags(rawValue: 1 << 5)
+      static let weHaveAnXAndYScale = Flags(rawValue: 1 << 6)
+      static let weHaveATwoByTwo = Flags(rawValue: 1 << 7)
+      static let weHaveInstructions = Flags(rawValue: 1 << 8)
+      static let useMyMetrics = Flags(rawValue: 1 << 9)
+    }
 
     let glyphIndex: Int
     let xscale: Double
@@ -38,13 +42,13 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
     let point1: Int
     let point2: Int
 
-    init(dataInput: TCDataInput, flags: UInt16) {
+    init(dataInput: TCDataInput, flags: Flags) {
       self.glyphIndex = Int(dataInput.readUInt16())
 
       // Get the arguments as just their raw values
       var argument1: Int
       var argument2: Int
-      if flags & Component.ARG_1_AND_2_ARE_WORDS != 0 {
+      if flags.contains(.arg1And2AreWords) {
         argument1 = Int(dataInput.readInt16())
         argument2 = Int(dataInput.readInt16())
       } else {
@@ -53,7 +57,7 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
       }
 
       // Assign the arguments according to the flags
-      if flags & Component.ARGS_ARE_XY_VALUES != 0 {
+      if flags.contains(.argsAreXYValues) {
         xtranslate = argument1
         ytranslate = argument2
         point1 = 0
@@ -66,20 +70,20 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
       }
 
       // Get the scale values (if any)
-      if flags & Component.WE_HAVE_A_SCALE != 0 {
+      if flags.contains(.weHaveAScale) {
         let i = Double(dataInput.readInt16())
         xscale = i / Double(0x4000)
         yscale = xscale
         scale01 = 0.0
         scale10 = 0.0
-      } else if flags & Component.WE_HAVE_AN_X_AND_Y_SCALE != 0 {
+      } else if flags.contains(.weHaveAnXAndYScale) {
         let x = Double(dataInput.readInt16())
         xscale = x / Double(0x4000)
         let y = Double(dataInput.readInt16())
         yscale = y / Double(0x4000)
         scale01 = 0.0
         scale10 = 0.0
-      } else if flags & Component.WE_HAVE_A_TWO_BY_TWO != 0 {
+      } else if flags.contains(.weHaveATwoByTwo) {
         let x = Double(dataInput.readInt16())
         xscale = x / Double(0x4000)
         let s01 = Double(dataInput.readInt16())
@@ -97,11 +101,6 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
     }
   }
 
-  var numberOfContours: Int {
-    get {
-      return -1
-    }
-  }
   let xMin: Int
   let yMin: Int
   let xMax: Int
@@ -117,15 +116,15 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
 
     // Get all of the composite components
     var comp: Component
-    var flags: UInt16 = 0
+    var flags: Component.Flags
     repeat {
-      flags = dataInput.readUInt16()
+      flags = Component.Flags(rawValue: dataInput.readUInt16())
       comp = Component(dataInput: dataInput, flags: flags)
       components.append(comp)
-    } while flags & Component.MORE_COMPONENTS != 0
+    } while flags.contains(.moreComponents)
 
     // Are there hinting intructions to read?
-    if flags & Component.WE_HAVE_INSTRUCTIONS != 0 {
+    if flags.contains(.weHaveInstructions) {
       let instructionCount = Int(dataInput.readInt16())
       instructions = dataInput.read(length: instructionCount)
     }
@@ -134,8 +133,7 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
   
   var description: String {
     get {
-      let str = "          numberOfContours: \(numberOfContours)\n" +
-        "          xMin:             \(xMin)\n" +
+      let str = "          xMin:             \(xMin)\n" +
         "          yMin:             \(yMin)\n" +
         "          xMax:             \(xMax)\n" +
         "          yMax:             \(yMax)\n"

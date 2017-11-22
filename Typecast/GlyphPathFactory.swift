@@ -42,13 +42,13 @@ class GlyphPathFactory {
     while offset < count {
       let x = glyph.xCoordinates[beginPt + offset % count]
       let y = glyph.yCoordinates[beginPt + offset % count]
-      let onCurve = glyph.flags[beginPt + offset % count] & TCGlyphFlag.onCurvePoint.rawValue != 0
+      let onCurve = glyph.flags[beginPt + offset % count].contains(.onCurvePoint)
       let x_plus1 = glyph.xCoordinates[beginPt + (offset + 1) % count]
       let y_plus1 = glyph.yCoordinates[beginPt + (offset + 1) % count]
-      let onCurve_plus1 = glyph.flags[beginPt + (offset + 1) % count] & TCGlyphFlag.onCurvePoint.rawValue != 0
+      let onCurve_plus1 = glyph.flags[beginPt + (offset + 1) % count].contains(.onCurvePoint)
       let x_plus2 = glyph.xCoordinates[beginPt + (offset + 2) % count]
       let y_plus2 = glyph.yCoordinates[beginPt + (offset + 2) % count]
-      let onCurve_plus2 = glyph.flags[beginPt + (offset + 2) % count] & TCGlyphFlag.onCurvePoint.rawValue != 0
+      let onCurve_plus2 = glyph.flags[beginPt + (offset + 2) % count].contains(.onCurvePoint)
 
       if offset == 0 {
         path.move(to: CGPoint(x: x, y: y))
