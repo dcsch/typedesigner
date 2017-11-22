@@ -27,21 +27,6 @@ class Font: Codable {
   var nameTable: TCNameTable
   var os2Table: TCOs2Table
   var postTable: TCPostTable
-  var ascent: Int {
-    get {
-      return Int(hheaTable.ascender)
-    }
-  }
-  var descent: Int {
-    get {
-      return Int(hheaTable.descender)
-    }
-  }
-  var name: String {
-    get {
-      return nameTable.record(nameId: TCID.nameFullFontName)!.record!
-    }
-  }
 
   /**
    Create an empty font.
@@ -116,16 +101,6 @@ class Font: Codable {
     tableData = try Font.tableData(directory: tableDirectory, tag: .OS_2,
                                    data: data, tablesOrigin: tablesOrigin)
     os2Table = TCOs2Table(data: tableData)
-  }
-
-  /**
-   Retrieve a glyph from this font. The concrete subclasses for TrueType and CFF
-   outlines return the actual glyph.
-   - returns: a glyph
-   - parameter at: the glyph index
-   */
-  func glyph(at index: Int) -> Glyph? {
-    return nil
   }
 
   class func tableData(directory: TCTableDirectory, tag: TCTableTag, data: Data, tablesOrigin: Int) throws -> Data {

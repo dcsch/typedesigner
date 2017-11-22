@@ -8,15 +8,6 @@
 
 import Foundation
 
-enum TCGlyphFlag: UInt8 {
-  case onCurvePoint = 0x01
-  case xShortVector = 0x02
-  case yShortVector = 0x04
-  case repeatFlag = 0x08
-  case xDual = 0x10
-  case yDual = 0x20
-}
-
 class TCGlyfDescript: Codable {
   var glyphIndex: Int
 

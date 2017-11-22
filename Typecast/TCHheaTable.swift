@@ -11,8 +11,8 @@ import IOUtils
 
 class TCHheaTable: TCBaseTable, Codable {
   var version: UInt32
-  var ascender: Int16
-  var descender: Int16
+  var ascender: Int
+  var descender: Int
   var lineGap: Int16
   var advanceWidthMax: Int16
   var minLeftSideBearing: Int16
@@ -42,8 +42,8 @@ class TCHheaTable: TCBaseTable, Codable {
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
     version = dataInput.readUInt32()
-    ascender = dataInput.readInt16()
-    descender = dataInput.readInt16()
+    ascender = Int(dataInput.readInt16())
+    descender = Int(dataInput.readInt16())
     lineGap = dataInput.readInt16()
     advanceWidthMax = dataInput.readInt16()
     minLeftSideBearing = dataInput.readInt16()

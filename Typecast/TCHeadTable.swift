@@ -15,13 +15,13 @@ class TCHeadTable: TCBaseTable, Codable {
   var checkSumAdjustment: UInt32
   var magicNumber: UInt32
   var flags: UInt16
-  var unitsPerEm: UInt16
+  var unitsPerEm: Int
   var created: UInt64
   var modified: UInt64
-  var xMin: Int16
-  var yMin: Int16
-  var xMax: Int16
-  var yMax: Int16
+  var xMin: Int
+  var yMin: Int
+  var xMax: Int
+  var yMax: Int
   var macStyle: UInt16
   var lowestRecPPEM: UInt16
   var fontDirectionHint: Int16
@@ -56,13 +56,13 @@ class TCHeadTable: TCBaseTable, Codable {
     checkSumAdjustment = dataInput.readUInt32()
     magicNumber = dataInput.readUInt32()
     flags = dataInput.readUInt16()
-    unitsPerEm = dataInput.readUInt16()
+    unitsPerEm = Int(dataInput.readUInt16())
     created = dataInput.readUInt64()
     modified = dataInput.readUInt64()
-    xMin = dataInput.readInt16()
-    yMin = dataInput.readInt16()
-    xMax = dataInput.readInt16()
-    yMax = dataInput.readInt16()
+    xMin = Int(dataInput.readInt16())
+    yMin = Int(dataInput.readInt16())
+    xMax = Int(dataInput.readInt16())
+    yMax = Int(dataInput.readInt16())
     macStyle = dataInput.readUInt16()
     lowestRecPPEM = dataInput.readUInt16()
     fontDirectionHint = dataInput.readInt16()
@@ -70,27 +70,6 @@ class TCHeadTable: TCBaseTable, Codable {
     glyphDataFormat = dataInput.readInt16()
     super.init()
   }
-
-//  required init(from decoder: Decoder) throws {
-//    var container = try decoder.unkeyedContainer()
-//    versionNumber = try container.decode(UInt32.self)
-//    fontRevision = try container.decode(UInt32.self)
-//    checkSumAdjustment = try container.decode(UInt32.self)
-//    magicNumber = try container.decode(UInt32.self)
-//    flags = try container.decode(UInt16.self)
-//    unitsPerEm = try container.decode(UInt16.self)
-//    created = try container.decode(UInt64.self)
-//    modified = try container.decode(UInt64.self)
-//    xMin = try container.decode(Int16.self)
-//    yMin = try container.decode(Int16.self)
-//    xMax = try container.decode(Int16.self)
-//    yMax = try container.decode(Int16.self)
-//    macStyle = try container.decode(UInt16.self)
-//    lowestRecPPEM = try container.decode(UInt16.self)
-//    fontDirectionHint = try container.decode(Int16.self)
-//    indexToLocFormat = try container.decode(Int16.self)
-//    glyphDataFormat = try container.decode(Int16.self)
-//  }
 
   override class var tag: UInt32 {
     get {
@@ -139,27 +118,3 @@ class TCHeadTable: TCBaseTable, Codable {
     }
   }
 }
-
-//extension TCHeadTable: Encodable {
-//  public func encode(to encoder: Encoder) throws {
-//    var container = encoder.unkeyedContainer()
-//    try container.encode(versionNumber)
-//    try container.encode(fontRevision)
-//    try container.encode(checkSumAdjustment)
-//    try container.encode(magicNumber)
-//    try container.encode(flags)
-//    try container.encode(unitsPerEm)
-//    try container.encode(created)
-//    try container.encode(modified)
-//    try container.encode(xMin)
-//    try container.encode(yMin)
-//    try container.encode(xMax)
-//    try container.encode(yMax)
-//    try container.encode(macStyle)
-//    try container.encode(lowestRecPPEM)
-//    try container.encode(fontDirectionHint)
-//    try container.encode(indexToLocFormat)
-//    try container.encode(glyphDataFormat)
-//  }
-//}
-

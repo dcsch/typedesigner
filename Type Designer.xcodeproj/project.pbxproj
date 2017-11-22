@@ -35,7 +35,6 @@
 		03A72DD51F5A1C8D003ABF74 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A72DD41F5A1C8D003ABF74 /* ImportViewController.swift */; };
 		03A72DD71F5CB781003ABF74 /* FontController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A72DD61F5CB781003ABF74 /* FontController.swift */; };
 		03B311ED1F280D3F001E6712 /* GlyphPathFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311EC1F280D3F001E6712 /* GlyphPathFactory.swift */; };
-		03B311EF1F294C58001E6712 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311EE1F294C58001E6712 /* Point.swift */; };
 		03B311F31F29B5AD001E6712 /* Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F21F29B5AD001E6712 /* Glyph.swift */; };
 		03B311F51F2A7128001E6712 /* FontDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F41F2A7128001E6712 /* FontDocument.swift */; };
 		03B311F71F2A9CC3001E6712 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F61F2A9CC3001E6712 /* Font.swift */; };
@@ -45,7 +44,6 @@
 		03B311FF1F2AC451001E6712 /* TCResourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311FE1F2AC451001E6712 /* TCResourceType.swift */; };
 		03B312011F2AC6BE001E6712 /* TCResourceReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B312001F2AC6BE001E6712 /* TCResourceReference.swift */; };
 		03B619141F3D283D00EA1D0E /* TCCmapFormat12.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B619131F3D283D00EA1D0E /* TCCmapFormat12.swift */; };
-		03B619161F3E10BC00EA1D0E /* TTGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B619151F3E10BC00EA1D0E /* TTGlyph.swift */; };
 		03B619181F3E128200EA1D0E /* T2Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B619171F3E128200EA1D0E /* T2Glyph.swift */; };
 		03C162911F2174BB00A44848 /* GlyphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C162901F2174BB00A44848 /* GlyphView.swift */; };
 		03C40BED1F35316F00CD6BAC /* TCGlyfNullDescript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BEC1F35316F00CD6BAC /* TCGlyfNullDescript.swift */; };
@@ -207,7 +205,6 @@
 		03A72DD41F5A1C8D003ABF74 /* ImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		03A72DD61F5CB781003ABF74 /* FontController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontController.swift; sourceTree = "<group>"; };
 		03B311EC1F280D3F001E6712 /* GlyphPathFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlyphPathFactory.swift; sourceTree = "<group>"; };
-		03B311EE1F294C58001E6712 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		03B311F21F29B5AD001E6712 /* Glyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glyph.swift; sourceTree = "<group>"; };
 		03B311F41F2A7128001E6712 /* FontDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontDocument.swift; sourceTree = "<group>"; };
 		03B311F61F2A9CC3001E6712 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -217,7 +214,6 @@
 		03B311FE1F2AC451001E6712 /* TCResourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCResourceType.swift; sourceTree = "<group>"; };
 		03B312001F2AC6BE001E6712 /* TCResourceReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCResourceReference.swift; sourceTree = "<group>"; };
 		03B619131F3D283D00EA1D0E /* TCCmapFormat12.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapFormat12.swift; sourceTree = "<group>"; };
-		03B619151F3E10BC00EA1D0E /* TTGlyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTGlyph.swift; sourceTree = "<group>"; };
 		03B619171F3E128200EA1D0E /* T2Glyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = T2Glyph.swift; sourceTree = "<group>"; };
 		03C162901F2174BB00A44848 /* GlyphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlyphView.swift; sourceTree = "<group>"; };
 		03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CFF.xcodeproj; path = CFF/CFF.xcodeproj; sourceTree = "<group>"; };
@@ -391,9 +387,7 @@
 				03A72DD61F5CB781003ABF74 /* FontController.swift */,
 				03B311F81F2A9D60001E6712 /* FontCollection.swift */,
 				03B311F21F29B5AD001E6712 /* Glyph.swift */,
-				03B619151F3E10BC00EA1D0E /* TTGlyph.swift */,
 				03B619171F3E128200EA1D0E /* T2Glyph.swift */,
-				03B311EE1F294C58001E6712 /* Point.swift */,
 				03B311EC1F280D3F001E6712 /* GlyphPathFactory.swift */,
 				03F905DB1F38DDF70008FF3E /* GlyphImageFactory.swift */,
 			);
@@ -747,7 +741,6 @@
 				03F905E81F3928E70008FF3E /* TCCharacterMapListViewController.swift in Sources */,
 				03B311F31F29B5AD001E6712 /* Glyph.swift in Sources */,
 				03B311FD1F2AC13F001E6712 /* TCResourceMap.swift in Sources */,
-				03B311EF1F294C58001E6712 /* Point.swift in Sources */,
 				0348BE6B1F33D6DB00446B58 /* TCGlyfSimpleDescript.swift in Sources */,
 				03A72DD71F5CB781003ABF74 /* FontController.swift in Sources */,
 				039845BC1F19802E0040988F /* TCHmtxTable.swift in Sources */,
@@ -764,7 +757,6 @@
 				03F905E41F391C040008FF3E /* TCGlyphListViewController.swift in Sources */,
 				03F905DA1F37FE930008FF3E /* TCCmapFormat4.swift in Sources */,
 				03C40BF51F36F99A00CD6BAC /* TCLocaTable.swift in Sources */,
-				03B619161F3E10BC00EA1D0E /* TTGlyph.swift in Sources */,
 				03FF502F1F479003009F5F0C /* TCVdmxTable.swift in Sources */,
 				03F905D81F37FCFE0008FF3E /* TCCmapFormat6.swift in Sources */,
 				03FF50281F47629E009F5F0C /* TCDumpViewController.swift in Sources */,

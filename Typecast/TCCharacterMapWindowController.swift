@@ -62,28 +62,28 @@ class TCCharacterMapWindowController: NSWindowController,
     item.textField?.stringValue = String(format: "%04X", mapping.0)
 
     // Glyph
-    if let glyph = font?.glyph(at: mapping.1),
-      let head = font?.headTable {
-      let size = item.imageView?.bounds.size
-      let pixelSize = collectionView.convertToBacking(size!)
-
-      // Scale the glyph down and translate the origin of the bounding box
-      let scaleFactor = pixelSize.height / CGFloat(head.yMax - head.yMin)
-      var transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-      transform = transform.translatedBy(x: -(CGFloat)(head.xMin),
-                                         y: -(CGFloat)(head.yMin))
-
-      // Center the glyph bounding box within the image view
-      let imageWidthInUnits = pixelSize.width / scaleFactor
-      let tx = (imageWidthInUnits / 2) - (CGFloat(head.xMax - head.xMin) / 2)
-      transform = transform.translatedBy(x: tx, y: 0)
-
-      if let cgImage = GlyphImageFactory.buildImage(glyph: glyph,
-                                                    transform: transform,
-                                                    size: pixelSize) {
-        let image = NSImage(cgImage: cgImage, size: CGSize.zero)
-        item.imageView?.image = image
-      }
+//    if let glyph = font?.glyph(at: mapping.1),
+//      let head = font?.headTable {
+//      let size = item.imageView?.bounds.size
+//      let pixelSize = collectionView.convertToBacking(size!)
+//
+//      // Scale the glyph down and translate the origin of the bounding box
+//      let scaleFactor = pixelSize.height / CGFloat(head.yMax - head.yMin)
+//      var transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+//      transform = transform.translatedBy(x: -(CGFloat)(head.xMin),
+//                                         y: -(CGFloat)(head.yMin))
+//
+//      // Center the glyph bounding box within the image view
+//      let imageWidthInUnits = pixelSize.width / scaleFactor
+//      let tx = (imageWidthInUnits / 2) - (CGFloat(head.xMax - head.xMin) / 2)
+//      transform = transform.translatedBy(x: tx, y: 0)
+//
+//      if let cgImage = GlyphImageFactory.buildImage(glyph: glyph,
+//                                                    transform: transform,
+//                                                    size: pixelSize) {
+//        let image = NSImage(cgImage: cgImage, size: CGSize.zero)
+//        item.imageView?.image = image
+//      }
 
 //      // Are we selected?
 //      if item.isSelected {
@@ -101,9 +101,9 @@ class TCCharacterMapWindowController: NSWindowController,
 //      case .asDropTarget: break
 //        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 //      }
-    } else {
+//    } else {
       item.imageView?.image = nil
-    }
+//    }
     return item
   }
 

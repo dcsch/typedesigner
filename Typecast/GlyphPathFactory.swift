@@ -21,81 +21,102 @@ class GlyphPathFactory {
    - returns: The glyph path
    - parameter glyph: The glyph for which to build a path
    */
-  class func buildPath(with glyph: Glyph) -> CGPath {
+  class func buildPath(with glyph: TCGlyfSimpleDescript) -> CGPath {
 
     let glyphPath = CGMutablePath()
 
-    // Iterate through all of the points in the glyph.  Each time we find a
-    // contour end point, add the point range to the path.
-    if let ttGlyph = glyph as? TTGlyph {
-      var firstIndex = 0
-      var count = 0
-      for i in 0 ..< ttGlyph.points.count {
-        count += 1
-        if ttGlyph.points[i].endOfContour {
-          addContourToPath(path: glyphPath, glyph: ttGlyph,
-                           startIndex: firstIndex, count: count)
-          firstIndex = i + 1
-          count = 0
-        }
-      }
-    } else if let t2Glyph = glyph as? T2Glyph {
-      var firstIndex = 0
-      var count = 0
-      for i in 0 ..< t2Glyph.points.count {
-        count += 1
-        if t2Glyph.points[i].endOfContour {
-          addContourToPath(path: glyphPath, glyph: t2Glyph,
-                           startIndex: firstIndex, count: count)
-          firstIndex = i + 1
-          count = 0
-        }
-      }
+    var beginPt = 0
+    for endPt in glyph.endPtsOfContours {
+      addContourToPath(path: glyphPath, glyph: glyph, beginPt: beginPt, endPt: endPt)
+      beginPt = endPt + 1
     }
+
     return glyphPath
   }
 
-  private class func midValue(_ a: Int, _ b: Int) -> Int {
-    return a + (b - a) / 2
-  }
-
-  private class func addContourToPath(path: CGMutablePath, glyph: TTGlyph,
-                                      startIndex: Int, count: Int) {
+  private class func addContourToPath(path: CGMutablePath,
+                                      glyph: TCGlyfSimpleDescript,
+                                      beginPt: Int, endPt: Int) {
+    let count = endPt - beginPt + 1  // add one to connect last point to first
     var offset = 0
     while offset < count {
-      let point = glyph.points[startIndex + offset % count]
-      let point_plus1 = glyph.points[startIndex + (offset + 1) % count]
-      let point_plus2 = glyph.points[startIndex + (offset + 2) % count]
+      let x = glyph.xCoordinates[beginPt + offset % count]
+      let y = glyph.yCoordinates[beginPt + offset % count]
+      let onCurve = glyph.flags[beginPt + offset % count] & TCGlyphFlag.onCurvePoint.rawValue != 0
+      let x_plus1 = glyph.xCoordinates[beginPt + (offset + 1) % count]
+      let y_plus1 = glyph.yCoordinates[beginPt + (offset + 1) % count]
+      let onCurve_plus1 = glyph.flags[beginPt + (offset + 1) % count] & TCGlyphFlag.onCurvePoint.rawValue != 0
+      let x_plus2 = glyph.xCoordinates[beginPt + (offset + 2) % count]
+      let y_plus2 = glyph.yCoordinates[beginPt + (offset + 2) % count]
+      let onCurve_plus2 = glyph.flags[beginPt + (offset + 2) % count] & TCGlyphFlag.onCurvePoint.rawValue != 0
 
       if offset == 0 {
-        path.move(to: CGPoint(x: point.x, y: point.y))
+        path.move(to: CGPoint(x: x, y: y))
       }
 
-      if point.onCurve && point_plus1.onCurve {
-        path.addLine(to: CGPoint(x: point_plus1.x, y: point_plus1.y))
+      if onCurve && onCurve_plus1 {
+        path.addLine(to: CGPoint(x: x_plus1, y: y_plus1))
         offset += 1
-      } else if point.onCurve && !point_plus1.onCurve && point_plus2.onCurve {
-        path.addQuadCurve(to: CGPoint(x: point_plus2.x, y: point_plus2.y),
-                          control: CGPoint(x: point_plus1.x, y: point_plus1.y))
+      } else if onCurve && !onCurve_plus1 && onCurve_plus2 {
+        path.addQuadCurve(to: CGPoint(x: x_plus2, y: y_plus2),
+                          control: CGPoint(x: x_plus1, y: y_plus1))
         offset += 2
-      } else if point.onCurve && !point_plus1.onCurve && !point_plus2.onCurve {
-        path.addQuadCurve(to: CGPoint(x: midValue(point_plus1.x, point_plus2.x),
-                                      y: midValue(point_plus1.y, point_plus2.y)),
-                          control: CGPoint(x: point_plus1.x, y: point_plus1.y))
+      } else if onCurve && !onCurve_plus1 && !onCurve_plus2 {
+        path.addQuadCurve(to: CGPoint(x: midValue(x_plus1, x_plus2),
+                                      y: midValue(y_plus1, y_plus2)),
+                          control: CGPoint(x: x_plus1, y: y_plus1))
         offset += 2
-      } else if !point.onCurve && !point_plus1.onCurve  {
-        path.addQuadCurve(to: CGPoint(x: midValue(point.x, point_plus1.x),
-                                      y: midValue(point.y, point_plus1.y)),
-                          control: CGPoint(x: point.x, y: point.y))
+      } else if !onCurve && !onCurve_plus1  {
+        path.addQuadCurve(to: CGPoint(x: midValue(x, x_plus1),
+                                      y: midValue(y, y_plus1)),
+                          control: CGPoint(x: x, y: y))
         offset += 1
-      } else if !point.onCurve && point_plus1.onCurve {
-        path.addQuadCurve(to: CGPoint(x: point_plus1.x, y: point_plus1.y),
-                          control: CGPoint(x: point.x, y: point.y))
+      } else if !onCurve && onCurve_plus1 {
+        path.addQuadCurve(to: CGPoint(x: x_plus1, y: y_plus1),
+                          control: CGPoint(x: x, y: y))
         offset += 1
       } else {
         os_log("addContourToPath case not catered for!!")
       }
     }
+  }
+
+//  class func buildPath(with glyph: Glyph) -> CGPath {
+//
+//    let glyphPath = CGMutablePath()
+//
+//    // Iterate through all of the points in the glyph.  Each time we find a
+//    // contour end point, add the point range to the path.
+//    if let ttGlyph = glyph as? TTGlyph {
+//      var firstIndex = 0
+//      var count = 0
+//      for i in 0 ..< ttGlyph.points.count {
+//        count += 1
+//        if ttGlyph.points[i].endOfContour {
+//          addContourToPath(path: glyphPath, glyph: ttGlyph,
+//                           startIndex: firstIndex, count: count)
+//          firstIndex = i + 1
+//          count = 0
+//        }
+//      }
+//    } else if let t2Glyph = glyph as? T2Glyph {
+//      var firstIndex = 0
+//      var count = 0
+//      for i in 0 ..< t2Glyph.points.count {
+//        count += 1
+//        if t2Glyph.points[i].endOfContour {
+//          addContourToPath(path: glyphPath, glyph: t2Glyph,
+//                           startIndex: firstIndex, count: count)
+//          firstIndex = i + 1
+//          count = 0
+//        }
+//      }
+//    }
+//    return glyphPath
+//  }
+
+  private class func midValue(_ a: Int, _ b: Int) -> Int {
+    return a + (b - a) / 2
   }
 
   private class func addContourToPath(path: CGMutablePath, glyph: T2Glyph,

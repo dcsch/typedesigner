@@ -53,7 +53,7 @@ extension ImportViewController: NSTableViewDelegate, NSTableViewDataSource {
     guard let fonts = importDocument?.fontCollection?.fonts,
       let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Name"), owner: self) as? NSTableCellView
       else { return nil }
-    view.textField?.stringValue = fonts[row].name
+    view.textField?.stringValue = fonts[row].nameTable.record(nameId: TCID.nameFullFontName)!.record!
     return view
   }
 

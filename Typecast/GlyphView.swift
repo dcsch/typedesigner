@@ -9,16 +9,17 @@
 import Cocoa
 
 class GlyphView: NSView {
-
-  var glyph: Glyph? {
-    didSet {
-      if let actualGlyph = glyph {
-        glyphPath = GlyphPathFactory.buildPath(with: actualGlyph)
-      }
-    }
-  }
-  var font: Font?
-  private var glyphPath: CGPath?
+  var unitsPerEm = 1024
+  var xMin = 0
+  var xMax = 0
+  var yMin = 0
+  var yMax = 0
+  var ascent = 0
+  var descent = 0
+  var leftSideBearing = 0
+  var advanceWidth = 0
+  var glyphPaths = [CGPath]()
+  var transforms = [CGAffineTransform]()
   private var translate = CGPoint(x: 0, y: 0)
   private var scale: CGFloat = 1.0
   var controlPointsVisible = true
@@ -34,22 +35,16 @@ class GlyphView: NSView {
   override func draw(_ dirtyRect: NSRect) {
     super.draw(dirtyRect)
 
-    guard let glyph = self.glyph,
-      let font = self.font,
-      let glyphPath = self.glyphPath,
-      let context = NSGraphicsContext.current?.cgContext else {
+    guard let context = NSGraphicsContext.current?.cgContext else {
       return
     }
 
-    let unitsPerEmBy2 = Int(font.headTable.unitsPerEm) / 2
-    //_translate = NSMakePoint(1 * unitsPerEmBy2, 1 * unitsPerEmBy2);
-
     context.scaleBy(x: CGFloat(scale), y: scale)
     context.translateBy(x: translate.x, y: translate.y)
-
     context.setLineWidth(2)
 
     // Draw grid
+    let unitsPerEmBy2 = unitsPerEm / 2
     context.setStrokeColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 1.0)
     context.move(to: CGPoint(x: -unitsPerEmBy2, y: 0))
     context.addLine(to: CGPoint(x: unitsPerEmBy2, y: 0))
@@ -58,27 +53,34 @@ class GlyphView: NSView {
     context.strokePath()
 
     context.setStrokeColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
-    context.move(to: CGPoint(x: Int(font.headTable.xMin), y: Int(font.headTable.yMin)))
-    context.addLine(to: CGPoint(x: Int(font.headTable.xMax), y: Int(font.headTable.yMin)))
-    context.addLine(to: CGPoint(x: Int(font.headTable.xMax), y: Int(font.headTable.yMax)))
-    context.addLine(to: CGPoint(x: Int(font.headTable.xMin), y: Int(font.headTable.yMax)))
-    context.addLine(to: CGPoint(x: Int(font.headTable.xMin), y: Int(font.headTable.yMin)))
+    context.move(to: CGPoint(x: xMin, y: yMin))
+    context.addLine(to: CGPoint(x: xMax, y: yMin))
+    context.addLine(to: CGPoint(x: xMax, y: yMax))
+    context.addLine(to: CGPoint(x: xMin, y: yMax))
+    context.addLine(to: CGPoint(x: xMin, y: yMin))
     context.strokePath()
 
     // Draw guides
     context.setStrokeColor(red: 0.25, green: 0.25, blue: 1.0, alpha: 1.0)
-    context.move(to: CGPoint(x: -unitsPerEmBy2, y: font.ascent))
-    context.addLine(to: CGPoint(x: unitsPerEmBy2, y: font.ascent))
-    context.move(to: CGPoint(x: -unitsPerEmBy2, y: font.descent))
-    context.addLine(to: CGPoint(x: unitsPerEmBy2, y: font.descent))
-    context.move(to: CGPoint(x: glyph.leftSideBearing, y: -unitsPerEmBy2))
-    context.addLine(to: CGPoint(x: glyph.leftSideBearing, y: unitsPerEmBy2))
-    context.move(to: CGPoint(x: glyph.advanceWidth, y: -unitsPerEmBy2))
-    context.addLine(to: CGPoint(x: glyph.advanceWidth, y: unitsPerEmBy2))
+    context.move(to: CGPoint(x: -unitsPerEmBy2, y: ascent))
+    context.addLine(to: CGPoint(x: unitsPerEmBy2, y: ascent))
+    context.move(to: CGPoint(x: -unitsPerEmBy2, y: descent))
+    context.addLine(to: CGPoint(x: unitsPerEmBy2, y: descent))
+    context.move(to: CGPoint(x: leftSideBearing, y: -unitsPerEmBy2))
+    context.addLine(to: CGPoint(x: leftSideBearing, y: unitsPerEmBy2))
+    context.move(to: CGPoint(x: advanceWidth, y: -unitsPerEmBy2))
+    context.addLine(to: CGPoint(x: advanceWidth, y: unitsPerEmBy2))
     context.strokePath()
 
     // Render the glyph path
-    context.addPath(glyphPath)
+    for i in 0..<glyphPaths.count {
+      let glyphPath = glyphPaths[i]
+      let transform = transforms[i]
+      context.saveGState()
+      context.concatenate(transform)
+      context.addPath(glyphPath)
+      context.restoreGState()
+    }
 
     context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
     context.strokePath()

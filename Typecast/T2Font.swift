@@ -33,7 +33,7 @@ class T2Font: Font {
    - returns: a glyph
    - parameter at: the glyph index
    */
-  override func glyph(at index: Int) -> Glyph? {
+  func glyph(at index: Int) -> Glyph? {
     let font = cffTable.fonts[0]
     let charstring = font.charstrings[index]
     let localSubrIndex = font.localSubrIndex

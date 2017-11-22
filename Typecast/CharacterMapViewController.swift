@@ -119,8 +119,9 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
     item.textField?.stringValue = String(format: "%04X", mapping.0)
 
     // Glyph
-    if let glyph = font?.glyph(at: mapping.1),
-      let head = font?.headTable {
+    if let ttFont = font as? TTFont {
+      let descript = ttFont.glyfTable.descript[mapping.1]
+      let head = ttFont.headTable
       let size = item.imageView?.bounds.size
       let pixelSize = collectionView.convertToBacking(size!)
 
@@ -135,10 +136,19 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
       let tx = (imageWidthInUnits / 2) - (CGFloat(head.xMax - head.xMin) / 2)
       transform = transform.translatedBy(x: tx, y: 0)
 
-      if let cgImage = GlyphImageFactory.buildImage(glyph: glyph,
-                                                    transform: transform,
-                                                    size: pixelSize) {
-        let image = NSImage(cgImage: cgImage, size: CGSize.zero)
+      var cgImage: CGImage?
+      if let simpleDescript = descript as? TCGlyfSimpleDescript {
+        cgImage = GlyphImageFactory.buildImage(glyph: simpleDescript,
+                                               transform: transform,
+                                               size: pixelSize)
+      } else if let compositeDescript = descript as? TCGlyfCompositeDescript {
+        cgImage = GlyphImageFactory.buildImage(glyph: compositeDescript,
+                                               font: ttFont,
+                                               transform: transform,
+                                               size: pixelSize)
+      }
+      if cgImage != nil {
+        let image = NSImage(cgImage: cgImage!, size: CGSize.zero)
         item.imageView?.image = image
       }
 

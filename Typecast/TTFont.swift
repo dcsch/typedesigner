@@ -44,18 +44,6 @@ class TTFont: Font {
     try super.init(data: data, tablesOrigin: tablesOrigin)
   }
 
-  /**
-   Retrieve a glyph from this font.
-   - returns: a glyph
-   - parameter at: the glyph index
-   */
-  override func glyph(at index: Int) -> Glyph? {
-    let description = glyfTable.description(at: index)
-    return TTGlyph(glyphDescription: description,
-                   leftSideBearing: hmtxTable.leftSideBearing(at: index),
-                   advanceWidth: hmtxTable.advanceWidth(at: index))
-  }
-
   enum TTCodingKeys: String, CodingKey {
     case loca
     case glyf

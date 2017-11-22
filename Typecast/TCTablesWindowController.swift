@@ -35,9 +35,9 @@ class TCTablesWindowController: NSWindowController, NSTableViewDelegate,
     }
   }
 
-  override func windowTitle(forDocumentDisplayName displayName: String) -> String {
-    return "\(font!.name) (\(displayName))"
-  }
+//  override func windowTitle(forDocumentDisplayName displayName: String) -> String {
+//    return "\(font!.name) (\(displayName))"
+//  }
 
   func configureDetailView() {
     containedViewController?.view.removeFromSuperview()
