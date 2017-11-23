@@ -8,6 +8,7 @@
 
 import Foundation
 import IOUtils
+import os.log
 
 class TCCmapTable: TCBaseTable, Codable {
   let version: UInt16
@@ -31,8 +32,10 @@ class TCCmapTable: TCBaseTable, Codable {
 
     // Get each of the index entries
     for _ in 0..<numTables {
-      entries.append(TCCmapIndexEntry(dataInput: dataInput))
+      let indexEntry = TCCmapIndexEntry(dataInput: dataInput)
+      entries.append(indexEntry)
       bytesRead += 8
+      os_log("indexEntry: %@", String(describing: indexEntry))
     }
 
     // Sort into their order of offset

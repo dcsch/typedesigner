@@ -64,7 +64,7 @@ class TCNameTable: TCBaseTable, Codable {
   }
 
   class Record: Codable {
-    let platformID: Int
+    let platformID: TCID.Platform
     let encodingID: Int
     let languageID: Int
     let nameID: NameID
@@ -73,7 +73,7 @@ class TCNameTable: TCBaseTable, Codable {
     var record: String
 
     init(dataInput: TCDataInput, stringData: Data) {
-      platformID = Int(dataInput.readInt16())
+      platformID = TCID.Platform(rawValue: Int(dataInput.readInt16())) ?? .unknown
       encodingID = Int(dataInput.readInt16())
       languageID = Int(dataInput.readInt16())
       nameID = NameID(rawValue: Int(dataInput.readInt16())) ?? .unknown
@@ -82,16 +82,16 @@ class TCNameTable: TCBaseTable, Codable {
 
       let stringSubData = stringData.subdata(in: stringOffset..<(stringOffset + stringLength))
       switch platformID {
-      case TCID.platformUnicode:
+      case .unicode:
         // Unicode (big-endian)
         record = String(data: stringSubData, encoding: .utf16BigEndian) ?? "(UTF-16 decoding error)"
-      case TCID.platformMacintosh:
+      case .macintosh:
         // Macintosh encoding, ASCII
         record = String(data: stringSubData, encoding: .ascii) ?? "(ASCII decoding error)"
-      case TCID.platformISO:
+      case .iso:
         // ISO encoding, ASCII
         record = String(data: stringSubData, encoding: .ascii) ?? "(ASCII decoding error)"
-      case TCID.platformMicrosoft:
+      case .microsoft:
         // Microsoft encoding, Unicode
         record = String(data: stringSubData, encoding: .utf16LittleEndian) ?? "(UTF-16 decoding error)"
       default:

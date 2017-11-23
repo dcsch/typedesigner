@@ -8,155 +8,204 @@
 
 import Foundation
 
-// TODO Rework this as a fancy enum
+protocol Encoding: CustomStringConvertible {
+  var rawValue: Int { get }
+}
+
 class TCID {
 
   // Platform IDs
-  static let platformUnicode = 0
-  static let platformMacintosh = 1
-  static let platformISO = 2
-  static let platformMicrosoft = 3
+  enum Platform: Int, CustomStringConvertible, Codable {
+    case unknown = -1
+    case unicode = 0
+    case macintosh = 1
+    case iso = 2
+    case microsoft = 3
 
-  // Unicode Encoding IDs
-  static let encodingUnicode10Semantics = 0
-  static let encodingUnicode11Semantics = 1
-  static let encodingISO10646Semantics = 2
-  static let encodingUnicode20Semantics = 3
+    func encoding(id: Int) -> Encoding? {
+      switch self {
+      case .unicode:
+        return UnicodeEncoding(rawValue: id)
+      case .macintosh:
+        return MacintoshEncoding(rawValue: id)
+      case .iso:
+        return ISOEncoding(rawValue: id)
+      case .microsoft:
+        return MicrosoftEncoding(rawValue: id)
+      default:
+        return CustomEncoding.unknown
+      }
+    }
 
-  // Microsoft Encoding IDs
-  static let encodingSymbol = 0
-  static let encodingUnicode = 1
-  static let encodingShiftJIS = 2
-  static let encodingPRC = 3
-  static let encodingBig5 = 4
-  static let encodingWansung = 5
-  static let encodingJohab = 6
-  static let encodingUCS4 = 10
-
-  // Macintosh Encoding IDs
-  static let encodingRoman = 0
-  static let encodingJapanese = 1
-  static let encodingChinese = 2
-  static let encodingKorean = 3
-  static let encodingArabic = 4
-  static let encodingHebrew = 5
-  static let encodingGreek = 6
-  static let encodingRussian = 7
-  static let encodingRSymbol = 8
-  static let encodingDevanagari = 9
-  static let encodingGurmukhi = 10
-  static let encodingGujarati = 11
-  static let encodingOriya = 12
-  static let encodingBengali = 13
-  static let encodingTamil = 14
-  static let encodingTelugu = 15
-  static let encodingKannada = 16
-  static let encodingMalayalam = 17
-  static let encodingSinhalese = 18
-  static let encodingBurmese = 19
-  static let encodingKhmer = 20
-  static let encodingThai = 21
-  static let encodingLaotian = 22
-  static let encodingGeorgian = 23
-  static let encodingArmenian = 24
-  static let encodingMaldivian = 25
-  static let encodingTibetan = 26
-  static let encodingMongolian = 27
-  static let encodingGeez = 28
-  static let encodingSlavic = 29
-  static let encodingVietnamese = 30
-  static let encodingSindhi = 31
-  static let encodingUninterp = 32
-
-  // ISO Encoding IDs
-  static let encodingASCII = 0
-  static let encodingISO10646 = 1
-  static let encodingISO8859_1 = 2
-
-  class func platformName(platformID: Int) -> String {
-    switch platformID {
-    case platformUnicode:   return "Unicode"
-    case platformMacintosh: return "Macintosh"
-    case platformISO:       return "ISO"
-    case platformMicrosoft: return "Microsoft"
-    default:                return "Custom"
+    var description: String {
+      get {
+        switch self {
+        case .unicode:   return "Unicode"
+        case .macintosh: return "Macintosh"
+        case .iso:       return "ISO"
+        case .microsoft: return "Microsoft"
+        default:         return "Custom"
+        }
+      }
     }
   }
 
-  class func encodingName(platformID: Int, encodingID: Int) -> String {
-    if platformID == platformUnicode {
-      // Unicode specific encodings
-      switch encodingID {
-      case encodingUnicode10Semantics: return "Unicode 1.0 semantics"
-      case encodingUnicode11Semantics: return "Unicode 1.1 semantics"
-      case encodingISO10646Semantics:  return "ISO 10646:1993 semantics"
-      case encodingUnicode20Semantics: return "Unicode 2.0 and onwards semantics"
-      default:                         return ""
+  // Unicode Encoding IDs
+  enum UnicodeEncoding: Int, Encoding, CustomStringConvertible, Codable {
+    case unknown = -1
+    case unicode10Semantics = 0
+    case unicode11Semantics = 1
+    case iso10646Semantics = 2
+    case unicode20Semantics = 3
+
+    var description: String {
+      get {
+        switch self {
+        case .unicode10Semantics: return "Unicode 1.0 semantics"
+        case .unicode11Semantics: return "Unicode 1.1 semantics"
+        case .iso10646Semantics:  return "ISO 10646:1993 semantics"
+        case .unicode20Semantics: return "Unicode 2.0 and onwards semantics"
+        default:                  return "unknown"
+        }
       }
-    } else if platformID == platformMacintosh {
-      // Macintosh specific encodings
-      switch encodingID {
-      case encodingRoman:      return "Roman"
-      case encodingJapanese:   return "Japanese"
-      case encodingChinese:    return "Chinese"
-      case encodingKorean:     return "Korean"
-      case encodingArabic:     return "Arabic"
-      case encodingHebrew:     return "Hebrew"
-      case encodingGreek:      return "Greek"
-      case encodingRussian:    return "Russian"
-      case encodingRSymbol:    return "RSymbol"
-      case encodingDevanagari: return "Devanagari"
-      case encodingGurmukhi:   return "Gurmukhi"
-      case encodingGujarati:   return "Gujarati"
-      case encodingOriya:      return "Oriya"
-      case encodingBengali:    return "Bengali"
-      case encodingTamil:      return "Tamil"
-      case encodingTelugu:     return "Telugu"
-      case encodingKannada:    return "Kannada"
-      case encodingMalayalam:  return "Malayalam"
-      case encodingSinhalese:  return "Sinhalese"
-      case encodingBurmese:    return "Burmese"
-      case encodingKhmer:      return "Khmer"
-      case encodingThai:       return "Thai"
-      case encodingLaotian:    return "Laotian"
-      case encodingGeorgian:   return "Georgian"
-      case encodingArmenian:   return "Armenian"
-      case encodingMaldivian:  return "Maldivian"
-      case encodingTibetan:    return "Tibetan"
-      case encodingMongolian:  return "Mongolian"
-      case encodingGeez:       return "Geez"
-      case encodingSlavic:     return "Slavic"
-      case encodingVietnamese: return "Vietnamese"
-      case encodingSindhi:     return "Sindhi"
-      case encodingUninterp:   return "Uninterpreted"
-      default:                   return ""
+    }
+  }
+
+  // Microsoft Encoding IDs
+  enum MicrosoftEncoding: Int, Encoding, CustomStringConvertible, Codable {
+    case unknown = -1
+    case symbol = 0
+    case unicode = 1
+    case shiftJIS = 2
+    case prc = 3
+    case big5 = 4
+    case wansung = 5
+    case johab = 6
+    case ucs4 = 10
+
+    var description: String {
+      get {
+        switch self {
+        case .symbol:   return "Symbol"
+        case .unicode:  return "Unicode"
+        case .shiftJIS: return "ShiftJIS"
+        case .prc:      return "PRC"
+        case .big5:     return "Big5"
+        case .wansung:  return "Wansung"
+        case .johab:    return "Johab"
+        case .ucs4:     return "UCS-4"
+        default:        return "unknown"
+        }
       }
-    } else if platformID == platformISO {
-      // ISO specific encodings
-      switch encodingID {
-      case encodingASCII:     return "7-bit ASCII"
-      case encodingISO10646:  return "ISO 10646"
-      case encodingISO8859_1: return "ISO 8859-1"
-      default:                  return ""
+    }
+  }
+
+  // Macintosh Encoding IDs
+  enum MacintoshEncoding: Int, Encoding, CustomStringConvertible, Codable {
+    case unknown = -1
+    case roman = 0
+    case japanese = 1
+    case chinese = 2
+    case korean = 3
+    case arabic = 4
+    case hebrew = 5
+    case greek = 6
+    case russian = 7
+    case rSymbol = 8
+    case devanagari = 9
+    case gurmukhi = 10
+    case gujarati = 11
+    case oriya = 12
+    case bengali = 13
+    case tamil = 14
+    case telugu = 15
+    case kannada = 16
+    case malayalam = 17
+    case sinhalese = 18
+    case burmese = 19
+    case khmer = 20
+    case thai = 21
+    case laotian = 22
+    case georgian = 23
+    case armenian = 24
+    case maldivian = 25
+    case tibetan = 26
+    case mongolian = 27
+    case geez = 28
+    case slavic = 29
+    case vietnamese = 30
+    case sindhi = 31
+    case uninterp = 32
+
+    var description: String {
+      get {
+        switch self {
+        case .roman:      return "Roman"
+        case .japanese:   return "Japanese"
+        case .chinese:    return "Chinese"
+        case .korean:     return "Korean"
+        case .arabic:     return "Arabic"
+        case .hebrew:     return "Hebrew"
+        case .greek:      return "Greek"
+        case .russian:    return "Russian"
+        case .rSymbol:    return "RSymbol"
+        case .devanagari: return "Devanagari"
+        case .gurmukhi:   return "Gurmukhi"
+        case .gujarati:   return "Gujarati"
+        case .oriya:      return "Oriya"
+        case .bengali:    return "Bengali"
+        case .tamil:      return "Tamil"
+        case .telugu:     return "Telugu"
+        case .kannada:    return "Kannada"
+        case .malayalam:  return "Malayalam"
+        case .sinhalese:  return "Sinhalese"
+        case .burmese:    return "Burmese"
+        case .khmer:      return "Khmer"
+        case .thai:       return "Thai"
+        case .laotian:    return "Laotian"
+        case .georgian:   return "Georgian"
+        case .armenian:   return "Armenian"
+        case .maldivian:  return "Maldivian"
+        case .tibetan:    return "Tibetan"
+        case .mongolian:  return "Mongolian"
+        case .geez:       return "Geez"
+        case .slavic:     return "Slavic"
+        case .vietnamese: return "Vietnamese"
+        case .sindhi:     return "Sindhi"
+        case .uninterp:   return "Uninterpreted"
+        default:          return "unknown"
+        }
       }
-    } else if platformID == platformMicrosoft {
-      // Windows specific encodings
-      switch encodingID {
-      case encodingSymbol:   return "Symbol"
-      case encodingUnicode:  return "Unicode"
-      case encodingShiftJIS: return "ShiftJIS"
-      case encodingPRC:      return "PRC"
-      case encodingBig5:     return "Big5"
-      case encodingWansung:  return "Wansung"
-      case encodingJohab:    return "Johab"
-      case 7:                return "Reserved"
-      case 8:                return "Reserved"
-      case 9:                return "Reserved"
-      case encodingUCS4:     return "UCS-4"
-      default:               return ""
+    }
+  }
+
+  // ISO Encoding IDs
+  enum ISOEncoding: Int, Encoding, CustomStringConvertible, Codable {
+    case unknown = -1
+    case ascii = 0
+    case iso10646 = 1
+    case iso8859_1 = 2
+
+    var description: String {
+      get {
+        switch self {
+        case .ascii:     return "7-bit ASCII"
+        case .iso10646:  return "ISO 10646"
+        case .iso8859_1: return "ISO 8859-1"
+        default:         return "unknown"
+        }
       }
-    } else {
-      return ""
+    }
+  }
+
+  // Custom Encoding
+  enum CustomEncoding: Int, Encoding, CustomStringConvertible, Codable {
+    case unknown = -1
+
+    var description: String {
+      get {
+        return "Custom encoding (\(rawValue))"
+      }
     }
   }
 }

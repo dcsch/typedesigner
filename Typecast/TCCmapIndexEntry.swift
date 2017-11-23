@@ -9,37 +9,38 @@
 import Foundation
 import IOUtils
 
-class TCCmapIndexEntry: Comparable {
-  let platformID: Int
-  let encodingID: Int
+class TCCmapIndexEntry: Comparable, CustomStringConvertible {
+  let platformID: TCID.Platform
+  let encodingID: Encoding
   let offset: Int
   var format: TCCmapFormat?
 
   var platformDescription: String {
     get {
-      return TCID.platformName(platformID: platformID)
+      return String(describing: platformID)
     }
   }
 
   var encodingDescription: String {
     get {
-      return TCID.encodingName(platformID: platformID, encodingID: encodingID)
+      return String(describing: encodingID)
     }
   }
 
   init(dataInput: TCDataInput) {
-    platformID = Int(dataInput.readUInt16())
-    encodingID = Int(dataInput.readUInt16())
+    platformID = TCID.Platform(rawValue: Int(dataInput.readUInt16())) ?? .unknown
+    let encodingIDRawValue = Int(dataInput.readUInt16())
+    encodingID = platformID.encoding(id: encodingIDRawValue) ?? TCID.CustomEncoding.unknown
     offset = Int(dataInput.readUInt32())
   }
 
   var description: String {
     get {
       return String(format: "platform id: %d (%@), encoding id: %d (%@), offset: %d",
-                    platformID,
-                    TCID.platformName(platformID: platformID),
-                    encodingID,
-                    TCID.encodingName(platformID: platformID, encodingID: encodingID),
+                    platformID.rawValue,
+                    platformDescription,
+                    encodingID.rawValue,
+                    encodingDescription,
                     offset)
     }
   }
