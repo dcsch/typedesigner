@@ -131,13 +131,15 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
     super.init(glyphIndex: glyphIndex)
   }
   
-  var description: String {
+  override var description: String {
     get {
-      let str = "          xMin:             \(xMin)\n" +
-        "          yMin:             \(yMin)\n" +
-        "          xMax:             \(xMax)\n" +
-        "          yMax:             \(yMax)\n"
-      return str;
+      return """
+                numberOfContours: -1
+                xMin:             \(xMin)
+                yMin:             \(yMin)
+                xMax:             \(xMax)
+                yMax:             \(yMax)
+      """
     }
   }
 

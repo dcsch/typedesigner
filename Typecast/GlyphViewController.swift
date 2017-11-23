@@ -80,6 +80,7 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
             }
           }
         }
+        os_log("updateGlyph: %@", String(describing: descript))
       }
       calculateGlyphViewSize()
     }

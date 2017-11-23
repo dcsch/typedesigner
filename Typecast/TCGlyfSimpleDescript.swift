@@ -11,7 +11,7 @@ import IOUtils
 
 class TCGlyfSimpleDescript: TCGlyfDescript {
 
-  struct Flags: OptionSet {
+  struct Flags: OptionSet, Codable {
     var rawValue: UInt8
 
     static let onCurvePoint = Flags(rawValue: 1 << 0)
@@ -31,7 +31,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
   var flags: [Flags]
   var xCoordinates: [Int]
   var yCoordinates: [Int]
-  var count: Int
   var instructions = [UInt8]()
 
   init(dataInput: TCDataInput,
@@ -46,7 +45,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     flags = []
     xCoordinates = []
     yCoordinates = []
-    count = 0
 
     // Simple glyph description
     for _ in 0..<numberOfContours {
@@ -54,20 +52,20 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     }
 
     // The last end point index reveals the total number of points
-    count = Int(endPtsOfContours[numberOfContours - 1]) + 1
+    let pointCount = Int(endPtsOfContours[numberOfContours - 1]) + 1
 
     let instructionCount = Int(dataInput.readInt16())
     instructions = dataInput.read(length: instructionCount)
     super.init(glyphIndex: glyphIndex)
-    readFlags(dataInput: dataInput, count: count)
-    readCoords(dataInput: dataInput, count: count)
+    readFlags(dataInput: dataInput, pointCount: pointCount)
+    readCoords(dataInput: dataInput)
   }
   
   // The flags are run-length encoded
-  func readFlags(dataInput: TCDataInput, count: Int) {
+  func readFlags(dataInput: TCDataInput, pointCount: Int) {
     flags.removeAll()
     var index = 0
-    while index < count {
+    while index < pointCount {
       let flagByte = Flags(rawValue: dataInput.readUInt8())
       flags.append(flagByte)
       if flagByte.contains(.repeatFlag) {
@@ -82,19 +80,19 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
   }
 
   // The table is stored as relative values, but we'll store them as absolutes
-  func readCoords(dataInput: TCDataInput, count: Int) {
+  func readCoords(dataInput: TCDataInput) {
     var xCoordinates = [Int]()
     var yCoordinates = [Int]()
 
     var x = 0
     var y = 0
-    for i in 0..<count {
-      if self.flags[i].contains(.xDual) {
-        if self.flags[i].contains(.xShortVector) {
+    for flags in self.flags {
+      if flags.contains(.xDual) {
+        if flags.contains(.xShortVector) {
           x += Int(dataInput.readUInt8())
         }
       } else {
-        if self.flags[i].contains(.xShortVector) {
+        if flags.contains(.xShortVector) {
           x += -Int(dataInput.readUInt8())
         } else {
           x += Int(dataInput.readInt16())
@@ -103,13 +101,13 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
       xCoordinates.append(x)
     }
 
-    for i in 0..<count {
-      if self.flags[i].contains(.yDual) {
-        if self.flags[i].contains(.yShortVector) {
+    for flags in self.flags {
+      if flags.contains(.yDual) {
+        if flags.contains(.yShortVector) {
           y += Int(dataInput.readUInt8())
         }
       } else {
-        if self.flags[i].contains(.yShortVector) {
+        if flags.contains(.yShortVector) {
           y += -Int(dataInput.readUInt8())
         } else {
           y += Int(dataInput.readInt16())
@@ -122,46 +120,54 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     self.yCoordinates = yCoordinates
   }
 
-  var description: String {
+  override var description: String {
     get {
-      var str = "          numberOfContours: \(numberOfContours)\n" +
-        "          xMin:             \(xMin)\n" +
-        "          yMin:             \(yMin)\n" +
-        "          xMax:             \(xMax)\n" +
-        "          yMax:             \(yMax)\n"
+      var str = """
+                numberOfContours: \(numberOfContours)
+                xMin:             \(xMin)
+                yMin:             \(yMin)
+                xMax:             \(xMax)
+                yMax:             \(yMax)
 
-      str.append("\n        EndPoints\n        ---------")
-      for i in 0..<endPtsOfContours.count {
-        str.append(String(format: "\n          %d: %d", i, endPtsOfContours[i]))
+              EndPoints
+              ---------
+      """
+
+      for (i, pt) in endPtsOfContours.enumerated() {
+        str += "\n          \(i): \(pt)"
       }
-      str.append(String(format: "\n\n          Length of Instructions: %ld\n", instructions.count))
-//      str.append(TCDisassembler.disassemble(instructions:instructions, leadingSpaceCount: 8))
+      str += "\n\n          Length of Instructions: \(instructions.count)\n"
+      str += TCDisassembler.disassemble(instructions: instructions, leadingSpaceCount: 8)
 
-      str.append("\n        Flags\n        -----")
-      for i in 0..<flags.count {
-        let flags = self.flags[i]
-        str.append(String(format:"\n          %d: %s%s%s%s%s%s",
-                          i,
-                          flags.contains(.yDual) ? "YDual " : "      ",
-                          flags.contains(.xDual) ? "XDual " : "      ",
-                          flags.contains(.repeatFlag) ? "Repeat " : "       ",
-                          flags.contains(.yShortVector) ? "Y-Short " : "        ",
-                          flags.contains(.xShortVector) ? "X-Short " : "        ",
-                          flags.contains(.onCurvePoint) ? "On" : "  "))
+      str += """
+
+              Flags
+              -----
+
+      """
+      for (i, flags) in self.flags.enumerated() {
+        str += String(format:"          %d: %@%@%@%@%@%@\n",
+                      i,
+                      flags.contains(.yDual) ? "YDual " : "      ",
+                      flags.contains(.xDual) ? "XDual " : "      ",
+                      flags.contains(.repeatFlag) ? "Repeat " : "       ",
+                      flags.contains(.yShortVector) ? "Y-Short " : "        ",
+                      flags.contains(.xShortVector) ? "X-Short " : "        ",
+                      flags.contains(.onCurvePoint) ? "On" : "  ")
       }
 
-      str.append("\n\n        Coordinates\n        -----------")
-      var oldX = 0
-      var oldY = 0
-      for i in 0..<xCoordinates.count {
-        str.append(String(format:"\n          %d: Rel (%d, %d)  ->  Abs (%d, %d)",
-                          i,
-                          xCoordinates[i] - oldX,
-                          yCoordinates[i] - oldY,
-                          xCoordinates[i],
-                          yCoordinates[i]))
-        oldX = xCoordinates[i]
-        oldY = yCoordinates[i]
+      str += """
+
+              Coordinates
+              -----------
+
+      """
+      var prevX = 0
+      var prevY = 0
+      for (i, (x, y)) in zip(xCoordinates, yCoordinates).enumerated() {
+        str += "          \(i): Rel (\(x - prevX), \(y - prevY))  ->  Abs (\(x), \(y))\n"
+        prevX = x
+        prevY = y
       }
       return str;
     }
@@ -192,7 +198,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     flags = try container.decode([Flags].self, forKey: .flags)
     xCoordinates = try container.decode([Int].self, forKey: .xCoordinates)
     yCoordinates = try container.decode([Int].self, forKey: .yCoordinates)
-    count = try container.decode(Int.self, forKey: .count)
     instructions = try container.decode([UInt8].self, forKey: .instructions)
     let superDecoder = try container.superDecoder()
     try super.init(from: superDecoder)
@@ -209,7 +214,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     try container.encode(flags, forKey: .flags)
     try container.encode(xCoordinates, forKey: .xCoordinates)
     try container.encode(yCoordinates, forKey: .yCoordinates)
-    try container.encode(count, forKey: .count)
     try container.encode(instructions, forKey: .instructions)
     let superEncoder = container.superEncoder()
     try super.encode(to: superEncoder)

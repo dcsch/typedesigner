@@ -290,7 +290,7 @@ enum TCMnemonic: UInt8 {
     } else if opcode >= NPUSHB.rawValue {
       return "NPUSHB"
     } else if opcode >= MIAP.rawValue {
-      return String(format: "MIAP[%s]", ((opcode & 1) == 0 ? "nrd+nci" : "rd+ci"))
+      return String(format: "MIAP[%@]", ((opcode & 1) == 0 ? "nrd+nci" : "rd+ci"))
     } else if opcode >= RTDG.rawValue {
       return "RTDG"
     } else if opcode >= ALIGNRP.rawValue {
@@ -382,15 +382,15 @@ enum TCMnemonic: UInt8 {
     } else if opcode >= SPVFS.rawValue {
       return "SPVFS"
     } else if opcode >= SFVTL.rawValue {
-      return String(format: "SFVTL[%s]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
+      return String(format: "SFVTL[%@]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
     } else if opcode >= SPVTL.rawValue {
-      return String(format: "SPVTL[%s]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
+      return String(format: "SPVTL[%@]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
     } else if opcode >= SFVTCA.rawValue {
-      return String(format: "SFVTCA[%s]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
+      return String(format: "SFVTCA[%@]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
     } else if opcode >= SPVTCA.rawValue {
-      return String(format: "SPVTCA[%s]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
+      return String(format: "SPVTCA[%@]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
     } else if opcode >= SVTCA.rawValue {
-      return String(format: "SVTCA[%s]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
+      return String(format: "SVTCA[%@]", ((opcode & 1) == 0 ? "y-axis" : "x-axis"))
     } else {
       return "????"
     }

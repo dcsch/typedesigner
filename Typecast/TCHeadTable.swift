@@ -10,14 +10,15 @@ import Foundation
 import IOUtils
 
 class TCHeadTable: TCBaseTable, Codable {
-  var versionNumber: UInt32
+  var majorVersion: Int
+  var minorVersion: Int
   var fontRevision: UInt32
   var checkSumAdjustment: UInt32
   var magicNumber: UInt32
   var flags: UInt16
   var unitsPerEm: Int
-  var created: UInt64
-  var modified: UInt64
+  var created: Date
+  var modified: Date
   var xMin: Int
   var yMin: Int
   var xMax: Int
@@ -28,15 +29,21 @@ class TCHeadTable: TCBaseTable, Codable {
   var indexToLocFormat: Int16
   var glyphDataFormat: Int16
 
+  // The OpenType epoch is 1904-1-1T00:00:00Z
+  static let epoch = DateComponents(calendar: Calendar(identifier: .gregorian),
+                                    timeZone: TimeZone(secondsFromGMT: 0),
+                                    year: 1904).date!
+
   override init() {
-    versionNumber = 0
+    majorVersion = 0
+    minorVersion = 0
     fontRevision = 0
     checkSumAdjustment = 0
     magicNumber = 0
     flags = 0
     unitsPerEm = 0
-    created = 0
-    modified = 0
+    created = Date()
+    modified = Date()
     xMin = 0
     yMin = 0
     xMax = 0
@@ -51,14 +58,17 @@ class TCHeadTable: TCBaseTable, Codable {
 
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
-    versionNumber = dataInput.readUInt32()
+    majorVersion = Int(dataInput.readUInt16())
+    minorVersion = Int(dataInput.readUInt16())
     fontRevision = dataInput.readUInt32()
     checkSumAdjustment = dataInput.readUInt32()
     magicNumber = dataInput.readUInt32()
     flags = dataInput.readUInt16()
     unitsPerEm = Int(dataInput.readUInt16())
-    created = dataInput.readUInt64()
-    modified = dataInput.readUInt64()
+    let createdSeconds = TimeInterval(dataInput.readUInt64())
+    created = Date(timeInterval: createdSeconds, since: TCHeadTable.epoch)
+    let modifiedSeconds = TimeInterval(dataInput.readUInt64())
+    modified = Date(timeInterval: modifiedSeconds, since: TCHeadTable.epoch)
     xMin = Int(dataInput.readInt16())
     yMin = Int(dataInput.readInt16())
     xMax = Int(dataInput.readInt16())
@@ -79,33 +89,37 @@ class TCHeadTable: TCBaseTable, Codable {
 
   override var description: String {
     get {
-      return String.localizedStringWithFormat(
-          "'head' Table - Font Header\n--------------------------" +
-          "\n  'head' version:      %x" +  //  //).append(Fixed.floatValue(_versionNumber))
-          "\n  fontRevision:        %x" +  //  //).append(Fixed.roundedFloatValue(_fontRevision, 8))
-          "\n  checkSumAdjustment:  0x%x" +  //).append(Integer.toHexString(_checkSumAdjustment).toUpperCase())
-          "\n  magicNumber:         0x%x" +  //).append(Integer.toHexString(_magicNumber).toUpperCase())
-          "\n  flags:               0x%x" +  //).append(Integer.toHexString(_flags).toUpperCase())
-          "\n  unitsPerEm:          %d" +  //).append(_unitsPerEm)
-          "\n  created:             %lld" +  //).append(_created)
-          "\n  modified:            %lld" +  //).append(_modified)
-          "\n  xMin:                %d" +  //).append(_xMin)
-          "\n  yMin:                %d" +  //).append(_yMin)
-          "\n  xMax:                %d" +  //).append(_xMax)
-          "\n  yMax:                %d" +  //).append(_yMax)
-          "\n  macStyle bits:       %X" +  //).append(Integer.toHexString(_macStyle).toUpperCase())
-          "\n  lowestRecPPEM:       %d" +  //).append(_lowestRecPPEM)
-          "\n  fontDirectionHint:   %d" +  //).append(_fontDirectionHint)
-          "\n  indexToLocFormat:    %d" +  //).append(_indexToLocFormat)
-          "\n  glyphDataFormat:     %d",  //).append(_glyphDataFormat)
-          versionNumber,
+      let formatter = ISO8601DateFormatter()
+      return String.localizedStringWithFormat("""
+          'head' Table - Font Header
+          --------------------------
+            'head' version:      %d.%d
+            fontRevision:        %x
+            checkSumAdjustment:  0x%X
+            magicNumber:         0x%X
+            flags:               0x%X
+            unitsPerEm:          %d
+            created:             %@
+            modified:            %@
+            xMin:                %d
+            yMin:                %d
+            xMax:                %d
+            yMax:                %d
+            macStyle bits:       %X
+            lowestRecPPEM:       %d
+            fontDirectionHint:   %d
+            indexToLocFormat:    %d
+            glyphDataFormat:     %d
+          """,
+          majorVersion,
+          minorVersion,
           fontRevision,
           checkSumAdjustment,
           magicNumber,
           flags,
           unitsPerEm,
-          created,
-          modified,
+          formatter.string(from: created),
+          formatter.string(from: modified),
           xMin,
           yMin,
           xMax,

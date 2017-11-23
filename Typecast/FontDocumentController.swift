@@ -47,8 +47,10 @@ class FontDocumentController: NSDocumentController {
 
   override func makeUntitledDocument(ofType typeName: String) throws -> NSDocument {
     let document = try super.makeUntitledDocument(ofType: typeName)
-    if let fontDocument = document as? FontDocument {
-      fontDocument.font = importFont
+    if let fontDocument = document as? FontDocument,
+      let font = importFont {
+      fontDocument.font = font
+      fontDocument.displayName = font.nameTable.record(nameID: .fullFontName)!.record
       importFont = nil
     }
     return document

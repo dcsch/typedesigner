@@ -17,7 +17,8 @@ enum FontError: Error {
 /**
  An OpenType font.
  */
-class Font: Codable {
+class Font: Codable, CustomStringConvertible {
+
   var headTable: TCHeadTable
   var hheaTable: TCHheaTable
   var maxpTable: TCMaxpTable
@@ -109,6 +110,12 @@ class Font: Codable {
       return data.subdata(in: offset..<offset + entry.length)
     }
     throw FontError.missingTable
+  }
+
+  var description: String {
+    get {
+      return headTable.description
+    }
   }
 
   enum CodingKeys: String, CodingKey {

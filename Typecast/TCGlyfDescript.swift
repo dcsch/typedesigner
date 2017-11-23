@@ -8,11 +8,17 @@
 
 import Foundation
 
-class TCGlyfDescript: Codable {
+class TCGlyfDescript: CustomStringConvertible, Codable {
   var glyphIndex: Int
 
   init(glyphIndex: Int) {
     self.glyphIndex = glyphIndex
+  }
+
+  var description: String {
+    get {
+      return "TCGlyfDescript"
+    }
   }
 
   private enum CodingKeys: String, CodingKey {

@@ -14,7 +14,7 @@ class TCGlyfNullDescript: TCGlyfDescript {
     super.init(glyphIndex: glyphIndex)
   }
 
-  var description: String {
+  override var description: String {
     get {
       return "Null Glyph"
     }
