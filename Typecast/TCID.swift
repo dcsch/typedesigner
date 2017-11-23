@@ -73,28 +73,6 @@ class TCID {
   static let encodingISO10646 = 1
   static let encodingISO8859_1 = 2
 
-  // Name IDs
-  static let nameCopyrightNotice = 0
-  static let nameFontFamilyName = 1
-  static let nameFontSubfamilyName = 2
-  static let nameUniqueFontIdentifier = 3
-  static let nameFullFontName = 4
-  static let nameVersionString = 5
-  static let namePostscriptName = 6
-  static let nameTrademark = 7
-  static let nameManufacturerName = 8
-  static let nameDesigner = 9
-  static let nameDescription = 10
-  static let nameURLVendor = 11
-  static let nameURLDesigner = 12
-  static let nameLicenseDescription = 13
-  static let nameLicenseInfoURL = 14
-  static let namePreferredFamily = 16
-  static let namePreferredSubfamily = 17
-  static let nameCompatibleFull = 18
-  static let nameSampleText = 19
-  static let namePostScriptCIDFindfontName = 20
-
   class func platformName(platformID: Int) -> String {
     switch platformID {
     case platformUnicode:   return "Unicode"
@@ -179,32 +157,6 @@ class TCID {
       }
     } else {
       return ""
-    }
-  }
-
-  class func nameName(nameID: Int) -> String {
-    switch nameID {
-    case nameCopyrightNotice: return "Copyright notice"
-    case nameFontFamilyName: return "Font Family name"
-    case nameFontSubfamilyName: return "Font Subfamily name"
-    case nameUniqueFontIdentifier: return "Unique font identifier"
-    case nameFullFontName: return "Full font name"
-    case nameVersionString: return "Version string"
-    case namePostscriptName: return "Postscript name"
-    case nameTrademark: return "Trademark"
-    case nameManufacturerName: return "Manufacturer Name"
-    case nameDesigner: return "Designer"
-    case nameDescription: return "Description"
-    case nameURLVendor: return "URL Vendor"
-    case nameURLDesigner: return "URL Designer"
-    case nameLicenseDescription: return "License Description"
-    case nameLicenseInfoURL: return "License Info URL"
-    case namePreferredFamily: return "Preferred Family"
-    case namePreferredSubfamily: return "Preferred Subfamily"
-    case nameCompatibleFull: return "Compatible Full"
-    case nameSampleText: return "Sample text"
-    case namePostScriptCIDFindfontName: return "PostScript CID findfont name"
-    default: return ""
     }
   }
 }

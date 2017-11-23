@@ -11,7 +11,7 @@ import IOUtils
 
 class TCNameTable: TCBaseTable, Codable {
 
-  enum NameID: Int, Codable {
+  enum NameID: Int, CustomStringConvertible, Codable {
     case unknown = -1
     case copyrightNotice = 0
     case fontFamilyName = 1
@@ -33,6 +33,34 @@ class TCNameTable: TCBaseTable, Codable {
     case compatibleFull = 18
     case sampleText = 19
     case postScriptCIDFindfontName = 20
+
+    var description: String {
+      get {
+        switch self {
+        case .copyrightNotice: return "Copyright notice"
+        case .fontFamilyName: return "Font Family name"
+        case .fontSubfamilyName: return "Font Subfamily name"
+        case .uniqueFontIdentifier: return "Unique font identifier"
+        case .fullFontName: return "Full font name"
+        case .versionString: return "Version string"
+        case .postscriptName: return "Postscript name"
+        case .trademark: return "Trademark"
+        case .manufacturerName: return "Manufacturer Name"
+        case .designer: return "Designer"
+        case .description: return "Description"
+        case .urlVendor: return "URL Vendor"
+        case .urlDesigner: return "URL Designer"
+        case .licenseDescription: return "License Description"
+        case .licenseInfoURL: return "License Info URL"
+        case .preferredFamily: return "Preferred Family"
+        case .preferredSubfamily: return "Preferred Subfamily"
+        case .compatibleFull: return "Compatible Full"
+        case .sampleText: return "Sample text"
+        case .postScriptCIDFindfontName: return "PostScript CID findfont name"
+        default: return "unknown"
+        }
+      }
+    }
   }
 
   class Record: Codable {
