@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +23,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="xLi-od-L6E"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="wet-0b-qur"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="wet-0b-qur">
+                                            <connections>
+                                                <segue destination="lhE-Pe-1X5" kind="show" id="8pF-f6-LhJ"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Iso-vC-dIq"/>
                                         <menuItem title="Services" id="3cB-0h-bCH">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -334,7 +338,7 @@
                 <customObject id="Hzu-9x-Jzk" customClass="AppDelegate" customModule="Type_Designer" customModuleProvider="target"/>
                 <customObject id="TlT-x7-O3b" customClass="FontDocumentController" customModule="Type_Designer" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="44" y="-603"/>
+            <point key="canvasLocation" x="38" y="-657"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="pLq-oA-4Lc">
@@ -345,6 +349,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="425" y="461" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+                        <connections>
+                            <outlet property="delegate" destination="JNq-vd-evj" id="f4W-fY-yR9"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="Pqg-ou-ZKb" kind="relationship" relationship="window.shadowedContentViewController" id="d7r-54-ElA"/>
@@ -375,32 +382,106 @@
             </objects>
             <point key="canvasLocation" x="61" y="-370"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="PE0-Ne-OMH">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="lhE-Pe-1X5" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="7EU-ds-lkE">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+                        <connections>
+                            <outlet property="delegate" destination="lhE-Pe-1X5" id="tX2-RH-yD2"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="KBQ-Km-OqD" kind="relationship" relationship="window.shadowedContentViewController" id="RCn-ve-eT4"/>
+                    </connections>
+                </windowController>
+                <customObject id="f9D-Up-vER" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="623" y="-357"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="Wpa-2H-vsn">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="KBQ-Km-OqD" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="uy9-nf-PSE"/>
+                        <tabViewItem identifier="" id="9Za-Xt-zUU"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="FM5-3M-KAE">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="KBQ-Km-OqD" id="3sI-E7-pLe"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="FM5-3M-KAE" id="s7z-qo-Jkj"/>
+                        <segue destination="MkY-zm-7M9" kind="relationship" relationship="tabItems" id="fgC-fD-q4H"/>
+                        <segue destination="RaZ-9n-G3J" kind="relationship" relationship="tabItems" id="ok8-CH-qDs"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="pFc-1x-nVg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1210" y="-364"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="bW0-i3-4Qd">
+            <objects>
+                <viewController title="General" id="MkY-zm-7M9" sceneMemberID="viewController">
+                    <view key="view" id="1SC-yQ-aML">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="220"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="foQ-gv-Och" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1840" y="-596"/>
+        </scene>
+        <!--Glyph Editing-->
+        <scene sceneID="dg3-5a-awq">
+            <objects>
+                <viewController title="Glyph Editing" id="RaZ-9n-G3J" sceneMemberID="viewController">
+                    <view key="view" id="J4d-Dl-NBt">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="220"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="kIs-4A-b72" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1840" y="-224"/>
+        </scene>
         <!--Glyph View Controller-->
         <scene sceneID="Y79-Ly-bgo">
             <objects>
                 <viewController id="Bfz-2k-Kaa" customClass="GlyphViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="R9R-9P-Huh">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYa-z5-8es">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
                                 <clipView key="contentView" id="YcA-DK-IXJ">
-                                    <rect key="frame" x="1" y="1" width="463" height="253"/>
+                                    <rect key="frame" x="1" y="1" width="478" height="368"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7i-RZ-QcN" customClass="GlyphView" customModule="Type_Designer" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="238"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="463" height="353"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="uDL-uM-XBj">
-                                    <rect key="frame" x="1" y="254" width="463" height="15"/>
+                                    <rect key="frame" x="1" y="353" width="478" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cdt-Cu-Zeb">
-                                    <rect key="frame" x="464" y="1" width="15" height="253"/>
+                                    <rect key="frame" x="463" y="1" width="16" height="368"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -419,7 +500,7 @@
                 </viewController>
                 <customObject id="FWY-qB-HAC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="623" y="571"/>
+            <point key="canvasLocation" x="623" y="621"/>
         </scene>
         <!--Import View Controller-->
         <scene sceneID="z1Y-tN-Tx0">
@@ -460,7 +541,7 @@
                                                             <rect key="frame" x="1" y="1" width="392" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogn-7V-s7e">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ogn-7V-s7e">
                                                                     <rect key="frame" x="0.0" y="0.0" width="392" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="zj6-DJ-pcu">
                                                                         <font key="font" metaFont="system"/>
@@ -490,7 +571,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="vCF-K0-BvR">
-                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
+                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="QGc-e2-8ZJ">
@@ -502,7 +583,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-hZ-gVZ">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-hZ-gVZ">
                                 <rect key="frame" x="18" y="263" width="142" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Import from collection:" id="XSS-7k-qFe">
@@ -552,18 +633,18 @@ Gw
             <objects>
                 <viewController id="hz7-7Q-jgO" customClass="CharacterMapViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="9wA-Kg-Gun">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxW-Rl-Dn4">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxW-Rl-Dn4">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
                                 <clipView key="contentView" drawsBackground="NO" id="f2Q-Cn-osx">
-                                    <rect key="frame" x="1" y="1" width="478" height="268"/>
+                                    <rect key="frame" x="1" y="1" width="478" height="368"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="Fsn-S4-KMg">
-                                            <rect key="frame" x="0.0" y="0.0" width="478" height="268"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="478" height="368"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="HbK-bI-34b">
                                                 <size key="itemSize" width="80" height="80"/>
                                             </collectionViewFlowLayout>
@@ -577,7 +658,7 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="T2E-11-Tbb">
-                                    <rect key="frame" x="1" y="200" width="380" height="16"/>
+                                    <rect key="frame" x="-100" y="-100" width="380" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Iek-Yo-UEe">
@@ -599,7 +680,7 @@ Gw
                 </viewController>
                 <customObject id="GUB-wf-IWP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="571"/>
+            <point key="canvasLocation" x="61" y="621"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="bDU-Rd-ctB">
@@ -612,8 +693,12 @@ Gw
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="DW8-uZ-oap">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="ScE-0F-B6y" id="FIa-Mt-J83"/>
+                        </connections>
                     </splitView>
                     <connections>
+                        <outlet property="splitView" destination="DW8-uZ-oap" id="vZF-r5-ROn"/>
                         <segue destination="hz7-7Q-jgO" kind="relationship" relationship="splitItems" id="Hto-Gf-b9r"/>
                         <segue destination="Bfz-2k-Kaa" kind="relationship" relationship="splitItems" id="ons-QW-6nf"/>
                     </connections>
