@@ -52,7 +52,6 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.window?.windowController?.shouldCloseDocument = true
   }
 
   override func viewDidAppear() {

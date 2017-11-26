@@ -94,4 +94,11 @@ class FontDocument: NSDocument {
 //      }
 //    }
   }
+
+  @IBAction func showFontProperties(_ sender: Any?) {
+    let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+    let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "Font Properties")) as! NSWindowController
+    addWindowController(windowController)
+    windowController.showWindow(self)
+  }
 }

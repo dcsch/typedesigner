@@ -106,6 +106,13 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="M2t-OS-LVV"/>
+                                        <menuItem title="Font Properties..." id="ysD-gj-AS4">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showFontProperties:" target="8V6-z5-n10" id="a2m-JZ-MHy"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="6rD-hz-Hje"/>
                                         <menuItem title="Page Setup…" keyEquivalent="P" id="2cR-oH-hb7">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
@@ -685,7 +692,7 @@ Gw
         <!--Window Controller-->
         <scene sceneID="oOd-rl-0qx">
             <objects>
-                <windowController id="0Wg-Qh-Uzm" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Font Properties" id="0Wg-Qh-Uzm" customClass="FontPropertyWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="n9k-qn-sPM">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -730,14 +737,42 @@ Gw
             </objects>
             <point key="canvasLocation" x="22" y="1288"/>
         </scene>
-        <!--View Controller-->
+        <!--Names View Controller-->
         <scene sceneID="Bpj-mm-kev">
             <objects>
-                <viewController id="zud-4S-syi" sceneMemberID="viewController">
+                <viewController id="zud-4S-syi" customClass="NamesViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="OpS-D2-vFd">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gdb-Nl-A0F">
+                                <rect key="frame" x="18" y="263" width="86" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Family Name:" id="ypb-rv-hQM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V5R-Mp-rp7">
+                                <rect key="frame" x="110" y="260" width="320" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Hmi-0X-4Ae">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="V5R-Mp-rp7" secondAttribute="trailing" constant="20" symbolic="YES" id="1Oy-fl-s5o"/>
+                            <constraint firstItem="gdb-Nl-A0F" firstAttribute="leading" secondItem="OpS-D2-vFd" secondAttribute="leading" constant="20" symbolic="YES" id="6Re-oX-C7L"/>
+                            <constraint firstItem="V5R-Mp-rp7" firstAttribute="leading" secondItem="gdb-Nl-A0F" secondAttribute="trailing" constant="8" symbolic="YES" id="IBL-3K-5qX"/>
+                            <constraint firstItem="gdb-Nl-A0F" firstAttribute="baseline" secondItem="V5R-Mp-rp7" secondAttribute="baseline" id="TkD-8Y-YPf"/>
+                            <constraint firstItem="gdb-Nl-A0F" firstAttribute="top" secondItem="OpS-D2-vFd" secondAttribute="top" constant="20" symbolic="YES" id="snZ-fD-rOt"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="familyName" destination="V5R-Mp-rp7" id="8Vl-fu-CY0"/>
+                    </connections>
                 </viewController>
                 <customObject id="fhw-4P-ePi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

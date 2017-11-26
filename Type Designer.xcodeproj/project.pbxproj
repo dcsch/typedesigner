@@ -55,6 +55,8 @@
 		03CE9CA71FBE806C002FE971 /* TTFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE9CA11FBE78A2002FE971 /* TTFont.swift */; };
 		03CE9CA81FBE8074002FE971 /* T2Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE9CA51FBE78B1002FE971 /* T2Font.swift */; };
 		03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D07AA91F4F87580070F49D /* CharacterMapItem.swift */; };
+		03F1F20B1FCA527D00813EDD /* NamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F20A1FCA527D00813EDD /* NamesViewController.swift */; };
+		03F1F20F1FCA52DC00813EDD /* FontPropertyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F20E1FCA52DC00813EDD /* FontPropertyWindowController.swift */; };
 		03F687211F39654200F467BA /* TCCffTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6871D1F39565000F467BA /* TCCffTable.swift */; };
 		03F905CC1F37A8840008FF3E /* TCCmapTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CB1F37A8840008FF3E /* TCCmapTable.swift */; };
 		03F905CE1F37AB410008FF3E /* TCCmapIndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */; };
@@ -212,6 +214,8 @@
 		03CE9CA11FBE78A2002FE971 /* TTFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTFont.swift; sourceTree = "<group>"; };
 		03CE9CA51FBE78B1002FE971 /* T2Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T2Font.swift; sourceTree = "<group>"; };
 		03D07AA91F4F87580070F49D /* CharacterMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMapItem.swift; sourceTree = "<group>"; };
+		03F1F20A1FCA527D00813EDD /* NamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesViewController.swift; sourceTree = "<group>"; };
+		03F1F20E1FCA52DC00813EDD /* FontPropertyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPropertyWindowController.swift; sourceTree = "<group>"; };
 		03F6871D1F39565000F467BA /* TCCffTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCffTable.swift; sourceTree = "<group>"; };
 		03F905CB1F37A8840008FF3E /* TCCmapTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapTable.swift; sourceTree = "<group>"; };
 		03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapIndexEntry.swift; sourceTree = "<group>"; };
@@ -306,6 +310,8 @@
 				033CF10F1F568C45005D15ED /* CharacterMapViewController.swift */,
 				03D07AA91F4F87580070F49D /* CharacterMapItem.swift */,
 				033CF14C1F574D95005D15ED /* GlyphViewController.swift */,
+				03F1F20A1FCA527D00813EDD /* NamesViewController.swift */,
+				03F1F20E1FCA52DC00813EDD /* FontPropertyWindowController.swift */,
 				03A72DD01F5A0A5E003ABF74 /* FontDocumentController.swift */,
 				03A72DD21F5A17A9003ABF74 /* FontDocumentWindowController.swift */,
 				03A72DD41F5A1C8D003ABF74 /* ImportViewController.swift */,
@@ -724,10 +730,12 @@
 				03C162911F2174BB00A44848 /* GlyphView.swift in Sources */,
 				039845B81F195B6F0040988F /* TCHheaTable.swift in Sources */,
 				03CE9CA81FBE8074002FE971 /* T2Font.swift in Sources */,
+				03F1F20F1FCA52DC00813EDD /* FontPropertyWindowController.swift in Sources */,
 				03C40BF31F36A84300CD6BAC /* TCMaxpTable.swift in Sources */,
 				03C40BED1F35316F00CD6BAC /* TCGlyfNullDescript.swift in Sources */,
 				0348BE651F32AB3B00446B58 /* TCTTCHeader.swift in Sources */,
 				03F905D41F37DA3D0008FF3E /* TCCmapFormatUnknown.swift in Sources */,
+				03F1F20B1FCA527D00813EDD /* NamesViewController.swift in Sources */,
 				03F905E01F38E8E50008FF3E /* TCDisassembler.swift in Sources */,
 				033CF14D1F574D95005D15ED /* GlyphViewController.swift in Sources */,
 				03FF50331F48152C009F5F0C /* TCDsigTable.swift in Sources */,

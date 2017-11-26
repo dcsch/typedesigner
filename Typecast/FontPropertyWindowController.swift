@@ -1,28 +1,20 @@
 //
-//  FontDocumentWindowController.swift
+//  FontPropertyWindowController.swift
 //  Type Designer
 //
-//  Created by David Schweinsberg on 9/1/17.
+//  Created by David Schweinsberg on 11/25/17.
 //  Copyright © 2017 David Schweinsberg. All rights reserved.
 //
 
 import Cocoa
-import os.log
 
-class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
+class FontPropertyWindowController: NSWindowController {
 
-  override func windowDidLoad() {
-    super.windowDidLoad()
-
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    self.shouldCloseDocument = true
-  }
-
-  func windowDidChangeOcclusionState(_ notification: Notification) {
-    let window = notification.object as! NSWindow
-    if window.occlusionState.contains(NSWindow.OcclusionState.visible) {
+    override func windowDidLoad() {
+        super.windowDidLoad()
+    
+        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
-  }
 
   var fontController: FontController? {
     willSet {
@@ -43,8 +35,8 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
       // Push down from our contentViewController to all children
       propagateToChildren(of: contentViewController!)
 
-//      // Push to our titlebar accessory view controllers
-//      effectsAccessoryViewController.fontController = fontController
+      //      // Push to our titlebar accessory view controllers
+      //      effectsAccessoryViewController.fontController = fontController
 
       // Subscribe to font changes
       fontController?.addSubscriber(self)
@@ -60,16 +52,11 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
       fontController = FontController(font: fontDocument.font!)
     }
   }
-
-  func windowDidEndSheet(_ notification: Notification) {
-    os_log("windowDidEndSheet")
-  }
 }
 
 // MARK: Font Subscriber Protocol
 
-extension FontDocumentWindowController: FontSubscriber {
+extension FontPropertyWindowController: FontSubscriber {
   func font(_ font: Font, didChangeGlyphIndex glyphIndex: Int) {
-//    document?.updateChangeCount(.changeDone)
   }
 }
