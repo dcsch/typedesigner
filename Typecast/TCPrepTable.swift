@@ -17,20 +17,9 @@ class TCPrepTable: TCBaseTable, Codable {
     instructions = dataInput.read(length: data.count)
   }
 
-  override class var tag: UInt32 {
+  override class var tag: TCTableTag {
     get {
-      return TCTableTag.prep.rawValue
-    }
-  }
-
-  override var name: String {
-    get {
-      let tag = type(of: self).tag
-      return String(format: "%c%c%c%c",
-                    CChar(truncatingIfNeeded:tag >> 24),
-                    CChar(truncatingIfNeeded:tag >> 16),
-                    CChar(truncatingIfNeeded:tag >> 8),
-                    CChar(truncatingIfNeeded:tag))
+      return .prep
     }
   }
 

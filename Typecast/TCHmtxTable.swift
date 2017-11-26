@@ -60,9 +60,9 @@ class TCHmtxTable: TCBaseTable, Codable {
     }
   }
 
-  override class var tag: UInt32 {
+  override class var tag: TCTableTag {
     get {
-      return TCTableTag.hmtx.rawValue
+      return .hmtx
     }
   }
 

@@ -84,9 +84,9 @@ class TCVdmxTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: UInt32 {
+  override class var tag: TCTableTag {
     get {
-      return TCTableTag.VDMX.rawValue
+      return .VDMX
     }
   }
 

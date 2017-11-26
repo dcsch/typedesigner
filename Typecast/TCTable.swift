@@ -9,7 +9,9 @@
 import Foundation
 import os.log
 
-enum TCTableTag: UInt32 {
+enum TCTableTag: UInt32, CustomStringConvertible {
+
+  case unknown = 0
 
   // Baseline data [OpenType]
   case BASE = 0x42415345
@@ -112,6 +114,16 @@ enum TCTableTag: UInt32 {
 
   // Vertical Metrics
   case vmtx = 0x766d7478
+
+  var description: String {
+    get {
+      return String(format: "%c%c%c%c",
+                    CChar(truncatingIfNeeded:rawValue >> 24),
+                    CChar(truncatingIfNeeded:rawValue >> 16),
+                    CChar(truncatingIfNeeded:rawValue >> 8),
+                    CChar(truncatingIfNeeded:rawValue))
+    }
+  }
 }
 
 enum TCTableError: Error {
@@ -120,17 +132,17 @@ enum TCTableError: Error {
   case missingTable(tag: UInt32)
   case badOffset(message: String)
 
-  static func tagAsString(_ tag: UInt32) -> String {
-    return String(format: "%c%c%c%c",
-                  CChar(truncatingIfNeeded:tag >> 24),
-                  CChar(truncatingIfNeeded:tag >> 16),
-                  CChar(truncatingIfNeeded:tag >> 8),
-                  CChar(truncatingIfNeeded:tag))
-  }
+//  static func tagAsString(_ tag: UInt32) -> String {
+//    return String(format: "%c%c%c%c",
+//                  CChar(truncatingIfNeeded:tag >> 24),
+//                  CChar(truncatingIfNeeded:tag >> 16),
+//                  CChar(truncatingIfNeeded:tag >> 8),
+//                  CChar(truncatingIfNeeded:tag))
+//  }
 }
 
 protocol TCTable {
-  static var tag: UInt32 { get }
+  static var tag: TCTableTag { get }
 }
 
 /**
@@ -138,16 +150,17 @@ protocol TCTable {
  derived from any other base classes.
  */
 class TCBaseTable: TCTable, CustomStringConvertible {
-  class var tag: UInt32 { get { return 0 } }
+  class var tag: TCTableTag {
+    get {
+      return .unknown
+
+    }
+  }
 
   var name: String {
     get {
       let tag = type(of: self).tag
-      return String(format: "%c%c%c%c",
-                    CChar(truncatingIfNeeded:tag >> 24),
-                    CChar(truncatingIfNeeded:tag >> 16),
-                    CChar(truncatingIfNeeded:tag >> 8),
-                    CChar(truncatingIfNeeded:tag))
+      return String(describing: tag)
     }
   }
 

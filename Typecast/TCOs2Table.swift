@@ -197,9 +197,9 @@ class TCOs2Table: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: UInt32 {
+  override class var tag: TCTableTag {
     get {
-      return TCTableTag.OS_2.rawValue
+      return .OS_2
     }
   }
 

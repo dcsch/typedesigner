@@ -99,9 +99,9 @@ class TCMaxpTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: UInt32 {
+  override class var tag: TCTableTag {
     get {
-      return TCTableTag.maxp.rawValue
+      return .maxp
     }
   }
 
