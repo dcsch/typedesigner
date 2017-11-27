@@ -10,7 +10,7 @@ import Foundation
 import IOUtils
 import os.log
 
-class TCCmapTable: TCBaseTable, Codable {
+class TCCmapTable: TCTable, Codable {
   let version: UInt16
   let numTables: Int
   var mappings: [CharacterToGlyphMapping]
@@ -68,7 +68,7 @@ class TCCmapTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .cmap
     }

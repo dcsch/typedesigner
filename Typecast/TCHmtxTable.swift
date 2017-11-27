@@ -12,7 +12,7 @@ import IOUtils
 /**
  Horizontal Metrics
  */
-class TCHmtxTable: TCBaseTable, Codable {
+class TCHmtxTable: TCTable, Codable {
   var hMetrics: [UInt32] = []
   var leftSideBearings: [Int16] = []
   let dataCount: Int
@@ -60,7 +60,7 @@ class TCHmtxTable: TCBaseTable, Codable {
     }
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .hmtx
     }

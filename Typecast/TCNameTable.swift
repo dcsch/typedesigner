@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCNameTable: TCBaseTable, Codable {
+class TCNameTable: TCTable, Codable {
 
   enum NameID: Int, CustomStringConvertible, Codable {
     case unknown = -1
@@ -123,7 +123,7 @@ class TCNameTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .name
     }

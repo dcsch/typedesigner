@@ -78,7 +78,7 @@ class Font: Codable, CustomStringConvertible {
                                    data: data, tablesOrigin: tablesOrigin)
     maxpTable = TCMaxpTable(data: tableData)
 
-    if tableDirectory.hasEntry(tag: TCTableTag.vhea.rawValue) {
+    if tableDirectory.hasEntry(tag: .vhea) {
       // 'vhea' is required by 'vmtx'
       tableData = try Font.tableData(directory: tableDirectory, tag: .vhea,
                                      data: data, tablesOrigin: tablesOrigin)
@@ -104,8 +104,8 @@ class Font: Codable, CustomStringConvertible {
     os2Table = TCOs2Table(data: tableData)
   }
 
-  class func tableData(directory: TCTableDirectory, tag: TCTableTag, data: Data, tablesOrigin: Int) throws -> Data {
-    if let entry = directory.entry(tag: tag.rawValue) {
+  class func tableData(directory: TCTableDirectory, tag: TCTable.Tag, data: Data, tablesOrigin: Int) throws -> Data {
+    if let entry = directory.entry(tag: tag) {
       let offset = entry.offset - tablesOrigin
       return data.subdata(in: offset..<offset + entry.length)
     }

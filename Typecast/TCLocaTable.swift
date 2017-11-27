@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCLocaTable: TCBaseTable, Codable {
+class TCLocaTable: TCTable, Codable {
   let offsets: [Int]
   let factor: Int
   let dataCount: Int
@@ -38,7 +38,7 @@ class TCLocaTable: TCBaseTable, Codable {
     return offsets[index] * factor
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .loca
     }

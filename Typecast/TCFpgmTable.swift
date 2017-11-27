@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCFpgmTable: TCBaseTable, Codable {
+class TCFpgmTable: TCTable, Codable {
   var instructions = [UInt8]()
 
   init(data: Data) {
@@ -17,7 +17,7 @@ class TCFpgmTable: TCBaseTable, Codable {
     instructions = dataInput.read(length: data.count)
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .fpgm
     }

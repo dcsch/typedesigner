@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCHheaTable: TCBaseTable, Codable {
+class TCHheaTable: TCTable, Codable {
   var version: UInt32
   var ascender: Int
   var descender: Int
@@ -59,7 +59,7 @@ class TCHheaTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .hhea
     }

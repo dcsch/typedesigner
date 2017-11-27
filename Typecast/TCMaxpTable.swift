@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCMaxpTable: TCBaseTable, Codable {
+class TCMaxpTable: TCTable, Codable {
   let versionNumber: UInt32
   let numGlyphs: Int
   let maxPoints: UInt16
@@ -99,7 +99,7 @@ class TCMaxpTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .maxp
     }

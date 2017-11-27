@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCPrepTable: TCBaseTable, Codable {
+class TCPrepTable: TCTable, Codable {
   var instructions = [UInt8]()
 
   init(data: Data) {
@@ -17,7 +17,7 @@ class TCPrepTable: TCBaseTable, Codable {
     instructions = dataInput.read(length: data.count)
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .prep
     }

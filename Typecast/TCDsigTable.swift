@@ -12,7 +12,7 @@ import IOUtils
 /**
  Digital Signature Table.
  */
-class TCDsigTable: TCBaseTable, Codable {
+class TCDsigTable: TCTable, Codable {
 
   class SignatureRecord: Codable {
     let format: Int
@@ -70,7 +70,7 @@ class TCDsigTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .DSIG
     }

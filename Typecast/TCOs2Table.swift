@@ -65,7 +65,7 @@ class TCPanose: Codable {
   }
 }
 
-class TCOs2Table: TCBaseTable, Codable {
+class TCOs2Table: TCTable, Codable {
   let version: UInt16
   let xAvgCharWidth: Int16
   let usWeightClass: UInt16
@@ -197,7 +197,7 @@ class TCOs2Table: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .OS_2
     }

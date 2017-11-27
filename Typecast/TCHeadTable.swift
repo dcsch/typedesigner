@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCHeadTable: TCBaseTable, Codable {
+class TCHeadTable: TCTable, Codable {
   var majorVersion: Int
   var minorVersion: Int
   var fontRevision: UInt32
@@ -81,7 +81,7 @@ class TCHeadTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .head
     }

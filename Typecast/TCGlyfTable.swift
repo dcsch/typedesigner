@@ -12,7 +12,7 @@ import IOUtils
 /**
  Information describing the glyphs in TrueType outline format.
  */
-class TCGlyfTable: TCBaseTable, Codable {
+class TCGlyfTable: TCTable, Codable {
   var descript: [TCGlyfDescript]
 //  let postTable: TCPostTable
 
@@ -53,7 +53,7 @@ class TCGlyfTable: TCBaseTable, Codable {
     }
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .glyf
     }

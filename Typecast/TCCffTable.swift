@@ -14,7 +14,7 @@ import CFF
 /**
  * Compact Font Format Table
  */
-class TCCffTable: TCBaseTable {
+class TCCffTable: TCTable {
   let major: Int
   let minor: Int
   let hdrSize: Int
@@ -75,7 +75,7 @@ class TCCffTable: TCBaseTable {
     return TCDataInput(data: fontData)
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .CFF
     }

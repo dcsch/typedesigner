@@ -12,7 +12,7 @@ import IOUtils
 /**
  The Vertical Device Metrics table for TrueType outlines.
  */
-class TCVdmxTable: TCBaseTable, Codable {
+class TCVdmxTable: TCTable, Codable {
 
   class Ratio: Codable {
     let bCharSet: Int
@@ -84,7 +84,7 @@ class TCVdmxTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .VDMX
     }

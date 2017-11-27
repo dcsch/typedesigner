@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCVheaTable: TCBaseTable, Codable {
+class TCVheaTable: TCTable, Codable {
   let version: UInt32
   let ascent: Int16
   let descent: Int16
@@ -43,7 +43,7 @@ class TCVheaTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .vhea
     }

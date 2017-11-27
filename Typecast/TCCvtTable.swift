@@ -12,7 +12,7 @@ import IOUtils
 /**
  The Control Value Table.
  */
-class TCCvtTable: TCBaseTable, Codable {
+class TCCvtTable: TCTable, Codable {
   var values = [Int]()
 
   init(data: Data) {
@@ -25,7 +25,7 @@ class TCCvtTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .cvt
     }

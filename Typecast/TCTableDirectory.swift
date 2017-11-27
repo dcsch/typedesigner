@@ -30,18 +30,18 @@ class TCTableDirectory {
     entries = m_entries
   }
 
-  func entry(tag: UInt32) -> TCDirectoryEntry? {
+  func entry(tag: TCTable.Tag) -> TCDirectoryEntry? {
     for entry in entries {
-      if entry.tag == tag {
+      if entry.tag == tag.rawValue {
         return entry
       }
     }
     return nil
   }
 
-  func hasEntry(tag: UInt32) -> Bool {
+  func hasEntry(tag: TCTable.Tag) -> Bool {
     for entry in entries {
-      if entry.tag == tag {
+      if entry.tag == tag.rawValue {
         return true
       }
     }

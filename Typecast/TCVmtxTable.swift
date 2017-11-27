@@ -12,7 +12,7 @@ import IOUtils
 /**
  Vertical Metrics
  */
-class TCVmtxTable: TCBaseTable, Codable {
+class TCVmtxTable: TCTable, Codable {
   var vMetrics: [UInt32] = []
   var topSideBearings: [Int16] = []
   let dataCount: Int
@@ -55,7 +55,7 @@ class TCVmtxTable: TCBaseTable, Codable {
     }
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .vmtx
     }

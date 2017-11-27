@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCPostTable: TCBaseTable, Codable {
+class TCPostTable: TCTable, Codable {
   let version: UInt32
   let italicAngle: UInt32
   let underlinePosition: Int16
@@ -360,7 +360,7 @@ class TCPostTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .post
     }

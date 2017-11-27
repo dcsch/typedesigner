@@ -13,7 +13,7 @@ import IOUtils
  The Horizontal Device Metrics table for TrueType outlines.  This stores
  integer advance widths scaled to specific pixel sizes.
  */
-class TCHdmxTable: TCBaseTable, Codable {
+class TCHdmxTable: TCTable, Codable {
 
   class DeviceRecord: Codable {
     let pixelSize: Int
@@ -52,7 +52,7 @@ class TCHdmxTable: TCBaseTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTableTag {
+  override class var tag: TCTable.Tag {
     get {
       return .hdmx
     }
