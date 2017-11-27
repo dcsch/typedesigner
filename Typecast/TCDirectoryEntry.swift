@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-struct TCDirectoryEntry {
+struct TCDirectoryEntry: CustomStringConvertible {
   let tag: UInt32
   let checksum: UInt32
   let offset: Int
@@ -17,10 +17,10 @@ struct TCDirectoryEntry {
   var tagAsString: String {
     get {
       return String(format: "%c%c%c%c",
-                    CChar(tag >> 24),
-                    CChar(tag >> 16),
-                    CChar(tag >> 8),
-                    CChar(tag))
+                    CChar(truncatingIfNeeded: tag >> 24),
+                    CChar(truncatingIfNeeded: tag >> 16),
+                    CChar(truncatingIfNeeded: tag >> 8),
+                    CChar(truncatingIfNeeded: tag))
     }
   }
 
@@ -40,7 +40,7 @@ struct TCDirectoryEntry {
 
   var description: String {
     get {
-      return String(format:"'%s' - chksm = 0x%x, off = 0x%x, len = %d",
+      return String(format:"'%@' - chksm = 0x%x, off = 0x%x, len = %d",
                     tagAsString,
                     checksum,
                     offset,

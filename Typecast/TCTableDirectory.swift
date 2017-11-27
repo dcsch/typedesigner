@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCTableDirectory {
+class TCTableDirectory: CustomStringConvertible {
   let version: UInt32
   let numTables: Int
   let searchRange: UInt16
@@ -50,22 +50,21 @@ class TCTableDirectory {
 
   var description: String {
     get {
-      var str = String(format:
-        "Offset Table\n------ -----" +
-        "\n  sfnt version:     %d" +
-        "\n  numTables =       %d" +
-        "\n  searchRange =     %d" +
-        "\n  entrySelector =   %d" +
-        "\n  rangeShift =      %d\n\n",
-        version,
-        numTables,
-        searchRange,
-        entrySelector,
-        rangeShift)
-      for i in 0 ..< numTables {
-        str.append(String(format: "%d. %s\n", i, entries[i].description))
+      var str = """
+        Offset Table
+        ------ -----
+        sfnt version:     \(version)
+        numTables =       \(numTables)
+        searchRange =     \(searchRange)
+        entrySelector =   \(entrySelector)
+        rangeShift =      \(rangeShift)
+
+
+      """
+      for (i, entry) in entries.enumerated() {
+        str += String(format: "%d. %@\n", i, String(describing: entry))
       }
-      return str;
+      return str
     }
   }
 }

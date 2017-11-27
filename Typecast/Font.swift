@@ -60,6 +60,7 @@ class Font: Codable, CustomStringConvertible {
     // Load the table directory
     let dataInput = TCDataInput(data: data)
     let tableDirectory = TCTableDirectory(dataInput: dataInput)
+    os_log("%@", String(describing: tableDirectory))
 
     // Load some prerequisite tables
     // (These are tables that are referenced by other tables, so we need to load
