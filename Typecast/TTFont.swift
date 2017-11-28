@@ -44,20 +44,20 @@ class TTFont: Font {
     try super.init(data: data, tablesOrigin: tablesOrigin)
   }
 
-  enum TTCodingKeys: String, CodingKey {
+  private enum CodingKeys: String, CodingKey {
     case loca
     case glyf
   }
 
   required init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: TTCodingKeys.self)
+    let container = try decoder.container(keyedBy: CodingKeys.self)
     locaTable = try container.decode(TCLocaTable.self, forKey: .loca)
     glyfTable = try container.decode(TCGlyfTable.self, forKey: .glyf)
     try super.init(from: decoder)
   }
 
   override func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: TTCodingKeys.self)
+    var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(locaTable, forKey: .loca)
     try container.encode(glyfTable, forKey: .glyf)
     try super.encode(to: encoder)

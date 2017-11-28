@@ -101,4 +101,44 @@ class FontDocument: NSDocument {
     addWindowController(windowController)
     windowController.showWindow(self)
   }
+
+  func buildFont(url: URL) throws {
+
+    var directory = TCTableDirectory(isCFF: false)
+    var offset = 0
+
+    if let font = self.font {
+      var tablesAsData = [Data]()
+
+      font.headTable.checkSumAdjustment = 0
+      let headData = TableWriter.write(head: font.headTable)
+      tablesAsData.append(headData)
+
+      directory.entries.append(TCTableDirectory.Entry(tag: TCHeadTable.tag.rawValue,
+                                                      checksum: headData.checksum,
+                                                      offset: offset,
+                                                      length: headData.count))
+      offset += headData.count
+
+      let hheaData = TableWriter.write(hhea: font.hheaTable)
+      tablesAsData.append(hheaData)
+
+      directory.entries.append(TCTableDirectory.Entry(tag: TCHheaTable.tag.rawValue,
+                                                      checksum: hheaData.checksum,
+                                                      offset: offset,
+                                                      length: hheaData.count))
+      offset += headData.count
+
+      var fontData = Data()
+      for tableData in tablesAsData {
+        fontData.append(tableData)
+      }
+      let checksum = fontData.checksum
+      let (checkSumAdjustment, _) = UInt32(0xb1b0afba).subtractingReportingOverflow(checksum)
+      var bigEndian = checkSumAdjustment.bigEndian
+      fontData.replaceSubrange(8..<12, with: &bigEndian, count: 4)
+
+      try fontData.write(to: url, options: .atomicWrite)
+    }
+  }
 }

@@ -57,6 +57,7 @@
 		03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D07AA91F4F87580070F49D /* CharacterMapItem.swift */; };
 		03F1F20B1FCA527D00813EDD /* NamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F20A1FCA527D00813EDD /* NamesViewController.swift */; };
 		03F1F20F1FCA52DC00813EDD /* FontPropertyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F20E1FCA52DC00813EDD /* FontPropertyWindowController.swift */; };
+		03F1F2111FCC985D00813EDD /* TableWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F2101FCC985D00813EDD /* TableWriter.swift */; };
 		03F687211F39654200F467BA /* TCCffTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6871D1F39565000F467BA /* TCCffTable.swift */; };
 		03F905CC1F37A8840008FF3E /* TCCmapTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CB1F37A8840008FF3E /* TCCmapTable.swift */; };
 		03F905CE1F37AB410008FF3E /* TCCmapIndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */; };
@@ -69,7 +70,6 @@
 		03F905DC1F38DDF70008FF3E /* GlyphImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905DB1F38DDF70008FF3E /* GlyphImageFactory.swift */; };
 		03F905DE1F38DEC40008FF3E /* TCMnemonic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905DD1F38DEC40008FF3E /* TCMnemonic.swift */; };
 		03F905E01F38E8E50008FF3E /* TCDisassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905DF1F38E8E50008FF3E /* TCDisassembler.swift */; };
-		03FF3A241F2F9C2C005F07AB /* TCDirectoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF3A231F2F9C2C005F07AB /* TCDirectoryEntry.swift */; };
 		03FF3A261F2FA86A005F07AB /* TCTableDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF3A251F2FA86A005F07AB /* TCTableDirectory.swift */; };
 		03FF50191F45188E009F5F0C /* IOUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF50071F44C2ED009F5F0C /* IOUtils.framework */; };
 		03FF501A1F45188E009F5F0C /* IOUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF50071F44C2ED009F5F0C /* IOUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -216,6 +216,7 @@
 		03D07AA91F4F87580070F49D /* CharacterMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMapItem.swift; sourceTree = "<group>"; };
 		03F1F20A1FCA527D00813EDD /* NamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesViewController.swift; sourceTree = "<group>"; };
 		03F1F20E1FCA52DC00813EDD /* FontPropertyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPropertyWindowController.swift; sourceTree = "<group>"; };
+		03F1F2101FCC985D00813EDD /* TableWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableWriter.swift; sourceTree = "<group>"; };
 		03F6871D1F39565000F467BA /* TCCffTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCffTable.swift; sourceTree = "<group>"; };
 		03F905CB1F37A8840008FF3E /* TCCmapTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapTable.swift; sourceTree = "<group>"; };
 		03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapIndexEntry.swift; sourceTree = "<group>"; };
@@ -228,7 +229,6 @@
 		03F905DB1F38DDF70008FF3E /* GlyphImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlyphImageFactory.swift; sourceTree = "<group>"; };
 		03F905DD1F38DEC40008FF3E /* TCMnemonic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCMnemonic.swift; sourceTree = "<group>"; };
 		03F905DF1F38E8E50008FF3E /* TCDisassembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCDisassembler.swift; sourceTree = "<group>"; };
-		03FF3A231F2F9C2C005F07AB /* TCDirectoryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCDirectoryEntry.swift; sourceTree = "<group>"; };
 		03FF3A251F2FA86A005F07AB /* TCTableDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCTableDirectory.swift; sourceTree = "<group>"; };
 		03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IOUtils.xcodeproj; path = IOUtils/IOUtils.xcodeproj; sourceTree = "<group>"; };
 		03FF502A1F477496009F5F0C /* TCVmtxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCVmtxTable.swift; sourceTree = "<group>"; };
@@ -405,10 +405,10 @@
 				03FF502E1F479003009F5F0C /* TCVdmxTable.swift */,
 				03FF50301F47F339009F5F0C /* TCCvtTable.swift */,
 				03FF50321F48152C009F5F0C /* TCDsigTable.swift */,
-				03FF3A231F2F9C2C005F07AB /* TCDirectoryEntry.swift */,
 				03FF3A251F2FA86A005F07AB /* TCTableDirectory.swift */,
 				03F905DD1F38DEC40008FF3E /* TCMnemonic.swift */,
 				03F905DF1F38E8E50008FF3E /* TCDisassembler.swift */,
+				03F1F2101FCC985D00813EDD /* TableWriter.swift */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -700,7 +700,6 @@
 				03A72DD71F5CB781003ABF74 /* FontController.swift in Sources */,
 				039845BC1F19802E0040988F /* TCHmtxTable.swift in Sources */,
 				039845BA1F1977CE0040988F /* TCTable.swift in Sources */,
-				03FF3A241F2F9C2C005F07AB /* TCDirectoryEntry.swift in Sources */,
 				03B311F71F2A9CC3001E6712 /* Font.swift in Sources */,
 				03C5674D1F6B5195004C915B /* ImportDocument.swift in Sources */,
 				03FF506E1F4BE212009F5F0C /* TCGlyfCompositeDescript.swift in Sources */,
@@ -709,6 +708,7 @@
 				03A72DD31F5A17A9003ABF74 /* FontDocumentWindowController.swift in Sources */,
 				03B311FB1F2AC062001E6712 /* TCResourceHeader.swift in Sources */,
 				0348BE6D1F33DD3700446B58 /* TCGlyfDescript.swift in Sources */,
+				03F1F2111FCC985D00813EDD /* TableWriter.swift in Sources */,
 				03F905DA1F37FE930008FF3E /* TCCmapFormat4.swift in Sources */,
 				03C40BF51F36F99A00CD6BAC /* TCLocaTable.swift in Sources */,
 				03FF502F1F479003009F5F0C /* TCVdmxTable.swift in Sources */,

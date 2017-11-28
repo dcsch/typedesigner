@@ -106,6 +106,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="M2t-OS-LVV"/>
+                                        <menuItem title="Build Font..." keyEquivalent="b" id="PZM-EX-juP">
+                                            <connections>
+                                                <action selector="buildFont:" target="8V6-z5-n10" id="jLd-jA-Hpc"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="PHP-5b-JEw"/>
                                         <menuItem title="Font Properties..." id="ysD-gj-AS4">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>

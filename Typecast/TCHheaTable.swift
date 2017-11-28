@@ -10,21 +10,24 @@ import Foundation
 import IOUtils
 
 class TCHheaTable: TCTable, Codable {
-  var version: UInt32
+  var majorVersion: Int
+  var minorVersion: Int
   var ascender: Int
   var descender: Int
-  var lineGap: Int16
-  var advanceWidthMax: Int16
-  var minLeftSideBearing: Int16
-  var minRightSideBearing: Int16
-  var xMaxExtent: Int16
-  var caretSlopeRise: Int16
-  var caretSlopeRun: Int16
-  var metricDataFormat: Int16
+  var lineGap: Int
+  var advanceWidthMax: Int
+  var minLeftSideBearing: Int
+  var minRightSideBearing: Int
+  var xMaxExtent: Int
+  var caretSlopeRise: Int
+  var caretSlopeRun: Int
+  var caretOffset: Int
+  var metricDataFormat: Int
   var numberOfHMetrics: Int
 
   override init() {
-    version = 0
+    majorVersion = 0
+    minorVersion = 0
     ascender = 0
     descender = 0
     lineGap = 0
@@ -34,6 +37,7 @@ class TCHheaTable: TCTable, Codable {
     xMaxExtent = 0
     caretSlopeRise = 0
     caretSlopeRun = 0
+    caretOffset = 0
     metricDataFormat = 0
     numberOfHMetrics = 0
     super.init()
@@ -41,20 +45,22 @@ class TCHheaTable: TCTable, Codable {
 
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
-    version = dataInput.readUInt32()
+    majorVersion = Int(dataInput.readUInt16())
+    minorVersion = Int(dataInput.readUInt16())
     ascender = Int(dataInput.readInt16())
     descender = Int(dataInput.readInt16())
-    lineGap = dataInput.readInt16()
-    advanceWidthMax = dataInput.readInt16()
-    minLeftSideBearing = dataInput.readInt16()
-    minRightSideBearing = dataInput.readInt16()
-    xMaxExtent = dataInput.readInt16()
-    caretSlopeRise = dataInput.readInt16()
-    caretSlopeRun = dataInput.readInt16()
-    for _ in 0 ..< 5 {
+    lineGap = Int(dataInput.readInt16())
+    advanceWidthMax = Int(dataInput.readUInt16())
+    minLeftSideBearing = Int(dataInput.readInt16())
+    minRightSideBearing = Int(dataInput.readInt16())
+    xMaxExtent = Int(dataInput.readInt16())
+    caretSlopeRise = Int(dataInput.readInt16())
+    caretSlopeRun = Int(dataInput.readInt16())
+    caretOffset = Int(dataInput.readInt16())
+    for _ in 0..<4 {
       _ = dataInput.readInt16()
     }
-    metricDataFormat = dataInput.readInt16()
+    metricDataFormat = Int(dataInput.readInt16())
     numberOfHMetrics = Int(dataInput.readUInt16())
     super.init()
   }
@@ -67,24 +73,27 @@ class TCHheaTable: TCTable, Codable {
 
   override var description: String {
     get {
-      return "'hhea' Table - Horizontal Header\n--------------------------------" +
-        "\n        'hhea' version:       \(version)" +  // .append(Fixed.floatValue(version))
-        "\n        yAscender:            \(ascender)" +
-        "\n        yDescender:           \(descender)" +
-        "\n        yLineGap:             \(lineGap)" +
-        "\n        advanceWidthMax:      \(advanceWidthMax)" +
-        "\n        minLeftSideBearing:   \(minLeftSideBearing)" +
-        "\n        minRightSideBearing:  \(minRightSideBearing)" +
-        "\n        xMaxExtent:           \(xMaxExtent)" +
-        "\n        horizCaretSlopeNum:   \(caretSlopeRise)" +
-        "\n        horizCaretSlopeDenom: \(caretSlopeRun)" +
-        "\n        reserved0:            0" +
-        "\n        reserved1:            0" +
-        "\n        reserved2:            0" +
-        "\n        reserved3:            0" +
-        "\n        reserved4:            0" +
-        "\n        metricDataFormat:     \(metricDataFormat)" +
-        "\n        numOf_LongHorMetrics: \(numberOfHMetrics)"
+      return """
+        'hhea' Table - Horizontal Header
+        --------------------------------
+                'hhea' version:       \(majorVersion).\(minorVersion)
+                yAscender:            \(ascender)
+                yDescender:           \(descender)
+                yLineGap:             \(lineGap)
+                advanceWidthMax:      \(advanceWidthMax)
+                minLeftSideBearing:   \(minLeftSideBearing)
+                minRightSideBearing:  \(minRightSideBearing)
+                xMaxExtent:           \(xMaxExtent)
+                horizCaretSlopeNum:   \(caretSlopeRise)
+                horizCaretSlopeDenom: \(caretSlopeRun)
+                horizCaretOffset:     \(caretOffset)
+                reserved0:            0
+                reserved1:            0
+                reserved2:            0
+                reserved3:            0
+                metricDataFormat:     \(metricDataFormat)
+                numOf_LongHorMetrics: \(numberOfHMetrics)
+      """
     }
   }
 }

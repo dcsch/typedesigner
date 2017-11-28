@@ -45,7 +45,8 @@ class T2Font: Font {
                         leftSideBearing: 0, advanceWidth: 0)
     return glyph
   }
-  enum T2CodingKeys: String, CodingKey {
+
+  private enum CodingKeys: String, CodingKey {
     case cff
   }
 

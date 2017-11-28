@@ -119,7 +119,7 @@ class Font: Codable, CustomStringConvertible {
     }
   }
 
-  enum CodingKeys: String, CodingKey {
+  private enum CodingKeys: String, CodingKey {
     case cmap
     case glyf
     case head

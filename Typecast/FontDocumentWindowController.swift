@@ -64,6 +64,28 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
   func windowDidEndSheet(_ notification: Notification) {
     os_log("windowDidEndSheet")
   }
+
+  @IBAction func buildFont(_ sender: Any?) {
+    guard let fontDocument = document as? FontDocument else { return }
+    let savePanel = NSSavePanel()
+    savePanel.prompt = "Build"
+    savePanel.message = "We're gonna build you a sweet font."
+    savePanel.canCreateDirectories = true
+    savePanel.isExtensionHidden = false
+    savePanel.canSelectHiddenExtension = false
+    savePanel.allowedFileTypes = ["ttf"]
+    savePanel.allowsOtherFileTypes = false
+    savePanel.beginSheetModal(for: window!) { (response: NSApplication.ModalResponse) in
+      if response == .OK {
+        do {
+          try fontDocument.buildFont(url: savePanel.url!)
+        }
+        catch {
+          os_log("Failed to build font")
+        }
+      }
+    }
+  }
 }
 
 // MARK: Font Subscriber Protocol
