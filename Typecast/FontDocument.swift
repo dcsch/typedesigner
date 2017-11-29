@@ -104,14 +104,18 @@ class FontDocument: NSDocument {
 
   func buildFont(url: URL) throws {
 
-    var directory = TCTableDirectory(isCFF: false)
-    var offset = 0
-
     if let font = self.font {
+      let directory = TCTableDirectory(isCFF: false)
       var tablesAsData = [Data]()
 
+      // Offset is calculated from the beginning of the file, including the
+      // table directory, so calculate the final size of the directory
+      let tableCount = 2
+      var offset = 16 * tableCount + 12
+
       font.headTable.checkSumAdjustment = 0
-      let headData = TableWriter.write(head: font.headTable)
+
+      let headData = TableWriter.write(table: font.headTable)
       tablesAsData.append(headData)
 
       directory.entries.append(TCTableDirectory.Entry(tag: TCHeadTable.tag.rawValue,
@@ -120,25 +124,38 @@ class FontDocument: NSDocument {
                                                       length: headData.count))
       offset += headData.count
 
-      let hheaData = TableWriter.write(hhea: font.hheaTable)
+      let hheaData = TableWriter.write(table: font.hheaTable)
       tablesAsData.append(hheaData)
 
       directory.entries.append(TCTableDirectory.Entry(tag: TCHheaTable.tag.rawValue,
                                                       checksum: hheaData.checksum,
                                                       offset: offset,
                                                       length: hheaData.count))
-      offset += headData.count
+      offset += hheaData.count
+
+      let cmapData = TableWriter.write(table: font.cmapTable)
+      tablesAsData.append(cmapData)
+
+      directory.entries.append(TCTableDirectory.Entry(tag: TCCmapTable.tag.rawValue,
+                                                      checksum: cmapData.checksum,
+                                                      offset: offset,
+                                                      length: cmapData.count))
+      offset += cmapData.count
 
       var fontData = Data()
       for tableData in tablesAsData {
         fontData.append(tableData)
       }
+
+      // Calculate checksum and store in the head.checkSumAdjustment field
       let checksum = fontData.checksum
       let (checkSumAdjustment, _) = UInt32(0xb1b0afba).subtractingReportingOverflow(checksum)
       var bigEndian = checkSumAdjustment.bigEndian
       fontData.replaceSubrange(8..<12, with: &bigEndian, count: 4)
 
-      try fontData.write(to: url, options: .atomicWrite)
+      var fileData = TableWriter.write(directory: directory)
+      fileData.append(fontData)
+      try fileData.write(to: url, options: .atomicWrite)
     }
   }
 }

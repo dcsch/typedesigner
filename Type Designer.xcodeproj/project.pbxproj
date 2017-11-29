@@ -60,7 +60,6 @@
 		03F1F2111FCC985D00813EDD /* TableWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F2101FCC985D00813EDD /* TableWriter.swift */; };
 		03F687211F39654200F467BA /* TCCffTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6871D1F39565000F467BA /* TCCffTable.swift */; };
 		03F905CC1F37A8840008FF3E /* TCCmapTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CB1F37A8840008FF3E /* TCCmapTable.swift */; };
-		03F905CE1F37AB410008FF3E /* TCCmapIndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */; };
 		03F905D01F37CBFF0008FF3E /* TCCmapFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905CF1F37CBFF0008FF3E /* TCCmapFormat.swift */; };
 		03F905D21F37D38E0008FF3E /* TCCmapFormat0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905D11F37D38E0008FF3E /* TCCmapFormat0.swift */; };
 		03F905D41F37DA3D0008FF3E /* TCCmapFormatUnknown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905D31F37DA3D0008FF3E /* TCCmapFormatUnknown.swift */; };
@@ -219,7 +218,6 @@
 		03F1F2101FCC985D00813EDD /* TableWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableWriter.swift; sourceTree = "<group>"; };
 		03F6871D1F39565000F467BA /* TCCffTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCffTable.swift; sourceTree = "<group>"; };
 		03F905CB1F37A8840008FF3E /* TCCmapTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapTable.swift; sourceTree = "<group>"; };
-		03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapIndexEntry.swift; sourceTree = "<group>"; };
 		03F905CF1F37CBFF0008FF3E /* TCCmapFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapFormat.swift; sourceTree = "<group>"; };
 		03F905D11F37D38E0008FF3E /* TCCmapFormat0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapFormat0.swift; sourceTree = "<group>"; };
 		03F905D31F37DA3D0008FF3E /* TCCmapFormatUnknown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCCmapFormatUnknown.swift; sourceTree = "<group>"; };
@@ -378,7 +376,6 @@
 				03F905D71F37FCFE0008FF3E /* TCCmapFormat6.swift */,
 				03B619131F3D283D00EA1D0E /* TCCmapFormat12.swift */,
 				03F905D31F37DA3D0008FF3E /* TCCmapFormatUnknown.swift */,
-				03F905CD1F37AB410008FF3E /* TCCmapIndexEntry.swift */,
 				03F905CB1F37A8840008FF3E /* TCCmapTable.swift */,
 				034BF03A1F96A9AA00BFE9F1 /* CharacterToGlyphMapping.swift */,
 				03C40BF61F3795C800CD6BAC /* TCID.swift */,
@@ -704,7 +701,6 @@
 				03C5674D1F6B5195004C915B /* ImportDocument.swift in Sources */,
 				03FF506E1F4BE212009F5F0C /* TCGlyfCompositeDescript.swift in Sources */,
 				03B619141F3D283D00EA1D0E /* TCCmapFormat12.swift in Sources */,
-				03F905CE1F37AB410008FF3E /* TCCmapIndexEntry.swift in Sources */,
 				03A72DD31F5A17A9003ABF74 /* FontDocumentWindowController.swift in Sources */,
 				03B311FB1F2AC062001E6712 /* TCResourceHeader.swift in Sources */,
 				0348BE6D1F33DD3700446B58 /* TCGlyfDescript.swift in Sources */,

@@ -11,6 +11,59 @@ import IOUtils
 import os.log
 
 class TCCmapTable: TCTable, Codable {
+
+  class IndexEntry: Comparable, CustomStringConvertible {
+    let platformID: TCID.Platform
+    let encodingID: Encoding
+    let offset: Int
+    var format: TCCmapFormat?
+
+    var platformDescription: String {
+      get {
+        return String(describing: platformID)
+      }
+    }
+
+    var encodingDescription: String {
+      get {
+        return String(describing: encodingID)
+      }
+    }
+
+    init(dataInput: TCDataInput) {
+      platformID = TCID.Platform(rawValue: Int(dataInput.readUInt16())) ?? .unknown
+      let encodingIDRawValue = Int(dataInput.readUInt16())
+      encodingID = platformID.encoding(id: encodingIDRawValue) ?? TCID.CustomEncoding.unknown
+      offset = Int(dataInput.readUInt32())
+    }
+
+    var description: String {
+      get {
+        return "platform id: \(platformID.rawValue) (\(platformDescription)), encoding id: \(encodingID.rawValue) (\(encodingDescription)), offset: \(offset)"
+      }
+    }
+
+    static func ==(lhs: IndexEntry, rhs: IndexEntry) -> Bool {
+      return lhs.offset == rhs.offset
+    }
+
+    static func <(lhs: IndexEntry, rhs: IndexEntry) -> Bool {
+      return lhs.offset < rhs.offset
+    }
+
+    static func <=(lhs: IndexEntry, rhs: IndexEntry) -> Bool {
+      return lhs.offset <= rhs.offset
+    }
+
+    static func >(lhs: IndexEntry, rhs: IndexEntry) -> Bool {
+      return lhs.offset > rhs.offset
+    }
+
+    static func >=(lhs: IndexEntry, rhs: IndexEntry) -> Bool {
+      return lhs.offset >= rhs.offset
+    }
+  }
+
   let version: UInt16
   let numTables: Int
   var mappings: [CharacterToGlyphMapping]
@@ -27,12 +80,12 @@ class TCCmapTable: TCTable, Codable {
     version = dataInput.readUInt16()
     numTables = Int(dataInput.readUInt16())
     var bytesRead = 4
-    var entries = [TCCmapIndexEntry]()
+    var entries = [IndexEntry]()
     mappings = []
 
     // Get each of the index entries
     for _ in 0..<numTables {
-      let indexEntry = TCCmapIndexEntry(dataInput: dataInput)
+      let indexEntry = IndexEntry(dataInput: dataInput)
       entries.append(indexEntry)
       bytesRead += 8
       os_log("indexEntry: %@", String(describing: indexEntry))
@@ -53,7 +106,7 @@ class TCCmapTable: TCTable, Codable {
         _ = dataInput.read(length: entry.offset - bytesRead)
       } else if entry.offset != bytesRead {
         // Something is amiss
-        throw TCTableError.badOffset(message: "TCCmapIndexEntry offset is bad")
+        throw TCTableError.badOffset(message: "IndexEntry offset is bad")
       }
       let formatType = Int(dataInput.readUInt16())
       lastFormat = TCCmapFormatFactory.cmapFormat(type: formatType, dataInput: dataInput)
@@ -77,14 +130,10 @@ class TCCmapTable: TCTable, Codable {
   override var description: String {
     get {
       let str = "cmap\n"
-
-      // Get each of the index entries
 //      for entry in entries {
-//        str.append(entry.description)
-//        str.append("\n")
+//        str += "\(entry)\n"
 //      }
-
-      return str;
+      return str
     }
   }
 }

@@ -13,50 +13,52 @@ import IOUtils
  Horizontal Metrics
  */
 class TCHmtxTable: TCTable, Codable {
-  var hMetrics: [UInt32] = []
-  var leftSideBearings: [Int16] = []
-  let dataCount: Int
+
+  struct Metric: CustomStringConvertible, Codable {
+    var advanceWidth: Int
+    var lsb: Int
+
+    var description: String {
+      get {
+        return "advWid: \(advanceWidth), LSdBear: \(lsb)"
+      }
+    }
+  }
+
+  var hMetrics = [Metric]()
+  var leftSideBearings = [Int]()
 
   override init() {
-    dataCount = 0
     super.init()
   }
 
   init(data: Data, hheaTable: TCHheaTable, maxpTable: TCMaxpTable) {
-    dataCount = data.count
     let dataInput = TCDataInput(data: data)
-    for _ in 0 ..< hheaTable.numberOfHMetrics {
-      let v1 = UInt32(dataInput.readUInt8()) << 24
-      let v2 = UInt32(dataInput.readUInt8()) << 16
-      let v3 = UInt32(dataInput.readUInt8()) << 8
-      let v4 = UInt32(dataInput.readUInt8())
-      let metric = v1 | v2 | v3 | v4
-      hMetrics.append(metric)
+    for _ in 0..<hheaTable.numberOfHMetrics {
+      let advanceWidth = Int(dataInput.readUInt16())
+      let lsb = Int(dataInput.readInt16())
+      hMetrics.append(Metric(advanceWidth: advanceWidth, lsb: lsb))
     }
     let lsbCount = maxpTable.numGlyphs - hheaTable.numberOfHMetrics
     for _ in 0..<lsbCount {
-      leftSideBearings.append(dataInput.readInt16())
+      leftSideBearings.append(Int(dataInput.readInt16()))
     }
     super.init()
   }
 
   func advanceWidth(at index: Int) -> Int {
     if index < hMetrics.count {
-      return Int(hMetrics[index] >> 16)
-    } else if let last = hMetrics.last {
-      return Int(last >> 16)
+      return hMetrics[index].advanceWidth
     } else {
-      return Int(hMetrics[hMetrics.count - 1] >> 16)
+      return hMetrics.last?.advanceWidth ?? 0
     }
   }
 
   func leftSideBearing(at index: Int) -> Int {
     if index < hMetrics.count {
-      return Int(hMetrics[index] & 0xffff)
-    } else if let last = hMetrics.last {
-      return Int(last)
+      return hMetrics[index].lsb
     } else {
-      return Int(leftSideBearings[index - hMetrics.count])
+      return hMetrics.last?.lsb ?? 0
     }
   }
 
@@ -68,18 +70,19 @@ class TCHmtxTable: TCTable, Codable {
 
   override var description: String {
     get {
-      var str = String.localizedStringWithFormat(
-        "'hmtx' Table - Horizontal Metrics\n---------------------------------\n" +
-        "Size = %d bytes, %ld entries\n",
-        dataCount,
-        hMetrics.count)
-      for i in 0..<hMetrics.count {
-        str.append("        \(i). advWid: \(advanceWidth(at: i)), LSdBear: \(leftSideBearing(at: i))\n")
+      var str = """
+      'hmtx' Table - Horizontal Metrics
+      ---------------------------------
+      \(hMetrics.count) entries
+      
+      """
+      for (i, metric) in hMetrics.enumerated() {
+        str += "        \(i). \(metric)\n"
       }
-      for i in 0..<leftSideBearings.count {
-        str.append("        LSdBear \(i + hMetrics.count): \(leftSideBearing(at: i))\n")
+      for (i, lsb) in leftSideBearings.enumerated() {
+        str += "        LSdBear \(i + hMetrics.count): \(lsb)\n"
       }
-      return str;
+      return str
     }
   }
 }

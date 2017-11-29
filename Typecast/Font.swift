@@ -103,6 +103,7 @@ class Font: Codable, CustomStringConvertible {
     tableData = try Font.tableData(directory: tableDirectory, tag: .OS_2,
                                    data: data, tablesOrigin: tablesOrigin)
     os2Table = TCOs2Table(data: tableData)
+    os_log("%@", String(describing: hmtxTable))
   }
 
   class func tableData(directory: TCTableDirectory, tag: TCTable.Tag, data: Data, tablesOrigin: Int) throws -> Data {

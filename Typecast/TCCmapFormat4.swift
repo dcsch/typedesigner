@@ -77,6 +77,52 @@ class TCCmapFormat4: TCCmapFormat {
     self.ranges = ranges
   }
 
+  class func encode(mapping: CharacterToGlyphMapping) -> Data {
+
+    // Find the ranges
+    let charCodes = mapping.glyphCodes.keys.sorted()
+    var ranges = [CountableClosedRange<Int>]()
+    var beginCharCode = -1
+    var lastCharCode = -1
+    for charCode in charCodes {
+      if lastCharCode == -1 {
+        beginCharCode = charCode
+        lastCharCode = charCode
+        continue
+      }
+      if charCode > lastCharCode + 1 {
+        ranges.append(beginCharCode...lastCharCode)
+        beginCharCode = charCode
+      }
+      lastCharCode = charCode
+    }
+    ranges.append(beginCharCode...lastCharCode)
+
+    // Calculate pre-computed header values
+    let segCountX2 = 2 * ranges.count
+    let maxPow2 = Int(floor(log2(Double(ranges.count))))
+    let searchRange = 2 << maxPow2
+    let entrySelector = Int(log2(Double(searchRange / 2)))
+    let rangeShift = segCountX2 - searchRange
+
+    var data = Data()
+    data.append(UInt16(4))
+    data.append(UInt16(0))  // length - this will be written again below
+    data.append(UInt16(mapping.language))
+    data.append(UInt16(segCountX2))
+    data.append(UInt16(searchRange))
+    data.append(UInt16(entrySelector))
+    data.append(UInt16(rangeShift))
+    for range in ranges {
+      data.append(UInt16(range.upperBound))
+    }
+    data.append(UInt16(0))
+    for range in ranges {
+      data.append(UInt16(range.lowerBound))
+    }
+    return data
+  }
+
   var format: Int {
     get {
       return 4

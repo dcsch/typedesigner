@@ -9,100 +9,103 @@
 import Foundation
 import IOUtils
 
-class TCPanose: Codable {
-  let bFamilyType: UInt8
-  let bSerifStyle: UInt8
-  let bWeight: UInt8
-  let bProportion: UInt8
-  let bContrast: UInt8
-  let bStrokeVariation: UInt8
-  let bArmStyle: UInt8
-  let bLetterform: UInt8
-  let bMidline: UInt8
-  let bXHeight: UInt8
+class TCOs2Table: TCTable, Codable {
 
-  init() {
-    bFamilyType = 0
-    bSerifStyle = 0
-    bWeight = 0
-    bProportion = 0
-    bContrast = 0
-    bStrokeVariation = 0
-    bArmStyle = 0
-    bLetterform = 0
-    bMidline = 0
-    bXHeight = 0
-  }
+  class Panose: CustomStringConvertible, Codable {
+    var bFamilyType: UInt8
+    var bSerifStyle: UInt8
+    var bWeight: UInt8
+    var bProportion: UInt8
+    var bContrast: UInt8
+    var bStrokeVariation: UInt8
+    var bArmStyle: UInt8
+    var bLetterform: UInt8
+    var bMidline: UInt8
+    var bXHeight: UInt8
 
-  init(bytes: [UInt8]) {
-    bFamilyType = bytes[0]
-    bSerifStyle = bytes[1]
-    bWeight = bytes[2]
-    bProportion = bytes[3]
-    bContrast = bytes[4]
-    bStrokeVariation = bytes[5]
-    bArmStyle = bytes[6]
-    bLetterform = bytes[7]
-    bMidline = bytes[8]
-    bXHeight = bytes[9]
-  }
+    init() {
+      bFamilyType = 0
+      bSerifStyle = 0
+      bWeight = 0
+      bProportion = 0
+      bContrast = 0
+      bStrokeVariation = 0
+      bArmStyle = 0
+      bLetterform = 0
+      bMidline = 0
+      bXHeight = 0
+    }
 
-  var description: String {
-    get {
-      return String(format:
-        "%d %d %d %d %d %d %d %d %d %d",
-        bFamilyType,
-        bSerifStyle,
-        bWeight,
-        bProportion,
-        bContrast,
-        bStrokeVariation,
-        bArmStyle,
-        bLetterform,
-        bMidline,
-        bXHeight)
+    init(bytes: [UInt8]) {
+      bFamilyType = bytes[0]
+      bSerifStyle = bytes[1]
+      bWeight = bytes[2]
+      bProportion = bytes[3]
+      bContrast = bytes[4]
+      bStrokeVariation = bytes[5]
+      bArmStyle = bytes[6]
+      bLetterform = bytes[7]
+      bMidline = bytes[8]
+      bXHeight = bytes[9]
+    }
+
+    var description: String {
+      get {
+        return String(format:
+          "%d %d %d %d %d %d %d %d %d %d",
+                      bFamilyType,
+                      bSerifStyle,
+                      bWeight,
+                      bProportion,
+                      bContrast,
+                      bStrokeVariation,
+                      bArmStyle,
+                      bLetterform,
+                      bMidline,
+                      bXHeight)
+      }
     }
   }
-}
 
-class TCOs2Table: TCTable, Codable {
-  let version: UInt16
-  let xAvgCharWidth: Int16
-  let usWeightClass: UInt16
-  let usWidthClass: UInt16
-  let fsType: Int16
-  let ySubscriptXSize: Int16
-  let ySubscriptYSize: Int16
-  let ySubscriptXOffset: Int16
-  let ySubscriptYOffset: Int16
-  let ySuperscriptXSize: Int16
-  let ySuperscriptYSize: Int16
-  let ySuperscriptXOffset: Int16
-  let ySuperscriptYOffset: Int16
-  let yStrikeoutSize: Int16
-  let yStrikeoutPosition: Int16
-  let sFamilyClass: Int16
-  let panose: TCPanose
-  let ulUnicodeRange1: Int32
-  let ulUnicodeRange2: Int32
-  let ulUnicodeRange3: Int32
-  let ulUnicodeRange4: Int32
-  let achVendorID: Int32
-  let fsSelection: Int16
-  let usFirstCharIndex: UInt16
-  let usLastCharIndex: UInt16
-  let sTypoAscender: Int16
-  let sTypoDescender: Int16
-  let sTypoLineGap: Int16
-  let usWinAscent: UInt16
-  let usWinDescent: UInt16
-  let ulCodePageRange1: Int32
-  let ulCodePageRange2: Int32
-  let sxHeight: Int16
-  let sCapHeight: Int16
-  let usDefaultChar: UInt16
-  let usBreakChar: UInt16
-  let usMaxContext: UInt16
+  var version: UInt16
+  var xAvgCharWidth: Int16
+  var usWeightClass: UInt16
+  var usWidthClass: UInt16
+  var fsType: Int16
+  var ySubscriptXSize: Int16
+  var ySubscriptYSize: Int16
+  var ySubscriptXOffset: Int16
+  var ySubscriptYOffset: Int16
+  var ySuperscriptXSize: Int16
+  var ySuperscriptYSize: Int16
+  var ySuperscriptXOffset: Int16
+  var ySuperscriptYOffset: Int16
+  var yStrikeoutSize: Int16
+  var yStrikeoutPosition: Int16
+  var sFamilyClass: Int16
+  var panose: Panose
+  var ulUnicodeRange1: UInt32
+  var ulUnicodeRange2: UInt32
+  var ulUnicodeRange3: UInt32
+  var ulUnicodeRange4: UInt32
+  var achVendorID: Int32
+  var fsSelection: Int16
+  var usFirstCharIndex: UInt16
+  var usLastCharIndex: UInt16
+  var sTypoAscender: Int16
+  var sTypoDescender: Int16
+  var sTypoLineGap: Int16
+  var usWinAscent: UInt16
+  var usWinDescent: UInt16
+  var ulCodePageRange1: UInt32
+  var ulCodePageRange2: UInt32
+  var sxHeight: Int16
+  var sCapHeight: Int16
+  var usDefaultChar: UInt16
+  var usBreakChar: UInt16
+  var usMaxContext: UInt16
+  var usLowerOpticalPointSize: UInt16
+  var usUpperOpticalPointSize: UInt16
 
   override init() {
     version = 0
@@ -121,7 +124,7 @@ class TCOs2Table: TCTable, Codable {
     yStrikeoutSize = 0
     yStrikeoutPosition = 0
     sFamilyClass = 0
-    panose = TCPanose()
+    panose = Panose()
     ulUnicodeRange1 = 0
     ulUnicodeRange2 = 0
     ulUnicodeRange3 = 0
@@ -142,6 +145,8 @@ class TCOs2Table: TCTable, Codable {
     usDefaultChar = 0
     usBreakChar = 0
     usMaxContext = 0
+    usLowerOpticalPointSize = 0
+    usUpperOpticalPointSize = 0
     super.init()
   }
 
@@ -163,11 +168,11 @@ class TCOs2Table: TCTable, Codable {
     yStrikeoutSize = dataInput.readInt16()
     yStrikeoutPosition = dataInput.readInt16()
     sFamilyClass = dataInput.readInt16()
-    panose = TCPanose(bytes: dataInput.read(length: 10))
-    ulUnicodeRange1 = dataInput.readInt32()
-    ulUnicodeRange2 = dataInput.readInt32()
-    ulUnicodeRange3 = dataInput.readInt32()
-    ulUnicodeRange4 = dataInput.readInt32()
+    panose = Panose(bytes: dataInput.read(length: 10))
+    ulUnicodeRange1 = dataInput.readUInt32()
+    ulUnicodeRange2 = dataInput.readUInt32()
+    ulUnicodeRange3 = dataInput.readUInt32()
+    ulUnicodeRange4 = dataInput.readUInt32()
     achVendorID = dataInput.readInt32()
     fsSelection = dataInput.readInt16()
     usFirstCharIndex = dataInput.readUInt16()
@@ -177,11 +182,15 @@ class TCOs2Table: TCTable, Codable {
     sTypoLineGap = dataInput.readInt16()
     usWinAscent = dataInput.readUInt16()
     usWinDescent = dataInput.readUInt16()
-    ulCodePageRange1 = dataInput.readInt32()
-    ulCodePageRange2 = dataInput.readInt32()
 
-    // OpenType 1.3
-    if version == 2 {
+    if version > 0 {
+      ulCodePageRange1 = dataInput.readUInt32()
+      ulCodePageRange2 = dataInput.readUInt32()
+    } else {
+      ulCodePageRange1 = 0
+      ulCodePageRange2 = 0
+    }
+    if version > 1 {
       sxHeight = dataInput.readInt16()
       sCapHeight = dataInput.readInt16()
       usDefaultChar = dataInput.readUInt16()
@@ -194,6 +203,13 @@ class TCOs2Table: TCTable, Codable {
       usBreakChar = 0
       usMaxContext = 0
     }
+    if version > 4 {
+      usLowerOpticalPointSize = dataInput.readUInt16()
+      usUpperOpticalPointSize = dataInput.readUInt16()
+    } else {
+      usLowerOpticalPointSize = 0
+      usUpperOpticalPointSize = 0
+    }
     super.init()
   }
 
@@ -205,77 +221,47 @@ class TCOs2Table: TCTable, Codable {
 
   override var description: String {
     get {
-      return String(format:
-          "'OS/2' Table - OS/2 and Windows Metrics\n---------------------------------------" +
-          "\n  'OS/2' version:      %d" +
-          "\n  xAvgCharWidth:       %d" +
-          "\n  usWeightClass:       %d" +
-          "\n  usWidthClass:        %d" +
-          "\n  fsType:              0x%X" +
-          "\n  ySubscriptXSize:     %d" +
-          "\n  ySubscriptYSize:     %d" +
-          "\n  ySubscriptXOffset:   %d" +
-          "\n  ySubscriptYOffset:   %d" +
-          "\n  ySuperscriptXSize:   %d" +
-          "\n  ySuperscriptYSize:   %d" +
-          "\n  ySuperscriptXOffset: %d" +
-          "\n  ySuperscriptYOffset: %d" +
-          "\n  yStrikeoutSize:      %d" +
-          "\n  yStrikeoutPosition:  %d" +
-          "\n  sFamilyClass:        %d" +
-          "    subclass = %d" +
-          "\n  PANOSE:              %s" +
-          "\n  Unicode Range 1( Bits 0 - 31 ): %X" +
-          "\n  Unicode Range 2( Bits 32- 63 ): %X" +
-          "\n  Unicode Range 3( Bits 64- 95 ): %X" +
-          "\n  Unicode Range 4( Bits 96-127 ): %X" +
-          "\n  achVendID:           '%c%c%c%c" +
-          "'\n  fsSelection:         0x%X" +
-          "\n  usFirstCharIndex:    0x%X" +
-          "\n  usLastCharIndex:     0x%X" +
-          "\n  sTypoAscender:       %d" +
-          "\n  sTypoDescender:      %d" +
-          "\n  sTypoLineGap:        %d" +
-          "\n  usWinAscent:         %d" +
-          "\n  usWinDescent:        %d" +
-          "\n  CodePage Range 1( Bits 0 - 31 ): %X" +
-          "\n  CodePage Range 2( Bits 32- 63 ): %X",
-          version,
-          xAvgCharWidth,
-          usWeightClass,
-          usWidthClass,
-          fsType,
-          ySubscriptXSize,
-          ySubscriptYSize,
-          ySubscriptXOffset,
-          ySubscriptYOffset,
-          ySuperscriptXSize,
-          ySuperscriptYSize,
-          ySuperscriptXOffset,
-          ySuperscriptYOffset,
-          yStrikeoutSize,
-          yStrikeoutPosition,
-          sFamilyClass >> 8,
-          sFamilyClass & 0xff,
-          panose.description,
-          ulUnicodeRange1,
-          ulUnicodeRange2,
-          ulUnicodeRange3,
-          ulUnicodeRange4,
-          (achVendorID >> 24) & 0xff,
-          (achVendorID >> 16) & 0xff,
-          (achVendorID >> 8) & 0xff,
-          achVendorID & 0xff,
-          fsSelection,
-          usFirstCharIndex,
-          usLastCharIndex,
-          sTypoAscender,
-          sTypoDescender,
-          sTypoLineGap,
-          usWinAscent,
-          usWinDescent,
-          ulCodePageRange1,
-          ulCodePageRange2)
+      let vendorID = String(format: "%c%c%c%c",
+                            (achVendorID >> 24) & 0xff,
+                            (achVendorID >> 16) & 0xff,
+                            (achVendorID >> 8) & 0xff,
+                            achVendorID & 0xff)
+      return """
+      'OS/2' Table - OS/2 and Windows Metrics
+      ---------------------------------------
+        'OS/2' version:      \(version)
+        xAvgCharWidth:       \(xAvgCharWidth)
+        usWeightClass:       \(usWeightClass)
+        usWidthClass:        \(usWidthClass)
+        fsType:              0x\(String(fsType, radix: 16, uppercase: true))
+        ySubscriptXSize:     \(ySubscriptXSize)
+        ySubscriptYSize:     \(ySubscriptYSize)
+        ySubscriptXOffset:   \(ySubscriptXOffset)
+        ySubscriptYOffset:   \(ySubscriptYOffset)
+        ySuperscriptXSize:   \(ySuperscriptXSize)
+        ySuperscriptYSize:   \(ySuperscriptYSize)
+        ySuperscriptXOffset: \(ySuperscriptXOffset)
+        ySuperscriptYOffset: \(ySuperscriptYOffset)
+        yStrikeoutSize:      \(yStrikeoutSize)
+        yStrikeoutPosition:  \(yStrikeoutPosition)
+        sFamilyClass:        \(sFamilyClass >> 8) subclass = \(sFamilyClass & 0xff)
+        PANOSE:              \(panose)
+        Unicode Range 1( Bits 0 - 31 ): \(String(ulUnicodeRange1, radix: 16, uppercase: true))
+        Unicode Range 2( Bits 32- 63 ): \(String(ulUnicodeRange2, radix: 16, uppercase: true))
+        Unicode Range 3( Bits 64- 95 ): \(String(ulUnicodeRange3, radix: 16, uppercase: true))
+        Unicode Range 4( Bits 96-127 ): \(String(ulUnicodeRange4, radix: 16, uppercase: true))
+        achVendID:           '\(vendorID)'
+        fsSelection:         0x\(String(fsSelection, radix: 16, uppercase: true))
+        usFirstCharIndex:    0x\(String(usFirstCharIndex, radix: 16, uppercase: true))
+        usLastCharIndex:     0x\(String(usLastCharIndex, radix: 16, uppercase: true))
+        sTypoAscender:       \(sTypoAscender)
+        sTypoDescender:      \(sTypoDescender)
+        sTypoLineGap:        \(sTypoLineGap)
+        usWinAscent:         \(usWinAscent)
+        usWinDescent:        \(usWinDescent)
+        CodePage Range 1( Bits 0 - 31 ): \(String(ulCodePageRange1, radix: 16, uppercase: true))
+        CodePage Range 2( Bits 32- 63 ): \(String(ulCodePageRange2, radix: 16, uppercase: true))
+      """
     }
   }
 }
