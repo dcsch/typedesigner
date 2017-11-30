@@ -53,13 +53,13 @@ class TTFont: Font {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     locaTable = try container.decode(TCLocaTable.self, forKey: .loca)
     glyfTable = try container.decode(TCGlyfTable.self, forKey: .glyf)
-    try super.init(from: decoder)
+    try super.init(from: container.superDecoder())
   }
 
   override func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(locaTable, forKey: .loca)
     try container.encode(glyfTable, forKey: .glyf)
-    try super.encode(to: encoder)
+    try super.encode(to: container.superEncoder())
   }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Encoding: CustomStringConvertible, Codable {
+protocol Encoding: CustomStringConvertible {
   var rawValue: Int { get }
 }
 
