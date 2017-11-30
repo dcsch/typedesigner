@@ -68,8 +68,6 @@ class TCNameTable: TCTable, Codable {
     let encodingID: Int
     let languageID: Int
     let nameID: NameID
-    let stringLength: Int
-    let stringOffset: Int
     var record: String
 
     init(dataInput: TCDataInput, stringData: Data) {
@@ -77,8 +75,8 @@ class TCNameTable: TCTable, Codable {
       encodingID = Int(dataInput.readInt16())
       languageID = Int(dataInput.readInt16())
       nameID = NameID(rawValue: Int(dataInput.readInt16())) ?? .unknown
-      stringLength = Int(dataInput.readInt16())
-      stringOffset = Int(dataInput.readInt16())
+      let stringLength = Int(dataInput.readInt16())
+      let stringOffset = Int(dataInput.readInt16())
 
       let stringSubData = stringData.subdata(in: stringOffset..<(stringOffset + stringLength))
       switch platformID {

@@ -64,21 +64,18 @@ class TCCmapTable: TCTable, Codable {
     }
   }
 
-  let version: UInt16
-  let numTables: Int
+//  let numTables: Int
   var mappings: [CharacterToGlyphMapping]
 
   override init() {
-    version = 0
-    numTables = 0
     mappings = []
     super.init()
   }
 
   init(data: Data) throws {
     let dataInput = TCDataInput(data: data)
-    version = dataInput.readUInt16()
-    numTables = Int(dataInput.readUInt16())
+    _ = dataInput.readUInt16()  // version (must be 0)
+    let numTables = Int(dataInput.readUInt16())
     var bytesRead = 4
     var entries = [IndexEntry]()
     mappings = []
