@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol Encoding: CustomStringConvertible {
+protocol Encoding: CustomStringConvertible, Codable {
   var rawValue: Int { get }
 }
 
-class TCID {
+class TCID: Codable {
 
   // Platform IDs
   enum Platform: Int, CustomStringConvertible, Codable {

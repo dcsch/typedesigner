@@ -9,11 +9,14 @@
 import Foundation
 
 class CharacterToGlyphMapping: Codable {
+  let platformID: TCID.Platform
+//  let encodingID: Encoding
   var language: Int
   var glyphCodes: [Int: Int]
 //  var glyphCodes: DictionaryLiteral<Int, Int>
 
-  init(encodedMap: TCCmapFormat) {
+  init(platformID: TCID.Platform, encodingID: Encoding, encodedMap: TCCmapFormat) {
+    self.platformID = platformID
     language = encodedMap.language
     let ranges = encodedMap.ranges
     glyphCodes = [:]

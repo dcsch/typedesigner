@@ -167,6 +167,8 @@ class TableWriter {
 
   class func write(table: TCCmapTable) -> Data {
     var data = Data()
+    data.append(UInt16(0))  // Version 0
+    data.append(UInt16(table.mappings.count))
     data.append(TCCmapFormat4.encode(mapping: table.mappings[0]))
     return data
   }
@@ -185,7 +187,7 @@ extension Data {
         var ptr = dataPtr
         var sum: UInt32 = 0
         for _ in 0..<(count / 4) {
-          (sum, _) = sum.addingReportingOverflow(ptr.pointee.bigEndian)
+          sum = sum &+ ptr.pointee.bigEndian
           ptr += 1
         }
         return sum

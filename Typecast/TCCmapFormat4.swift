@@ -8,6 +8,7 @@
 
 import Foundation
 import IOUtils
+import os.log
 
 /**
  Segment mapping to delta values.
@@ -47,7 +48,7 @@ class TCCmapFormat4: TCCmapFormat {
       startCode.append(Int(dataInput.readUInt16()))
     } // + 2*segCount (4*segCount + 16)
     for _ in 0..<segCount {
-      idDelta.append(Int(dataInput.readUInt16()))
+      idDelta.append(Int(dataInput.readInt16()))
     } // + 2*segCount (6*segCount + 16)
     for _ in 0..<segCount {
       idRangeOffset.append(Int(dataInput.readUInt16()))
@@ -85,18 +86,61 @@ class TCCmapFormat4: TCCmapFormat {
     var beginCharCode = -1
     var lastCharCode = -1
     for charCode in charCodes {
+//      os_log("%d -> %d", charCode, mapping.glyphCodes[charCode]!)
       if lastCharCode == -1 {
         beginCharCode = charCode
         lastCharCode = charCode
         continue
       }
-      if charCode > lastCharCode + 1 {
+      if charCode != lastCharCode + 1 {
         ranges.append(beginCharCode...lastCharCode)
         beginCharCode = charCode
       }
       lastCharCode = charCode
     }
     ranges.append(beginCharCode...lastCharCode)
+
+    // Find ranges with contiguous glyph ids
+    // (this could probably be merged into the loop above)
+    var deltas = [Int]()
+    var rangeOffsets = [Int]()
+    var glyphIds = [Int]()
+    for (i, range) in ranges.enumerated() {
+      var lastGlyphCode = -1
+      var contiguous = true
+      for charCode in range {
+        let glyphCode = mapping.glyphCodes[charCode]!
+        if lastGlyphCode == -1 {
+          lastGlyphCode = glyphCode
+          continue
+        }
+        if glyphCode != lastGlyphCode + 1 {
+          contiguous = false
+          break
+        }
+        lastGlyphCode = glyphCode
+      }
+      if contiguous {
+        let firstGlyphCode = mapping.glyphCodes[range.lowerBound]!
+        let delta = firstGlyphCode - range.lowerBound
+
+        // Spelling this out for testing purposes
+        if delta < Int16.min {
+          deltas.append(delta + 65536)
+        } else if delta > Int16.max {
+          deltas.append(delta - 65536)
+        } else {
+          deltas.append(delta)
+        }
+        rangeOffsets.append(0)
+      } else {
+        deltas.append(0)
+        rangeOffsets.append(2 * (ranges.count - i + glyphIds.count))
+        for charCode in range {
+          glyphIds.append(mapping.glyphCodes[charCode]!)
+        }
+      }
+    }
 
     // Calculate pre-computed header values
     let segCountX2 = 2 * ranges.count
@@ -105,6 +149,7 @@ class TCCmapFormat4: TCCmapFormat {
     let entrySelector = Int(log2(Double(searchRange / 2)))
     let rangeShift = segCountX2 - searchRange
 
+    // Build the block of encoded data
     var data = Data()
     data.append(UInt16(4))
     data.append(UInt16(0))  // length - this will be written again below
@@ -120,6 +165,21 @@ class TCCmapFormat4: TCCmapFormat {
     for range in ranges {
       data.append(UInt16(range.lowerBound))
     }
+    for delta in deltas {
+      data.append(Int16(delta))
+    }
+    for rangeOffset in rangeOffsets {
+      data.append(UInt16(rangeOffset))
+    }
+    for glyphId in glyphIds {
+      data.append(UInt16(glyphId))
+    }
+
+    // Slot the data length into the encoded data
+    let length = UInt16(data.count)
+    var bigEndian = length.bigEndian
+    data.replaceSubrange(2..<4, with: &bigEndian, count: 2)
+
     return data
   }
 

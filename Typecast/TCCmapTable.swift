@@ -115,7 +115,9 @@ class TCCmapTable: TCTable, Codable {
       bytesRead += (lastFormat?.length)!
 
       if let format = lastFormat {
-        mappings.append(CharacterToGlyphMapping(encodedMap: format))
+        mappings.append(CharacterToGlyphMapping(platformID: entry.platformID,
+                                                encodingID: entry.encodingID,
+                                                encodedMap: format))
       }
     }
     super.init()
