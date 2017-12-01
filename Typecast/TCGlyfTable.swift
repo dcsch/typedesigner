@@ -14,7 +14,6 @@ import IOUtils
  */
 class TCGlyfTable: TCTable, Codable {
   var descript: [TCGlyfDescript]
-//  let postTable: TCPostTable
 
   /**
    - parameters:
@@ -28,15 +27,14 @@ class TCGlyfTable: TCTable, Codable {
        maxpTable: TCMaxpTable,
        locaTable: TCLocaTable) {
     self.descript = []
-//    self.postTable = postTable
 
     super.init()
 
     // Process each individual glyph
     for i in 0..<maxpTable.numGlyphs {
-      let len = locaTable.offset(at: i + 1) - locaTable.offset(at: i)
+      let len = locaTable.offsets[i + 1] - locaTable.offsets[i]
       if len > 0 {
-        let offset = locaTable.offset(at: i)
+        let offset = locaTable.offsets[i]
         let glyfData = data.subdata(in: offset..<offset + len)
         let dataInput = TCDataInput(data: glyfData)
         let numberOfContours = Int(dataInput.readInt16())

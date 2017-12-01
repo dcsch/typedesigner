@@ -13,7 +13,6 @@ import IOUtils
  An OpenType font with TrueType outlines.
  */
 class TTFont: Font {
-  var locaTable: TCLocaTable
   var glyfTable: TCGlyfTable
 
   override init(data: Data, tablesOrigin: Int) throws {
@@ -33,7 +32,9 @@ class TTFont: Font {
     // 'loca' is required by 'glyf'
     tableData = try Font.tableData(directory: tableDirectory, tag: .loca,
                                    data: data, tablesOrigin: tablesOrigin)
-    locaTable = TCLocaTable(data: tableData, headTable: headTable, maxpTable: maxpTable)
+    let locaTable = TCLocaTable(data: tableData,
+                                shortEntries: headTable.indexToLocFormat == 0,
+                                numGlyphs: maxpTable.numGlyphs)
 
     // If this is a TrueType outline, then we'll have at least the
     // 'glyf' table (along with the 'loca' table)
@@ -45,20 +46,17 @@ class TTFont: Font {
   }
 
   private enum CodingKeys: String, CodingKey {
-    case loca
     case glyf
   }
 
   required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    locaTable = try container.decode(TCLocaTable.self, forKey: .loca)
     glyfTable = try container.decode(TCGlyfTable.self, forKey: .glyf)
     try super.init(from: container.superDecoder())
   }
 
   override func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(locaTable, forKey: .loca)
     try container.encode(glyfTable, forKey: .glyf)
     try super.encode(to: container.superEncoder())
   }

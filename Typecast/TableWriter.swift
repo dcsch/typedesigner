@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os.log
 
 class TableWriter {
 //  var data: Data
@@ -166,12 +167,53 @@ class TableWriter {
   }
 
   class func write(table: TCCmapTable) -> Data {
+
+    // Sort mappings in order of platform, endoding, language
+    let entries = table.entries.sorted {
+      (lhs: TCCmapTable.IndexEntry, rhs: TCCmapTable.IndexEntry) -> Bool in
+      if lhs.platformID.rawValue == rhs.platformID.rawValue {
+//        if lhs.encodingID.rawValue == rhs.encodingID.rawValue {
+//          return lhs.language < rhs.language
+//        } else {
+          return lhs.encodingID.rawValue < rhs.encodingID.rawValue
+//        }
+      } else {
+        return lhs.platformID.rawValue < rhs.platformID.rawValue
+      }
+    }
+
+    // Encoded subtables first so we know how long each one is
+    var mappingsData = [Data]()
+    var offsets = [Int]()
+    var offset = 8 * entries.count + 4
+    for mapping in table.mappings {
+      let data = TCCmapFormat4.encode(mapping: mapping)
+      mappingsData.append(data)
+      offsets.append(offset)
+      offset += data.count
+    }
+
+    // Encode the table
     var data = Data()
     data.append(UInt16(0))  // Version 0
-    data.append(UInt16(table.mappings.count))
-    data.append(TCCmapFormat4.encode(mapping: table.mappings[0]))
+    data.append(UInt16(entries.count))
+    for (entry, offset) in zip(entries, offsets) {
+      data.append(UInt16(entry.platformID.rawValue))
+      data.append(UInt16(entry.encodingID.rawValue))
+      data.append(UInt32(offset))
+    }
+
+    // Append the subtables
+    for mappingData in mappingsData {
+      data.append(mappingData)
+    }
     return data
   }
+
+  // loca
+  // glyf
+  // name
+  // post
 }
 
 extension Data {

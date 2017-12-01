@@ -9,33 +9,23 @@
 import Foundation
 import IOUtils
 
-class TCLocaTable: TCTable, Codable {
+class TCLocaTable: TCTable {
   let offsets: [Int]
-  let factor: Int
-  let dataCount: Int
 
-  init(data: Data, headTable: TCHeadTable, maxpTable: TCMaxpTable) {
-    dataCount = data.count
+  init(data: Data, shortEntries: Bool, numGlyphs: Int) {
     let dataInput = TCDataInput(data: data)
     var offsets = [Int]()
-    let shortEntries = headTable.indexToLocFormat == 0
     if shortEntries {
-      factor = 2
-      for _ in 0...maxpTable.numGlyphs {
-        offsets.append(Int(dataInput.readUInt16()))
+      for _ in 0...numGlyphs {
+        offsets.append(2 * Int(dataInput.readUInt16()))
       }
     } else {
-      factor = 1
-      for _ in 0...maxpTable.numGlyphs {
+      for _ in 0...numGlyphs {
         offsets.append(Int(dataInput.readUInt32()))
       }
     }
     self.offsets = offsets;
     super.init()
-  }
-
-  func offset(at index: Int) -> Int {
-    return offsets[index] * factor
   }
 
   override class var tag: TCTable.Tag {
@@ -46,17 +36,17 @@ class TCLocaTable: TCTable, Codable {
 
   override var description: String {
     get {
-      var str = String(format:
-        "'loca' Table - Index To Location Table\n--------------------------------------\n" +
-        "Size = %d bytes, %ld entries\n",
-        dataCount,
-        offsets.count)
-      var i = 0
-      for _ in offsets {
-        str.append(String(format: "        Idx %ld  -> glyfOff 0x%x\n", i, offset(at: i)))
-        i += 1
+      var str = """
+      'loca' Table - Index To Location Table
+      --------------------------------------
+      \(offsets.count) entries
+      offsets.count)
+
+      """
+      for (i, offset) in offsets.enumerated() {
+        str += "        Idx \(i)  -> glyfOff 0x\(String(offset, radix: 16, uppercase: true))"
       }
-      return str;
+      return str
     }
   }
 }
