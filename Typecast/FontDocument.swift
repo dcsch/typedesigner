@@ -142,6 +142,11 @@ class FontDocument: NSDocument {
                                                       length: cmapData.count))
       offset += cmapData.count
 
+      if let ttFont = font as? TTFont {
+        let (glyfData, locaOffsets) = TableWriter.write(table: ttFont.glyfTable)
+        tablesAsData.append(glyfData)
+      }
+
       var fontData = Data()
       for tableData in tablesAsData {
         fontData.append(tableData)

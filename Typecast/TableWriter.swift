@@ -211,7 +211,132 @@ class TableWriter {
   }
 
   // loca
-  // glyf
+
+  class func write(table: TCGlyfTable) -> (Data, [Int]) {
+    var data = Data()
+    var offsets = [Int]()
+    for descript in table.descript {
+      offsets.append(data.count)
+      if let simpleDescript = descript as? TCGlyfSimpleDescript {
+        data.append(Int16(simpleDescript.endPtsOfContours.count))
+        data.append(Int16(simpleDescript.xMin))
+        data.append(Int16(simpleDescript.yMin))
+        data.append(Int16(simpleDescript.xMax))
+        data.append(Int16(simpleDescript.yMax))
+        for endPt in simpleDescript.endPtsOfContours {
+          data.append(UInt16(endPt))
+        }
+        data.append(UInt16(simpleDescript.instructions.count))
+        data.append(contentsOf: simpleDescript.instructions)
+
+        // Encode absolute coords into compressed relative coords
+        var xFlags = [TCGlyfSimpleDescript.Flags]()
+        var xRelCoords = [Int]()
+        var x = 0
+        for xCoord in simpleDescript.xCoordinates {
+          let xRelCoord = xCoord - x
+          x = xCoord
+          if xRelCoord == 0 {
+            xFlags.append(.xDual)
+          } else if abs(xRelCoord) < 256 {
+            if xRelCoord >= 0 {
+              xFlags.append([.xDual, .xShortVector])
+            } else {
+              xFlags.append([.xShortVector])
+            }
+            xRelCoords.append(abs(xRelCoord))
+          } else {
+            xFlags.append([])
+            xRelCoords.append(xRelCoord)
+          }
+        }
+        var yFlags = [TCGlyfSimpleDescript.Flags]()
+        var yRelCoords = [Int]()
+        var y = 0
+        for yCoord in simpleDescript.yCoordinates {
+          let yRelCoord = yCoord - y
+          y = yCoord
+          if yRelCoord == 0 {
+            yFlags.append(.yDual)
+          } else if abs(yRelCoord) < 256 {
+            if yRelCoord >= 0 {
+              yFlags.append([.yDual, .yShortVector])
+            } else {
+              yFlags.append([.yShortVector])
+            }
+            yRelCoords.append(abs(yRelCoord))
+          } else {
+            yFlags.append([])
+            yRelCoords.append(yRelCoord)
+          }
+        }
+
+        // Combine the flags
+        var combinedFlags = [TCGlyfSimpleDescript.Flags]()
+        for (xFlag, yFlag) in zip(xFlags, yFlags) {
+          combinedFlags.append(xFlag.union(yFlag))
+        }
+        var unencodedFlags = [TCGlyfSimpleDescript.Flags]()
+        for (combinedFlag, originalFlag) in zip(combinedFlags, simpleDescript.flags) {
+          if originalFlag.contains(.onCurvePoint) {
+            unencodedFlags.append(combinedFlag.union(.onCurvePoint))
+          } else {
+            unencodedFlags.append(combinedFlag)
+          }
+        }
+
+        // Count any repeats that are longer than 1
+        var repeats = [Int]()
+        var lastValue: UInt8 = 255
+        var rep = 0
+        for unencodedFlag in unencodedFlags {
+          if unencodedFlag.rawValue == lastValue {
+            rep += 1
+          } else if unencodedFlag.rawValue != lastValue && rep == 1 {
+            repeats.append(0)
+            repeats.append(0)
+            rep = 0
+          } else {
+            repeats.append(rep)
+            rep = 0
+          }
+          lastValue = unencodedFlag.rawValue
+        }
+        if rep > 0 {
+          repeats.append(rep)
+        }
+
+        // And run-length encode them
+        var repIter = repeats.makeIterator()
+        var skip = 0
+        for unencodedFlag in unencodedFlags {
+          if skip > 0 {
+            skip -= 1
+            continue
+          }
+          var flag = unencodedFlag
+          let rep = repIter.next()!
+          if rep >= 2 {
+            flag.insert(.repeatFlag)
+            data.append(flag.rawValue)
+            data.append(UInt8(rep))
+            skip = rep
+          } else {
+            data.append(flag.rawValue)
+          }
+        }
+      } else if let compositeDescript = descript as? TCGlyfCompositeDescript {
+        data.append(Int16(-1))
+        data.append(Int16(compositeDescript.xMin))
+        data.append(Int16(compositeDescript.yMin))
+        data.append(Int16(compositeDescript.xMax))
+        data.append(Int16(compositeDescript.yMax))
+      }
+    }
+    offsets.append(data.count)
+    return (data, offsets)
+  }
+
   // name
   // post
 }

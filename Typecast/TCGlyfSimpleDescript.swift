@@ -22,7 +22,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     static let yDual = Flags(rawValue: 1 << 5)
   }
 
-  let numberOfContours: Int
   var xMin: Int
   var yMin: Int
   var xMax: Int
@@ -36,7 +35,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
   init(dataInput: TCDataInput,
        glyphIndex: Int,
        numberOfContours: Int) {
-    self.numberOfContours = numberOfContours
     self.xMin = Int(dataInput.readInt16())
     self.yMin = Int(dataInput.readInt16())
     self.xMax = Int(dataInput.readInt16())
@@ -123,7 +121,7 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
   override var description: String {
     get {
       var str = """
-                numberOfContours: \(numberOfContours)
+                numberOfContours: \(endPtsOfContours.count)
                 xMin:             \(xMin)
                 yMin:             \(yMin)
                 xMax:             \(xMax)
@@ -146,6 +144,9 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
 
       """
       for (i, flags) in self.flags.enumerated() {
+        if flags.contains(.repeatFlag) {
+          var foo = 0
+        }
         str += String(format:"          %d: %@%@%@%@%@%@\n",
                       i,
                       flags.contains(.yDual) ? "YDual " : "      ",
@@ -174,7 +175,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
   }
 
   private enum CodingKeys: String, CodingKey {
-    case numberOfContours
     case xMaximum
     case xMinimum
     case yMaximum
@@ -189,7 +189,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
 
   required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    numberOfContours = try container.decode(Int.self, forKey: .numberOfContours)
     xMax = try container.decode(Int.self, forKey: .xMaximum)
     xMin = try container.decode(Int.self, forKey: .xMinimum)
     yMax = try container.decode(Int.self, forKey: .yMaximum)
@@ -205,7 +204,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
 
   override func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(numberOfContours, forKey: .numberOfContours)
     try container.encode(xMax, forKey: .xMaximum)
     try container.encode(xMin, forKey: .xMinimum)
     try container.encode(yMax, forKey: .yMaximum)
