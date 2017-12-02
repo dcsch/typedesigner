@@ -229,7 +229,7 @@ class TableWriter {
         data.append(UInt16(simpleDescript.instructions.count))
         data.append(contentsOf: simpleDescript.instructions)
 
-        // Encode absolute coords into compressed relative coords
+        // Encode absolute coords into relative coords
         var xFlags = [TCGlyfSimpleDescript.Flags]()
         var xRelCoords = [Int]()
         var x = 0
@@ -238,6 +238,7 @@ class TableWriter {
           x = xCoord
           if xRelCoord == 0 {
             xFlags.append(.xDual)
+            xRelCoords.append(0) // This will be dropped when we encode to data
           } else if abs(xRelCoord) < 256 {
             if xRelCoord >= 0 {
               xFlags.append([.xDual, .xShortVector])
@@ -258,6 +259,7 @@ class TableWriter {
           y = yCoord
           if yRelCoord == 0 {
             yFlags.append(.yDual)
+            yRelCoords.append(0) // This will be dropped when we encode to data
           } else if abs(yRelCoord) < 256 {
             if yRelCoord >= 0 {
               yFlags.append([.yDual, .yShortVector])
@@ -325,6 +327,27 @@ class TableWriter {
             data.append(flag.rawValue)
           }
         }
+
+        // Encode the coordinates
+        for (xCoord, xFlag) in zip(xRelCoords, xFlags) {
+          if xCoord == 0 {
+            continue
+          } else if xFlag.contains(.xShortVector) {
+            data.append(UInt8(xCoord))
+          } else {
+            data.append(Int16(xCoord))
+          }
+        }
+        for (yCoord, yFlag) in zip(yRelCoords, yFlags) {
+          if yCoord == 0 {
+            continue
+          } else if yFlag.contains(.yShortVector) {
+            data.append(UInt8(yCoord))
+          } else {
+            data.append(Int16(yCoord))
+          }
+        }
+
       } else if let compositeDescript = descript as? TCGlyfCompositeDescript {
         data.append(Int16(-1))
         data.append(Int16(compositeDescript.xMin))

@@ -144,9 +144,6 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
 
       """
       for (i, flags) in self.flags.enumerated() {
-        if flags.contains(.repeatFlag) {
-          var foo = 0
-        }
         str += String(format:"          %d: %@%@%@%@%@%@\n",
                       i,
                       flags.contains(.yDual) ? "YDual " : "      ",
