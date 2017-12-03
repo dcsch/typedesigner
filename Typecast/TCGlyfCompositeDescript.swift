@@ -14,7 +14,7 @@ import IOUtils
  or more simple glyphs, usually with some sort of transformation applied to
  each.
  */
-class TCGlyfCompositeDescript: TCGlyfDescript {
+class TCGlyfCompositeDescript: TCGlyfDescript, Codable {
 
   class Component: Codable {
 
@@ -128,7 +128,6 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
       let instructionCount = Int(dataInput.readInt16())
       instructions = dataInput.read(length: instructionCount)
     }
-    super.init(glyphIndex: glyphIndex)
   }
   
   override var description: String {
@@ -160,11 +159,9 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
     yMin = try container.decode(Int.self, forKey: .yMinimum)
     components = try container.decode([Component].self, forKey: .components)
     instructions = try container.decode([UInt8].self, forKey: .instructions)
-    let superDecoder = try container.superDecoder()
-    try super.init(from: superDecoder)
   }
 
-  override func encode(to encoder: Encoder) throws {
+  func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(xMax, forKey: .xMaximum)
     try container.encode(xMin, forKey: .xMinimum)
@@ -172,7 +169,5 @@ class TCGlyfCompositeDescript: TCGlyfDescript {
     try container.encode(yMin, forKey: .yMinimum)
     try container.encode(components, forKey: .components)
     try container.encode(instructions, forKey: .instructions)
-    let superEncoder = container.superEncoder()
-    try super.encode(to: superEncoder)
   }
 }

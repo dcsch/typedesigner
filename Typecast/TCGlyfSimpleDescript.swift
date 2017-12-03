@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCGlyfSimpleDescript: TCGlyfDescript {
+class TCGlyfSimpleDescript: TCGlyfDescript, Codable {
 
   struct Flags: OptionSet, Codable {
     var rawValue: UInt8
@@ -54,7 +54,7 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
 
     let instructionCount = Int(dataInput.readInt16())
     instructions = dataInput.read(length: instructionCount)
-    super.init(glyphIndex: glyphIndex)
+    super.init()
     readFlags(dataInput: dataInput, pointCount: pointCount)
     readCoords(dataInput: dataInput)
   }
@@ -195,11 +195,9 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     xCoordinates = try container.decode([Int].self, forKey: .xCoordinates)
     yCoordinates = try container.decode([Int].self, forKey: .yCoordinates)
     instructions = try container.decode([UInt8].self, forKey: .instructions)
-    let superDecoder = try container.superDecoder()
-    try super.init(from: superDecoder)
   }
 
-  override func encode(to encoder: Encoder) throws {
+  func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(xMax, forKey: .xMaximum)
     try container.encode(xMin, forKey: .xMinimum)
@@ -210,7 +208,5 @@ class TCGlyfSimpleDescript: TCGlyfDescript {
     try container.encode(xCoordinates, forKey: .xCoordinates)
     try container.encode(yCoordinates, forKey: .yCoordinates)
     try container.encode(instructions, forKey: .instructions)
-    let superEncoder = container.superEncoder()
-    try super.encode(to: superEncoder)
   }
 }

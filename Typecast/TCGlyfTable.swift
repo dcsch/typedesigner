@@ -46,7 +46,7 @@ class TCGlyfTable: TCTable, Codable {
           descript.append(TCGlyfCompositeDescript(dataInput: dataInput, glyphIndex: i))
         }
       } else {
-        descript.append(TCGlyfNullDescript(glyphIndex: i))
+        descript.append(TCGlyfNullDescript())
       }
     }
   }
@@ -125,14 +125,16 @@ class TCGlyfTable: TCTable, Codable {
     var nestedArrayContainer = container.nestedUnkeyedContainer(forKey: CodingKeys.descript)
     for d in descript {
       var nestedDescriptContainer = nestedArrayContainer.nestedContainer(keyedBy: DescriptTypeKey.self)
-      if d is TCGlyfNullDescript {
+      if let nd = d as? TCGlyfNullDescript {
         try nestedDescriptContainer.encode(DescriptTypes.null, forKey: DescriptTypeKey.type)
-      } else if d is TCGlyfSimpleDescript {
+        try nestedDescriptContainer.encode(nd, forKey: DescriptTypeKey.value)
+      } else if let sd = d as? TCGlyfSimpleDescript {
         try nestedDescriptContainer.encode(DescriptTypes.simple, forKey: DescriptTypeKey.type)
-      } else if d is TCGlyfCompositeDescript {
+        try nestedDescriptContainer.encode(sd, forKey: DescriptTypeKey.value)
+      } else if let cd = d as? TCGlyfCompositeDescript {
         try nestedDescriptContainer.encode(DescriptTypes.composite, forKey: DescriptTypeKey.type)
+        try nestedDescriptContainer.encode(cd, forKey: DescriptTypeKey.value)
       }
-      try nestedDescriptContainer.encode(d, forKey: DescriptTypeKey.value)
     }
   }
 }
