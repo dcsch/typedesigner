@@ -8,6 +8,7 @@
 
 import Foundation
 import IOUtils
+import os.log
 
 class TCNameTable: TCTable, Codable {
 
@@ -107,7 +108,7 @@ class TCNameTable: TCTable, Codable {
 
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
-    _ = dataInput.readInt16() // formatSelector
+    let format = dataInput.readInt16()
     let numberOfNameRecords = Int(dataInput.readInt16())
     let stringStorageOffset = Int(dataInput.readInt16())
     nameRecords = []
@@ -117,6 +118,10 @@ class TCNameTable: TCTable, Codable {
     let stringData = data.subdata(in: stringStorageOffset..<data.count)
     for _ in 0..<numberOfNameRecords {
       nameRecords.append(Record(dataInput: dataInput, stringData: stringData))
+    }
+
+    if format == 1 {
+      os_log("Naming table format 1")
     }
     super.init()
   }

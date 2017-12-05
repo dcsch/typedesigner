@@ -16,7 +16,7 @@ import IOUtils
  */
 class TCGlyfCompositeDescript: TCGlyfDescript, Codable {
 
-  class Component: Codable {
+  class Component: Equatable, Codable {
 
     struct Flags: OptionSet {
       let rawValue: UInt16
@@ -69,6 +69,10 @@ class TCGlyfCompositeDescript: TCGlyfDescript, Codable {
         ytranslate = 0
       }
 
+      // TODO We're not doing anything with 'point1' and 'point2' and
+      // I don't have any fonts that use it as far as I can tell. Needs
+      // further investigation. Put into the issue tracker.
+
       // Get the scale values (if any)
       if flags.contains(.weHaveAScale) {
         let i = Double(dataInput.readInt16())
@@ -98,6 +102,19 @@ class TCGlyfCompositeDescript: TCGlyfDescript, Codable {
         scale01 = 0.0
         scale10 = 0.0
       }
+    }
+
+    static func ==(lhs: Component, rhs: Component) -> Bool {
+      return
+        lhs.glyphIndex == rhs.glyphIndex &&
+          lhs.xscale == rhs.xscale &&
+          lhs.yscale == rhs.yscale &&
+          lhs.scale01 == rhs.scale01 &&
+          lhs.scale10 == rhs.scale10 &&
+          lhs.xtranslate == rhs.xtranslate &&
+          lhs.ytranslate == rhs.ytranslate &&
+          lhs.point1 == rhs.point1 &&
+          lhs.point2 == rhs.point2
     }
   }
 

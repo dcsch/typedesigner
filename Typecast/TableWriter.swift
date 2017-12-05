@@ -37,6 +37,7 @@ class TableWriter {
     var data = Data()
     data.append(UInt16(1))  // Version 1.0
     data.append(UInt16(0))
+    data.append(UInt32(0))  // Check sum adjustment, to be computed at end of encode
     data.append(UInt32(table.fontRevision))
     data.append(magicNumber)
     data.append(UInt16(table.flags))
@@ -210,13 +211,25 @@ class TableWriter {
     return data
   }
 
-  // loca
+  class func writeLoca(offsets: [Int], shortEntries: Bool) -> Data {
+    var data = Data()
+    for offset in offsets {
+      assert(offset % 2 == 0, "glyf offsets are misaligned")
+      if shortEntries {
+        data.append(UInt16(offset / 2))
+      } else {
+        data.append(UInt32(offset))
+      }
+    }
+    return data
+  }
 
   class func write(table: TCGlyfTable) -> (Data, [Int]) {
     var data = Data()
     var offsets = [Int]()
     for descript in table.descript {
       offsets.append(data.count)
+      os_log("loca offset: %d", data.count)
       if let simpleDescript = descript as? TCGlyfSimpleDescript {
         data.append(Int16(simpleDescript.endPtsOfContours.count))
         data.append(Int16(simpleDescript.xMin))
@@ -354,13 +367,135 @@ class TableWriter {
         data.append(Int16(compositeDescript.yMin))
         data.append(Int16(compositeDescript.xMax))
         data.append(Int16(compositeDescript.yMax))
+
+        for component in compositeDescript.components {
+
+          // Translation flags
+          var flags = TCGlyfCompositeDescript.Component.Flags.argsAreXYValues
+          if component.xtranslate < Int8.min || component.xtranslate > Int8.max ||
+            component.ytranslate < Int8.min || component.ytranslate > Int8.max {
+            flags.insert(.arg1And2AreWords)
+          }
+
+          // Scale flags
+          if component.scale01 == 0 && component.scale10 == 0 {
+            if component.xscale == component.yscale {
+              flags.insert(.weHaveAScale)
+            } else {
+              flags.insert(.weHaveAnXAndYScale)
+            }
+          } else {
+            flags.insert(.weHaveATwoByTwo)
+          }
+
+          if component != compositeDescript.components.last! {
+            flags.insert(.moreComponents)
+          } else if !compositeDescript.instructions.isEmpty {
+            flags.insert(.weHaveInstructions)
+          }
+
+          data.append(flags.rawValue)
+          data.append(UInt16(component.glyphIndex))
+          if flags.contains(.arg1And2AreWords) {
+            data.append(Int16(component.xtranslate))
+            data.append(Int16(component.ytranslate))
+          } else {
+            data.append(Int8(component.xtranslate))
+            data.append(Int8(component.ytranslate))
+          }
+          if flags.contains(.weHaveAScale) {
+            let scale = component.xscale * Double(0x4000)
+            data.append(Int16(scale))
+          } else if flags.contains(.weHaveAnXAndYScale) {
+            let xscale = component.xscale * Double(0x4000)
+            let yscale = component.yscale * Double(0x4000)
+            data.append(Int16(xscale))
+            data.append(Int16(yscale))
+          } else if flags.contains(.weHaveATwoByTwo) {
+            let xscale = component.xscale * Double(0x4000)
+            let scale01 = component.scale01 * Double(0x4000)
+            let scale10 = component.scale10 * Double(0x4000)
+            let yscale = component.yscale * Double(0x4000)
+            data.append(Int16(xscale))
+            data.append(Int16(scale01))
+            data.append(Int16(scale10))
+            data.append(Int16(yscale))
+          }
+        }
+
+        if !compositeDescript.instructions.isEmpty {
+          data.append(UInt16(compositeDescript.instructions.count))
+          data.append(contentsOf: compositeDescript.instructions)
+        }
+      }
+
+      // Do we need to pad to 16-bit alignment?
+      if data.count % 2 == 1 {
+        data.append(UInt8(0))
       }
     }
     offsets.append(data.count)
     return (data, offsets)
   }
 
-  // name
+  class func write(table: TCNameTable) -> Data {
+    var stringData = Data()
+    var lengthAndOffsets = [(Int, Int)]()
+    var offset = 0
+    for record in table.nameRecords {
+      if record.platformID == .macintosh || record.platformID == .iso {
+
+        // Encode as ASCII
+        var codeUnits: [Unicode.ASCII.CodeUnit] = []
+        let sink = { codeUnits.append($0) }
+        _ = transcode(record.record.utf16.makeIterator(),
+                      from: Unicode.UTF16.self, to: Unicode.ASCII.self,
+                      stoppingOnError: false, into: sink)
+        stringData.append(contentsOf: codeUnits)
+        let length = codeUnits.count
+        lengthAndOffsets.append((length, offset))
+        offset += length
+      } else if record.platformID == .microsoft {
+
+        // Encode as little-endian UTF-16
+        let utf16 = record.record.utf16
+        let littlies = utf16.map({ return $0.littleEndian })
+        for littlie in littlies {
+          stringData.append(littlie)
+        }
+        let length = 2 * littlies.count
+        lengthAndOffsets.append((length, offset))
+        offset += length
+      } else if record.platformID == .unicode {
+
+        // Encode as big-endian UTF-16
+        let utf16 = record.record.utf16
+        let biggies = utf16.map({ return $0.bigEndian })
+        for biggie in biggies {
+          stringData.append(biggie)
+        }
+        let length = 2 * biggies.count
+        lengthAndOffsets.append((length, offset))
+        offset += length
+      }
+    }
+
+    var data = Data()
+    data.append(UInt16(0))  // TODO Support format 1
+    data.append(UInt16(table.nameRecords.count))
+    data.append(UInt16(12 * table.nameRecords.count + 6)) // This is only correct for format 0
+    for (record, (length, offset)) in zip(table.nameRecords, lengthAndOffsets) {
+      data.append(UInt16(record.platformID.rawValue))
+      data.append(UInt16(record.encodingID))
+      data.append(UInt16(record.languageID))
+      data.append(UInt16(record.nameID.rawValue))
+      data.append(UInt16(length))
+      data.append(UInt16(offset))
+    }
+    data.append(stringData)
+    return data
+  }
+
   // post
 }
 

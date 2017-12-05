@@ -110,7 +110,7 @@ class FontDocument: NSDocument {
 
       // Offset is calculated from the beginning of the file, including the
       // table directory, so calculate the final size of the directory
-      let tableCount = 2
+      let tableCount = 9
       var offset = 16 * tableCount + 12
 
       font.headTable.checkSumAdjustment = 0
@@ -133,6 +133,33 @@ class FontDocument: NSDocument {
                                                       length: hheaData.count))
       offset += hheaData.count
 
+      let maxpData = TableWriter.write(table: font.maxpTable)
+      tablesAsData.append(maxpData)
+
+      directory.entries.append(TCTableDirectory.Entry(tag: TCMaxpTable.tag.rawValue,
+                                                      checksum: maxpData.checksum,
+                                                      offset: offset,
+                                                      length: maxpData.count))
+      offset += maxpData.count
+
+      let os2Data = TableWriter.write(table: font.os2Table)
+      tablesAsData.append(os2Data)
+
+      directory.entries.append(TCTableDirectory.Entry(tag: TCOs2Table.tag.rawValue,
+                                                      checksum: os2Data.checksum,
+                                                      offset: offset,
+                                                      length: os2Data.count))
+      offset += os2Data.count
+
+      let hmtxData = TableWriter.write(table: font.hmtxTable)
+      tablesAsData.append(hmtxData)
+
+      directory.entries.append(TCTableDirectory.Entry(tag: TCHmtxTable.tag.rawValue,
+                                                      checksum: hmtxData.checksum,
+                                                      offset: offset,
+                                                      length: hmtxData.count))
+      offset += hmtxData.count
+
       let cmapData = TableWriter.write(table: font.cmapTable)
       tablesAsData.append(cmapData)
 
@@ -144,8 +171,34 @@ class FontDocument: NSDocument {
 
       if let ttFont = font as? TTFont {
         let (glyfData, locaOffsets) = TableWriter.write(table: ttFont.glyfTable)
+        let locaData = TableWriter.writeLoca(offsets: locaOffsets,
+                                             shortEntries: font.headTable.indexToLocFormat == 0)
+
+        tablesAsData.append(locaData)
+
+        directory.entries.append(TCTableDirectory.Entry(tag: TCLocaTable.tag.rawValue,
+                                                        checksum: locaData.checksum,
+                                                        offset: offset,
+                                                        length: locaData.count))
+        offset += locaData.count
+
         tablesAsData.append(glyfData)
+
+        directory.entries.append(TCTableDirectory.Entry(tag: TCGlyfTable.tag.rawValue,
+                                                        checksum: glyfData.checksum,
+                                                        offset: offset,
+                                                        length: glyfData.count))
+        offset += glyfData.count
       }
+
+      let nameData = TableWriter.write(table: font.nameTable)
+      tablesAsData.append(nameData)
+
+      directory.entries.append(TCTableDirectory.Entry(tag: TCNameTable.tag.rawValue,
+                                                      checksum: nameData.checksum,
+                                                      offset: offset,
+                                                      length: nameData.count))
+      offset += nameData.count
 
       var fontData = Data()
       for tableData in tablesAsData {
@@ -159,6 +212,7 @@ class FontDocument: NSDocument {
       fontData.replaceSubrange(8..<12, with: &bigEndian, count: 4)
 
       var fileData = TableWriter.write(directory: directory)
+      os_log("fileData count: %d", fileData.count)
       fileData.append(fontData)
       try fileData.write(to: url, options: .atomicWrite)
     }
