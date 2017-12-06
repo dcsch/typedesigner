@@ -304,7 +304,11 @@ class TableWriter {
         var repeats = [Int]()
         var lastValue: UInt8 = 255
         var rep = 0
-        for unencodedFlag in unencodedFlags {
+        for (index, unencodedFlag) in unencodedFlags.enumerated() {
+          if index == 0 {
+            lastValue = unencodedFlag.rawValue
+            continue
+          }
           if unencodedFlag.rawValue == lastValue {
             rep += 1
           } else if unencodedFlag.rawValue != lastValue && rep == 1 {
@@ -317,7 +321,10 @@ class TableWriter {
           }
           lastValue = unencodedFlag.rawValue
         }
-        if rep > 0 {
+        if rep == 1 {
+          repeats.append(0)
+          repeats.append(0)
+        } else {
           repeats.append(rep)
         }
 
@@ -461,7 +468,8 @@ class TableWriter {
         let utf16 = record.record.utf16
         let littlies = utf16.map({ return $0.littleEndian })
         for littlie in littlies {
-          stringData.append(littlie)
+          var mutable = littlie
+          stringData.append(UnsafeBufferPointer(start: &mutable, count: 1))
         }
         let length = 2 * littlies.count
         lengthAndOffsets.append((length, offset))
@@ -472,7 +480,8 @@ class TableWriter {
         let utf16 = record.record.utf16
         let biggies = utf16.map({ return $0.bigEndian })
         for biggie in biggies {
-          stringData.append(biggie)
+          var mutable = biggie
+          stringData.append(UnsafeBufferPointer(start: &mutable, count: 1))
         }
         let length = 2 * biggies.count
         lengthAndOffsets.append((length, offset))
@@ -496,7 +505,33 @@ class TableWriter {
     return data
   }
 
-  // post
+  class func write(table: TCPostTable) -> Data {
+    var data = Data()
+    data.append(UInt32(0x00020000))
+    data.append(UInt32(table.italicAngle))
+    data.append(Int16(table.underlinePosition))
+    data.append(Int16(table.underlineThickness))
+    data.append(UInt32(table.isFixedPitch))
+    data.append(UInt32(table.minMemType42))
+    data.append(UInt32(table.maxMemType42))
+    data.append(UInt32(table.minMemType1))
+    data.append(UInt32(table.maxMemType1))
+
+    data.append(UInt16(table.numGlyphs))
+    for index in table.glyphNameIndex {
+      data.append(UInt16(index))
+    }
+    for name in table.psGlyphName {
+      var codeUnits: [Unicode.ASCII.CodeUnit] = []
+      let sink = { codeUnits.append($0) }
+      _ = transcode(name.utf16.makeIterator(),
+                    from: Unicode.UTF16.self, to: Unicode.ASCII.self,
+                    stoppingOnError: false, into: sink)
+      data.append(UInt8(codeUnits.count))
+      data.append(contentsOf: codeUnits)
+    }
+    return data
+  }
 }
 
 extension Data {

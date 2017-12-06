@@ -110,7 +110,7 @@ class FontDocument: NSDocument {
 
       // Offset is calculated from the beginning of the file, including the
       // table directory, so calculate the final size of the directory
-      let tableCount = 9
+      let tableCount = 10
       var offset = 16 * tableCount + 12
 
       font.headTable.checkSumAdjustment = 0
@@ -199,6 +199,15 @@ class FontDocument: NSDocument {
                                                       offset: offset,
                                                       length: nameData.count))
       offset += nameData.count
+
+      let postData = TableWriter.write(table: font.postTable)
+      tablesAsData.append(postData)
+
+      directory.entries.append(TCTableDirectory.Entry(tag: TCPostTable.tag.rawValue,
+                                                      checksum: postData.checksum,
+                                                      offset: offset,
+                                                      length: postData.count))
+      offset += postData.count
 
       var fontData = Data()
       for tableData in tablesAsData {
