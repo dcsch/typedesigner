@@ -77,8 +77,8 @@ class TCTableDirectory: CustomStringConvertible {
 
   func calculateHeader() {
     let maxPow2 = Int(floor(log2(Double(entries.count))))
-    searchRange = UInt16(16 * maxPow2)
-    entrySelector = UInt16(log2(Double(maxPow2)))
+    searchRange = UInt16(16 * (2 << (maxPow2 - 1)))
+    entrySelector = UInt16(log2(Double(2 << (maxPow2 - 1))))
     rangeShift = UInt16(16 * entries.count) - searchRange
   }
 

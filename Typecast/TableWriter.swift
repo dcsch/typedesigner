@@ -17,18 +17,22 @@ class TableWriter {
 //  }
 
   class func write(directory: TCTableDirectory) -> Data {
+    directory.calculateHeader()
+    let entries = directory.entries.sorted { $0.tag < $1.tag }
     var data = Data()
     data.append(UInt32(directory.version))
     data.append(UInt16(directory.entries.count))
     data.append(UInt16(directory.searchRange))
     data.append(UInt16(directory.entrySelector))
     data.append(UInt16(directory.rangeShift))
-    for entry in directory.entries {
+    for entry in entries {
+      assert(entry.offset % 4 == 0, "\(entry.tagAsString) offset is not a multiple of 4")
       data.append(UInt32(entry.tag))
       data.append(UInt32(entry.checksum))
       data.append(UInt32(entry.offset))
       data.append(UInt32(entry.length))
     }
+    data.pad32()
     return data
   }
 
@@ -54,6 +58,7 @@ class TableWriter {
     data.append(Int16(table.indexToLocFormat))
     data.append(Int16(table.glyphDataFormat))
     data.append(UInt16(0))
+    data.pad32()
     return data
   }
 
@@ -77,6 +82,7 @@ class TableWriter {
     data.append(Int16(0))
     data.append(Int16(table.metricDataFormat))
     data.append(UInt16(table.numberOfHMetrics))
+    data.pad32()
     return data
   }
 
@@ -99,6 +105,7 @@ class TableWriter {
       data.append(UInt16(table.maxComponentElements))
       data.append(UInt16(table.maxComponentDepth))
     }
+    data.pad32()
     return data
   }
 
@@ -152,6 +159,7 @@ class TableWriter {
     data.append(table.usMaxContext)
     data.append(table.usLowerOpticalPointSize)
     data.append(table.usUpperOpticalPointSize)
+    data.pad32()
     return data
   }
 
@@ -164,6 +172,7 @@ class TableWriter {
     for lsb in table.leftSideBearings {
       data.append(Int16(lsb))
     }
+    data.pad32()
     return data
   }
 
@@ -208,6 +217,7 @@ class TableWriter {
     for mappingData in mappingsData {
       data.append(mappingData)
     }
+    data.pad32()
     return data
   }
 
@@ -221,6 +231,7 @@ class TableWriter {
         data.append(UInt32(offset))
       }
     }
+    data.pad32()
     return data
   }
 
@@ -442,6 +453,7 @@ class TableWriter {
       }
     }
     offsets.append(data.count)
+    data.pad32()
     return (data, offsets)
   }
 
@@ -502,6 +514,7 @@ class TableWriter {
       data.append(UInt16(offset))
     }
     data.append(stringData)
+    data.pad32()
     return data
   }
 
@@ -530,6 +543,7 @@ class TableWriter {
       data.append(UInt8(codeUnits.count))
       data.append(contentsOf: codeUnits)
     }
+    data.pad32()
     return data
   }
 }
@@ -539,6 +553,15 @@ extension Data {
   mutating func append<T: FixedWidthInteger>(_ integer: T) {
     var bigEndian = integer.bigEndian
     append(UnsafeBufferPointer(start: &bigEndian, count: 1))
+  }
+
+  mutating func pad32() {
+    let paddingCount = 4 - count % 4
+    if paddingCount < 4 {
+      for _ in 0..<paddingCount {
+        append(UInt8(0))
+      }
+    }
   }
 
   var checksum: UInt32 {
