@@ -100,6 +100,11 @@ class TCCmapFormat4: TCCmapFormat {
     }
     ranges.append(beginCharCode...lastCharCode)
 
+    // Make sure we end with 0xffff
+    if lastCharCode != 0xffff {
+      ranges.append(0xffff...0xffff)
+    }
+
     // Find ranges with contiguous glyph ids
     // (this could probably be merged into the loop above)
     var deltas = [Int]()
@@ -109,7 +114,7 @@ class TCCmapFormat4: TCCmapFormat {
       var lastGlyphCode = -1
       var contiguous = true
       for charCode in range {
-        let glyphCode = mapping.glyphCodes[charCode]!
+        let glyphCode = mapping.glyphCodes[charCode] ?? 0
         if lastGlyphCode == -1 {
           lastGlyphCode = glyphCode
           continue
@@ -121,7 +126,7 @@ class TCCmapFormat4: TCCmapFormat {
         lastGlyphCode = glyphCode
       }
       if contiguous {
-        let firstGlyphCode = mapping.glyphCodes[range.lowerBound]!
+        let firstGlyphCode = mapping.glyphCodes[range.lowerBound] ?? 0
         let delta = firstGlyphCode - range.lowerBound
 
         // Spelling this out for testing purposes
