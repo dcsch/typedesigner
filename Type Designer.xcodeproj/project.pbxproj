@@ -476,7 +476,7 @@
 				03D07AA61F4F80340070F49D /* Resources */,
 			);
 			name = "Type Designer";
-			path = Typecast;
+			path = TypeDesigner;
 			sourceTree = "<group>";
 		};
 		6373B1B6166A11B5007EC53F /* Supporting Files */ = {
@@ -1013,13 +1013,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9MWCHY26A8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Typecast/Type-Designer-Prefix.pch";
-				INFOPLIST_FILE = Typecast/Info.plist;
+				GCC_PREFIX_HEADER = "TypeDesigner/Type-Designer-Prefix.pch";
+				INFOPLIST_FILE = TypeDesigner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.typista.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Type Designer";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Typecast/Type Designer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TypeDesigner/Type Designer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -1038,13 +1038,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9MWCHY26A8;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Typecast/Type-Designer-Prefix.pch";
-				INFOPLIST_FILE = Typecast/Info.plist;
+				GCC_PREFIX_HEADER = "TypeDesigner/Type-Designer-Prefix.pch";
+				INFOPLIST_FILE = TypeDesigner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.typista.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Type Designer";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Typecast/Type Designer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TypeDesigner/Type Designer-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
