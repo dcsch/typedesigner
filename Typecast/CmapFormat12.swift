@@ -1,5 +1,5 @@
 //
-//  TCCmapFormat12.swift
+//  CmapFormat12.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/10/17.
@@ -12,7 +12,7 @@ import IOUtils
 /**
  Segmented coverage.
  */
-class TCCmapFormat12: TCCmapFormat {
+class CmapFormat12: CmapFormat {
   let length: Int
   let language: Int
   let startGlyphIDs: [Int]

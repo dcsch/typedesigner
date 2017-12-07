@@ -10,14 +10,14 @@ import Foundation
 import IOUtils
 import os.log
 
-class TCCmapTable: TCTable, Codable {
+class CmapTable: Table, Codable {
 
   class IndexEntry: Codable {
-    let platformID: TCID.Platform
+    let platformID: ID.Platform
     let encodingID: Encoding
     let mappingIndex: Int
 
-    init(platformID: TCID.Platform, encodingID: Encoding, mappingIndex: Int) {
+    init(platformID: ID.Platform, encodingID: Encoding, mappingIndex: Int) {
       self.platformID = platformID
       self.encodingID = encodingID
       self.mappingIndex = mappingIndex
@@ -31,7 +31,7 @@ class TCCmapTable: TCTable, Codable {
 
     required init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      platformID = try container.decode(TCID.Platform.self, forKey: .platformID)
+      platformID = try container.decode(ID.Platform.self, forKey: .platformID)
       let encodingInt = try container.decode(Int.self, forKey: .encodingID)
       encodingID = platformID.encoding(id: encodingInt)!
       mappingIndex = try container.decode(Int.self, forKey: .mappingIndex)
@@ -46,15 +46,15 @@ class TCCmapTable: TCTable, Codable {
   }
 
   class OffsetIndexEntry: CustomStringConvertible {
-    let platformID: TCID.Platform
+    let platformID: ID.Platform
     let encodingID: Encoding
     let offset: Int
-    var format: TCCmapFormat?
+    var format: CmapFormat?
 
     init(dataInput: TCDataInput) {
-      platformID = TCID.Platform(rawValue: Int(dataInput.readUInt16())) ?? .unknown
+      platformID = ID.Platform(rawValue: Int(dataInput.readUInt16())) ?? .unknown
       let encodingIDRawValue = Int(dataInput.readUInt16())
-      encodingID = platformID.encoding(id: encodingIDRawValue) ?? TCID.CustomEncoding.unknown
+      encodingID = platformID.encoding(id: encodingIDRawValue) ?? ID.CustomEncoding.unknown
       offset = Int(dataInput.readUInt32())
     }
 
@@ -88,7 +88,7 @@ class TCCmapTable: TCTable, Codable {
     }
 
     // Sort into their order of offset
-    offsetEntries.sort { (lhs: TCCmapTable.OffsetIndexEntry, rhs: TCCmapTable.OffsetIndexEntry) -> Bool in
+    offsetEntries.sort { (lhs: CmapTable.OffsetIndexEntry, rhs: CmapTable.OffsetIndexEntry) -> Bool in
       return lhs.offset < rhs.offset
     }
 
@@ -108,7 +108,7 @@ class TCCmapTable: TCTable, Codable {
 
     // Get each of the tables
     lastOffset = 0
-    var lastFormat: TCCmapFormat? = nil
+    var lastFormat: CmapFormat? = nil
     for offsetEntry in offsetEntries {
       if offsetEntry.offset == lastOffset {
         // This is a multiple entry
@@ -118,10 +118,10 @@ class TCCmapTable: TCTable, Codable {
         _ = dataInput.read(length: offsetEntry.offset - bytesRead)
       } else if offsetEntry.offset != bytesRead {
         // Something is amiss
-        throw TCTableError.badOffset(message: "IndexEntry offset is bad")
+        throw TableError.badOffset(message: "IndexEntry offset is bad")
       }
       let formatType = Int(dataInput.readUInt16())
-      lastFormat = TCCmapFormatFactory.cmapFormat(type: formatType, dataInput: dataInput)
+      lastFormat = CmapFormatFactory.cmapFormat(type: formatType, dataInput: dataInput)
       lastOffset = offsetEntry.offset
       offsetEntry.format = lastFormat
       bytesRead += (lastFormat?.length)!
@@ -133,7 +133,7 @@ class TCCmapTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .cmap
     }

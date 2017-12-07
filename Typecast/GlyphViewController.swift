@@ -59,19 +59,19 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
 
       if let ttFont = font as? TTFont {
         let descript = ttFont.glyfTable.descript[glyphIndex]
-        if let simpleDescript = descript as? TCGlyfSimpleDescript {
+        if let simpleDescript = descript as? GlyfSimpleDescript {
 
           // Since this is a simple glyph, append the single glyph path, along with
           // the identity matrix for "no transformation"
           glyphView?.transforms.append(CGAffineTransform.identity)
           glyphView?.glyphPaths.append(GlyphPathFactory.buildPath(with: simpleDescript))
-        } else if let compositeDescript = descript as? TCGlyfCompositeDescript {
+        } else if let compositeDescript = descript as? GlyfCompositeDescript {
 
           // Add a glyph path for each component of the composite glyph, building a
           // transformation matrix for each part
           for component in compositeDescript.components {
             let componentGlyphIndex = component.glyphIndex
-            if let componentDescript = ttFont.glyfTable.descript[componentGlyphIndex] as? TCGlyfSimpleDescript {
+            if let componentDescript = ttFont.glyfTable.descript[componentGlyphIndex] as? GlyfSimpleDescript {
               let transform = CGAffineTransform(a: CGFloat(component.xscale), b: CGFloat(component.scale01),
                                                 c: CGFloat(component.scale10), d: CGFloat(component.yscale),
                                                 tx: CGFloat(component.xtranslate), ty: CGFloat(component.ytranslate))

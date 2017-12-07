@@ -105,7 +105,7 @@ class FontDocument: NSDocument {
   func buildFont(url: URL) throws {
 
     if let font = self.font {
-      let directory = TCTableDirectory(isCFF: false)
+      let directory = TableDirectory(isCFF: false)
       var tablesAsData = [Data]()
 
       // Offset is calculated from the beginning of the file, including the
@@ -118,55 +118,55 @@ class FontDocument: NSDocument {
       let headData = TableWriter.write(table: font.headTable)
       tablesAsData.append(headData)
 
-      directory.entries.append(TCTableDirectory.Entry(tag: TCHeadTable.tag.rawValue,
-                                                      checksum: headData.checksum,
-                                                      offset: offset,
-                                                      length: headData.count))
+      directory.entries.append(TableDirectory.Entry(tag: HeadTable.tag.rawValue,
+                                                    checksum: headData.checksum,
+                                                    offset: offset,
+                                                    length: headData.count))
       offset += headData.count
 
       let hheaData = TableWriter.write(table: font.hheaTable)
       tablesAsData.append(hheaData)
 
-      directory.entries.append(TCTableDirectory.Entry(tag: TCHheaTable.tag.rawValue,
-                                                      checksum: hheaData.checksum,
-                                                      offset: offset,
-                                                      length: hheaData.count))
+      directory.entries.append(TableDirectory.Entry(tag: HheaTable.tag.rawValue,
+                                                    checksum: hheaData.checksum,
+                                                    offset: offset,
+                                                    length: hheaData.count))
       offset += hheaData.count
 
       let maxpData = TableWriter.write(table: font.maxpTable)
       tablesAsData.append(maxpData)
 
-      directory.entries.append(TCTableDirectory.Entry(tag: TCMaxpTable.tag.rawValue,
-                                                      checksum: maxpData.checksum,
-                                                      offset: offset,
-                                                      length: maxpData.count))
+      directory.entries.append(TableDirectory.Entry(tag: MaxpTable.tag.rawValue,
+                                                    checksum: maxpData.checksum,
+                                                    offset: offset,
+                                                    length: maxpData.count))
       offset += maxpData.count
 
       let os2Data = TableWriter.write(table: font.os2Table)
       tablesAsData.append(os2Data)
 
-      directory.entries.append(TCTableDirectory.Entry(tag: TCOs2Table.tag.rawValue,
-                                                      checksum: os2Data.checksum,
-                                                      offset: offset,
-                                                      length: os2Data.count))
+      directory.entries.append(TableDirectory.Entry(tag: Os2Table.tag.rawValue,
+                                                    checksum: os2Data.checksum,
+                                                    offset: offset,
+                                                    length: os2Data.count))
       offset += os2Data.count
 
       let hmtxData = TableWriter.write(table: font.hmtxTable)
       tablesAsData.append(hmtxData)
 
-      directory.entries.append(TCTableDirectory.Entry(tag: TCHmtxTable.tag.rawValue,
-                                                      checksum: hmtxData.checksum,
-                                                      offset: offset,
-                                                      length: hmtxData.count))
+      directory.entries.append(TableDirectory.Entry(tag: HmtxTable.tag.rawValue,
+                                                    checksum: hmtxData.checksum,
+                                                    offset: offset,
+                                                    length: hmtxData.count))
       offset += hmtxData.count
 
       let cmapData = TableWriter.write(table: font.cmapTable)
       tablesAsData.append(cmapData)
 
-      directory.entries.append(TCTableDirectory.Entry(tag: TCCmapTable.tag.rawValue,
-                                                      checksum: cmapData.checksum,
-                                                      offset: offset,
-                                                      length: cmapData.count))
+      directory.entries.append(TableDirectory.Entry(tag: CmapTable.tag.rawValue,
+                                                    checksum: cmapData.checksum,
+                                                    offset: offset,
+                                                    length: cmapData.count))
       offset += cmapData.count
 
       if let ttFont = font as? TTFont {
@@ -176,37 +176,37 @@ class FontDocument: NSDocument {
 
         tablesAsData.append(locaData)
 
-        directory.entries.append(TCTableDirectory.Entry(tag: TCLocaTable.tag.rawValue,
-                                                        checksum: locaData.checksum,
-                                                        offset: offset,
-                                                        length: locaData.count))
+        directory.entries.append(TableDirectory.Entry(tag: LocaTable.tag.rawValue,
+                                                      checksum: locaData.checksum,
+                                                      offset: offset,
+                                                      length: locaData.count))
         offset += locaData.count
 
         tablesAsData.append(glyfData)
 
-        directory.entries.append(TCTableDirectory.Entry(tag: TCGlyfTable.tag.rawValue,
-                                                        checksum: glyfData.checksum,
-                                                        offset: offset,
-                                                        length: glyfData.count))
+        directory.entries.append(TableDirectory.Entry(tag: GlyfTable.tag.rawValue,
+                                                      checksum: glyfData.checksum,
+                                                      offset: offset,
+                                                      length: glyfData.count))
         offset += glyfData.count
       }
 
       let nameData = TableWriter.write(table: font.nameTable)
       tablesAsData.append(nameData)
 
-      directory.entries.append(TCTableDirectory.Entry(tag: TCNameTable.tag.rawValue,
-                                                      checksum: nameData.checksum,
-                                                      offset: offset,
-                                                      length: nameData.count))
+      directory.entries.append(TableDirectory.Entry(tag: NameTable.tag.rawValue,
+                                                    checksum: nameData.checksum,
+                                                    offset: offset,
+                                                    length: nameData.count))
       offset += nameData.count
 
       let postData = TableWriter.write(table: font.postTable)
       tablesAsData.append(postData)
 
-      directory.entries.append(TCTableDirectory.Entry(tag: TCPostTable.tag.rawValue,
-                                                      checksum: postData.checksum,
-                                                      offset: offset,
-                                                      length: postData.count))
+      directory.entries.append(TableDirectory.Entry(tag: PostTable.tag.rawValue,
+                                                    checksum: postData.checksum,
+                                                    offset: offset,
+                                                    length: postData.count))
       offset += postData.count
 
       var fontData = Data()

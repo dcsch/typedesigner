@@ -1,5 +1,5 @@
 //
-//  TCHheaTable.swift
+//  HheaTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/14/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCHheaTable: TCTable, Codable {
+class HheaTable: Table, Codable {
   var majorVersion: Int
   var minorVersion: Int
   var ascender: Int
@@ -65,7 +65,7 @@ class TCHheaTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .hhea
     }

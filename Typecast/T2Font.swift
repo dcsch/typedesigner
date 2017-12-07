@@ -13,17 +13,17 @@ import IOUtils
  An OpenType font with Type 2 (CFF) outlines.
  */
 class T2Font: Font {
-  var cffTable: TCCffTable
+  var cffTable: CffTable
 
   override init(data: Data, tablesOrigin: Int) throws {
 
     // Load the table directory
     let dataInput = TCDataInput(data: data)
-    let tableDirectory = TCTableDirectory(dataInput: dataInput)
+    let tableDirectory = TableDirectory(dataInput: dataInput)
 
     let tableData = try Font.tableData(directory: tableDirectory, tag: .CFF,
                                        data: data, tablesOrigin: tablesOrigin)
-    cffTable = TCCffTable(data: tableData)
+    cffTable = CffTable(data: tableData)
 
     try super.init(data: data, tablesOrigin: tablesOrigin)
   }
@@ -53,7 +53,7 @@ class T2Font: Font {
   required init(from decoder: Decoder) throws {
 //    let container = try decoder.container(keyedBy: T2CodingKeys.self)
 //    cffTable = try container.decode(TCCffTable.self, forKey: .cff)
-    cffTable = TCCffTable(data: Data())
+    cffTable = CffTable(data: Data())
     try super.init(from: decoder)
   }
 

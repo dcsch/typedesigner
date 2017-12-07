@@ -1,5 +1,5 @@
 //
-//  TCCmapFormat0.swift
+//  CmapFormat0.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/6/17.
@@ -12,7 +12,7 @@ import IOUtils
 /**
  Simple Macintosh cmap table, mapping only the ASCII character set to glyphs.
  */
-class TCCmapFormat0: TCCmapFormat {
+class CmapFormat0: CmapFormat {
   let length: Int
   let language: Int
   let glyphIdArray: [Int]

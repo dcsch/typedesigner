@@ -1,5 +1,5 @@
 //
-//  TCVmtxTable.swift
+//  VmtxTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/18/17.
@@ -12,12 +12,12 @@ import IOUtils
 /**
  Vertical Metrics
  */
-class TCVmtxTable: TCTable, Codable {
+class VmtxTable: Table, Codable {
   var vMetrics: [UInt32] = []
   var topSideBearings: [Int16] = []
   let dataCount: Int
 
-  init(data: Data, vheaTable: TCVheaTable, maxpTable: TCMaxpTable) {
+  init(data: Data, vheaTable: VheaTable, maxpTable: MaxpTable) {
     dataCount = data.count
     let dataInput = TCDataInput(data: data)
     for _ in 0..<vheaTable.numberOfLongVerMetrics {
@@ -55,7 +55,7 @@ class TCVmtxTable: TCTable, Codable {
     }
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .vmtx
     }

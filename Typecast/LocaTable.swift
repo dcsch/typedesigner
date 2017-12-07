@@ -1,5 +1,5 @@
 //
-//  TCLocaTable.swift
+//  LocaTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/6/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCLocaTable: TCTable {
+class LocaTable: Table {
   let offsets: [Int]
 
   init(data: Data, shortEntries: Bool, numGlyphs: Int) {
@@ -28,7 +28,7 @@ class TCLocaTable: TCTable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .loca
     }

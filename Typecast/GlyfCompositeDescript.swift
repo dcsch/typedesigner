@@ -1,5 +1,5 @@
 //
-//  TCGlyfCompositeDescript.swift
+//  GlyfCompositeDescript.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/21/17.
@@ -14,7 +14,7 @@ import IOUtils
  or more simple glyphs, usually with some sort of transformation applied to
  each.
  */
-class TCGlyfCompositeDescript: TCGlyfDescript, Codable {
+class GlyfCompositeDescript: GlyfDescript, Codable {
 
   class Component: Equatable, Codable {
 

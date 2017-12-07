@@ -1,5 +1,5 @@
 //
-//  TCCvtTable.swift
+//  CvtTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/18/17.
@@ -12,7 +12,7 @@ import IOUtils
 /**
  The Control Value Table.
  */
-class TCCvtTable: TCTable, Codable {
+class CvtTable: Table, Codable {
   var values = [Int]()
 
   init(data: Data) {
@@ -25,7 +25,7 @@ class TCCvtTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .cvt
     }

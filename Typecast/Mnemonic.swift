@@ -1,5 +1,5 @@
 //
-//  TCMnemonic.swift
+//  Mnemonic.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/7/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TCMnemonic: UInt8 {
+enum Mnemonic: UInt8 {
   case SVTCA = 0x00  // [a]
   case SPVTCA = 0x02 // [a]
   case SFVTCA = 0x04 // [a]

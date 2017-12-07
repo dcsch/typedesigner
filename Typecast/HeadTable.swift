@@ -1,5 +1,5 @@
 //
-//  TCHeadTable.swift
+//  HeadTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/13/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCHeadTable: TCTable, Codable {
+class HeadTable: Table, Codable {
   var majorVersion: Int
   var minorVersion: Int
   var fontRevision: UInt32
@@ -66,9 +66,9 @@ class TCHeadTable: TCTable, Codable {
     flags = dataInput.readUInt16()
     unitsPerEm = Int(dataInput.readUInt16())
     let createdSeconds = TimeInterval(dataInput.readUInt64())
-    created = Date(timeInterval: createdSeconds, since: TCHeadTable.epoch)
+    created = Date(timeInterval: createdSeconds, since: HeadTable.epoch)
     let modifiedSeconds = TimeInterval(dataInput.readUInt64())
-    modified = Date(timeInterval: modifiedSeconds, since: TCHeadTable.epoch)
+    modified = Date(timeInterval: modifiedSeconds, since: HeadTable.epoch)
     xMin = Int(dataInput.readInt16())
     yMin = Int(dataInput.readInt16())
     xMax = Int(dataInput.readInt16())
@@ -81,7 +81,7 @@ class TCHeadTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .head
     }

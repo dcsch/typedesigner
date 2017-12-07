@@ -19,28 +19,28 @@ enum FontError: Error {
  */
 class Font: Codable, CustomStringConvertible {
 
-  var headTable: TCHeadTable
-  var hheaTable: TCHheaTable
-  var maxpTable: TCMaxpTable
-  var vheaTable: TCVheaTable?
-  var cmapTable: TCCmapTable
-  var hmtxTable: TCHmtxTable
-  var nameTable: TCNameTable
-  var os2Table: TCOs2Table
-  var postTable: TCPostTable
+  var headTable: HeadTable
+  var hheaTable: HheaTable
+  var maxpTable: MaxpTable
+  var vheaTable: VheaTable?
+  var cmapTable: CmapTable
+  var hmtxTable: HmtxTable
+  var nameTable: NameTable
+  var os2Table: Os2Table
+  var postTable: PostTable
 
   /**
    Create an empty font.
    */
   init() {
-    headTable = TCHeadTable()
-    hheaTable = TCHheaTable()
-    maxpTable = TCMaxpTable()
-    cmapTable = TCCmapTable()
-    hmtxTable = TCHmtxTable()
-    nameTable = TCNameTable()
-    os2Table = TCOs2Table()
-    postTable = TCPostTable()
+    headTable = HeadTable()
+    hheaTable = HheaTable()
+    maxpTable = MaxpTable()
+    cmapTable = CmapTable()
+    hmtxTable = HmtxTable()
+    nameTable = NameTable()
+    os2Table = Os2Table()
+    postTable = PostTable()
   }
 
   /**
@@ -59,7 +59,7 @@ class Font: Codable, CustomStringConvertible {
 
     // Load the table directory
     let dataInput = TCDataInput(data: data)
-    let tableDirectory = TCTableDirectory(dataInput: dataInput)
+    let tableDirectory = TableDirectory(dataInput: dataInput)
     os_log("%@", String(describing: tableDirectory))
 
     // Load some prerequisite tables
@@ -67,46 +67,46 @@ class Font: Codable, CustomStringConvertible {
     // them first)
     var tableData = try Font.tableData(directory: tableDirectory, tag: .head,
                                        data: data, tablesOrigin: tablesOrigin)
-    headTable = TCHeadTable(data: tableData)
+    headTable = HeadTable(data: tableData)
 
     // 'hhea' is required by 'hmtx'
     tableData = try Font.tableData(directory: tableDirectory, tag: .hhea,
                                    data: data, tablesOrigin: tablesOrigin)
-    hheaTable = TCHheaTable(data: tableData)
+    hheaTable = HheaTable(data: tableData)
 
     // 'maxp' is required by 'glyf', 'hmtx', 'loca', and 'vmtx'
     tableData = try Font.tableData(directory: tableDirectory, tag: .maxp,
                                    data: data, tablesOrigin: tablesOrigin)
-    maxpTable = TCMaxpTable(data: tableData)
+    maxpTable = MaxpTable(data: tableData)
 
     if tableDirectory.hasEntry(tag: .vhea) {
       // 'vhea' is required by 'vmtx'
       tableData = try Font.tableData(directory: tableDirectory, tag: .vhea,
                                      data: data, tablesOrigin: tablesOrigin)
-      vheaTable = TCVheaTable(data: tableData)
+      vheaTable = VheaTable(data: tableData)
     }
     // 'post' is required by 'glyf'
     tableData = try Font.tableData(directory: tableDirectory, tag: .post,
                                    data: data, tablesOrigin: tablesOrigin)
-    postTable = TCPostTable(data: tableData)
+    postTable = PostTable(data: tableData)
 
     // Load all the other required tables
     tableData = try Font.tableData(directory: tableDirectory, tag: .cmap,
                                    data: data, tablesOrigin: tablesOrigin)
-    cmapTable = try TCCmapTable(data: tableData)
+    cmapTable = try CmapTable(data: tableData)
     tableData = try Font.tableData(directory: tableDirectory, tag: .hmtx,
                                    data: data, tablesOrigin: tablesOrigin)
-    hmtxTable = TCHmtxTable(data: tableData, hheaTable: hheaTable, maxpTable: maxpTable)
+    hmtxTable = HmtxTable(data: tableData, hheaTable: hheaTable, maxpTable: maxpTable)
     tableData = try Font.tableData(directory: tableDirectory, tag: .name,
                                    data: data, tablesOrigin: tablesOrigin)
-    nameTable = TCNameTable(data: tableData)
+    nameTable = NameTable(data: tableData)
     tableData = try Font.tableData(directory: tableDirectory, tag: .OS_2,
                                    data: data, tablesOrigin: tablesOrigin)
-    os2Table = TCOs2Table(data: tableData)
+    os2Table = Os2Table(data: tableData)
     os_log("%@", String(describing: hmtxTable))
   }
 
-  class func tableData(directory: TCTableDirectory, tag: TCTable.Tag, data: Data, tablesOrigin: Int) throws -> Data {
+  class func tableData(directory: TableDirectory, tag: Table.Tag, data: Data, tablesOrigin: Int) throws -> Data {
     if let entry = directory.entry(tag: tag) {
       let offset = entry.offset - tablesOrigin
       return data.subdata(in: offset..<offset + entry.length)
@@ -134,14 +134,14 @@ class Font: Codable, CustomStringConvertible {
 
   required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    cmapTable = try container.decode(TCCmapTable.self, forKey: .cmap)
-    headTable = try container.decode(TCHeadTable.self, forKey: .head)
-    hheaTable = try container.decode(TCHheaTable.self, forKey: .hhea)
-    hmtxTable = try container.decode(TCHmtxTable.self, forKey: .hmtx)
-    maxpTable = try container.decode(TCMaxpTable.self, forKey: .maxp)
-    nameTable = try container.decode(TCNameTable.self, forKey: .name)
-    os2Table = try container.decode(TCOs2Table.self, forKey: .OS_2)
-    postTable = try container.decode(TCPostTable.self, forKey: .post)
+    cmapTable = try container.decode(CmapTable.self, forKey: .cmap)
+    headTable = try container.decode(HeadTable.self, forKey: .head)
+    hheaTable = try container.decode(HheaTable.self, forKey: .hhea)
+    hmtxTable = try container.decode(HmtxTable.self, forKey: .hmtx)
+    maxpTable = try container.decode(MaxpTable.self, forKey: .maxp)
+    nameTable = try container.decode(NameTable.self, forKey: .name)
+    os2Table = try container.decode(Os2Table.self, forKey: .OS_2)
+    postTable = try container.decode(PostTable.self, forKey: .post)
   }
 
   func encode(to encoder: Encoder) throws {

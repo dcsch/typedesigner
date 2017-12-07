@@ -1,5 +1,5 @@
 //
-//  TCNameTable.swift
+//  NameTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/1/17.
@@ -10,7 +10,7 @@ import Foundation
 import IOUtils
 import os.log
 
-class TCNameTable: TCTable, Codable {
+class NameTable: Table, Codable {
 
   enum NameID: Int, CustomStringConvertible, Codable {
     case unknown = -1
@@ -65,14 +65,14 @@ class TCNameTable: TCTable, Codable {
   }
 
   class Record: Codable {
-    let platformID: TCID.Platform
+    let platformID: ID.Platform
     let encodingID: Int
     let languageID: Int
     let nameID: NameID
     var record: String
 
     init(dataInput: TCDataInput, stringData: Data) {
-      platformID = TCID.Platform(rawValue: Int(dataInput.readInt16())) ?? .unknown
+      platformID = ID.Platform(rawValue: Int(dataInput.readInt16())) ?? .unknown
       encodingID = Int(dataInput.readInt16())
       languageID = Int(dataInput.readInt16())
       nameID = NameID(rawValue: Int(dataInput.readInt16())) ?? .unknown
@@ -126,7 +126,7 @@ class TCNameTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .name
     }

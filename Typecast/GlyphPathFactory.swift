@@ -21,7 +21,7 @@ class GlyphPathFactory {
    - returns: The glyph path
    - parameter glyph: The glyph for which to build a path
    */
-  class func buildPath(with glyph: TCGlyfSimpleDescript) -> CGPath {
+  class func buildPath(with glyph: GlyfSimpleDescript) -> CGPath {
 
     let glyphPath = CGMutablePath()
 
@@ -35,7 +35,7 @@ class GlyphPathFactory {
   }
 
   private class func addContourToPath(path: CGMutablePath,
-                                      glyph: TCGlyfSimpleDescript,
+                                      glyph: GlyfSimpleDescript,
                                       beginPt: Int, endPt: Int) {
     let count = endPt - beginPt + 1  // add one to connect last point to first
     var offset = 0

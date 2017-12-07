@@ -16,7 +16,7 @@ class TableWriter {
 //
 //  }
 
-  class func write(directory: TCTableDirectory) -> Data {
+  class func write(directory: TableDirectory) -> Data {
     directory.calculateHeader()
     let entries = directory.entries.sorted { $0.tag < $1.tag }
     var data = Data()
@@ -36,7 +36,7 @@ class TableWriter {
     return data
   }
 
-  class func write(table: TCHeadTable) -> Data {
+  class func write(table: HeadTable) -> Data {
     let magicNumber: UInt32 = 0x5F0F3CF5
     var data = Data()
     data.append(UInt16(1))  // Version 1.0
@@ -46,8 +46,8 @@ class TableWriter {
     data.append(magicNumber)
     data.append(UInt16(table.flags))
     data.append(UInt16(table.unitsPerEm))
-    data.append(UInt64(table.created.timeIntervalSince(TCHeadTable.epoch)))
-    data.append(UInt64(table.modified.timeIntervalSince(TCHeadTable.epoch)))
+    data.append(UInt64(table.created.timeIntervalSince(HeadTable.epoch)))
+    data.append(UInt64(table.modified.timeIntervalSince(HeadTable.epoch)))
     data.append(Int16(table.xMin))
     data.append(Int16(table.yMin))
     data.append(Int16(table.xMax))
@@ -62,7 +62,7 @@ class TableWriter {
     return data
   }
 
-  class func write(table: TCHheaTable) -> Data {
+  class func write(table: HheaTable) -> Data {
     var data = Data()
     data.append(UInt16(1))  // Version 1.0
     data.append(UInt16(0))
@@ -86,7 +86,7 @@ class TableWriter {
     return data
   }
 
-  class func write(table: TCMaxpTable) -> Data {
+  class func write(table: MaxpTable) -> Data {
     var data = Data()
     data.append(UInt32(table.versionNumber))
     data.append(UInt16(table.numGlyphs))
@@ -109,7 +109,7 @@ class TableWriter {
     return data
   }
 
-  class func write(table: TCOs2Table) -> Data {
+  class func write(table: Os2Table) -> Data {
     var data = Data()
     data.append(UInt16(5))  // Version 5
     data.append(table.xAvgCharWidth)
@@ -163,7 +163,7 @@ class TableWriter {
     return data
   }
 
-  class func write(table: TCHmtxTable) -> Data {
+  class func write(table: HmtxTable) -> Data {
     var data = Data()
     for metric in table.hMetrics {
       data.append(UInt16(metric.advanceWidth))
@@ -176,11 +176,11 @@ class TableWriter {
     return data
   }
 
-  class func write(table: TCCmapTable) -> Data {
+  class func write(table: CmapTable) -> Data {
 
     // Sort mappings in order of platform, endoding, language
     let entries = table.entries.sorted {
-      (lhs: TCCmapTable.IndexEntry, rhs: TCCmapTable.IndexEntry) -> Bool in
+      (lhs: CmapTable.IndexEntry, rhs: CmapTable.IndexEntry) -> Bool in
       if lhs.platformID.rawValue == rhs.platformID.rawValue {
 //        if lhs.encodingID.rawValue == rhs.encodingID.rawValue {
 //          return lhs.language < rhs.language
@@ -197,7 +197,7 @@ class TableWriter {
     var offsets = [Int]()
     var offset = 8 * entries.count + 4
     for mapping in table.mappings {
-      let data = TCCmapFormat4.encode(mapping: mapping)
+      let data = CmapFormat4.encode(mapping: mapping)
       mappingsData.append(data)
       offsets.append(offset)
       offset += data.count
@@ -235,13 +235,13 @@ class TableWriter {
     return data
   }
 
-  class func write(table: TCGlyfTable) -> (Data, [Int]) {
+  class func write(table: GlyfTable) -> (Data, [Int]) {
     var data = Data()
     var offsets = [Int]()
     for descript in table.descript {
       offsets.append(data.count)
       os_log("loca offset: %d", data.count)
-      if let simpleDescript = descript as? TCGlyfSimpleDescript {
+      if let simpleDescript = descript as? GlyfSimpleDescript {
         data.append(Int16(simpleDescript.endPtsOfContours.count))
         data.append(Int16(simpleDescript.xMin))
         data.append(Int16(simpleDescript.yMin))
@@ -254,7 +254,7 @@ class TableWriter {
         data.append(contentsOf: simpleDescript.instructions)
 
         // Encode absolute coords into relative coords
-        var xFlags = [TCGlyfSimpleDescript.Flags]()
+        var xFlags = [GlyfSimpleDescript.Flags]()
         var xRelCoords = [Int]()
         var x = 0
         for xCoord in simpleDescript.xCoordinates {
@@ -275,7 +275,7 @@ class TableWriter {
             xRelCoords.append(xRelCoord)
           }
         }
-        var yFlags = [TCGlyfSimpleDescript.Flags]()
+        var yFlags = [GlyfSimpleDescript.Flags]()
         var yRelCoords = [Int]()
         var y = 0
         for yCoord in simpleDescript.yCoordinates {
@@ -298,11 +298,11 @@ class TableWriter {
         }
 
         // Combine the flags
-        var combinedFlags = [TCGlyfSimpleDescript.Flags]()
+        var combinedFlags = [GlyfSimpleDescript.Flags]()
         for (xFlag, yFlag) in zip(xFlags, yFlags) {
           combinedFlags.append(xFlag.union(yFlag))
         }
-        var unencodedFlags = [TCGlyfSimpleDescript.Flags]()
+        var unencodedFlags = [GlyfSimpleDescript.Flags]()
         for (combinedFlag, originalFlag) in zip(combinedFlags, simpleDescript.flags) {
           if originalFlag.contains(.onCurvePoint) {
             unencodedFlags.append(combinedFlag.union(.onCurvePoint))
@@ -379,7 +379,7 @@ class TableWriter {
           }
         }
 
-      } else if let compositeDescript = descript as? TCGlyfCompositeDescript {
+      } else if let compositeDescript = descript as? GlyfCompositeDescript {
         data.append(Int16(-1))
         data.append(Int16(compositeDescript.xMin))
         data.append(Int16(compositeDescript.yMin))
@@ -389,7 +389,7 @@ class TableWriter {
         for component in compositeDescript.components {
 
           // Translation flags
-          var flags = TCGlyfCompositeDescript.Component.Flags.argsAreXYValues
+          var flags = GlyfCompositeDescript.Component.Flags.argsAreXYValues
           if component.xtranslate < Int8.min || component.xtranslate > Int8.max ||
             component.ytranslate < Int8.min || component.ytranslate > Int8.max {
             flags.insert(.arg1And2AreWords)
@@ -457,7 +457,7 @@ class TableWriter {
     return (data, offsets)
   }
 
-  class func write(table: TCNameTable) -> Data {
+  class func write(table: NameTable) -> Data {
     var stringData = Data()
     var lengthAndOffsets = [(Int, Int)]()
     var offset = 0
@@ -478,7 +478,7 @@ class TableWriter {
 
         // Encode as little-endian UTF-16
         let utf16 = record.record.utf16
-        let littlies = utf16.map({ return $0.littleEndian })
+        let littlies = utf16.map { $0.littleEndian }
         for littlie in littlies {
           var mutable = littlie
           stringData.append(UnsafeBufferPointer(start: &mutable, count: 1))
@@ -490,7 +490,7 @@ class TableWriter {
 
         // Encode as big-endian UTF-16
         let utf16 = record.record.utf16
-        let biggies = utf16.map({ return $0.bigEndian })
+        let biggies = utf16.map { $0.bigEndian }
         for biggie in biggies {
           var mutable = biggie
           stringData.append(UnsafeBufferPointer(start: &mutable, count: 1))
@@ -518,7 +518,7 @@ class TableWriter {
     return data
   }
 
-  class func write(table: TCPostTable) -> Data {
+  class func write(table: PostTable) -> Data {
     var data = Data()
     data.append(UInt32(0x00020000))
     data.append(UInt32(table.italicAngle))

@@ -1,5 +1,5 @@
 //
-//  TCCmapFormat4.swift
+//  CmapFormat4.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/6/17.
@@ -13,7 +13,7 @@ import os.log
 /**
  Segment mapping to delta values.
  */
-class TCCmapFormat4: TCCmapFormat {
+class CmapFormat4: CmapFormat {
   let length: Int
   let language: Int
   let segCountX2: Int

@@ -22,7 +22,7 @@ class GlyphImageFactory {
      - transform: The transformation to apply to the glyph before rendering
      - size: The size of the image to render into
    */
-  class func buildImage(glyph: TCGlyfSimpleDescript, transform: CGAffineTransform, size: CGSize) -> CGImage? {
+  class func buildImage(glyph: GlyfSimpleDescript, transform: CGAffineTransform, size: CGSize) -> CGImage? {
     let path = GlyphPathFactory.buildPath(with: glyph)
     let colorspace = CGColorSpaceCreateDeviceRGB()
     let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue)
@@ -57,7 +57,7 @@ class GlyphImageFactory {
    - transform: The transformation to apply to the glyph before rendering
    - size: The size of the image to render into
    */
-  class func buildImage(glyph: TCGlyfCompositeDescript, font: TTFont,
+  class func buildImage(glyph: GlyfCompositeDescript, font: TTFont,
                         transform: CGAffineTransform, size: CGSize) -> CGImage? {
     let colorspace = CGColorSpaceCreateDeviceRGB()
     let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue)
@@ -78,7 +78,7 @@ class GlyphImageFactory {
 
       for component in glyph.components {
         let componentGlyphIndex = component.glyphIndex
-        if let componentDescript = font.glyfTable.descript[componentGlyphIndex] as? TCGlyfSimpleDescript {
+        if let componentDescript = font.glyfTable.descript[componentGlyphIndex] as? GlyfSimpleDescript {
           let transform = CGAffineTransform(a: CGFloat(component.xscale), b: CGFloat(component.scale01),
                                             c: CGFloat(component.scale10), d: CGFloat(component.yscale),
                                             tx: CGFloat(component.xtranslate), ty: CGFloat(component.ytranslate))

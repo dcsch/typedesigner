@@ -1,5 +1,5 @@
 //
-//  TCGlyfSimpleDescript.swift
+//  GlyfSimpleDescript.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/3/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCGlyfSimpleDescript: TCGlyfDescript, Codable {
+class GlyfSimpleDescript: GlyfDescript, Codable {
 
   struct Flags: OptionSet, Codable {
     var rawValue: UInt8
@@ -135,7 +135,7 @@ class TCGlyfSimpleDescript: TCGlyfDescript, Codable {
         str += "\n          \(i): \(pt)"
       }
       str += "\n\n          Length of Instructions: \(instructions.count)\n"
-      str += TCDisassembler.disassemble(instructions: instructions, leadingSpaceCount: 8)
+      str += Disassembler.disassemble(instructions: instructions, leadingSpaceCount: 8)
 
       str += """
 

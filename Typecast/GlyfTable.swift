@@ -1,5 +1,5 @@
 //
-//  TCGlyfTable.swift
+//  GlyfTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/3/17.
@@ -12,8 +12,8 @@ import IOUtils
 /**
  Information describing the glyphs in TrueType outline format.
  */
-class TCGlyfTable: TCTable, Codable {
-  var descript: [TCGlyfDescript]
+class GlyfTable: Table, Codable {
+  var descript: [GlyfDescript]
 
   /**
    - parameters:
@@ -24,8 +24,8 @@ class TCGlyfTable: TCTable, Codable {
      - postTable: the post table, a source of glyph names
    */
   init(data: Data,
-       maxpTable: TCMaxpTable,
-       locaTable: TCLocaTable) {
+       maxpTable: MaxpTable,
+       locaTable: LocaTable) {
     self.descript = []
 
     super.init()
@@ -39,25 +39,25 @@ class TCGlyfTable: TCTable, Codable {
         let dataInput = TCDataInput(data: glyfData)
         let numberOfContours = Int(dataInput.readInt16())
         if numberOfContours >= 0 {
-          descript.append(TCGlyfSimpleDescript(dataInput: dataInput,
-                                               glyphIndex: i,
-                                               numberOfContours: numberOfContours))
+          descript.append(GlyfSimpleDescript(dataInput: dataInput,
+                                             glyphIndex: i,
+                                             numberOfContours: numberOfContours))
         } else {
-          descript.append(TCGlyfCompositeDescript(dataInput: dataInput, glyphIndex: i))
+          descript.append(GlyfCompositeDescript(dataInput: dataInput, glyphIndex: i))
         }
       } else {
-        descript.append(TCGlyfNullDescript())
+        descript.append(GlyfNullDescript())
       }
     }
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .glyf
     }
   }
 
-  func description(at index: Int) -> TCGlyfDescript {
+  func description(at index: Int) -> GlyfDescript {
     if index < descript.count {
       return descript[index]
     } else {
@@ -101,19 +101,19 @@ class TCGlyfTable: TCTable, Codable {
   required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     var nestedArrayContainer = try container.nestedUnkeyedContainer(forKey: CodingKeys.descript)
-    var descripts = [TCGlyfDescript]()
+    var descripts = [GlyfDescript]()
     while(!nestedArrayContainer.isAtEnd) {
       let nestedDescriptContainer = try nestedArrayContainer.nestedContainer(keyedBy: DescriptTypeKey.self)
       let type = try nestedDescriptContainer.decode(DescriptTypes.self, forKey: DescriptTypeKey.type)
       switch type {
       case .null:
-        descripts.append(try nestedDescriptContainer.decode(TCGlyfNullDescript.self,
+        descripts.append(try nestedDescriptContainer.decode(GlyfNullDescript.self,
                                                             forKey: DescriptTypeKey.value))
       case .simple:
-        descripts.append(try nestedDescriptContainer.decode(TCGlyfSimpleDescript.self,
+        descripts.append(try nestedDescriptContainer.decode(GlyfSimpleDescript.self,
                                                             forKey: DescriptTypeKey.value))
       case .composite:
-        descripts.append(try nestedDescriptContainer.decode(TCGlyfCompositeDescript.self,
+        descripts.append(try nestedDescriptContainer.decode(GlyfCompositeDescript.self,
                                                             forKey: DescriptTypeKey.value))
       }
     }
@@ -125,13 +125,13 @@ class TCGlyfTable: TCTable, Codable {
     var nestedArrayContainer = container.nestedUnkeyedContainer(forKey: CodingKeys.descript)
     for d in descript {
       var nestedDescriptContainer = nestedArrayContainer.nestedContainer(keyedBy: DescriptTypeKey.self)
-      if let nd = d as? TCGlyfNullDescript {
+      if let nd = d as? GlyfNullDescript {
         try nestedDescriptContainer.encode(DescriptTypes.null, forKey: DescriptTypeKey.type)
         try nestedDescriptContainer.encode(nd, forKey: DescriptTypeKey.value)
-      } else if let sd = d as? TCGlyfSimpleDescript {
+      } else if let sd = d as? GlyfSimpleDescript {
         try nestedDescriptContainer.encode(DescriptTypes.simple, forKey: DescriptTypeKey.type)
         try nestedDescriptContainer.encode(sd, forKey: DescriptTypeKey.value)
-      } else if let cd = d as? TCGlyfCompositeDescript {
+      } else if let cd = d as? GlyfCompositeDescript {
         try nestedDescriptContainer.encode(DescriptTypes.composite, forKey: DescriptTypeKey.type)
         try nestedDescriptContainer.encode(cd, forKey: DescriptTypeKey.value)
       }

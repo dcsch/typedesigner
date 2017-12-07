@@ -1,5 +1,5 @@
 //
-//  TCPrepTable.swift
+//  PrepTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/3/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCPrepTable: TCTable, Codable {
+class PrepTable: Table, Codable {
   var instructions = [UInt8]()
 
   init(data: Data) {
@@ -17,7 +17,7 @@ class TCPrepTable: TCTable, Codable {
     instructions = dataInput.read(length: data.count)
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .prep
     }
@@ -25,8 +25,8 @@ class TCPrepTable: TCTable, Codable {
 
   override var description: String {
     get {
-      return TCDisassembler.disassemble(instructions: instructions,
-                                        leadingSpaceCount: 0)
+      return Disassembler.disassemble(instructions: instructions,
+                                      leadingSpaceCount: 0)
     }
   }
 }

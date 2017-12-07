@@ -1,5 +1,5 @@
 //
-//  TCID.swift
+//  ID.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/6/17.
@@ -12,7 +12,7 @@ protocol Encoding: CustomStringConvertible {
   var rawValue: Int { get }
 }
 
-class TCID: Codable {
+class ID: Codable {
 
   // Platform IDs
   enum Platform: Int, CustomStringConvertible, Codable {

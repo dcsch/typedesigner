@@ -1,5 +1,5 @@
 //
-//  TCMaxpTable.swift
+//  MaxpTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/5/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCMaxpTable: TCTable, Codable {
+class MaxpTable: Table, Codable {
   let versionNumber: UInt32
   let numGlyphs: Int
   let maxPoints: UInt16
@@ -99,7 +99,7 @@ class TCMaxpTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .maxp
     }

@@ -1,5 +1,5 @@
 //
-//  TCGlyfDescript.swift
+//  GlyfDescript.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/3/17.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-class TCGlyfDescript: CustomStringConvertible {
+class GlyfDescript: CustomStringConvertible {
 
   var description: String {
     get {
-      return "TCGlyfDescript"
+      return "GlyfDescript"
     }
   }
 }

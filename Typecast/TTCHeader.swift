@@ -1,5 +1,5 @@
 //
-//  TCTTCHeader.swift
+//  TTCHeader.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/2/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCTTCHeader {
+class TTCHeader {
   let ttcTag: Int32
   let version: Int32
   let directoryCount: Int

@@ -1,5 +1,5 @@
 //
-//  TCHdmxTable.swift
+//  HdmxTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/18/17.
@@ -13,7 +13,7 @@ import IOUtils
  The Horizontal Device Metrics table for TrueType outlines.  This stores
  integer advance widths scaled to specific pixel sizes.
  */
-class TCHdmxTable: TCTable, Codable {
+class HdmxTable: Table, Codable {
 
   class DeviceRecord: Codable {
     let pixelSize: Int
@@ -36,7 +36,7 @@ class TCHdmxTable: TCTable, Codable {
   var records = [DeviceRecord]()
   let dataCount: Int
 
-  init(data: Data, maxpTable: TCMaxpTable) {
+  init(data: Data, maxpTable: MaxpTable) {
     dataCount = data.count
     let dataInput = TCDataInput(data: data)
     version = Int(dataInput.readUInt16())
@@ -52,7 +52,7 @@ class TCHdmxTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .hdmx
     }

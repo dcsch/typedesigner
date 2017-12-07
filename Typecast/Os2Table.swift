@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCOs2Table: TCTable, Codable {
+class Os2Table: Table, Codable {
 
   class Panose: CustomStringConvertible, Codable {
     var bFamilyType: UInt8
@@ -213,7 +213,7 @@ class TCOs2Table: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .OS_2
     }

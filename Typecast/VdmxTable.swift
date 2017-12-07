@@ -1,5 +1,5 @@
 //
-//  TCVdmxTable.swift
+//  VdmxTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/18/17.
@@ -12,7 +12,7 @@ import IOUtils
 /**
  The Vertical Device Metrics table for TrueType outlines.
  */
-class TCVdmxTable: TCTable, Codable {
+class VdmxTable: Table, Codable {
 
   class Ratio: Codable {
     let bCharSet: Int
@@ -84,7 +84,7 @@ class TCVdmxTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .VDMX
     }

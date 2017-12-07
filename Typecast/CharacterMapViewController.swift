@@ -136,11 +136,11 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
       transform = transform.translatedBy(x: tx, y: 0)
 
       var cgImage: CGImage?
-      if let simpleDescript = descript as? TCGlyfSimpleDescript {
+      if let simpleDescript = descript as? GlyfSimpleDescript {
         cgImage = GlyphImageFactory.buildImage(glyph: simpleDescript,
                                                transform: transform,
                                                size: pixelSize)
-      } else if let compositeDescript = descript as? TCGlyfCompositeDescript {
+      } else if let compositeDescript = descript as? GlyfCompositeDescript {
         cgImage = GlyphImageFactory.buildImage(glyph: compositeDescript,
                                                font: ttFont,
                                                transform: transform,

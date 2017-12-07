@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-protocol TCCmapFormat {
+protocol CmapFormat {
 
   var format: Int { get }
 
@@ -22,21 +22,21 @@ protocol TCCmapFormat {
   func glyphCode(characterCode: Int) -> Int
 }
 
-class TCCmapFormatFactory {
-  class func cmapFormat(type formatType: Int, dataInput: TCDataInput) -> TCCmapFormat {
+class CmapFormatFactory {
+  class func cmapFormat(type formatType: Int, dataInput: TCDataInput) -> CmapFormat {
     switch formatType {
     case 0:
-      return TCCmapFormat0(dataInput: dataInput)
+      return CmapFormat0(dataInput: dataInput)
     case 2:
-      return TCCmapFormat2(dataInput: dataInput)
+      return CmapFormat2(dataInput: dataInput)
     case 4:
-      return TCCmapFormat4(dataInput: dataInput)
+      return CmapFormat4(dataInput: dataInput)
     case 6:
-      return TCCmapFormat6(dataInput: dataInput)
+      return CmapFormat6(dataInput: dataInput)
     case 12:
-      return TCCmapFormat12(dataInput: dataInput)
+      return CmapFormat12(dataInput: dataInput)
     default:
-      return TCCmapFormatUnknown(type: formatType, dataInput: dataInput)
+      return CmapFormatUnknown(type: formatType, dataInput: dataInput)
     }
   }
 }

@@ -1,5 +1,5 @@
 //
-//  TCVheaTable.swift
+//  VheaTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/5/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCVheaTable: TCTable, Codable {
+class VheaTable: Table, Codable {
   let version: UInt32
   let ascent: Int16
   let descent: Int16
@@ -43,7 +43,7 @@ class TCVheaTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .vhea
     }

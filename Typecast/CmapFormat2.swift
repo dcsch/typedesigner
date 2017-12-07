@@ -1,5 +1,5 @@
 //
-//  TCCmapFormat2.swift
+//  CmapFormat2.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/6/17.
@@ -12,7 +12,7 @@ import IOUtils
 /**
  High-byte mapping through table cmap format.
  */
-class TCCmapFormat2: TCCmapFormat {
+class CmapFormat2: CmapFormat {
 
   class SubHeader {
     let firstCode: UInt16

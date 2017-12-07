@@ -1,5 +1,5 @@
 //
-//  TCTableDirectory.swift
+//  TableDirectory.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/31/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCTableDirectory: CustomStringConvertible {
+class TableDirectory: CustomStringConvertible {
 
   struct Entry: CustomStringConvertible {
     let tag: UInt32
@@ -82,7 +82,7 @@ class TCTableDirectory: CustomStringConvertible {
     rangeShift = UInt16(16 * entries.count) - searchRange
   }
 
-  func entry(tag: TCTable.Tag) -> Entry? {
+  func entry(tag: Table.Tag) -> Entry? {
     for entry in entries {
       if entry.tag == tag.rawValue {
         return entry
@@ -91,7 +91,7 @@ class TCTableDirectory: CustomStringConvertible {
     return nil
   }
 
-  func hasEntry(tag: TCTable.Tag) -> Bool {
+  func hasEntry(tag: Table.Tag) -> Bool {
     for entry in entries {
       if entry.tag == tag.rawValue {
         return true

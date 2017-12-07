@@ -1,5 +1,5 @@
 //
-//  TCTable.swift
+//  Table.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/13/17.
@@ -9,7 +9,7 @@
 import Foundation
 import os.log
 
-enum TCTableError: Error {
+enum TableError: Error {
   case unrecognizedTableType(tag: UInt32)
   case unimplementedTableType(tag: UInt32)
   case missingTable(tag: UInt32)
@@ -19,7 +19,7 @@ enum TCTableError: Error {
 /**
  The superclass for all OpenType tables.
  */
-class TCTable: CustomStringConvertible {
+class Table: CustomStringConvertible {
 
   enum Tag: UInt32, CustomStringConvertible {
     case unknown = 0
@@ -137,7 +137,7 @@ class TCTable: CustomStringConvertible {
     }
   }
 
-  class var tag: TCTable.Tag {
+  class var tag: Table.Tag {
     get {
       return .unknown
     }

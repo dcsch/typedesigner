@@ -1,5 +1,5 @@
 //
-//  TCDsigTable.swift
+//  DsigTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/18/17.
@@ -12,7 +12,7 @@ import IOUtils
 /**
  Digital Signature Table.
  */
-class TCDsigTable: TCTable, Codable {
+class DsigTable: Table, Codable {
 
   class SignatureRecord: Codable {
     let format: Int
@@ -70,7 +70,7 @@ class TCDsigTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .DSIG
     }

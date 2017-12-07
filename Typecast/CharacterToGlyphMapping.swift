@@ -13,7 +13,7 @@ class CharacterToGlyphMapping: Codable {
   var glyphCodes: [Int: Int]
 //  var glyphCodes: DictionaryLiteral<Int, Int>
 
-  init(encodedMap: TCCmapFormat) {
+  init(encodedMap: CmapFormat) {
     language = encodedMap.language
     let ranges = encodedMap.ranges
     glyphCodes = [:]

@@ -1,5 +1,5 @@
 //
-//  TCFpgmTable.swift
+//  FpgmTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/3/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCFpgmTable: TCTable, Codable {
+class FpgmTable: Table, Codable {
   var instructions = [UInt8]()
 
   init(data: Data) {
@@ -17,7 +17,7 @@ class TCFpgmTable: TCTable, Codable {
     instructions = dataInput.read(length: data.count)
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .fpgm
     }
@@ -25,8 +25,8 @@ class TCFpgmTable: TCTable, Codable {
 
   override var description: String {
     get {
-      return TCDisassembler.disassemble(instructions: instructions,
-                                        leadingSpaceCount: 0)
+      return Disassembler.disassemble(instructions: instructions,
+                                      leadingSpaceCount: 0)
     }
   }
 }

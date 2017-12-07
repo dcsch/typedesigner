@@ -1,5 +1,5 @@
 //
-//  TCCmapFormat6.swift
+//  CmapFormat6.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/6/17.
@@ -12,7 +12,7 @@ import IOUtils
 /**
  Format 6: Trimmed table mapping
  */
-class TCCmapFormat6: TCCmapFormat {
+class CmapFormat6: CmapFormat {
   let length: Int
   let language: Int
   let firstCode: Int

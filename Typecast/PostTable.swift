@@ -1,5 +1,5 @@
 //
-//  TCPostTable.swift
+//  PostTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/3/17.
@@ -9,7 +9,7 @@
 import Foundation
 import IOUtils
 
-class TCPostTable: TCTable, Codable {
+class PostTable: Table, Codable {
   let version: UInt32
   let italicAngle: UInt32
   let underlinePosition: Int16
@@ -360,7 +360,7 @@ class TCPostTable: TCTable, Codable {
     super.init()
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .post
     }
@@ -414,7 +414,7 @@ class TCPostTable: TCTable, Codable {
           str.append("        Glyf \(i) -> ")
           if isMacGlyphName(at: i) {
             let nameIndex = glyphNameIndex[i]
-            let name = TCPostTable.macGlyphName[nameIndex]
+            let name = PostTable.macGlyphName[nameIndex]
             str.append("Mac Glyph # \(nameIndex), '\(name)'\n")
           } else {
             let nameIndex = glyphNameIndex[i] - 257

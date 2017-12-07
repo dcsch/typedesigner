@@ -13,26 +13,26 @@ import IOUtils
  An OpenType font with TrueType outlines.
  */
 class TTFont: Font {
-  var glyfTable: TCGlyfTable
+  var glyfTable: GlyfTable
 
   override init(data: Data, tablesOrigin: Int) throws {
 
     // Load the table directory
     let dataInput = TCDataInput(data: data)
-    let tableDirectory = TCTableDirectory(dataInput: dataInput)
+    let tableDirectory = TableDirectory(dataInput: dataInput)
 
     // We need to look ahead at the head and maxp tables
     var tableData = try Font.tableData(directory: tableDirectory, tag: .head,
                                        data: data, tablesOrigin: tablesOrigin)
-    let headTable = TCHeadTable(data: tableData)
+    let headTable = HeadTable(data: tableData)
     tableData = try Font.tableData(directory: tableDirectory, tag: .maxp,
                                    data: data, tablesOrigin: tablesOrigin)
-    let maxpTable = TCMaxpTable(data: tableData)
+    let maxpTable = MaxpTable(data: tableData)
 
     // 'loca' is required by 'glyf'
     tableData = try Font.tableData(directory: tableDirectory, tag: .loca,
                                    data: data, tablesOrigin: tablesOrigin)
-    let locaTable = TCLocaTable(data: tableData,
+    let locaTable = LocaTable(data: tableData,
                                 shortEntries: headTable.indexToLocFormat == 0,
                                 numGlyphs: maxpTable.numGlyphs)
 
@@ -40,7 +40,7 @@ class TTFont: Font {
     // 'glyf' table (along with the 'loca' table)
     tableData = try Font.tableData(directory: tableDirectory, tag: .glyf,
                                    data: data, tablesOrigin: tablesOrigin)
-    glyfTable = TCGlyfTable(data: tableData, maxpTable: maxpTable, locaTable: locaTable)
+    glyfTable = GlyfTable(data: tableData, maxpTable: maxpTable, locaTable: locaTable)
 
     try super.init(data: data, tablesOrigin: tablesOrigin)
   }
@@ -51,7 +51,7 @@ class TTFont: Font {
 
   required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    glyfTable = try container.decode(TCGlyfTable.self, forKey: .glyf)
+    glyfTable = try container.decode(GlyfTable.self, forKey: .glyf)
     try super.init(from: container.superDecoder())
   }
 

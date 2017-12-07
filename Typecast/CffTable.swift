@@ -1,5 +1,5 @@
 //
-//  TCCffTable.swift
+//  CffTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/7/17.
@@ -14,7 +14,7 @@ import CFF
 /**
  * Compact Font Format Table
  */
-class TCCffTable: TCTable {
+class CffTable: Table {
   let major: Int
   let minor: Int
   let hdrSize: Int
@@ -75,7 +75,7 @@ class TCCffTable: TCTable {
     return TCDataInput(data: fontData)
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .CFF
     }

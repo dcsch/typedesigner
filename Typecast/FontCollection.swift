@@ -11,7 +11,7 @@ import IOUtils
 
 class FontCollection {
   var fonts: [Font]
-  var ttcHeader: TCTTCHeader?
+  var ttcHeader: TTCHeader?
   var suitcase: Bool
 
   init(data: Data, isSuitcase: Bool) throws {
@@ -43,10 +43,10 @@ class FontCollection {
         let font = try TTFont(data: resData, tablesOrigin: 0)
         fonts.append(font)
       }
-    } else if TCTTCHeader.isTTC(data: data) {
+    } else if TTCHeader.isTTC(data: data) {
 
       // This is a TrueType font collection
-      let header = TCTTCHeader(data: data)
+      let header = TTCHeader(data: data)
       for offset in header.tableDirectory {
         let fontData = data.subdata(in: offset..<data.count)
         let font = try TTFont(data: fontData, tablesOrigin: offset)

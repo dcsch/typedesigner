@@ -1,5 +1,5 @@
 //
-//  TCHmtxTable.swift
+//  HmtxTable.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/14/17.
@@ -12,7 +12,7 @@ import IOUtils
 /**
  Horizontal Metrics
  */
-class TCHmtxTable: TCTable, Codable {
+class HmtxTable: Table, Codable {
 
   struct Metric: CustomStringConvertible, Codable {
     var advanceWidth: Int
@@ -32,7 +32,7 @@ class TCHmtxTable: TCTable, Codable {
     super.init()
   }
 
-  init(data: Data, hheaTable: TCHheaTable, maxpTable: TCMaxpTable) {
+  init(data: Data, hheaTable: HheaTable, maxpTable: MaxpTable) {
     let dataInput = TCDataInput(data: data)
     for _ in 0..<hheaTable.numberOfHMetrics {
       let advanceWidth = Int(dataInput.readUInt16())
@@ -62,7 +62,7 @@ class TCHmtxTable: TCTable, Codable {
     }
   }
 
-  override class var tag: TCTable.Tag {
+  override class var tag: Table.Tag {
     get {
       return .hmtx
     }

@@ -1,5 +1,5 @@
 //
-//  TCCmapFormatUnknown.swift
+//  CmapFormatUnknown.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/6/17.
@@ -13,7 +13,7 @@ import IOUtils
  When we encounter a cmap format we don't understand, we can use this class
  to hold the bare minimum information about it.
  */ 
-class TCCmapFormatUnknown: TCCmapFormat {
+class CmapFormatUnknown: CmapFormat {
   let format: Int
   let length: Int
   let language: Int
