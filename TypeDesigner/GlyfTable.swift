@@ -51,12 +51,6 @@ class GlyfTable: Table, Codable {
     }
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .glyf
-    }
-  }
-
   func description(at index: Int) -> GlyfDescript {
     if index < descript.count {
       return descript[index]

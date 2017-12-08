@@ -155,4 +155,7 @@ class Font: Codable, CustomStringConvertible {
     try container.encode(os2Table, forKey: .OS_2)
     try container.encode(postTable, forKey: .post)
   }
+
+  func buildFont(url: URL) throws {
+  }
 }

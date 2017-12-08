@@ -21,57 +21,49 @@ class HdmxTable: Table, Codable {
     var widths = [Int]()
 
     init(numGlyphs: Int, dataInput: TCDataInput) {
-      pixelSize = Int(dataInput.readInt8())
-      maxWidth = Int(dataInput.readInt8())
+      pixelSize = Int(dataInput.readUInt8())
+      maxWidth = Int(dataInput.readUInt8())
       widths.reserveCapacity(numGlyphs)
+      var bytesRead = 2
       for _ in 0..<numGlyphs {
-        widths.append(Int(dataInput.readInt8()))
+        widths.append(Int(dataInput.readUInt8()))
+        bytesRead += 1
       }
+      let remainingBytes = bytesRead % 4
+      _ = dataInput.read(length: remainingBytes)
     }
   }
 
-  let version: Int
-  let numRecords: Int
-  let sizeDeviceRecords: Int
   var records = [DeviceRecord]()
-  let dataCount: Int
 
-  init(data: Data, maxpTable: MaxpTable) {
-    dataCount = data.count
+  init(data: Data, numGlyphs: Int) {
     let dataInput = TCDataInput(data: data)
-    version = Int(dataInput.readUInt16())
-    numRecords = Int(dataInput.readInt16())
-    sizeDeviceRecords = Int(dataInput.readInt32())
+    _ = Int(dataInput.readUInt16()) // version
+    let numRecords = Int(dataInput.readInt16())
+    _ = Int(dataInput.readInt32()) // sizeDeviceRecords
     records.reserveCapacity(numRecords)
 
     // Read the device records
     for _ in 0..<numRecords {
-      records.append(DeviceRecord(numGlyphs: maxpTable.numGlyphs,
+      records.append(DeviceRecord(numGlyphs: numGlyphs,
                                   dataInput: dataInput))
     }
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .hdmx
-    }
-  }
-
   override var description: String {
     get {
-      var str =
-        "'hdmx' Table - Horizontal Device Metrics\n----------------------------------------\n" +
-        "Size = \(dataCount) bytes\n" +
-        "\t'hdmx' version:         \(version)\n" +
-        "\t# device records:       \(numRecords)\n" +
-        "\tRecord length:          \(sizeDeviceRecords)\n"
+      var str = """
+      'hdmx' Table - Horizontal Device Metrics
+      ----------------------------------------
+
+      """
       for (i, record) in records.enumerated() {
-        str.append("\tDevRec \(i): ppem = \(record.pixelSize), maxWid = \(record.maxWidth)\n")
+        str += "\tDevRec \(i): ppem = \(record.pixelSize), maxWid = \(record.maxWidth)\n"
         for (j, width) in record.widths.enumerated() {
-          str.append("    \(j).   \(width)\n")
+          str += "    \(j).   \(width)\n"
         }
-        str.append("\n\n")
+        str += "\n\n"
       }
       return str
     }

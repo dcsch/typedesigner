@@ -70,12 +70,6 @@ class DsigTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .DSIG
-    }
-  }
-
   override var description: String {
     get {
       var str = "DSIG\n"

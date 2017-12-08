@@ -176,6 +176,28 @@ class TableWriter {
     return data
   }
 
+  class func write(table: HdmxTable) -> Data {
+    var deviceData = Data()
+    var sizeDeviceRecord = 0
+    for record in table.records {
+      deviceData.append(UInt8(record.pixelSize))
+      deviceData.append(UInt8(record.maxWidth))
+      for width in record.widths {
+        deviceData.append(UInt8(width))
+      }
+      deviceData.pad32()
+      if sizeDeviceRecord == 0 {
+        sizeDeviceRecord = deviceData.count
+      }
+    }
+    var data = Data()
+    data.append(UInt16(0)) // version
+    data.append(Int16(table.records.count))
+    data.append(Int32(sizeDeviceRecord))
+    data.append(deviceData)
+    return data
+  }
+
   class func write(table: CmapTable) -> Data {
 
     // Sort mappings in order of platform, endoding, language
@@ -240,7 +262,6 @@ class TableWriter {
     var offsets = [Int]()
     for descript in table.descript {
       offsets.append(data.count)
-      os_log("loca offset: %d", data.count)
       if let simpleDescript = descript as? GlyfSimpleDescript {
         data.append(Int16(simpleDescript.endPtsOfContours.count))
         data.append(Int16(simpleDescript.xMin))
@@ -457,6 +478,36 @@ class TableWriter {
     return (data, offsets)
   }
 
+  class func write(table: KernTable) -> Data {
+    var data = Data()
+    data.append(UInt16(0)) // version
+    data.append(UInt16(table.subtables.count))
+    for subtable in table.subtables {
+      data.append(UInt16(0)) // version
+      let length = 6 * subtable.kerningPairs.count + 14
+      data.append(UInt16(length))
+      data.append(UInt8(0)) // format
+      data.append(subtable.coverage.rawValue)
+      data.append(UInt16(subtable.kerningPairs.count))
+
+      let power = Int(floor(log2(Double(subtable.kerningPairs.count))))
+      let maxPow2 = 2 << (power - 1)
+      let searchRange = 6 * maxPow2
+      let entrySelector = Int(log2(Double(maxPow2)))
+      let rangeShift = 6 * (subtable.kerningPairs.count - maxPow2)
+      data.append(UInt16(searchRange))
+      data.append(UInt16(entrySelector))
+      data.append(UInt16(rangeShift))
+      for kerningPair in subtable.kerningPairs {
+        data.append(UInt16(kerningPair.left))
+        data.append(UInt16(kerningPair.right))
+        data.append(Int16(kerningPair.value))
+      }
+    }
+    data.pad32()
+    return data
+  }
+
   class func write(table: NameTable) -> Data {
     var stringData = Data()
     var lengthAndOffsets = [(Int, Int)]()
@@ -542,6 +593,18 @@ class TableWriter {
                     stoppingOnError: false, into: sink)
       data.append(UInt8(codeUnits.count))
       data.append(contentsOf: codeUnits)
+    }
+    data.pad32()
+    return data
+  }
+
+  class func write(table: GaspTable) -> Data {
+    var data = Data()
+    data.append(UInt16(1))
+    data.append(UInt16(table.gaspRanges.count))
+    for gaspRange in table.gaspRanges {
+      data.append(UInt16(gaspRange.rangeMaxPPEM))
+      data.append(UInt16(gaspRange.rangeGaspBehavior))
     }
     data.pad32()
     return data

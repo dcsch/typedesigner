@@ -62,12 +62,6 @@ class HmtxTable: Table, Codable {
     }
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .hmtx
-    }
-  }
-
   override var description: String {
     get {
       var str = """

@@ -81,12 +81,6 @@ class HeadTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .head
-    }
-  }
-
   override var description: String {
     get {
       let formatter = ISO8601DateFormatter()

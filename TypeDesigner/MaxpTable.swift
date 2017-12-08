@@ -99,12 +99,6 @@ class MaxpTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .maxp
-    }
-  }
-
   override var description: String {
     get {
       var str = String(format:

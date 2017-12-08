@@ -43,12 +43,6 @@ class VheaTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .vhea
-    }
-  }
-
   override var description: String {
     get {
       return String(format:

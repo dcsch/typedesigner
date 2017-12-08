@@ -213,12 +213,6 @@ class Os2Table: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .OS_2
-    }
-  }
-
   override var description: String {
     get {
       let vendorID = String(format: "%c%c%c%c",

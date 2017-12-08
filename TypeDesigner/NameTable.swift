@@ -126,12 +126,6 @@ class NameTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .name
-    }
-  }
-
   func record(nameID: NameID) -> Record? {
     // Search for the first instance of this name ID
     for record in nameRecords {

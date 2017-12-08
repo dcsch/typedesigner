@@ -33,8 +33,8 @@ class TableDirectory: CustomStringConvertible {
       length = Int(dataInput.readUInt32())
     }
 
-    init(tag: UInt32, checksum: UInt32, offset: Int, length: Int) {
-      self.tag = tag
+    init(tag: Table.Tag, checksum: UInt32, offset: Int, length: Int) {
+      self.tag = tag.rawValue
       self.checksum = checksum
       self.offset = offset
       self.length = length
@@ -98,6 +98,14 @@ class TableDirectory: CustomStringConvertible {
       }
     }
     return false
+  }
+
+  func appendEntry(tag: Table.Tag, offset: Int, data: Data) -> Int {
+    entries.append(TableDirectory.Entry(tag: tag,
+                                        checksum: data.checksum,
+                                        offset: offset,
+                                        length: data.count))
+    return offset + data.count
   }
 
   var description: String {

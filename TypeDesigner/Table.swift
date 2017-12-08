@@ -22,7 +22,6 @@ enum TableError: Error {
 class Table: CustomStringConvertible {
 
   enum Tag: UInt32, CustomStringConvertible {
-    case unknown = 0
 
     // Baseline data [OpenType]
     case BASE = 0x42415345
@@ -137,22 +136,9 @@ class Table: CustomStringConvertible {
     }
   }
 
-  class var tag: Table.Tag {
-    get {
-      return .unknown
-    }
-  }
-
-  var name: String {
-    get {
-      let tag = type(of: self).tag
-      return String(describing: tag)
-    }
-  }
-
   var description: String {
     get {
-      return "TCTable type: '\(name)'"
+      return "TCTable"
     }
   }
 }

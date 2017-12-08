@@ -133,12 +133,6 @@ class CmapTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .cmap
-    }
-  }
-
   override var description: String {
     get {
       let str = "cmap\n"

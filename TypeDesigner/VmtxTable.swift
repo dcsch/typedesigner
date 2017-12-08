@@ -55,12 +55,6 @@ class VmtxTable: Table, Codable {
     }
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .vmtx
-    }
-  }
-
   override var description: String {
     get {
       var str =

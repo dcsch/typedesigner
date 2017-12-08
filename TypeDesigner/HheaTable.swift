@@ -65,12 +65,6 @@ class HheaTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .hhea
-    }
-  }
-
   override var description: String {
     get {
       return """

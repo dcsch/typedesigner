@@ -28,12 +28,6 @@ class LocaTable: Table {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .loca
-    }
-  }
-
   override var description: String {
     get {
       var str = """

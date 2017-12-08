@@ -17,12 +17,6 @@ class FpgmTable: Table, Codable {
     instructions = dataInput.read(length: data.count)
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .fpgm
-    }
-  }
-
   override var description: String {
     get {
       return Disassembler.disassemble(instructions: instructions,

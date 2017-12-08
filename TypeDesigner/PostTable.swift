@@ -360,12 +360,6 @@ class PostTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .post
-    }
-  }
-
 //  func highestGlyphNameIndex() -> UInt16 {
 //    var high: UInt16 = 0
 //    for i in 0..<Int(numGlyphs) {

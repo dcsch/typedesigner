@@ -84,12 +84,6 @@ class VdmxTable: Table, Codable {
     super.init()
   }
 
-  override class var tag: Table.Tag {
-    get {
-      return .VDMX
-    }
-  }
-
   override var description: String {
     get {
       var str = "'VDMX' Table - Precomputed Vertical Device Metrics\n"

@@ -69,6 +69,8 @@
 		03F905DC1F38DDF70008FF3E /* GlyphImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905DB1F38DDF70008FF3E /* GlyphImageFactory.swift */; };
 		03F905DE1F38DEC40008FF3E /* Mnemonic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905DD1F38DEC40008FF3E /* Mnemonic.swift */; };
 		03F905E01F38E8E50008FF3E /* Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F905DF1F38E8E50008FF3E /* Disassembler.swift */; };
+		03FAFA921FD9DD65000D1605 /* GaspTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FAFA911FD9DD65000D1605 /* GaspTable.swift */; };
+		03FAFA941FDA13C3000D1605 /* KernTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FAFA931FDA13C3000D1605 /* KernTable.swift */; };
 		03FF3A261F2FA86A005F07AB /* TableDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF3A251F2FA86A005F07AB /* TableDirectory.swift */; };
 		03FF50191F45188E009F5F0C /* IOUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF50071F44C2ED009F5F0C /* IOUtils.framework */; };
 		03FF501A1F45188E009F5F0C /* IOUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF50071F44C2ED009F5F0C /* IOUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -227,6 +229,8 @@
 		03F905DB1F38DDF70008FF3E /* GlyphImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlyphImageFactory.swift; sourceTree = "<group>"; };
 		03F905DD1F38DEC40008FF3E /* Mnemonic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mnemonic.swift; sourceTree = "<group>"; };
 		03F905DF1F38E8E50008FF3E /* Disassembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disassembler.swift; sourceTree = "<group>"; };
+		03FAFA911FD9DD65000D1605 /* GaspTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaspTable.swift; sourceTree = "<group>"; };
+		03FAFA931FDA13C3000D1605 /* KernTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernTable.swift; sourceTree = "<group>"; };
 		03FF3A251F2FA86A005F07AB /* TableDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDirectory.swift; sourceTree = "<group>"; };
 		03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IOUtils.xcodeproj; path = IOUtils/IOUtils.xcodeproj; sourceTree = "<group>"; };
 		03FF502A1F477496009F5F0C /* VmtxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VmtxTable.swift; sourceTree = "<group>"; };
@@ -402,6 +406,8 @@
 				03FF502E1F479003009F5F0C /* VdmxTable.swift */,
 				03FF50301F47F339009F5F0C /* CvtTable.swift */,
 				03FF50321F48152C009F5F0C /* DsigTable.swift */,
+				03FAFA911FD9DD65000D1605 /* GaspTable.swift */,
+				03FAFA931FDA13C3000D1605 /* KernTable.swift */,
 				03FF3A251F2FA86A005F07AB /* TableDirectory.swift */,
 				03F905DD1F38DEC40008FF3E /* Mnemonic.swift */,
 				03F905DF1F38E8E50008FF3E /* Disassembler.swift */,
@@ -725,11 +731,13 @@
 				0348BE731F33ED9100446B58 /* FpgmTable.swift in Sources */,
 				03C162911F2174BB00A44848 /* GlyphView.swift in Sources */,
 				039845B81F195B6F0040988F /* HheaTable.swift in Sources */,
+				03FAFA941FDA13C3000D1605 /* KernTable.swift in Sources */,
 				03CE9CA81FBE8074002FE971 /* T2Font.swift in Sources */,
 				03F1F20F1FCA52DC00813EDD /* FontPropertyWindowController.swift in Sources */,
 				03C40BF31F36A84300CD6BAC /* MaxpTable.swift in Sources */,
 				03C40BED1F35316F00CD6BAC /* GlyfNullDescript.swift in Sources */,
 				0348BE651F32AB3B00446B58 /* TTCHeader.swift in Sources */,
+				03FAFA921FD9DD65000D1605 /* GaspTable.swift in Sources */,
 				03F905D41F37DA3D0008FF3E /* CmapFormatUnknown.swift in Sources */,
 				03F1F20B1FCA527D00813EDD /* NamesViewController.swift in Sources */,
 				03F905E01F38E8E50008FF3E /* Disassembler.swift in Sources */,

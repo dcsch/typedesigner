@@ -66,7 +66,8 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
   }
 
   @IBAction func buildFont(_ sender: Any?) {
-    guard let fontDocument = document as? FontDocument else { return }
+    guard let fontDocument = document as? FontDocument,
+      let font = fontDocument.font else { return }
     let savePanel = NSSavePanel()
     savePanel.prompt = "Build"
     savePanel.message = "We're gonna build you a sweet font."
@@ -78,7 +79,7 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
     savePanel.beginSheetModal(for: window!) { (response: NSApplication.ModalResponse) in
       if response == .OK {
         do {
-          try fontDocument.buildFont(url: savePanel.url!)
+          try font.buildFont(url: savePanel.url!)
         }
         catch {
           os_log("Failed to build font")
