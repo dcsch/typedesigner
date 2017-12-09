@@ -18,6 +18,7 @@ class TTFont: Font {
   var gaspTable: GaspTable?
   var kernTable: KernTable?
   var hdmxTable: HdmxTable?
+  var vdmxTable: VdmxTable?
 
   override init(data: Data, tablesOrigin: Int) throws {
 
@@ -64,6 +65,12 @@ class TTFont: Font {
       hdmxTable = HdmxTable(data: hdmxData, numGlyphs: maxpTable.numGlyphs)
     }
 
+    if tableDirectory.hasEntry(tag: .VDMX) {
+      let vdmxData = try Font.tableData(directory: tableDirectory, tag: .VDMX,
+                                        data: data, tablesOrigin: tablesOrigin)
+      vdmxTable = VdmxTable(data: vdmxData)
+    }
+
     try super.init(data: data, tablesOrigin: tablesOrigin)
   }
 
@@ -72,6 +79,7 @@ class TTFont: Font {
     case gasp
     case kern
     case hdmx
+    case vdmx
   }
 
   required init(from decoder: Decoder) throws {
@@ -80,6 +88,7 @@ class TTFont: Font {
     gaspTable = try container.decode(GaspTable.self, forKey: .gasp)
     kernTable = try container.decode(KernTable.self, forKey: .kern)
     hdmxTable = try container.decode(HdmxTable.self, forKey: .hdmx)
+    vdmxTable = try container.decode(VdmxTable.self, forKey: .vdmx)
     try super.init(from: container.superDecoder())
   }
 
@@ -89,6 +98,7 @@ class TTFont: Font {
     try container.encode(gaspTable, forKey: .gasp)
     try container.encode(kernTable, forKey: .kern)
     try container.encode(hdmxTable, forKey: .hdmx)
+    try container.encode(vdmxTable, forKey: .vdmx)
     try super.encode(to: container.superEncoder())
   }
 
@@ -100,6 +110,9 @@ class TTFont: Font {
     // table directory, so calculate the final size of the directory
     var tableCount = 10
     if hdmxTable != nil {
+      tableCount += 1
+    }
+    if vdmxTable != nil {
       tableCount += 1
     }
     if kernTable != nil {
@@ -131,6 +144,12 @@ class TTFont: Font {
     let hmtxData = TableWriter.write(table: hmtxTable)
     tablesAsData.append(hmtxData)
     offset = directory.appendEntry(tag: .hmtx, offset: offset, data: hmtxData)
+
+//    if let vdmxTable = vdmxTable {
+//      let vdmxData = TableWriter.write(table: vdmxTable)
+//      tablesAsData.append(vdmxData)
+//      offset = directory.appendEntry(tag: .VDMX, offset: offset, data: vdmxData)
+//    }
 
     if let hdmxTable = hdmxTable {
       let hdmxData = TableWriter.write(table: hdmxTable)

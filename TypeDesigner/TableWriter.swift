@@ -176,6 +176,29 @@ class TableWriter {
     return data
   }
 
+  class func write(table: VdmxTable) -> Data {
+    var groupData = Data()
+    var offsets = [Int]()
+    for group in table.groups {
+      offsets.append(groupData.count)
+      groupData.append(UInt16(group.recs))
+      groupData.append(UInt8(group.startsz))
+      groupData.append(UInt8(group.endsz))
+      for entry in group.entry {
+        groupData.append(UInt16(entry.yPelHeight))
+        groupData.append(Int16(entry.yMax))
+        groupData.append(Int16(entry.yMin))
+      }
+    }
+
+    var data = Data()
+    data.append(UInt16(1)) // version
+    data.append(UInt16(table.groups.count))
+    data.append(UInt16(table.ratRange.count))
+    data.pad32()
+    return data
+  }
+
   class func write(table: HdmxTable) -> Data {
     var deviceData = Data()
     var sizeDeviceRecord = 0

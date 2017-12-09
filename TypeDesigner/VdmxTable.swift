@@ -57,22 +57,19 @@ class VdmxTable: Table, Codable {
     }
   }
 
-  let version: Int
-  let numRecs: Int
-  let numRatios: Int
   var ratRange = [Ratio]()
-  var offset = [Int]()
   var groups = [Group]()
 
   init(data: Data) {
     let dataInput = TCDataInput(data: data)
-    version = Int(dataInput.readUInt16())
-    numRecs = Int(dataInput.readUInt16())
-    numRatios = Int(dataInput.readUInt16())
+    _ = Int(dataInput.readUInt16()) // version
+    let numRecs = Int(dataInput.readUInt16())
+    let numRatios = Int(dataInput.readUInt16())
     ratRange.reserveCapacity(numRatios)
     for _ in 0..<numRatios {
       ratRange.append(Ratio(dataInput: dataInput))
     }
+    var offset = [Int]()
     offset.reserveCapacity(numRatios)
     for _ in 0..<numRatios {
       offset.append(Int(dataInput.readUInt16()))
@@ -88,16 +85,14 @@ class VdmxTable: Table, Codable {
     get {
       var str = "'VDMX' Table - Precomputed Vertical Device Metrics\n"
       str.append("--------------------------------------------------\n")
-      str.append("  Version:                 \(version)\n")
-      str.append("  Number of Hgt Records:   \(numRecs)\n")
-      str.append("  Number of Ratio Records: \(numRatios)\n")
-      for i in 0..<numRatios {
+      str.append("  Number of Hgt Records:   \(groups.count)\n")
+      str.append("  Number of Ratio Records: \(ratRange.count)\n")
+      for (i, range) in ratRange.enumerated() {
         str.append("\n    Ratio Record #\(i + 1)\n")
-        str.append("\tCharSetId     \(ratRange[i].bCharSet)\n")
-        str.append("\txRatio        \(ratRange[i].xRatio)\n")
-        str.append("\tyStartRatio   \(ratRange[i].yStartRatio)\n")
-        str.append("\tyEndRatio     \(ratRange[i].yEndRatio)\n")
-        str.append("\tRecord Offset \(offset[i])\n")
+        str.append("\tCharSetId     \(range.bCharSet)\n")
+        str.append("\txRatio        \(range.xRatio)\n")
+        str.append("\tyStartRatio   \(range.yStartRatio)\n")
+        str.append("\tyEndRatio     \(range.yEndRatio)\n")
       }
       str.append("\n   VDMX Height Record Groups\n")
       str.append("   -------------------------\n")
