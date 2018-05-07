@@ -33,7 +33,7 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
     nc.addObserver(forName: NSView.frameDidChangeNotification,
                    object: view,
                    queue: nil) { (Notification) in
-      self.calculateGlyphViewSize()
+//      self.calculateGlyphViewSize()
     }
 
 //    scrollView!.hasHorizontalRuler = true
@@ -42,48 +42,62 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
   }
 
   func updateGlyph() {
-    if let font = fontController?.font,
-      let glyphIndex = fontController?.glyphIndex {
-      glyphView?.unitsPerEm = font.headTable.unitsPerEm
-      glyphView?.xMin = font.headTable.xMin
-      glyphView?.xMax = font.headTable.xMax
-      glyphView?.yMin = font.headTable.yMin
-      glyphView?.yMax = font.headTable.yMax
-      glyphView?.ascent = font.hheaTable.ascender
-      glyphView?.descent = font.hheaTable.descender
-      glyphView?.leftSideBearing = font.hmtxTable.leftSideBearing(at: glyphIndex)
-      glyphView?.advanceWidth = font.hmtxTable.advanceWidth(at: glyphIndex)
+    guard let font = fontController?.font,
+      let glyphIndex = fontController?.glyphIndex,
+      let glyphView = glyphView else { return }
 
-      glyphView?.transforms.removeAll()
-      glyphView?.glyphPaths.removeAll()
+    glyphView.unitsPerEm = font.headTable.unitsPerEm
+    glyphView.xMin = font.headTable.xMin
+    glyphView.xMax = font.headTable.xMax
+    glyphView.yMin = font.headTable.yMin
+    glyphView.yMax = font.headTable.yMax
+    glyphView.ascent = font.hheaTable.ascender
+    glyphView.descent = font.hheaTable.descender
+    glyphView.leftSideBearing = font.hmtxTable.leftSideBearing(at: glyphIndex)
+    glyphView.advanceWidth = font.hmtxTable.advanceWidth(at: glyphIndex)
 
-      if let ttFont = font as? TTFont {
-        let descript = ttFont.glyfTable.descript[glyphIndex]
-        if let simpleDescript = descript as? GlyfSimpleDescript {
+    glyphView.transforms.removeAll()
+    glyphView.glyphPaths.removeAll()
+    glyphView.controlPoints.removeAll()
 
-          // Since this is a simple glyph, append the single glyph path, along with
-          // the identity matrix for "no transformation"
-          glyphView?.transforms.append(CGAffineTransform.identity)
-          glyphView?.glyphPaths.append(GlyphPathFactory.buildPath(with: simpleDescript))
-        } else if let compositeDescript = descript as? GlyfCompositeDescript {
+    if let ttFont = font as? TTFont {
+      let descript = ttFont.glyfTable.descript[glyphIndex]
+      if let simpleDescript = descript as? GlyfSimpleDescript {
 
-          // Add a glyph path for each component of the composite glyph, building a
-          // transformation matrix for each part
-          for component in compositeDescript.components {
-            let componentGlyphIndex = component.glyphIndex
-            if let componentDescript = ttFont.glyfTable.descript[componentGlyphIndex] as? GlyfSimpleDescript {
-              let transform = CGAffineTransform(a: CGFloat(component.xscale), b: CGFloat(component.scale01),
-                                                c: CGFloat(component.scale10), d: CGFloat(component.yscale),
-                                                tx: CGFloat(component.xtranslate), ty: CGFloat(component.ytranslate))
-              glyphView?.transforms.append(transform)
-              glyphView?.glyphPaths.append(GlyphPathFactory.buildPath(with: componentDescript))
-            }
+//        let scale = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
+//        glyphView.scale
+
+        // Since this is a simple glyph, append the single glyph path, along with
+        // the identity matrix for "no transformation"
+        glyphView.transforms.append(CGAffineTransform.identity)
+//        glyphView.transforms.append(scale)
+        glyphView.glyphPaths.append(GlyphPathFactory.buildPath(with: simpleDescript))
+
+        for ((x, y), flags) in zip(zip(simpleDescript.xCoordinates, simpleDescript.yCoordinates), simpleDescript.flags) {
+          let cp = GlyphView.ControlPoint(position: CGPoint(x: x, y: y),
+                                          onCurve: flags.contains(.onCurvePoint))
+          glyphView.controlPoints.append(cp)
+        }
+
+      } else if let compositeDescript = descript as? GlyfCompositeDescript {
+
+        // Add a glyph path for each component of the composite glyph, building a
+        // transformation matrix for each part
+        for component in compositeDescript.components {
+          let componentGlyphIndex = component.glyphIndex
+          if let componentDescript = ttFont.glyfTable.descript[componentGlyphIndex] as? GlyfSimpleDescript {
+            let transform = CGAffineTransform(a: CGFloat(component.xscale), b: CGFloat(component.scale01),
+                                              c: CGFloat(component.scale10), d: CGFloat(component.yscale),
+                                              tx: CGFloat(component.xtranslate), ty: CGFloat(component.ytranslate))
+            glyphView.transforms.append(transform)
+            glyphView.glyphPaths.append(GlyphPathFactory.buildPath(with: componentDescript))
           }
         }
-        os_log("updateGlyph: %@", String(describing: descript))
       }
-      calculateGlyphViewSize()
+      os_log("updateGlyph: %@", String(describing: descript))
     }
+//    calculateGlyphViewSize()
+    glyphView.needsDisplay = true
   }
 
   func calculateGlyphViewSize() {

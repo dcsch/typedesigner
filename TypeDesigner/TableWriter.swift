@@ -195,6 +195,9 @@ class TableWriter {
     data.append(UInt16(1)) // version
     data.append(UInt16(table.groups.count))
     data.append(UInt16(table.ratRange.count))
+    for offset in offsets {
+      data.append(offset)
+    }
     data.pad32()
     return data
   }

@@ -9,6 +9,12 @@
 import Cocoa
 
 class GlyphView: NSView {
+
+  struct ControlPoint {
+    var position: CGPoint
+    var onCurve: Bool
+  }
+
   var unitsPerEm = 1024
   var xMin = 0
   var xMax = 0
@@ -20,8 +26,10 @@ class GlyphView: NSView {
   var advanceWidth = 0
   var glyphPaths = [CGPath]()
   var transforms = [CGAffineTransform]()
+  var controlPoints = [ControlPoint]()
   private var translate = CGPoint(x: 0, y: 0)
-  private var scale: CGFloat = 1.0
+//  private var scale: CGFloat = 1.0
+  private var scale: CGFloat = 0.2
   var controlPointsVisible = true
 
   override init(frame: NSRect) {
@@ -33,8 +41,6 @@ class GlyphView: NSView {
   }
 
   override func draw(_ dirtyRect: NSRect) {
-    super.draw(dirtyRect)
-
     guard let context = NSGraphicsContext.current?.cgContext else {
       return
     }
@@ -73,12 +79,10 @@ class GlyphView: NSView {
     context.strokePath()
 
     // Render the glyph path
-    for i in 0..<glyphPaths.count {
-      let glyphPath = glyphPaths[i]
-      let transform = transforms[i]
+    for (path, transform) in zip(glyphPaths, transforms) {
       context.saveGState()
       context.concatenate(transform)
-      context.addPath(glyphPath)
+      context.addPath(path)
       context.restoreGState()
     }
 
@@ -86,37 +90,36 @@ class GlyphView: NSView {
     context.strokePath()
 //      context.fillPath()
 
-    // TODO Implement control points in a different layer, in a different place entirely
     if controlPointsVisible {
 
-//        // Draw control points
-//        for point in (glyph?.points)! {
-//
-//          // Note: The original intention of scaling and translating the
-//          // following was to first restore the transformation matrix
-//          // so that no matter the scaling of the glyph, the control points
-//          // would appear as rects of a fixed size.
-//          //int x = (int) (_scaleFactor * ([point x] + _translate.x));
-//          //int y = (int) (_scaleFactor * ([point y] + _translate.y));
-//          let x = Int(point.x)
-//          let y = Int(point.y)
-//
-//          // Set the point colour based on selection
-//          //            if (_selectedPoints.contains(_glyph.getPoint(i))) {
-//          //                g2d.setPaint(Color.blue);
-//          //            } else {
-//          //                g2d.setPaint(Color.black);
-//          //            }
-//
-//          // Draw the point based on its type (on or off curve)
-//          context.addRect(CGRect(x: x - 2, y: y - 2, width: 5, height: 5))
-//          if point.onCurve {
-//            context.fillPath()
-//          } else {
-//            context.strokePath()
-////            g2d.drawString(Integer.toString(i), x + 4, y - 4);
-//          }
-//        }
+      // Draw control points
+      for cp in controlPoints {
+
+        // Note: The original intention of scaling and translating the
+        // following was to first restore the transformation matrix
+        // so that no matter the scaling of the glyph, the control points
+        // would appear as rects of a fixed size.
+        //int x = (int) (_scaleFactor * ([point x] + _translate.x));
+        //int y = (int) (_scaleFactor * ([point y] + _translate.y));
+        let x = cp.position.x
+        let y = cp.position.y
+
+        // Set the point colour based on selection
+        //            if (_selectedPoints.contains(_glyph.getPoint(i))) {
+        //                g2d.setPaint(Color.blue);
+        //            } else {
+        //                g2d.setPaint(Color.black);
+        //            }
+
+        // Draw the point based on its type (on or off curve)
+        context.addRect(CGRect(x: x - 2, y: y - 2, width: 5, height: 5))
+        if cp.onCurve {
+          context.fillPath()
+        } else {
+          context.strokePath()
+//            g2d.drawString(Integer.toString(i), x + 4, y - 4);
+        }
+      }
     }
   }
 }

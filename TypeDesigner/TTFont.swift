@@ -145,11 +145,11 @@ class TTFont: Font {
     tablesAsData.append(hmtxData)
     offset = directory.appendEntry(tag: .hmtx, offset: offset, data: hmtxData)
 
-//    if let vdmxTable = vdmxTable {
-//      let vdmxData = TableWriter.write(table: vdmxTable)
-//      tablesAsData.append(vdmxData)
-//      offset = directory.appendEntry(tag: .VDMX, offset: offset, data: vdmxData)
-//    }
+    if let vdmxTable = vdmxTable {
+      let vdmxData = TableWriter.write(table: vdmxTable)
+      tablesAsData.append(vdmxData)
+      offset = directory.appendEntry(tag: .VDMX, offset: offset, data: vdmxData)
+    }
 
     if let hdmxTable = hdmxTable {
       let hdmxData = TableWriter.write(table: hdmxTable)
