@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ascender</key>
+	<integer>750</integer>
+	<key>capHeight</key>
+	<integer>750</integer>
+	<key>copyright</key>
+	<string>Copyright Someone</string>
+	<key>descender</key>
+	<integer>-250</integer>
+	<key>familyName</key>
+	<string>TestFontFamily</string>
+	<key>guidelines</key>
+	<array/>
+	<key>italicAngle</key>
+	<real>-12.5</real>
+	<key>note</key>
+	<string>A brief note.</string>
+	<key>openTypeNameDesigner</key>
+	<string>Designer Name</string>
+	<key>openTypeNameDesignerURL</key>
+	<string>https://github.com/dcsch/ufokit</string>
+	<key>openTypeNameLicense</key>
+	<string>License Someone</string>
+	<key>openTypeNameLicenseURL</key>
+	<string>https://github.com/dcsch/ufokit/blob/master/LICENSE</string>
+	<key>openTypeNameManufacturer</key>
+	<string>Manufacturer Name</string>
+	<key>openTypeNameManufacturerURL</key>
+	<string>https://github.com/dcsch</string>
+	<key>postscriptBlueValues</key>
+	<array/>
+	<key>postscriptFamilyBlues</key>
+	<array/>
+	<key>postscriptFamilyOtherBlues</key>
+	<array/>
+	<key>postscriptOtherBlues</key>
+	<array/>
+	<key>postscriptStemSnapH</key>
+	<array/>
+	<key>postscriptStemSnapV</key>
+	<array/>
+	<key>styleName</key>
+	<string>RegularStyle</string>
+	<key>trademark</key>
+	<string>Trademark Someone</string>
+	<key>unitsPerEm</key>
+	<integer>1000</integer>
+	<key>versionMajor</key>
+	<integer>1</integer>
+	<key>versionMinor</key>
+	<integer>0</integer>
+	<key>xHeight</key>
+	<integer>500</integer>
+</dict>
+</plist>
