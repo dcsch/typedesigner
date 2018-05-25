@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,10 @@
 		034BF03B1F96A9AA00BFE9F1 /* CharacterToGlyphMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BF03A1F96A9AA00BFE9F1 /* CharacterToGlyphMapping.swift */; };
 		034EC2C81F730F97008570B3 /* TypeDesignerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC2C71F730F97008570B3 /* TypeDesignerUITests.swift */; };
 		034EC2D61F73103F008570B3 /* TypeDesignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC2D51F73103F008570B3 /* TypeDesignerTests.swift */; };
+		035AD8A620B8B70E006494B7 /* UFOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD8A320B8B590006494B7 /* UFOKit.framework */; };
+		035AD8A720B8B70E006494B7 /* UFOKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD8A320B8B590006494B7 /* UFOKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		035AD8AB20B8BB1C006494B7 /* UFODocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8AA20B8BB1C006494B7 /* UFODocument.swift */; };
+		035AD8AD20B8BC64006494B7 /* UFOFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8AC20B8BC64006494B7 /* UFOFont.swift */; };
 		039845B81F195B6F0040988F /* HheaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845B71F195B6F0040988F /* HheaTable.swift */; };
 		039845BA1F1977CE0040988F /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845B91F1977CE0040988F /* Table.swift */; };
 		039845BC1F19802E0040988F /* HmtxTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845BB1F19802E0040988F /* HmtxTable.swift */; };
@@ -101,6 +105,27 @@
 			remoteGlobalIDString = 6373B1AA166A11B5007EC53F;
 			remoteInfo = "Type Designer";
 		};
+		035AD8A220B8B590006494B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03601D701FDF67F8000B1401;
+			remoteInfo = UFOKit;
+		};
+		035AD8A420B8B590006494B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03601D791FDF67F8000B1401;
+			remoteInfo = UFOKitTests;
+		};
+		035AD8A820B8B70E006494B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 03601D6F1FDF67F8000B1401;
+			remoteInfo = UFOKit;
+		};
 		03C2F5161F43FDDD00B2A3BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */;
@@ -153,6 +178,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				03FF501E1F45188E009F5F0C /* CFF.framework in Embed Frameworks */,
+				035AD8A720B8B70E006494B7 /* UFOKit.framework in Embed Frameworks */,
 				03FF501A1F45188E009F5F0C /* IOUtils.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -182,6 +208,9 @@
 		034EC2D31F73103F008570B3 /* TypeDesignerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypeDesignerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		034EC2D51F73103F008570B3 /* TypeDesignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDesignerTests.swift; sourceTree = "<group>"; };
 		034EC2D71F73103F008570B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UFOKit.xcodeproj; path = UFOKit/UFOKit.xcodeproj; sourceTree = "<group>"; };
+		035AD8AA20B8BB1C006494B7 /* UFODocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFODocument.swift; sourceTree = "<group>"; };
+		035AD8AC20B8BC64006494B7 /* UFOFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOFont.swift; sourceTree = "<group>"; };
 		039845B71F195B6F0040988F /* HheaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HheaTable.swift; sourceTree = "<group>"; };
 		039845B91F1977CE0040988F /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		039845BB1F19802E0040988F /* HmtxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HmtxTable.swift; sourceTree = "<group>"; };
@@ -271,6 +300,7 @@
 			files = (
 				03FF50191F45188E009F5F0C /* IOUtils.framework in Frameworks */,
 				6373B1B0166A11B5007EC53F /* Cocoa.framework in Frameworks */,
+				035AD8A620B8B70E006494B7 /* UFOKit.framework in Frameworks */,
 				03FF501D1F45188E009F5F0C /* CFF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +324,15 @@
 				034EC2D71F73103F008570B3 /* Info.plist */,
 			);
 			path = TypeDesignerTests;
+			sourceTree = "<group>";
+		};
+		035AD89C20B8B590006494B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				035AD8A320B8B590006494B7 /* UFOKit.framework */,
+				035AD8A520B8B590006494B7 /* UFOKitTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		03C2F5121F43FDDC00B2A3BC /* Products */ = {
@@ -348,6 +387,8 @@
 				03B311F61F2A9CC3001E6712 /* Font.swift */,
 				03CE9CA11FBE78A2002FE971 /* TTFont.swift */,
 				03CE9CA51FBE78B1002FE971 /* T2Font.swift */,
+				035AD8AC20B8BC64006494B7 /* UFOFont.swift */,
+				035AD8AA20B8BB1C006494B7 /* UFODocument.swift */,
 				03B311F41F2A7128001E6712 /* FontDocument.swift */,
 				03C5674C1F6B5195004C915B /* ImportDocument.swift */,
 				03A72DD61F5CB781003ABF74 /* FontController.swift */,
@@ -433,6 +474,7 @@
 				6365E66C167559690054AAB3 /* README.md */,
 				03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */,
 				03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */,
+				035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */,
 				6373B1B5166A11B5007EC53F /* Type Designer */,
 				034EC2C61F730F97008570B3 /* TypeDesignerUITests */,
 				034EC2D41F73103F008570B3 /* TypeDesignerTests */,
@@ -547,6 +589,7 @@
 			dependencies = (
 				03FF501C1F45188E009F5F0C /* PBXTargetDependency */,
 				03FF50201F45188E009F5F0C /* PBXTargetDependency */,
+				035AD8A920B8B70E006494B7 /* PBXTargetDependency */,
 			);
 			name = "Type Designer";
 			productName = Typecast;
@@ -585,7 +628,7 @@
 				};
 			};
 			buildConfigurationList = 6373B1A5166A11B5007EC53F /* Build configuration list for PBXProject "Type Designer" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -603,6 +646,10 @@
 					ProductGroup = 03FF50001F44C2EC009F5F0C /* Products */;
 					ProjectRef = 03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */;
 				},
+				{
+					ProductGroup = 035AD89C20B8B590006494B7 /* Products */;
+					ProjectRef = 035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -614,6 +661,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		035AD8A320B8B590006494B7 /* UFOKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = UFOKit.framework;
+			remoteRef = 035AD8A220B8B590006494B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		035AD8A520B8B590006494B7 /* UFOKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UFOKitTests.xctest;
+			remoteRef = 035AD8A420B8B590006494B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		03C2F5171F43FDDD00B2A3BC /* CFF.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -710,6 +771,7 @@
 				03A72DD31F5A17A9003ABF74 /* FontDocumentWindowController.swift in Sources */,
 				03B311FB1F2AC062001E6712 /* TCResourceHeader.swift in Sources */,
 				0348BE6D1F33DD3700446B58 /* GlyfDescript.swift in Sources */,
+				035AD8AD20B8BC64006494B7 /* UFOFont.swift in Sources */,
 				03F1F2111FCC985D00813EDD /* TableWriter.swift in Sources */,
 				03F905DA1F37FE930008FF3E /* CmapFormat4.swift in Sources */,
 				03C40BF51F36F99A00CD6BAC /* LocaTable.swift in Sources */,
@@ -742,6 +804,7 @@
 				03F1F20B1FCA527D00813EDD /* NamesViewController.swift in Sources */,
 				03F905E01F38E8E50008FF3E /* Disassembler.swift in Sources */,
 				033CF14D1F574D95005D15ED /* GlyphViewController.swift in Sources */,
+				035AD8AB20B8BB1C006494B7 /* UFODocument.swift in Sources */,
 				03FF50331F48152C009F5F0C /* DsigTable.swift in Sources */,
 				03F905DE1F38DEC40008FF3E /* Mnemonic.swift in Sources */,
 				03F905D01F37CBFF0008FF3E /* CmapFormat.swift in Sources */,
@@ -774,6 +837,11 @@
 			isa = PBXTargetDependency;
 			target = 6373B1AA166A11B5007EC53F /* Type Designer */;
 			targetProxy = 034EC2D81F73103F008570B3 /* PBXContainerItemProxy */;
+		};
+		035AD8A920B8B70E006494B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UFOKit;
+			targetProxy = 035AD8A820B8B70E006494B7 /* PBXContainerItemProxy */;
 		};
 		03FF501C1F45188E009F5F0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -819,11 +887,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = TypeDesignerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.TypeDesignerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "Type Designer";
@@ -851,7 +924,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = TypeDesignerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.TypeDesignerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -881,11 +958,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = TypeDesignerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.TypeDesignerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Type Designer.app/Contents/MacOS/Type Designer";
@@ -914,7 +996,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = TypeDesignerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.TypeDesignerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -966,7 +1052,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1008,9 +1094,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -1027,10 +1114,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TypeDesigner/Type-Designer-Prefix.pch";
 				INFOPLIST_FILE = TypeDesigner/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.typista.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Type Designer";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OBJC_BRIDGING_HEADER = "TypeDesigner/Type Designer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1052,7 +1143,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TypeDesigner/Type-Designer-Prefix.pch";
 				INFOPLIST_FILE = TypeDesigner/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.typista.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "Type Designer";
 				PROVISIONING_PROFILE_SPECIFIER = "";
