@@ -1,0 +1,1015 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0321744E20F56D3F0046C12F /* FSPointToSegmentPenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0321744D20F56D3F0046C12F /* FSPointToSegmentPenTests.m */; };
+		033E956520C8A1C3005AB611 /* new_glyph.py in Resources */ = {isa = PBXBuildFile; fileRef = 033E956420C8A1C3005AB611 /* new_glyph.py */; };
+		033E956720C9BE31005AB611 /* rename_glyph.py in Resources */ = {isa = PBXBuildFile; fileRef = 033E956620C9BE31005AB611 /* rename_glyph.py */; };
+		0348F58720BA22E700FDC6E2 /* FSFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 0348F58520BA22E700FDC6E2 /* FSFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0348F58820BA22E700FDC6E2 /* FSFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F58620BA22E700FDC6E2 /* FSFont.m */; };
+		0348F58A20BA257200FDC6E2 /* basics.py in Resources */ = {isa = PBXBuildFile; fileRef = 0348F58920BA257200FDC6E2 /* basics.py */; };
+		0348F58D20BCCD0600FDC6E2 /* FSLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0348F58B20BCCD0600FDC6E2 /* FSLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0348F58E20BCCD0600FDC6E2 /* FSLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F58C20BCCD0600FDC6E2 /* FSLayer.m */; };
+		0348F59120BCCD1F00FDC6E2 /* FSGlyph.h in Headers */ = {isa = PBXBuildFile; fileRef = 0348F58F20BCCD1F00FDC6E2 /* FSGlyph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0348F59220BCCD1F00FDC6E2 /* FSGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F59020BCCD1F00FDC6E2 /* FSGlyph.m */; };
+		035AD8C220B8CC97006494B7 /* FontScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD8B820B8CC97006494B7 /* FontScript.framework */; };
+		035AD8C720B8CC97006494B7 /* FontScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8C620B8CC97006494B7 /* FontScriptTests.m */; };
+		035AD8C920B8CC97006494B7 /* FontScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 035AD8BB20B8CC97006494B7 /* FontScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		035AD8D420B8CD68006494B7 /* FSScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 035AD8D220B8CD68006494B7 /* FSScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		035AD8D520B8CD68006494B7 /* FSScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8D320B8CD68006494B7 /* FSScript.m */; };
+		035AD92020B8FFB3006494B7 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD91F20B8FFB3006494B7 /* Python.framework */; };
+		035AD92320B9044D006494B7 /* multiply.py in Resources */ = {isa = PBXBuildFile; fileRef = 035AD92220B9044D006494B7 /* multiply.py */; };
+		0366C7F120F6DE98003EEEB6 /* PointToSegmentPenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366C7F020F6DE98003EEEB6 /* PointToSegmentPenTests.swift */; };
+		0366C7F320F6E825003EEEB6 /* TestPen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366C7F220F6E825003EEEB6 /* TestPen.swift */; };
+		0366C7F520F831CD003EEEB6 /* FSSegmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0366C7F420F831CD003EEEB6 /* FSSegmentTests.m */; };
+		0366C7F720FBD682003EEEB6 /* TestPointPen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0366C7F620FBD682003EEEB6 /* TestPointPen.swift */; };
+		0366C81421016982003EEEB6 /* FSComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 0366C81221016982003EEEB6 /* FSComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0366C81521016982003EEEB6 /* FSComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0366C81321016982003EEEB6 /* FSComponent.m */; };
+		0366C81721026795003EEEB6 /* FSComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0366C81621026795003EEEB6 /* FSComponentTests.m */; };
+		0366C81A21028242003EEEB6 /* FSTestPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0366C81921028242003EEEB6 /* FSTestPen.m */; };
+		0378D28720CB375F00AFE4E3 /* FSPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0378D28620CB375F00AFE4E3 /* FSPen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0378D28A20CB38AE00AFE4E3 /* FSBoundsPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0378D28820CB38AE00AFE4E3 /* FSBoundsPen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0378D28B20CB38AE00AFE4E3 /* FSBoundsPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0378D28920CB38AE00AFE4E3 /* FSBoundsPen.m */; };
+		03879D4E20C1CDA70033A7C4 /* list_fonts.py in Resources */ = {isa = PBXBuildFile; fileRef = 03879D4D20C1CDA70033A7C4 /* list_fonts.py */; };
+		03879D5020C1D6D20033A7C4 /* new_font.py in Resources */ = {isa = PBXBuildFile; fileRef = 03879D4F20C1D6D20033A7C4 /* new_font.py */; };
+		03879D5320C1DD5D0033A7C4 /* FSInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 03879D5120C1DD5D0033A7C4 /* FSInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03879D5420C1DD5D0033A7C4 /* FSInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 03879D5220C1DD5D0033A7C4 /* FSInfo.m */; };
+		03A1CEAA2106A68E00127C55 /* FontScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 035AD8BB20B8CC97006494B7 /* FontScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEAB2106A68E00127C55 /* FontScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B1078220CA0693008C05E3 /* FontScript.m */; };
+		03A1CEAC2106A68E00127C55 /* FSScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 035AD8D220B8CD68006494B7 /* FSScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEAD2106A68E00127C55 /* FSScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8D320B8CD68006494B7 /* FSScript.m */; };
+		03A1CEAE2106A68E00127C55 /* FSFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 0348F58520BA22E700FDC6E2 /* FSFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEAF2106A68E00127C55 /* FSFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F58620BA22E700FDC6E2 /* FSFont.m */; };
+		03A1CEB02106A68E00127C55 /* FSLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0348F58B20BCCD0600FDC6E2 /* FSLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEB12106A68E00127C55 /* FSLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F58C20BCCD0600FDC6E2 /* FSLayer.m */; };
+		03A1CEB22106A68E00127C55 /* FSGlyph.h in Headers */ = {isa = PBXBuildFile; fileRef = 0348F58F20BCCD1F00FDC6E2 /* FSGlyph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEB32106A68E00127C55 /* FSGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 0348F59020BCCD1F00FDC6E2 /* FSGlyph.m */; };
+		03A1CEB42106A68E00127C55 /* FSContour.h in Headers */ = {isa = PBXBuildFile; fileRef = 03F46A1C20D2F7360073B844 /* FSContour.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEB52106A68E00127C55 /* FSContour.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F46A1D20D2F7360073B844 /* FSContour.m */; };
+		03A1CEB62106A68E00127C55 /* FSSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DF620F436E30039776E /* FSSegment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEB72106A68E00127C55 /* FSSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DF720F436E30039776E /* FSSegment.m */; };
+		03A1CEB82106A68E00127C55 /* FSPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DDB20EFFCDF0039776E /* FSPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEB92106A68E00127C55 /* FSPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DDC20EFFCDF0039776E /* FSPoint.m */; };
+		03A1CEBA2106A68E00127C55 /* FSComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 0366C81221016982003EEEB6 /* FSComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEBB2106A68E00127C55 /* FSComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0366C81321016982003EEEB6 /* FSComponent.m */; };
+		03A1CEBC2106A68E00127C55 /* FSInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 03879D5120C1DD5D0033A7C4 /* FSInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEBD2106A68E00127C55 /* FSInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 03879D5220C1DD5D0033A7C4 /* FSInfo.m */; };
+		03A1CEBE2106A68E00127C55 /* FSPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0378D28620CB375F00AFE4E3 /* FSPen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEBF2106A68E00127C55 /* FSPointPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DF420F434690039776E /* FSPointPen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEC02106A68E00127C55 /* FSPointToSegmentPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DFA20F43C030039776E /* FSPointToSegmentPen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEC12106A68E00127C55 /* FSPointToSegmentPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DFB20F43C030039776E /* FSPointToSegmentPen.m */; };
+		03A1CEC22106A68E00127C55 /* FSBoundsPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0378D28820CB38AE00AFE4E3 /* FSBoundsPen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEC32106A68E00127C55 /* FSBoundsPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0378D28920CB38AE00AFE4E3 /* FSBoundsPen.m */; };
+		03A1CEC42106A68E00127C55 /* FSIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DEE20F022640039776E /* FSIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEC52106A68E00127C55 /* FSIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DEF20F022640039776E /* FSIdentifier.m */; };
+		03A1CECA2106AD0F00127C55 /* FSScriptPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CEC92106AD0F00127C55 /* FSScriptPy.m */; };
+		03A1CECC2106AFF000127C55 /* NSValue+CGPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A1CECB2106AFF000127C55 /* NSValue+CGPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CECE2106B0FD00127C55 /* NSValue+CGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CECD2106B0FD00127C55 /* NSValue+CGPoint.m */; };
+		03A1CED02106B32300127C55 /* FSFontPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CECF2106B32300127C55 /* FSFontPy.m */; };
+		03A1CED22106B33100127C55 /* FSLayerPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED12106B33100127C55 /* FSLayerPy.m */; };
+		03A1CED42107A3BC00127C55 /* FSInfoPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED32107A3BC00127C55 /* FSInfoPy.m */; };
+		03A1CED52107A4D000127C55 /* FSPythonObjects.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A1CEC62106AB2700127C55 /* FSPythonObjects.h */; };
+		03A1CED72107A69700127C55 /* FSGlyphPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED62107A69700127C55 /* FSGlyphPy.m */; };
+		03A1CEDA2107A7BA00127C55 /* FontScriptFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A1CED82107A7BA00127C55 /* FontScriptFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03A1CEDB2107A7BA00127C55 /* FontScriptFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED92107A7BA00127C55 /* FontScriptFunctions.m */; };
+		03A1CEDE2107AB7100127C55 /* FontScriptFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED92107A7BA00127C55 /* FontScriptFunctions.m */; };
+		03A1CEDF2107B75700127C55 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B1078120C9FCCB008C05E3 /* Localizable.strings */; };
+		03A1CEE02107BAB900127C55 /* FontScriptFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A1CED82107A7BA00127C55 /* FontScriptFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03B1077F20C9FCCB008C05E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B1078120C9FCCB008C05E3 /* Localizable.strings */; };
+		03B1078320CA0693008C05E3 /* FontScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B1078220CA0693008C05E3 /* FontScript.m */; };
+		03E49DDA20EEEBA50039776E /* FSContourTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DD920EEEBA50039776E /* FSContourTests.m */; };
+		03E49DDD20EFFCDF0039776E /* FSPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DDB20EFFCDF0039776E /* FSPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03E49DDE20EFFCDF0039776E /* FSPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DDC20EFFCDF0039776E /* FSPoint.m */; };
+		03E49DE620F00E650039776E /* FontScriptSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DE520F00E650039776E /* FontScriptSwiftTests.swift */; };
+		03E49DE820F00E650039776E /* FontScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD8B820B8CC97006494B7 /* FontScript.framework */; };
+		03E49DF020F022640039776E /* FSIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DEE20F022640039776E /* FSIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03E49DF120F022640039776E /* FSIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DEF20F022640039776E /* FSIdentifier.m */; };
+		03E49DF320F3F5140039776E /* FSPointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DF220F3F5140039776E /* FSPointTests.m */; };
+		03E49DF520F434690039776E /* FSPointPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DF420F434690039776E /* FSPointPen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03E49DF820F436E30039776E /* FSSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DF620F436E30039776E /* FSSegment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03E49DF920F436E30039776E /* FSSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DF720F436E30039776E /* FSSegment.m */; };
+		03E49DFC20F43C030039776E /* FSPointToSegmentPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DFA20F43C030039776E /* FSPointToSegmentPen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03E49DFD20F43C030039776E /* FSPointToSegmentPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DFB20F43C030039776E /* FSPointToSegmentPen.m */; };
+		03F46A1B20D1DE9D0073B844 /* FSBoundsPenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F46A1A20D1DE9D0073B844 /* FSBoundsPenTests.m */; };
+		03F46A1E20D2F7360073B844 /* FSContour.h in Headers */ = {isa = PBXBuildFile; fileRef = 03F46A1C20D2F7360073B844 /* FSContour.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03F46A1F20D2F7360073B844 /* FSContour.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F46A1D20D2F7360073B844 /* FSContour.m */; };
+		03F46A2120D316100073B844 /* FSGlyphTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F46A2020D316100073B844 /* FSGlyphTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		035AD8C320B8CC97006494B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 035AD8AF20B8CC97006494B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 035AD8B720B8CC97006494B7;
+			remoteInfo = FontScript;
+		};
+		03E49DE920F00E650039776E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 035AD8AF20B8CC97006494B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 035AD8B720B8CC97006494B7;
+			remoteInfo = FontScript;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0321744D20F56D3F0046C12F /* FSPointToSegmentPenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPointToSegmentPenTests.m; sourceTree = "<group>"; };
+		033E956420C8A1C3005AB611 /* new_glyph.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = new_glyph.py; sourceTree = "<group>"; };
+		033E956620C9BE31005AB611 /* rename_glyph.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = rename_glyph.py; sourceTree = "<group>"; };
+		0348F58520BA22E700FDC6E2 /* FSFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFont.h; sourceTree = "<group>"; };
+		0348F58620BA22E700FDC6E2 /* FSFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFont.m; sourceTree = "<group>"; };
+		0348F58920BA257200FDC6E2 /* basics.py */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = text.script.python; path = basics.py; sourceTree = "<group>"; tabWidth = 4; };
+		0348F58B20BCCD0600FDC6E2 /* FSLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLayer.h; sourceTree = "<group>"; };
+		0348F58C20BCCD0600FDC6E2 /* FSLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLayer.m; sourceTree = "<group>"; };
+		0348F58F20BCCD1F00FDC6E2 /* FSGlyph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSGlyph.h; sourceTree = "<group>"; };
+		0348F59020BCCD1F00FDC6E2 /* FSGlyph.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGlyph.m; sourceTree = "<group>"; };
+		035AD8B820B8CC97006494B7 /* FontScript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontScript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		035AD8BB20B8CC97006494B7 /* FontScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontScript.h; sourceTree = "<group>"; };
+		035AD8BC20B8CC97006494B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		035AD8C120B8CC97006494B7 /* FontScriptTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontScriptTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		035AD8C620B8CC97006494B7 /* FontScriptTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontScriptTests.m; sourceTree = "<group>"; };
+		035AD8C820B8CC97006494B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		035AD8D220B8CD68006494B7 /* FSScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSScript.h; sourceTree = "<group>"; };
+		035AD8D320B8CD68006494B7 /* FSScript.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSScript.m; sourceTree = "<group>"; };
+		035AD91F20B8FFB3006494B7 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = ../../../../Library/Frameworks/Python.framework; sourceTree = "<group>"; };
+		035AD92220B9044D006494B7 /* multiply.py */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = text.script.python; path = multiply.py; sourceTree = "<group>"; tabWidth = 4; };
+		035AD92420BA1262006494B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0366C7F020F6DE98003EEEB6 /* PointToSegmentPenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointToSegmentPenTests.swift; sourceTree = "<group>"; };
+		0366C7F220F6E825003EEEB6 /* TestPen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPen.swift; sourceTree = "<group>"; };
+		0366C7F420F831CD003EEEB6 /* FSSegmentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSegmentTests.m; sourceTree = "<group>"; };
+		0366C7F620FBD682003EEEB6 /* TestPointPen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPointPen.swift; sourceTree = "<group>"; };
+		0366C81221016982003EEEB6 /* FSComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSComponent.h; sourceTree = "<group>"; };
+		0366C81321016982003EEEB6 /* FSComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSComponent.m; sourceTree = "<group>"; };
+		0366C81621026795003EEEB6 /* FSComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSComponentTests.m; sourceTree = "<group>"; };
+		0366C81821028242003EEEB6 /* FSTestPen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTestPen.h; sourceTree = "<group>"; };
+		0366C81921028242003EEEB6 /* FSTestPen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTestPen.m; sourceTree = "<group>"; };
+		0378D28620CB375F00AFE4E3 /* FSPen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPen.h; sourceTree = "<group>"; };
+		0378D28820CB38AE00AFE4E3 /* FSBoundsPen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBoundsPen.h; sourceTree = "<group>"; };
+		0378D28920CB38AE00AFE4E3 /* FSBoundsPen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSBoundsPen.m; sourceTree = "<group>"; };
+		03879D4D20C1CDA70033A7C4 /* list_fonts.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = list_fonts.py; sourceTree = "<group>"; };
+		03879D4F20C1D6D20033A7C4 /* new_font.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = new_font.py; sourceTree = "<group>"; };
+		03879D5120C1DD5D0033A7C4 /* FSInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSInfo.h; sourceTree = "<group>"; };
+		03879D5220C1DD5D0033A7C4 /* FSInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSInfo.m; sourceTree = "<group>"; };
+		03A1CEA22106A61800127C55 /* FontScript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontScript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03A1CEC62106AB2700127C55 /* FSPythonObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPythonObjects.h; sourceTree = "<group>"; };
+		03A1CEC92106AD0F00127C55 /* FSScriptPy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSScriptPy.m; sourceTree = "<group>"; };
+		03A1CECB2106AFF000127C55 /* NSValue+CGPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSValue+CGPoint.h"; sourceTree = "<group>"; };
+		03A1CECD2106B0FD00127C55 /* NSValue+CGPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSValue+CGPoint.m"; sourceTree = "<group>"; };
+		03A1CECF2106B32300127C55 /* FSFontPy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFontPy.m; sourceTree = "<group>"; };
+		03A1CED12106B33100127C55 /* FSLayerPy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLayerPy.m; sourceTree = "<group>"; };
+		03A1CED32107A3BC00127C55 /* FSInfoPy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSInfoPy.m; sourceTree = "<group>"; };
+		03A1CED62107A69700127C55 /* FSGlyphPy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGlyphPy.m; sourceTree = "<group>"; };
+		03A1CED82107A7BA00127C55 /* FontScriptFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontScriptFunctions.h; sourceTree = "<group>"; };
+		03A1CED92107A7BA00127C55 /* FontScriptFunctions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontScriptFunctions.m; sourceTree = "<group>"; };
+		03A1CEDC2107A93800127C55 /* FSFontPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFontPrivate.h; sourceTree = "<group>"; };
+		03B1078020C9FCCB008C05E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		03B1078220CA0693008C05E3 /* FontScript.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontScript.m; sourceTree = "<group>"; };
+		03E49DD920EEEBA50039776E /* FSContourTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSContourTests.m; sourceTree = "<group>"; };
+		03E49DDB20EFFCDF0039776E /* FSPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPoint.h; sourceTree = "<group>"; };
+		03E49DDC20EFFCDF0039776E /* FSPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPoint.m; sourceTree = "<group>"; };
+		03E49DE320F00E650039776E /* FontScriptSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontScriptSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E49DE520F00E650039776E /* FontScriptSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontScriptSwiftTests.swift; sourceTree = "<group>"; };
+		03E49DE720F00E650039776E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03E49DEE20F022640039776E /* FSIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSIdentifier.h; sourceTree = "<group>"; };
+		03E49DEF20F022640039776E /* FSIdentifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSIdentifier.m; sourceTree = "<group>"; };
+		03E49DF220F3F5140039776E /* FSPointTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPointTests.m; sourceTree = "<group>"; };
+		03E49DF420F434690039776E /* FSPointPen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPointPen.h; sourceTree = "<group>"; };
+		03E49DF620F436E30039776E /* FSSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSegment.h; sourceTree = "<group>"; };
+		03E49DF720F436E30039776E /* FSSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSegment.m; sourceTree = "<group>"; };
+		03E49DFA20F43C030039776E /* FSPointToSegmentPen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPointToSegmentPen.h; sourceTree = "<group>"; };
+		03E49DFB20F43C030039776E /* FSPointToSegmentPen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPointToSegmentPen.m; sourceTree = "<group>"; };
+		03F46A1A20D1DE9D0073B844 /* FSBoundsPenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSBoundsPenTests.m; sourceTree = "<group>"; };
+		03F46A1C20D2F7360073B844 /* FSContour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSContour.h; sourceTree = "<group>"; };
+		03F46A1D20D2F7360073B844 /* FSContour.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSContour.m; sourceTree = "<group>"; };
+		03F46A2020D316100073B844 /* FSGlyphTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGlyphTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		035AD8B420B8CC97006494B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				035AD92020B8FFB3006494B7 /* Python.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		035AD8BE20B8CC97006494B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				035AD8C220B8CC97006494B7 /* FontScript.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03A1CE9E2106A61800127C55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03E49DE020F00E650039776E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03E49DE820F00E650039776E /* FontScript.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		035AD8AE20B8CC97006494B7 = {
+			isa = PBXGroup;
+			children = (
+				035AD92420BA1262006494B7 /* README.md */,
+				035AD8BA20B8CC97006494B7 /* FontScript */,
+				035AD8C520B8CC97006494B7 /* FontScriptTests */,
+				03E49DE420F00E650039776E /* FontScriptSwiftTests */,
+				035AD8B920B8CC97006494B7 /* Products */,
+				035AD8D620B8E5ED006494B7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		035AD8B920B8CC97006494B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				035AD8B820B8CC97006494B7 /* FontScript.framework */,
+				035AD8C120B8CC97006494B7 /* FontScriptTests.xctest */,
+				03E49DE320F00E650039776E /* FontScriptSwiftTests.xctest */,
+				03A1CEA22106A61800127C55 /* FontScript.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		035AD8BA20B8CC97006494B7 /* FontScript */ = {
+			isa = PBXGroup;
+			children = (
+				035AD8BB20B8CC97006494B7 /* FontScript.h */,
+				03B1078220CA0693008C05E3 /* FontScript.m */,
+				03A1CED82107A7BA00127C55 /* FontScriptFunctions.h */,
+				03A1CED92107A7BA00127C55 /* FontScriptFunctions.m */,
+				03A1CEC62106AB2700127C55 /* FSPythonObjects.h */,
+				035AD8BC20B8CC97006494B7 /* Info.plist */,
+				035AD8D220B8CD68006494B7 /* FSScript.h */,
+				035AD8D320B8CD68006494B7 /* FSScript.m */,
+				03A1CEC92106AD0F00127C55 /* FSScriptPy.m */,
+				0348F58520BA22E700FDC6E2 /* FSFont.h */,
+				03A1CEDC2107A93800127C55 /* FSFontPrivate.h */,
+				0348F58620BA22E700FDC6E2 /* FSFont.m */,
+				03A1CECF2106B32300127C55 /* FSFontPy.m */,
+				0348F58B20BCCD0600FDC6E2 /* FSLayer.h */,
+				0348F58C20BCCD0600FDC6E2 /* FSLayer.m */,
+				03A1CED12106B33100127C55 /* FSLayerPy.m */,
+				0348F58F20BCCD1F00FDC6E2 /* FSGlyph.h */,
+				0348F59020BCCD1F00FDC6E2 /* FSGlyph.m */,
+				03A1CED62107A69700127C55 /* FSGlyphPy.m */,
+				03F46A1C20D2F7360073B844 /* FSContour.h */,
+				03F46A1D20D2F7360073B844 /* FSContour.m */,
+				03E49DF620F436E30039776E /* FSSegment.h */,
+				03E49DF720F436E30039776E /* FSSegment.m */,
+				03E49DDB20EFFCDF0039776E /* FSPoint.h */,
+				03E49DDC20EFFCDF0039776E /* FSPoint.m */,
+				0366C81221016982003EEEB6 /* FSComponent.h */,
+				0366C81321016982003EEEB6 /* FSComponent.m */,
+				03879D5120C1DD5D0033A7C4 /* FSInfo.h */,
+				03879D5220C1DD5D0033A7C4 /* FSInfo.m */,
+				03A1CED32107A3BC00127C55 /* FSInfoPy.m */,
+				0378D28620CB375F00AFE4E3 /* FSPen.h */,
+				03E49DF420F434690039776E /* FSPointPen.h */,
+				03E49DFA20F43C030039776E /* FSPointToSegmentPen.h */,
+				03E49DFB20F43C030039776E /* FSPointToSegmentPen.m */,
+				0378D28820CB38AE00AFE4E3 /* FSBoundsPen.h */,
+				0378D28920CB38AE00AFE4E3 /* FSBoundsPen.m */,
+				03E49DEE20F022640039776E /* FSIdentifier.h */,
+				03E49DEF20F022640039776E /* FSIdentifier.m */,
+				03A1CECB2106AFF000127C55 /* NSValue+CGPoint.h */,
+				03A1CECD2106B0FD00127C55 /* NSValue+CGPoint.m */,
+				03B1078120C9FCCB008C05E3 /* Localizable.strings */,
+			);
+			path = FontScript;
+			sourceTree = "<group>";
+		};
+		035AD8C520B8CC97006494B7 /* FontScriptTests */ = {
+			isa = PBXGroup;
+			children = (
+				035AD92120B9042C006494B7 /* scripts */,
+				035AD8C620B8CC97006494B7 /* FontScriptTests.m */,
+				03F46A2020D316100073B844 /* FSGlyphTests.m */,
+				03E49DD920EEEBA50039776E /* FSContourTests.m */,
+				0366C7F420F831CD003EEEB6 /* FSSegmentTests.m */,
+				03E49DF220F3F5140039776E /* FSPointTests.m */,
+				0366C81621026795003EEEB6 /* FSComponentTests.m */,
+				03F46A1A20D1DE9D0073B844 /* FSBoundsPenTests.m */,
+				0321744D20F56D3F0046C12F /* FSPointToSegmentPenTests.m */,
+				0366C81821028242003EEEB6 /* FSTestPen.h */,
+				0366C81921028242003EEEB6 /* FSTestPen.m */,
+				035AD8C820B8CC97006494B7 /* Info.plist */,
+			);
+			path = FontScriptTests;
+			sourceTree = "<group>";
+		};
+		035AD8D620B8E5ED006494B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				035AD91F20B8FFB3006494B7 /* Python.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		035AD92120B9042C006494B7 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				035AD92220B9044D006494B7 /* multiply.py */,
+				0348F58920BA257200FDC6E2 /* basics.py */,
+				03879D4D20C1CDA70033A7C4 /* list_fonts.py */,
+				03879D4F20C1D6D20033A7C4 /* new_font.py */,
+				033E956420C8A1C3005AB611 /* new_glyph.py */,
+				033E956620C9BE31005AB611 /* rename_glyph.py */,
+			);
+			indentWidth = 4;
+			path = scripts;
+			sourceTree = "<group>";
+			tabWidth = 4;
+		};
+		03E49DE420F00E650039776E /* FontScriptSwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				03E49DE520F00E650039776E /* FontScriptSwiftTests.swift */,
+				0366C7F020F6DE98003EEEB6 /* PointToSegmentPenTests.swift */,
+				0366C7F220F6E825003EEEB6 /* TestPen.swift */,
+				0366C7F620FBD682003EEEB6 /* TestPointPen.swift */,
+				03E49DE720F00E650039776E /* Info.plist */,
+			);
+			path = FontScriptSwiftTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		035AD8B520B8CC97006494B7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				035AD8C920B8CC97006494B7 /* FontScript.h in Headers */,
+				035AD8D420B8CD68006494B7 /* FSScript.h in Headers */,
+				0348F58720BA22E700FDC6E2 /* FSFont.h in Headers */,
+				03879D5320C1DD5D0033A7C4 /* FSInfo.h in Headers */,
+				03A1CED52107A4D000127C55 /* FSPythonObjects.h in Headers */,
+				0348F58D20BCCD0600FDC6E2 /* FSLayer.h in Headers */,
+				03E49DDD20EFFCDF0039776E /* FSPoint.h in Headers */,
+				03A1CEDA2107A7BA00127C55 /* FontScriptFunctions.h in Headers */,
+				0348F59120BCCD1F00FDC6E2 /* FSGlyph.h in Headers */,
+				0378D28720CB375F00AFE4E3 /* FSPen.h in Headers */,
+				03E49DF820F436E30039776E /* FSSegment.h in Headers */,
+				03E49DF520F434690039776E /* FSPointPen.h in Headers */,
+				0378D28A20CB38AE00AFE4E3 /* FSBoundsPen.h in Headers */,
+				03E49DFC20F43C030039776E /* FSPointToSegmentPen.h in Headers */,
+				03E49DF020F022640039776E /* FSIdentifier.h in Headers */,
+				03A1CECC2106AFF000127C55 /* NSValue+CGPoint.h in Headers */,
+				0366C81421016982003EEEB6 /* FSComponent.h in Headers */,
+				03F46A1E20D2F7360073B844 /* FSContour.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03A1CE9F2106A61800127C55 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03A1CEE02107BAB900127C55 /* FontScriptFunctions.h in Headers */,
+				03A1CEC42106A68E00127C55 /* FSIdentifier.h in Headers */,
+				03A1CEAA2106A68E00127C55 /* FontScript.h in Headers */,
+				03A1CEBF2106A68E00127C55 /* FSPointPen.h in Headers */,
+				03A1CEB82106A68E00127C55 /* FSPoint.h in Headers */,
+				03A1CEAC2106A68E00127C55 /* FSScript.h in Headers */,
+				03A1CEAE2106A68E00127C55 /* FSFont.h in Headers */,
+				03A1CEB42106A68E00127C55 /* FSContour.h in Headers */,
+				03A1CEBA2106A68E00127C55 /* FSComponent.h in Headers */,
+				03A1CEBC2106A68E00127C55 /* FSInfo.h in Headers */,
+				03A1CEB62106A68E00127C55 /* FSSegment.h in Headers */,
+				03A1CEC22106A68E00127C55 /* FSBoundsPen.h in Headers */,
+				03A1CEBE2106A68E00127C55 /* FSPen.h in Headers */,
+				03A1CEB22106A68E00127C55 /* FSGlyph.h in Headers */,
+				03A1CEB02106A68E00127C55 /* FSLayer.h in Headers */,
+				03A1CEC02106A68E00127C55 /* FSPointToSegmentPen.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		035AD8B720B8CC97006494B7 /* FontScript macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 035AD8CC20B8CC97006494B7 /* Build configuration list for PBXNativeTarget "FontScript macOS" */;
+			buildPhases = (
+				035AD8B320B8CC97006494B7 /* Sources */,
+				035AD8B420B8CC97006494B7 /* Frameworks */,
+				035AD8B520B8CC97006494B7 /* Headers */,
+				035AD8B620B8CC97006494B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FontScript macOS";
+			productName = FontScript;
+			productReference = 035AD8B820B8CC97006494B7 /* FontScript.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		035AD8C020B8CC97006494B7 /* FontScriptTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 035AD8CF20B8CC97006494B7 /* Build configuration list for PBXNativeTarget "FontScriptTests" */;
+			buildPhases = (
+				035AD8BD20B8CC97006494B7 /* Sources */,
+				035AD8BE20B8CC97006494B7 /* Frameworks */,
+				035AD8BF20B8CC97006494B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				035AD8C420B8CC97006494B7 /* PBXTargetDependency */,
+			);
+			name = FontScriptTests;
+			productName = FontScriptTests;
+			productReference = 035AD8C120B8CC97006494B7 /* FontScriptTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		03A1CEA12106A61800127C55 /* FontScript iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03A1CEA92106A61900127C55 /* Build configuration list for PBXNativeTarget "FontScript iOS" */;
+			buildPhases = (
+				03A1CE9D2106A61800127C55 /* Sources */,
+				03A1CE9E2106A61800127C55 /* Frameworks */,
+				03A1CE9F2106A61800127C55 /* Headers */,
+				03A1CEA02106A61800127C55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FontScript iOS";
+			productName = FontScriptNoPy;
+			productReference = 03A1CEA22106A61800127C55 /* FontScript.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		03E49DE220F00E650039776E /* FontScriptSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03E49DEB20F00E650039776E /* Build configuration list for PBXNativeTarget "FontScriptSwiftTests" */;
+			buildPhases = (
+				03E49DDF20F00E650039776E /* Sources */,
+				03E49DE020F00E650039776E /* Frameworks */,
+				03E49DE120F00E650039776E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03E49DEA20F00E650039776E /* PBXTargetDependency */,
+			);
+			name = FontScriptSwiftTests;
+			productName = FontScriptSwiftTests;
+			productReference = 03E49DE320F00E650039776E /* FontScriptSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		035AD8AF20B8CC97006494B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FS;
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "David Schweinsberg";
+				TargetAttributes = {
+					035AD8B720B8CC97006494B7 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					035AD8C020B8CC97006494B7 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					03A1CEA12106A61800127C55 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					03E49DE220F00E650039776E = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 035AD8B220B8CC97006494B7 /* Build configuration list for PBXProject "FontScript" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 035AD8AE20B8CC97006494B7;
+			productRefGroup = 035AD8B920B8CC97006494B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				035AD8B720B8CC97006494B7 /* FontScript macOS */,
+				035AD8C020B8CC97006494B7 /* FontScriptTests */,
+				03E49DE220F00E650039776E /* FontScriptSwiftTests */,
+				03A1CEA12106A61800127C55 /* FontScript iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		035AD8B620B8CC97006494B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03B1077F20C9FCCB008C05E3 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		035AD8BF20B8CC97006494B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03879D4E20C1CDA70033A7C4 /* list_fonts.py in Resources */,
+				035AD92320B9044D006494B7 /* multiply.py in Resources */,
+				03879D5020C1D6D20033A7C4 /* new_font.py in Resources */,
+				033E956720C9BE31005AB611 /* rename_glyph.py in Resources */,
+				033E956520C8A1C3005AB611 /* new_glyph.py in Resources */,
+				0348F58A20BA257200FDC6E2 /* basics.py in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03A1CEA02106A61800127C55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03A1CEDF2107B75700127C55 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03E49DE120F00E650039776E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		035AD8B320B8CC97006494B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03A1CECE2106B0FD00127C55 /* NSValue+CGPoint.m in Sources */,
+				03A1CEDB2107A7BA00127C55 /* FontScriptFunctions.m in Sources */,
+				03E49DF920F436E30039776E /* FSSegment.m in Sources */,
+				03879D5420C1DD5D0033A7C4 /* FSInfo.m in Sources */,
+				0348F58E20BCCD0600FDC6E2 /* FSLayer.m in Sources */,
+				0348F58820BA22E700FDC6E2 /* FSFont.m in Sources */,
+				03A1CED72107A69700127C55 /* FSGlyphPy.m in Sources */,
+				03A1CED42107A3BC00127C55 /* FSInfoPy.m in Sources */,
+				03B1078320CA0693008C05E3 /* FontScript.m in Sources */,
+				0348F59220BCCD1F00FDC6E2 /* FSGlyph.m in Sources */,
+				03E49DF120F022640039776E /* FSIdentifier.m in Sources */,
+				035AD8D520B8CD68006494B7 /* FSScript.m in Sources */,
+				03A1CECA2106AD0F00127C55 /* FSScriptPy.m in Sources */,
+				03E49DFD20F43C030039776E /* FSPointToSegmentPen.m in Sources */,
+				03E49DDE20EFFCDF0039776E /* FSPoint.m in Sources */,
+				03F46A1F20D2F7360073B844 /* FSContour.m in Sources */,
+				03A1CED22106B33100127C55 /* FSLayerPy.m in Sources */,
+				0378D28B20CB38AE00AFE4E3 /* FSBoundsPen.m in Sources */,
+				03A1CED02106B32300127C55 /* FSFontPy.m in Sources */,
+				0366C81521016982003EEEB6 /* FSComponent.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		035AD8BD20B8CC97006494B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0321744E20F56D3F0046C12F /* FSPointToSegmentPenTests.m in Sources */,
+				03F46A1B20D1DE9D0073B844 /* FSBoundsPenTests.m in Sources */,
+				0366C7F520F831CD003EEEB6 /* FSSegmentTests.m in Sources */,
+				035AD8C720B8CC97006494B7 /* FontScriptTests.m in Sources */,
+				0366C81721026795003EEEB6 /* FSComponentTests.m in Sources */,
+				03E49DDA20EEEBA50039776E /* FSContourTests.m in Sources */,
+				03E49DF320F3F5140039776E /* FSPointTests.m in Sources */,
+				0366C81A21028242003EEEB6 /* FSTestPen.m in Sources */,
+				03F46A2120D316100073B844 /* FSGlyphTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03A1CE9D2106A61800127C55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03A1CEAB2106A68E00127C55 /* FontScript.m in Sources */,
+				03A1CEB52106A68E00127C55 /* FSContour.m in Sources */,
+				03A1CEB72106A68E00127C55 /* FSSegment.m in Sources */,
+				03A1CEDE2107AB7100127C55 /* FontScriptFunctions.m in Sources */,
+				03A1CEAD2106A68E00127C55 /* FSScript.m in Sources */,
+				03A1CEC52106A68E00127C55 /* FSIdentifier.m in Sources */,
+				03A1CEB12106A68E00127C55 /* FSLayer.m in Sources */,
+				03A1CEC12106A68E00127C55 /* FSPointToSegmentPen.m in Sources */,
+				03A1CEB32106A68E00127C55 /* FSGlyph.m in Sources */,
+				03A1CEC32106A68E00127C55 /* FSBoundsPen.m in Sources */,
+				03A1CEBD2106A68E00127C55 /* FSInfo.m in Sources */,
+				03A1CEAF2106A68E00127C55 /* FSFont.m in Sources */,
+				03A1CEB92106A68E00127C55 /* FSPoint.m in Sources */,
+				03A1CEBB2106A68E00127C55 /* FSComponent.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03E49DDF20F00E650039776E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03E49DE620F00E650039776E /* FontScriptSwiftTests.swift in Sources */,
+				0366C7F120F6DE98003EEEB6 /* PointToSegmentPenTests.swift in Sources */,
+				0366C7F720FBD682003EEEB6 /* TestPointPen.swift in Sources */,
+				0366C7F320F6E825003EEEB6 /* TestPen.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		035AD8C420B8CC97006494B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 035AD8B720B8CC97006494B7 /* FontScript macOS */;
+			targetProxy = 035AD8C320B8CC97006494B7 /* PBXContainerItemProxy */;
+		};
+		03E49DEA20F00E650039776E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 035AD8B720B8CC97006494B7 /* FontScript macOS */;
+			targetProxy = 03E49DE920F00E650039776E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		03B1078120C9FCCB008C05E3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03B1078020C9FCCB008C05E3 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		035AD8CA20B8CC97006494B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		035AD8CB20B8CC97006494B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		035AD8CD20B8CC97006494B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = FontScript/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.FontScript;
+				PRODUCT_NAME = FontScript;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		035AD8CE20B8CC97006494B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = FontScript/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.FontScript;
+				PRODUCT_NAME = FontScript;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		035AD8D020B8CC97006494B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				INFOPLIST_FILE = FontScriptTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.FontScriptTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		035AD8D120B8CC97006494B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				INFOPLIST_FILE = FontScriptTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.FontScriptTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		03A1CEA72106A61900127C55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = FontScript/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.FontScript;
+				PRODUCT_NAME = FontScript;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		03A1CEA82106A61900127C55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = FontScript/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.FontScript;
+				PRODUCT_NAME = FontScript;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		03E49DEC20F00E650039776E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				INFOPLIST_FILE = FontScriptSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.FontScriptSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		03E49DED20F00E650039776E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				INFOPLIST_FILE = FontScriptSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.typista.FontScriptSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		035AD8B220B8CC97006494B7 /* Build configuration list for PBXProject "FontScript" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				035AD8CA20B8CC97006494B7 /* Debug */,
+				035AD8CB20B8CC97006494B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		035AD8CC20B8CC97006494B7 /* Build configuration list for PBXNativeTarget "FontScript macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				035AD8CD20B8CC97006494B7 /* Debug */,
+				035AD8CE20B8CC97006494B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		035AD8CF20B8CC97006494B7 /* Build configuration list for PBXNativeTarget "FontScriptTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				035AD8D020B8CC97006494B7 /* Debug */,
+				035AD8D120B8CC97006494B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03A1CEA92106A61900127C55 /* Build configuration list for PBXNativeTarget "FontScript iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03A1CEA72106A61900127C55 /* Debug */,
+				03A1CEA82106A61900127C55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03E49DEB20F00E650039776E /* Build configuration list for PBXNativeTarget "FontScriptSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03E49DEC20F00E650039776E /* Debug */,
+				03E49DED20F00E650039776E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 035AD8AF20B8CC97006494B7 /* Project object */;
+}
