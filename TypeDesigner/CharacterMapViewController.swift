@@ -14,7 +14,7 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
   @IBOutlet weak var collectionView: NSCollectionView?
 //  weak var cmapIndexEntry: TCCmapIndexEntry?
   var characterMappings = [(Int, Int)]()
-  var font: Font?
+  var font: UFOFont?
 
   var fontController: FontController? {
     didSet {
@@ -25,9 +25,9 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 
         // TODO: The cmap should be selectable
 //        cmapIndexEntry = font.cmapTable.entries.first
-        let mapping = font.cmapTable.mappings[0]
+//        let mapping = font.cmapTable.mappings[0]
 
-        characterMappings.removeAll()
+//        characterMappings.removeAll()
 //        if let format = cmapIndexEntry?.format {
 //          for range in format.ranges {
 //            for i in range {
@@ -36,10 +36,18 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 //            }
 //          }
 //        }
-        let charCodes = mapping.glyphCodes.keys.sorted()
-        for charCode in charCodes {
-          if let glyphCode = mapping.glyphCodes[charCode] {
-            characterMappings.append((charCode, glyphCode))
+//        let charCodes = mapping.glyphCodes.keys.sorted()
+//        for charCode in charCodes {
+//          if let glyphCode = mapping.glyphCodes[charCode] {
+//            characterMappings.append((charCode, glyphCode))
+//          }
+//        }
+
+        // No mapping - just the glyph order
+        if let glyphOrder = font.libProps.glyphOrder {
+          characterMappings.removeAll()
+          for i in 0..<glyphOrder.count {
+            characterMappings.append((i, i))
           }
         }
         collectionView?.reloadData()
@@ -118,55 +126,51 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
     item.textField?.stringValue = String(format: "%04X", mapping.0)
 
     // Glyph
-    if let ttFont = font as? TTFont {
-      let descript = ttFont.glyfTable.descript[mapping.1]
-      let head = ttFont.headTable
+    if let glyphs = font?.defaultLayer.glyphs,
+      let glyphOrder = font?.libProps.glyphOrder {
+      let glyphIndex = characterMappings[indexPath.item].1
+      let glyphName = glyphOrder[glyphIndex]
+      let glyph = glyphs[glyphName] as! UFOGlyph
       let size = item.imageView?.bounds.size
       let pixelSize = collectionView.convertToBacking(size!)
 
+      let bounds = font?.bounds ?? CGRect(x: -512, y: -512, width: 1024, height: 1024)
+
       // Scale the glyph down and translate the origin of the bounding box
-      let scaleFactor = pixelSize.height / CGFloat(head.yMax - head.yMin)
+      let scaleFactor = pixelSize.height / bounds.height
       var transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-      transform = transform.translatedBy(x: -(CGFloat)(head.xMin),
-                                         y: -(CGFloat)(head.yMin))
+      transform = transform.translatedBy(x: -bounds.minX,
+                                         y: -bounds.minY)
 
       // Center the glyph bounding box within the image view
       let imageWidthInUnits = pixelSize.width / scaleFactor
-      let tx = (imageWidthInUnits / 2) - (CGFloat(head.xMax - head.xMin) / 2)
+      let tx = (imageWidthInUnits / 2) - (bounds.width / 2)
       transform = transform.translatedBy(x: tx, y: 0)
 
-      var cgImage: CGImage?
-      if let simpleDescript = descript as? GlyfSimpleDescript {
-        cgImage = GlyphImageFactory.buildImage(glyph: simpleDescript,
-                                               transform: transform,
-                                               size: pixelSize)
-      } else if let compositeDescript = descript as? GlyfCompositeDescript {
-        cgImage = GlyphImageFactory.buildImage(glyph: compositeDescript,
-                                               font: ttFont,
-                                               transform: transform,
-                                               size: pixelSize)
-      }
-      if cgImage != nil {
-        let image = NSImage(cgImage: cgImage!, size: CGSize.zero)
+      if let cgImage = GlyphImageFactory.buildImage(glyph: glyph,
+                                                    transform: transform,
+                                                    size: pixelSize) {
+        let image = NSImage(cgImage: cgImage, size: CGSize.zero)
         item.imageView?.image = image
       }
 
-//      // Are we selected?
-//      if item.isSelected {
-//        os_log("selected")
-//      } else {
-//      }
+      //      // Are we selected?
+      //      if item.isSelected {
+      //        os_log("selected")
+      //      } else {
+      //      }
 
-//      switch item.highlightState {
-//      case .none: break
-//        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//      case .forSelection:
-//        item.view.layer?.backgroundColor = CGColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
-//      case .forDeselection: break
-//        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//      case .asDropTarget: break
-//        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//      }
+      //      switch item.highlightState {
+      //      case .none: break
+      //        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+      //      case .forSelection:
+      //        item.view.layer?.backgroundColor = CGColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 1.0)
+      //      case .forDeselection: break
+      //        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+      //      case .asDropTarget: break
+      //        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+      //      }
+
     } else {
       item.imageView?.image = nil
     }
@@ -177,9 +181,11 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
                       didSelectItemsAt indexPaths: Set<IndexPath>) {
     os_log("Selected: %@", indexPaths)
     if let indexPath = indexPaths.first,
-      indexPath.item > -1 {
+      indexPath.item > -1,
+      let font = self.font,
+      let glyphOrder = font.libProps.glyphOrder {
       let glyphIndex = characterMappings[indexPath.item].1
-      fontController?.setGlyphIndex(glyphIndex)
+      fontController?.setGlyphName(glyphOrder[glyphIndex])
     }
   }
   
@@ -190,7 +196,6 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 }
 
 extension CharacterMapViewController: FontSubscriber {
-  func font(_ font: Font, didChangeGlyphIndex glyphIndex: Int) {
-    os_log("CharacterMapViewController.font:didChangeGlyphIndex:")
+  func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
   }
 }

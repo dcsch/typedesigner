@@ -39,8 +39,8 @@ NS_SWIFT_NAME(Component)
 // Queries
 
 // Pens and Drawing
-- (void)drawWithPen:(NSObject<FSPen> *)pen;
-- (void)drawWithPointPen:(NSObject<FSPointPen> *)pointPen;
+- (void)drawWithPen:(id <FSPen>)pen;
+- (void)drawWithPointPen:(id <FSPointPen>)pointPen;
 
 // Transformations
 

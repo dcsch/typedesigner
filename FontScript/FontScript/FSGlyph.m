@@ -11,6 +11,7 @@
 #import "FSContour.h"
 #import "FSComponent.h"
 #import "FSBoundsPen.h"
+#import "FSContourPointPen.h"
 #import "FontScriptFunctions.h"
 
 @interface FSGlyph ()
@@ -326,7 +327,15 @@
 - (void)moveBy:(CGPoint)point {
 }
 
-- (void)drawWithPen:(NSObject<FSPen> *)pen {
+- (id <FSPen>)pen {
+  return nil;
+}
+
+- (id <FSPointPen>)pointPen {
+  return [[FSContourPointPen alloc] initWithGlyph:self];
+}
+
+- (void)drawWithPen:(nonnull id <FSPen>)pen {
   for (FSContour *contour in self.contours) {
     [contour drawWithPen:pen];
   }
@@ -335,7 +344,7 @@
   }
 }
 
-- (void)drawWithPointPen:(NSObject<FSPointPen> *)pointPen {
+- (void)drawWithPointPen:(nonnull id <FSPointPen>)pointPen {
   for (FSContour *contour in self.contours) {
     [contour drawWithPointPen:pointPen];
   }

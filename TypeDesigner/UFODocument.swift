@@ -11,7 +11,11 @@ import UFOKit
 
 class UFODocument: NSDocument {
   var font: UFOFont?
-  var glyphSet: GlyphSet?
+
+  override init() {
+    super.init()
+    hasUndoManager = true
+  }
 
   override func makeWindowControllers() {
     let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
@@ -35,7 +39,7 @@ class UFODocument: NSDocument {
 
   override func read(from url: URL, ofType typeName: String) throws {
     let ufoReader = try UFOReader(url: url);
-    glyphSet = try ufoReader.glyphSet()
+    font = try UFOFont(reader: ufoReader)
   }
 
   override class var autosavesInPlace: Bool {

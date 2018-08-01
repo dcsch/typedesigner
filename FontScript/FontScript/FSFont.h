@@ -15,22 +15,23 @@
 NS_SWIFT_NAME(Font)
 @interface FSFont : NSObject
 
-@property(readonly) NSURL *url;
-@property(readonly) NSArray<FSLayer *> *layers;
-
 - (nonnull instancetype)init NS_DESIGNATED_INITIALIZER;
 
-- (nonnull instancetype)initWithFamilyName:(NSString *)familyName
-                                 styleName:(NSString *)styleName
+- (nonnull instancetype)initWithFamilyName:(nonnull NSString *)familyName
+                                 styleName:(nonnull NSString *)styleName
                              showInterface:(BOOL)showInterface;
 
 // File Operations
+@property(readonly) NSURL *url;
 - (void)saveToURL:(nonnull NSURL *)url showProgress:(BOOL)progress formatVersion:(NSUInteger)version;
 
 // Sub-Objects
-@property(readonly) FSInfo *info;
+@property(nonnull, readonly) FSInfo *info;
 
 // Layers
-- (FSLayer *)newLayerWithName:(nonnull NSString *)name color:(CGColorRef)color;
+@property(nonnull, readonly) NSArray<FSLayer *> *layers;
+@property(nonnull) FSLayer *defaultLayer;
+- (nonnull FSLayer *)newLayerWithName:(nonnull NSString *)name color:(nonnull CGColorRef)color NS_SWIFT_NAME(newLayer(name:color:));
+- (nonnull FSLayer *)layerWithName:(nonnull NSString *)name color:(nonnull CGColorRef)color NS_SWIFT_NAME(layer(name:color:));
 
 @end

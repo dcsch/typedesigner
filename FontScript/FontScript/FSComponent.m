@@ -37,7 +37,7 @@
 }
 
 - (void)dealloc {
-  NSLog(@"Component dealloc");
+//  NSLog(@"Component dealloc");
 }
 
 - (FSLayer *)layer {
@@ -85,12 +85,12 @@
   _transformation.d = scale.y;
 }
 
-- (void)drawWithPen:(NSObject<FSPen> *)pen {
+- (void)drawWithPen:(id <FSPen>)pen {
   FSPointToSegmentPen *pointToSegmentPen = [[FSPointToSegmentPen alloc] initWithPen:pen];
   [self drawWithPointPen:pointToSegmentPen];
 }
 
-- (void)drawWithPointPen:(NSObject<FSPointPen> *)pointPen {
+- (void)drawWithPointPen:(id <FSPointPen>)pointPen {
   [pointPen beginPath];
   NSError *error;
   [pointPen addComponentWithBaseGlyphName:_baseGlyphName

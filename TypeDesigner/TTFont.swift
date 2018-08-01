@@ -13,7 +13,7 @@ import os.log
 /**
  An OpenType font with TrueType outlines.
  */
-class TTFont: Font {
+class TTFont: OpenTypeFont {
   var glyfTable: GlyfTable
   var gaspTable: GaspTable?
   var kernTable: KernTable?
@@ -27,15 +27,15 @@ class TTFont: Font {
     let tableDirectory = TableDirectory(dataInput: dataInput)
 
     // We need to look ahead at the head and maxp tables
-    var tableData = try Font.tableData(directory: tableDirectory, tag: .head,
+    var tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .head,
                                        data: data, tablesOrigin: tablesOrigin)
     let headTable = HeadTable(data: tableData)
-    tableData = try Font.tableData(directory: tableDirectory, tag: .maxp,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .maxp,
                                    data: data, tablesOrigin: tablesOrigin)
     let maxpTable = MaxpTable(data: tableData)
 
     // 'loca' is required by 'glyf'
-    tableData = try Font.tableData(directory: tableDirectory, tag: .loca,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .loca,
                                    data: data, tablesOrigin: tablesOrigin)
     let locaTable = LocaTable(data: tableData,
                               shortEntries: headTable.indexToLocFormat == 0,
@@ -43,30 +43,30 @@ class TTFont: Font {
 
     // If this is a TrueType outline, then we'll have at least the
     // 'glyf' table (along with the 'loca' table)
-    tableData = try Font.tableData(directory: tableDirectory, tag: .glyf,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .glyf,
                                    data: data, tablesOrigin: tablesOrigin)
     glyfTable = GlyfTable(data: tableData, maxpTable: maxpTable, locaTable: locaTable)
 
     if tableDirectory.hasEntry(tag: .gasp) {
-      let gaspData = try Font.tableData(directory: tableDirectory, tag: .gasp,
+      let gaspData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .gasp,
                                         data: data, tablesOrigin: tablesOrigin)
       gaspTable = GaspTable(data: gaspData)
     }
 
     if tableDirectory.hasEntry(tag: .kern) {
-      let kernData = try Font.tableData(directory: tableDirectory, tag: .kern,
+      let kernData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .kern,
                                         data: data, tablesOrigin: tablesOrigin)
       kernTable = KernTable(data: kernData)
     }
 
     if tableDirectory.hasEntry(tag: .hdmx) {
-      let hdmxData = try Font.tableData(directory: tableDirectory, tag: .hdmx,
+      let hdmxData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .hdmx,
                                         data: data, tablesOrigin: tablesOrigin)
       hdmxTable = HdmxTable(data: hdmxData, numGlyphs: maxpTable.numGlyphs)
     }
 
     if tableDirectory.hasEntry(tag: .VDMX) {
-      let vdmxData = try Font.tableData(directory: tableDirectory, tag: .VDMX,
+      let vdmxData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .VDMX,
                                         data: data, tablesOrigin: tablesOrigin)
       vdmxTable = VdmxTable(data: vdmxData)
     }

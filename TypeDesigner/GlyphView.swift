@@ -15,7 +15,7 @@ class GlyphView: NSView {
     var onCurve: Bool
   }
 
-  var unitsPerEm = 1024
+  var unitsPerEm = 2048
   var xMin = 0
   var xMax = 0
   var yMin = 0
@@ -28,12 +28,11 @@ class GlyphView: NSView {
   var transforms = [CGAffineTransform]()
   var controlPoints = [ControlPoint]()
   private var translate = CGPoint(x: 0, y: 0)
-//  private var scale: CGFloat = 1.0
-  private var scale: CGFloat = 0.2
+  private var scale: CGFloat = 1.0
   var controlPointsVisible = true
 
   override init(frame: NSRect) {
-    super.init(frame:frame)
+    super.init(frame: frame)
   }
 
   required init?(coder: NSCoder) {

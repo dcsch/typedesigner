@@ -41,7 +41,7 @@
 }
 
 - (void)dealloc {
-  NSLog(@"Contour dealloc");
+//  NSLog(@"Contour dealloc");
 }
 
 - (FSLayer *)layer {
@@ -85,12 +85,12 @@
 
 }
 
-- (void)drawWithPen:(NSObject<FSPen> *)pen {
+- (void)drawWithPen:(nonnull id <FSPen>)pen {
   FSPointToSegmentPen *pointToSegmentPen = [[FSPointToSegmentPen alloc] initWithPen:pen];
   [self drawWithPointPen:pointToSegmentPen];
 }
 
-- (void)drawWithPointPen:(NSObject<FSPointPen> *)pen {
+- (void)drawWithPointPen:(nonnull id <FSPointPen>)pen {
   [pen beginPath];
   [pen addPoints:_points];
   [pen endPath];

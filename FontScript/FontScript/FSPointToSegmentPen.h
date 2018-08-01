@@ -13,7 +13,7 @@
 NS_SWIFT_NAME(PointToSegmentPen)
 @interface FSPointToSegmentPen : NSObject <FSPointPen>
 
-- (nonnull instancetype)initWithPen:(nonnull NSObject<FSPen> *)pen NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithPen:(nonnull id <FSPen>)pen NS_DESIGNATED_INITIALIZER;
 - (instancetype)init __attribute__((unavailable));
 
 @end

@@ -1,5 +1,5 @@
 //
-//  FontCollection.swift
+//  OpenTypeFontCollection.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/27/17.
@@ -9,8 +9,8 @@
 import Foundation
 import IOUtils
 
-class FontCollection {
-  var fonts: [Font]
+class OpenTypeFontCollection {
+  var fonts: [OpenTypeFont]
   var ttcHeader: TTCHeader?
   var suitcase: Bool
 

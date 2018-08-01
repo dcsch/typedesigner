@@ -20,7 +20,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>1</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.FontDocument</string>
+			<string>Type_Designer.</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -36,7 +36,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.ImportDocument</string>
+			<string>Type_Designer.</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
@@ -52,7 +52,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.ImportDocument</string>
+			<string>Type_Designer.</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -68,7 +68,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.ImportDocument</string>
+			<string>Type_Designer.</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -84,7 +84,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.ImportDocument</string>
+			<string>Type_Designer.</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -104,7 +104,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.ImportDocument</string>
+			<string>Type_Designer.</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>

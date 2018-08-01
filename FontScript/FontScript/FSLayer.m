@@ -34,10 +34,10 @@
   NSLog(@"Layer dealloc");
 }
 
-- (FSGlyph *)newGlyphWithName:(nonnull NSString *)name clear:(BOOL)clear {
+- (nonnull FSGlyph *)newGlyphWithName:(nonnull NSString *)name clear:(BOOL)clear {
   FSGlyph *glyph;
   if (![_glyphs.allKeys containsObject:name]) {
-    glyph = [[FSGlyph alloc] initWithName:name layer:self];
+    glyph = [self newGlyphWithName:name];
   } else if (clear) {
     [_glyphs removeObjectForKey:name];
   } else {
@@ -45,6 +45,10 @@
   }
   _glyphs[name] = glyph;
   return glyph;
+}
+
+- (nonnull FSGlyph *)newGlyphWithName:(nonnull NSString *)name {
+  return [[FSGlyph alloc] initWithName:name layer:self];
 }
 
 @end

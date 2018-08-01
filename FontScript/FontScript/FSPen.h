@@ -10,7 +10,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 NS_SWIFT_NAME(Pen)
-@protocol FSPen <NSObject>
+@protocol FSPen
 
 /*!
  Moves the pen to the specified point without creating a line or curve,

@@ -39,6 +39,10 @@
 		03879D5020C1D6D20033A7C4 /* new_font.py in Resources */ = {isa = PBXBuildFile; fileRef = 03879D4F20C1D6D20033A7C4 /* new_font.py */; };
 		03879D5320C1DD5D0033A7C4 /* FSInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 03879D5120C1DD5D0033A7C4 /* FSInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03879D5420C1DD5D0033A7C4 /* FSInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 03879D5220C1DD5D0033A7C4 /* FSInfo.m */; };
+		03924DD3210940B300928986 /* FSContourPointPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 03924DD1210940B300928986 /* FSContourPointPen.h */; };
+		03924DD4210940B300928986 /* FSContourPointPen.h in Headers */ = {isa = PBXBuildFile; fileRef = 03924DD1210940B300928986 /* FSContourPointPen.h */; };
+		03924DD5210940B300928986 /* FSContourPointPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 03924DD2210940B300928986 /* FSContourPointPen.m */; };
+		03924DD6210940B300928986 /* FSContourPointPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 03924DD2210940B300928986 /* FSContourPointPen.m */; };
 		03A1CEAA2106A68E00127C55 /* FontScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 035AD8BB20B8CC97006494B7 /* FontScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03A1CEAB2106A68E00127C55 /* FontScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B1078220CA0693008C05E3 /* FontScript.m */; };
 		03A1CEAC2106A68E00127C55 /* FSScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 035AD8D220B8CD68006494B7 /* FSScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -156,6 +160,8 @@
 		03879D4F20C1D6D20033A7C4 /* new_font.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = new_font.py; sourceTree = "<group>"; };
 		03879D5120C1DD5D0033A7C4 /* FSInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSInfo.h; sourceTree = "<group>"; };
 		03879D5220C1DD5D0033A7C4 /* FSInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSInfo.m; sourceTree = "<group>"; };
+		03924DD1210940B300928986 /* FSContourPointPen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSContourPointPen.h; sourceTree = "<group>"; };
+		03924DD2210940B300928986 /* FSContourPointPen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSContourPointPen.m; sourceTree = "<group>"; };
 		03A1CEA22106A61800127C55 /* FontScript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontScript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A1CEC62106AB2700127C55 /* FSPythonObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPythonObjects.h; sourceTree = "<group>"; };
 		03A1CEC92106AD0F00127C55 /* FSScriptPy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSScriptPy.m; sourceTree = "<group>"; };
@@ -287,6 +293,8 @@
 				03E49DFB20F43C030039776E /* FSPointToSegmentPen.m */,
 				0378D28820CB38AE00AFE4E3 /* FSBoundsPen.h */,
 				0378D28920CB38AE00AFE4E3 /* FSBoundsPen.m */,
+				03924DD1210940B300928986 /* FSContourPointPen.h */,
+				03924DD2210940B300928986 /* FSContourPointPen.m */,
 				03E49DEE20F022640039776E /* FSIdentifier.h */,
 				03E49DEF20F022640039776E /* FSIdentifier.m */,
 				03A1CECB2106AFF000127C55 /* NSValue+CGPoint.h */,
@@ -371,6 +379,7 @@
 				03E49DF520F434690039776E /* FSPointPen.h in Headers */,
 				0378D28A20CB38AE00AFE4E3 /* FSBoundsPen.h in Headers */,
 				03E49DFC20F43C030039776E /* FSPointToSegmentPen.h in Headers */,
+				03924DD3210940B300928986 /* FSContourPointPen.h in Headers */,
 				03E49DF020F022640039776E /* FSIdentifier.h in Headers */,
 				03A1CECC2106AFF000127C55 /* NSValue+CGPoint.h in Headers */,
 				0366C81421016982003EEEB6 /* FSComponent.h in Headers */,
@@ -384,6 +393,7 @@
 			files = (
 				03A1CEE02107BAB900127C55 /* FontScriptFunctions.h in Headers */,
 				03A1CEC42106A68E00127C55 /* FSIdentifier.h in Headers */,
+				03924DD4210940B300928986 /* FSContourPointPen.h in Headers */,
 				03A1CEAA2106A68E00127C55 /* FontScript.h in Headers */,
 				03A1CEBF2106A68E00127C55 /* FSPointPen.h in Headers */,
 				03A1CEB82106A68E00127C55 /* FSPoint.h in Headers */,
@@ -484,7 +494,7 @@
 			attributes = {
 				CLASSPREFIX = FS;
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "David Schweinsberg";
 				TargetAttributes = {
 					035AD8B720B8CC97006494B7 = {
@@ -578,6 +588,7 @@
 				03E49DF120F022640039776E /* FSIdentifier.m in Sources */,
 				035AD8D520B8CD68006494B7 /* FSScript.m in Sources */,
 				03A1CECA2106AD0F00127C55 /* FSScriptPy.m in Sources */,
+				03924DD5210940B300928986 /* FSContourPointPen.m in Sources */,
 				03E49DFD20F43C030039776E /* FSPointToSegmentPen.m in Sources */,
 				03E49DDE20EFFCDF0039776E /* FSPoint.m in Sources */,
 				03F46A1F20D2F7360073B844 /* FSContour.m in Sources */,
@@ -612,6 +623,7 @@
 				03A1CEB52106A68E00127C55 /* FSContour.m in Sources */,
 				03A1CEB72106A68E00127C55 /* FSSegment.m in Sources */,
 				03A1CEDE2107AB7100127C55 /* FontScriptFunctions.m in Sources */,
+				03924DD6210940B300928986 /* FSContourPointPen.m in Sources */,
 				03A1CEAD2106A68E00127C55 /* FSScript.m in Sources */,
 				03A1CEC52106A68E00127C55 /* FSIdentifier.m in Sources */,
 				03A1CEB12106A68E00127C55 /* FSLayer.m in Sources */,
@@ -775,6 +787,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -871,7 +884,7 @@
 		03A1CEA72106A61900127C55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9MWCHY26A8;
@@ -897,7 +910,7 @@
 		03A1CEA82106A61900127C55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9MWCHY26A8;

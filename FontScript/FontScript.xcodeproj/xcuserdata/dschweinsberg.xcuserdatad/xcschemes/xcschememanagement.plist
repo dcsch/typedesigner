@@ -4,15 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FontScript iOS.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>FontScript macOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>FontScript.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>FontScriptSwiftTests.xcscheme</key>
 		<dict>
@@ -28,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>035AD8C020B8CC97006494B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03A1CEA12106A61800127C55</key>
 		<dict>
 			<key>primary</key>
 			<true/>

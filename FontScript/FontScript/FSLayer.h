@@ -14,13 +14,14 @@
 NS_SWIFT_NAME(Layer)
 @interface FSLayer : NSObject
 
-@property NSString *name;
-@property CGColorRef color;
-@property NSMutableDictionary<NSString *, FSGlyph *> *glyphs;
+@property(nonnull) NSString *name;
+@property(nonnull) CGColorRef color;
+@property(nonnull) NSMutableDictionary<NSString *, FSGlyph *> *glyphs;
 
 - (nonnull instancetype)init NS_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithName:(nonnull NSString *)name color:(CGColorRef)color;
+- (nonnull instancetype)initWithName:(nonnull NSString *)name color:(nonnull CGColorRef)color;
 
-- (FSGlyph *)newGlyphWithName:(nonnull NSString *)name clear:(BOOL)clear;
+- (nonnull FSGlyph *)newGlyphWithName:(nonnull NSString *)name clear:(BOOL)clear NS_SWIFT_NAME(newGlyph(name:clear:));
+- (nonnull FSGlyph *)newGlyphWithName:(nonnull NSString *)name NS_SWIFT_NAME(newGlyph(name:));
 
 @end

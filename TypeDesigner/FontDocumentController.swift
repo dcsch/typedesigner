@@ -10,7 +10,7 @@ import Cocoa
 import os.log
 
 class FontDocumentController: NSDocumentController {
-  var importFont: Font?
+  var importFont: OpenTypeFont?
 
   override init() {
     super.init()
@@ -47,7 +47,7 @@ class FontDocumentController: NSDocumentController {
 
   override func makeUntitledDocument(ofType typeName: String) throws -> NSDocument {
     let document = try super.makeUntitledDocument(ofType: typeName)
-    if let fontDocument = document as? FontDocument,
+    if let fontDocument = document as? OpenTypeDocument,
       let font = importFont {
       fontDocument.font = font
       fontDocument.displayName = font.nameTable.record(nameID: .fullFontName)!.record

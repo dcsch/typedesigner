@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, FSPointType)
   FSPointTypeCurve,
   FSPointTypeQCurve,
   FSPointTypeOffCurve
-} NS_SWIFT_NAME(Point.Type);
+} NS_SWIFT_NAME(PointType);
 
 NS_SWIFT_NAME(Point)
 @interface FSPoint : NSObject <NSCopying>

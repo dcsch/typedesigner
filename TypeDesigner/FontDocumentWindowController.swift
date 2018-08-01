@@ -53,9 +53,9 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
 
   override var document: AnyObject? {
     didSet {
-      guard let fontDocument = document as? FontDocument else { return }
+      guard let fontDocument = document as? UFODocument else { return }
       if fontDocument.font == nil {
-        fontDocument.font = Font()
+        fontDocument.font = UFOFont()
       }
       fontController = FontController(font: fontDocument.font!)
     }
@@ -66,7 +66,7 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
   }
 
   @IBAction func buildFont(_ sender: Any?) {
-    guard let fontDocument = document as? FontDocument,
+    guard let fontDocument = document as? OpenTypeDocument,
       let font = fontDocument.font else { return }
     let savePanel = NSSavePanel()
     savePanel.prompt = "Build"
@@ -92,7 +92,7 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
 // MARK: Font Subscriber Protocol
 
 extension FontDocumentWindowController: FontSubscriber {
-  func font(_ font: Font, didChangeGlyphIndex glyphIndex: Int) {
+  func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
 //    document?.updateChangeCount(.changeDone)
   }
 }

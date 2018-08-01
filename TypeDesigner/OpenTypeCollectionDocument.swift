@@ -1,5 +1,5 @@
 //
-//  ImportDocument.swift
+//  OpenTypeCollectionDocument.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 9/14/17.
@@ -8,8 +8,8 @@
 
 import Cocoa
 
-class ImportDocument: NSDocument {
-  var fontCollection: FontCollection?
+class OpenTypeCollectionDocument: NSDocument {
+  var fontCollection: OpenTypeFontCollection?
 
   override init() {
     super.init()
@@ -36,7 +36,7 @@ class ImportDocument: NSDocument {
     if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
       suitcase = true
     }
-    fontCollection = try FontCollection(data: data, isSuitcase: suitcase)
+    fontCollection = try OpenTypeFontCollection(data: data, isSuitcase: suitcase)
   }
 
   override class var autosavesInPlace: Bool {

@@ -38,8 +38,8 @@ NS_SWIFT_NAME(Contour)
 // Queries
 
 // Pens and Drawing
-- (void)drawWithPen:(NSObject<FSPen> *)pen;
-- (void)drawWithPointPen:(NSObject<FSPointPen> *)pen;
+- (void)drawWithPen:(nonnull id <FSPen>)pen;
+- (void)drawWithPointPen:(nonnull id <FSPointPen>)pen;
 
 // Segments
 @property(nonnull, readonly) NSArray<FSSegment *> *segments;

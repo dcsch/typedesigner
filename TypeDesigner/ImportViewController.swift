@@ -10,7 +10,7 @@ import Cocoa
 import os.log
 
 class ImportViewController: NSViewController {
-  var importDocument: ImportDocument? {
+  var importDocument: OpenTypeCollectionDocument? {
     didSet {
       tableView?.reloadData()
     }

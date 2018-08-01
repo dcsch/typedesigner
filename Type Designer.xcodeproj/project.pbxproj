@@ -28,6 +28,10 @@
 		035AD8A720B8B70E006494B7 /* UFOKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD8A320B8B590006494B7 /* UFOKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		035AD8AB20B8BB1C006494B7 /* UFODocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8AA20B8BB1C006494B7 /* UFODocument.swift */; };
 		035AD8AD20B8BC64006494B7 /* UFOFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8AC20B8BC64006494B7 /* UFOFont.swift */; };
+		03924DC82109085F00928986 /* FontScript.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03924DBF2108ED5900928986 /* FontScript.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03924DCC21090D3D00928986 /* RoboFontLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03924DCB21090D3D00928986 /* RoboFontLib.swift */; };
+		03924DCE21092AA900928986 /* UFOGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03924DCD21092AA900928986 /* UFOGlyph.swift */; };
+		03924DD02109338C00928986 /* UFOLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03924DCF2109338C00928986 /* UFOLayer.swift */; };
 		039845B81F195B6F0040988F /* HheaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845B71F195B6F0040988F /* HheaTable.swift */; };
 		039845BA1F1977CE0040988F /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845B91F1977CE0040988F /* Table.swift */; };
 		039845BC1F19802E0040988F /* HmtxTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039845BB1F19802E0040988F /* HmtxTable.swift */; };
@@ -37,11 +41,9 @@
 		03A72DD31F5A17A9003ABF74 /* FontDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A72DD21F5A17A9003ABF74 /* FontDocumentWindowController.swift */; };
 		03A72DD51F5A1C8D003ABF74 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A72DD41F5A1C8D003ABF74 /* ImportViewController.swift */; };
 		03A72DD71F5CB781003ABF74 /* FontController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A72DD61F5CB781003ABF74 /* FontController.swift */; };
-		03B311ED1F280D3F001E6712 /* GlyphPathFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311EC1F280D3F001E6712 /* GlyphPathFactory.swift */; };
-		03B311F31F29B5AD001E6712 /* Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F21F29B5AD001E6712 /* Glyph.swift */; };
-		03B311F51F2A7128001E6712 /* FontDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F41F2A7128001E6712 /* FontDocument.swift */; };
-		03B311F71F2A9CC3001E6712 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F61F2A9CC3001E6712 /* Font.swift */; };
-		03B311F91F2A9D60001E6712 /* FontCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F81F2A9D60001E6712 /* FontCollection.swift */; };
+		03B311F51F2A7128001E6712 /* OpenTypeDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F41F2A7128001E6712 /* OpenTypeDocument.swift */; };
+		03B311F71F2A9CC3001E6712 /* OpenTypeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F61F2A9CC3001E6712 /* OpenTypeFont.swift */; };
+		03B311F91F2A9D60001E6712 /* OpenTypeFontCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311F81F2A9D60001E6712 /* OpenTypeFontCollection.swift */; };
 		03B311FB1F2AC062001E6712 /* TCResourceHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311FA1F2AC062001E6712 /* TCResourceHeader.swift */; };
 		03B311FD1F2AC13F001E6712 /* TCResourceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311FC1F2AC13F001E6712 /* TCResourceMap.swift */; };
 		03B311FF1F2AC451001E6712 /* TCResourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B311FE1F2AC451001E6712 /* TCResourceType.swift */; };
@@ -55,7 +57,8 @@
 		03C40BF51F36F99A00CD6BAC /* LocaTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF41F36F99A00CD6BAC /* LocaTable.swift */; };
 		03C40BF71F3795C800CD6BAC /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C40BF61F3795C800CD6BAC /* ID.swift */; };
 		03C567491F6B37E8004C915B /* ImportWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C567481F6B37E8004C915B /* ImportWindowController.swift */; };
-		03C5674D1F6B5195004C915B /* ImportDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5674C1F6B5195004C915B /* ImportDocument.swift */; };
+		03C5674D1F6B5195004C915B /* OpenTypeCollectionDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5674C1F6B5195004C915B /* OpenTypeCollectionDocument.swift */; };
+		03CBC24A210A79A70031244D /* QuartzPen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CBC249210A79A70031244D /* QuartzPen.swift */; };
 		03CE9CA71FBE806C002FE971 /* TTFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE9CA11FBE78A2002FE971 /* TTFont.swift */; };
 		03CE9CA81FBE8074002FE971 /* T2Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE9CA51FBE78B1002FE971 /* T2Font.swift */; };
 		03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D07AA91F4F87580070F49D /* CharacterMapItem.swift */; };
@@ -126,6 +129,41 @@
 			remoteGlobalIDString = 03601D6F1FDF67F8000B1401;
 			remoteInfo = UFOKit;
 		};
+		03924DBE2108ED5900928986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03924DB62108ED5900928986 /* FontScript.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 035AD8B820B8CC97006494B7;
+			remoteInfo = "FontScript macOS";
+		};
+		03924DC02108ED5900928986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03924DB62108ED5900928986 /* FontScript.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 035AD8C120B8CC97006494B7;
+			remoteInfo = FontScriptTests;
+		};
+		03924DC22108ED5900928986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03924DB62108ED5900928986 /* FontScript.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03E49DE320F00E650039776E;
+			remoteInfo = FontScriptSwiftTests;
+		};
+		03924DC42108ED5900928986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03924DB62108ED5900928986 /* FontScript.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03A1CEA22106A61800127C55;
+			remoteInfo = "FontScript iOS";
+		};
+		03924DC92109089000928986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03924DB62108ED5900928986 /* FontScript.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 035AD8B720B8CC97006494B7;
+			remoteInfo = "FontScript macOS";
+		};
 		03C2F5161F43FDDD00B2A3BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */;
@@ -177,6 +215,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				03924DC82109085F00928986 /* FontScript.framework in Embed Frameworks */,
 				03FF501E1F45188E009F5F0C /* CFF.framework in Embed Frameworks */,
 				035AD8A720B8B70E006494B7 /* UFOKit.framework in Embed Frameworks */,
 				03FF501A1F45188E009F5F0C /* IOUtils.framework in Embed Frameworks */,
@@ -211,6 +250,10 @@
 		035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UFOKit.xcodeproj; path = UFOKit/UFOKit.xcodeproj; sourceTree = "<group>"; };
 		035AD8AA20B8BB1C006494B7 /* UFODocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFODocument.swift; sourceTree = "<group>"; };
 		035AD8AC20B8BC64006494B7 /* UFOFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOFont.swift; sourceTree = "<group>"; };
+		03924DB62108ED5900928986 /* FontScript.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FontScript.xcodeproj; path = FontScript/FontScript.xcodeproj; sourceTree = "<group>"; };
+		03924DCB21090D3D00928986 /* RoboFontLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoboFontLib.swift; sourceTree = "<group>"; };
+		03924DCD21092AA900928986 /* UFOGlyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOGlyph.swift; sourceTree = "<group>"; };
+		03924DCF2109338C00928986 /* UFOLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOLayer.swift; sourceTree = "<group>"; };
 		039845B71F195B6F0040988F /* HheaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HheaTable.swift; sourceTree = "<group>"; };
 		039845B91F1977CE0040988F /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		039845BB1F19802E0040988F /* HmtxTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HmtxTable.swift; sourceTree = "<group>"; };
@@ -221,11 +264,9 @@
 		03A72DD21F5A17A9003ABF74 /* FontDocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontDocumentWindowController.swift; sourceTree = "<group>"; };
 		03A72DD41F5A1C8D003ABF74 /* ImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		03A72DD61F5CB781003ABF74 /* FontController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontController.swift; sourceTree = "<group>"; };
-		03B311EC1F280D3F001E6712 /* GlyphPathFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlyphPathFactory.swift; sourceTree = "<group>"; };
-		03B311F21F29B5AD001E6712 /* Glyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glyph.swift; sourceTree = "<group>"; };
-		03B311F41F2A7128001E6712 /* FontDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontDocument.swift; sourceTree = "<group>"; };
-		03B311F61F2A9CC3001E6712 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		03B311F81F2A9D60001E6712 /* FontCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontCollection.swift; sourceTree = "<group>"; };
+		03B311F41F2A7128001E6712 /* OpenTypeDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTypeDocument.swift; sourceTree = "<group>"; };
+		03B311F61F2A9CC3001E6712 /* OpenTypeFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTypeFont.swift; sourceTree = "<group>"; };
+		03B311F81F2A9D60001E6712 /* OpenTypeFontCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTypeFontCollection.swift; sourceTree = "<group>"; };
 		03B311FA1F2AC062001E6712 /* TCResourceHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCResourceHeader.swift; sourceTree = "<group>"; };
 		03B311FC1F2AC13F001E6712 /* TCResourceMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCResourceMap.swift; sourceTree = "<group>"; };
 		03B311FE1F2AC451001E6712 /* TCResourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCResourceType.swift; sourceTree = "<group>"; };
@@ -240,7 +281,8 @@
 		03C40BF41F36F99A00CD6BAC /* LocaTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaTable.swift; sourceTree = "<group>"; };
 		03C40BF61F3795C800CD6BAC /* ID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
 		03C567481F6B37E8004C915B /* ImportWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportWindowController.swift; sourceTree = "<group>"; };
-		03C5674C1F6B5195004C915B /* ImportDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportDocument.swift; sourceTree = "<group>"; };
+		03C5674C1F6B5195004C915B /* OpenTypeCollectionDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTypeCollectionDocument.swift; sourceTree = "<group>"; };
+		03CBC249210A79A70031244D /* QuartzPen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuartzPen.swift; sourceTree = "<group>"; };
 		03CE9CA11FBE78A2002FE971 /* TTFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTFont.swift; sourceTree = "<group>"; };
 		03CE9CA51FBE78B1002FE971 /* T2Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T2Font.swift; sourceTree = "<group>"; };
 		03D07AA91F4F87580070F49D /* CharacterMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMapItem.swift; sourceTree = "<group>"; };
@@ -335,6 +377,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		03924DB72108ED5900928986 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03924DBF2108ED5900928986 /* FontScript.framework */,
+				03924DC12108ED5900928986 /* FontScriptTests.xctest */,
+				03924DC32108ED5900928986 /* FontScriptSwiftTests.xctest */,
+				03924DC52108ED5900928986 /* FontScript.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		03C2F5121F43FDDC00B2A3BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,19 +437,21 @@
 		03D07AA81F4F80F50070F49D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				03B311F61F2A9CC3001E6712 /* Font.swift */,
+				03B311F61F2A9CC3001E6712 /* OpenTypeFont.swift */,
 				03CE9CA11FBE78A2002FE971 /* TTFont.swift */,
 				03CE9CA51FBE78B1002FE971 /* T2Font.swift */,
-				035AD8AC20B8BC64006494B7 /* UFOFont.swift */,
-				035AD8AA20B8BB1C006494B7 /* UFODocument.swift */,
-				03B311F41F2A7128001E6712 /* FontDocument.swift */,
-				03C5674C1F6B5195004C915B /* ImportDocument.swift */,
-				03A72DD61F5CB781003ABF74 /* FontController.swift */,
-				03B311F81F2A9D60001E6712 /* FontCollection.swift */,
-				03B311F21F29B5AD001E6712 /* Glyph.swift */,
 				03B619171F3E128200EA1D0E /* T2Glyph.swift */,
-				03B311EC1F280D3F001E6712 /* GlyphPathFactory.swift */,
+				035AD8AC20B8BC64006494B7 /* UFOFont.swift */,
+				03924DCF2109338C00928986 /* UFOLayer.swift */,
+				03924DCD21092AA900928986 /* UFOGlyph.swift */,
+				03924DCB21090D3D00928986 /* RoboFontLib.swift */,
+				035AD8AA20B8BB1C006494B7 /* UFODocument.swift */,
+				03B311F41F2A7128001E6712 /* OpenTypeDocument.swift */,
+				03C5674C1F6B5195004C915B /* OpenTypeCollectionDocument.swift */,
+				03A72DD61F5CB781003ABF74 /* FontController.swift */,
+				03B311F81F2A9D60001E6712 /* OpenTypeFontCollection.swift */,
 				03F905DB1F38DDF70008FF3E /* GlyphImageFactory.swift */,
+				03CBC249210A79A70031244D /* QuartzPen.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -474,6 +529,7 @@
 				6365E66C167559690054AAB3 /* README.md */,
 				03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */,
 				03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */,
+				03924DB62108ED5900928986 /* FontScript.xcodeproj */,
 				035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */,
 				6373B1B5166A11B5007EC53F /* Type Designer */,
 				034EC2C61F730F97008570B3 /* TypeDesignerUITests */,
@@ -587,6 +643,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				03924DCA2109089000928986 /* PBXTargetDependency */,
 				03FF501C1F45188E009F5F0C /* PBXTargetDependency */,
 				03FF50201F45188E009F5F0C /* PBXTargetDependency */,
 				035AD8A920B8B70E006494B7 /* PBXTargetDependency */,
@@ -643,6 +700,10 @@
 					ProjectRef = 03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */;
 				},
 				{
+					ProductGroup = 03924DB72108ED5900928986 /* Products */;
+					ProjectRef = 03924DB62108ED5900928986 /* FontScript.xcodeproj */;
+				},
+				{
 					ProductGroup = 03FF50001F44C2EC009F5F0C /* Products */;
 					ProjectRef = 03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */;
 				},
@@ -673,6 +734,34 @@
 			fileType = wrapper.cfbundle;
 			path = UFOKitTests.xctest;
 			remoteRef = 035AD8A420B8B590006494B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		03924DBF2108ED5900928986 /* FontScript.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FontScript.framework;
+			remoteRef = 03924DBE2108ED5900928986 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		03924DC12108ED5900928986 /* FontScriptTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FontScriptTests.xctest;
+			remoteRef = 03924DC02108ED5900928986 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		03924DC32108ED5900928986 /* FontScriptSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FontScriptSwiftTests.xctest;
+			remoteRef = 03924DC22108ED5900928986 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		03924DC52108ED5900928986 /* FontScript.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FontScript.framework;
+			remoteRef = 03924DC42108ED5900928986 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		03C2F5171F43FDDD00B2A3BC /* CFF.framework */ = {
@@ -755,17 +844,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				03C40BF71F3795C800CD6BAC /* ID.swift in Sources */,
-				03B311F51F2A7128001E6712 /* FontDocument.swift in Sources */,
+				03B311F51F2A7128001E6712 /* OpenTypeDocument.swift in Sources */,
 				03F905CC1F37A8840008FF3E /* CmapTable.swift in Sources */,
 				030A32A71F312A4E006B2BAC /* NameTable.swift in Sources */,
-				03B311F31F29B5AD001E6712 /* Glyph.swift in Sources */,
 				03B311FD1F2AC13F001E6712 /* TCResourceMap.swift in Sources */,
 				0348BE6B1F33D6DB00446B58 /* GlyfSimpleDescript.swift in Sources */,
 				03A72DD71F5CB781003ABF74 /* FontController.swift in Sources */,
 				039845BC1F19802E0040988F /* HmtxTable.swift in Sources */,
 				039845BA1F1977CE0040988F /* Table.swift in Sources */,
-				03B311F71F2A9CC3001E6712 /* Font.swift in Sources */,
-				03C5674D1F6B5195004C915B /* ImportDocument.swift in Sources */,
+				03B311F71F2A9CC3001E6712 /* OpenTypeFont.swift in Sources */,
+				03C5674D1F6B5195004C915B /* OpenTypeCollectionDocument.swift in Sources */,
 				03FF506E1F4BE212009F5F0C /* GlyfCompositeDescript.swift in Sources */,
 				03B619141F3D283D00EA1D0E /* CmapFormat12.swift in Sources */,
 				03A72DD31F5A17A9003ABF74 /* FontDocumentWindowController.swift in Sources */,
@@ -775,6 +863,7 @@
 				03F1F2111FCC985D00813EDD /* TableWriter.swift in Sources */,
 				03F905DA1F37FE930008FF3E /* CmapFormat4.swift in Sources */,
 				03C40BF51F36F99A00CD6BAC /* LocaTable.swift in Sources */,
+				03924DCE21092AA900928986 /* UFOGlyph.swift in Sources */,
 				03FF502F1F479003009F5F0C /* VdmxTable.swift in Sources */,
 				03F905D81F37FCFE0008FF3E /* CmapFormat6.swift in Sources */,
 				03B312011F2AC6BE001E6712 /* TCResourceReference.swift in Sources */,
@@ -789,6 +878,7 @@
 				03FF502D1F477B1C009F5F0C /* HdmxTable.swift in Sources */,
 				0348BE671F33A78A00446B58 /* PostTable.swift in Sources */,
 				03B311FF1F2AC451001E6712 /* TCResourceType.swift in Sources */,
+				03CBC24A210A79A70031244D /* QuartzPen.swift in Sources */,
 				03F905D61F37E7CC0008FF3E /* CmapFormat2.swift in Sources */,
 				0348BE731F33ED9100446B58 /* FpgmTable.swift in Sources */,
 				03C162911F2174BB00A44848 /* GlyphView.swift in Sources */,
@@ -808,15 +898,16 @@
 				03FF50331F48152C009F5F0C /* DsigTable.swift in Sources */,
 				03F905DE1F38DEC40008FF3E /* Mnemonic.swift in Sources */,
 				03F905D01F37CBFF0008FF3E /* CmapFormat.swift in Sources */,
-				03B311ED1F280D3F001E6712 /* GlyphPathFactory.swift in Sources */,
 				03FF50311F47F339009F5F0C /* CvtTable.swift in Sources */,
 				0348BE751F33EF6800446B58 /* PrepTable.swift in Sources */,
+				03924DCC21090D3D00928986 /* RoboFontLib.swift in Sources */,
 				03A72DD51F5A1C8D003ABF74 /* ImportViewController.swift in Sources */,
 				03CE9CA71FBE806C002FE971 /* TTFont.swift in Sources */,
 				03C567491F6B37E8004C915B /* ImportWindowController.swift in Sources */,
 				033CF1101F568C45005D15ED /* CharacterMapViewController.swift in Sources */,
-				03B311F91F2A9D60001E6712 /* FontCollection.swift in Sources */,
+				03B311F91F2A9D60001E6712 /* OpenTypeFontCollection.swift in Sources */,
 				030A32A91F314823006B2BAC /* AppDelegate.swift in Sources */,
+				03924DD02109338C00928986 /* UFOLayer.swift in Sources */,
 				03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */,
 				03F905DC1F38DDF70008FF3E /* GlyphImageFactory.swift in Sources */,
 				03FF502B1F477496009F5F0C /* VmtxTable.swift in Sources */,
@@ -842,6 +933,11 @@
 			isa = PBXTargetDependency;
 			name = UFOKit;
 			targetProxy = 035AD8A820B8B70E006494B7 /* PBXContainerItemProxy */;
+		};
+		03924DCA2109089000928986 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FontScript macOS";
+			targetProxy = 03924DC92109089000928986 /* PBXContainerItemProxy */;
 		};
 		03FF501C1F45188E009F5F0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

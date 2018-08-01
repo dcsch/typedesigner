@@ -17,14 +17,14 @@
 @interface FSPointToSegmentPen ()
 {
   NSMutableArray<FSPoint *> *_points;
-  NSObject<FSPen> *_pen;
+  id <FSPen> _pen;
 }
 
 @end
 
 @implementation FSPointToSegmentPen
 
-- (nonnull instancetype)initWithPen:(nonnull NSObject<FSPen> *)pen {
+- (nonnull instancetype)initWithPen:(nonnull id <FSPen>)pen {
   self = [super init];
   if (self) {
     _pen = pen;

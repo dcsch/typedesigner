@@ -1,5 +1,5 @@
 //
-//  FontDocument.swift
+//  OpenTypeDocument.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/27/17.
@@ -8,12 +8,12 @@
 
 import Cocoa
 
-class FontDocument: NSDocument {
-  var font: Font?
+class OpenTypeDocument: NSDocument {
+  var font: OpenTypeFont?
 
   override init() {
     super.init()
-    hasUndoManager = true
+    hasUndoManager = false
   }
 
   override func makeWindowControllers() {
@@ -48,7 +48,7 @@ class FontDocument: NSDocument {
     if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
       suitcase = true
     }
-    let fontCollection = try FontCollection(data: data, isSuitcase: suitcase)
+    let fontCollection = try OpenTypeFontCollection(data: data, isSuitcase: suitcase)
     if fontCollection.fonts.count > 1 {
 //      self.fontCollection = fontCollection
     } else {

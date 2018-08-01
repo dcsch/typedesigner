@@ -203,6 +203,9 @@ public struct FontInfo: Codable {
   public var macintoshFONDFamilyID: Int?
   public var macintoshFONDName: String?
 
+  public init() {
+  }
+
   init(fontInfoV1: FontInfoV1) throws {
     self.ascender = fontInfoV1.ascender;
     self.capHeight = fontInfoV1.capHeight;
@@ -262,15 +265,15 @@ public struct FontInfo: Codable {
     }
   }
 
-  public var bounds: CGRect {
-    get {
-      if let descender = self.descender,
-        let ascender = self.ascender {
-        return CGRect(x: 0.0, y: descender,
-                      width: 0.0, height: ascender - descender)
-      } else {
-        return CGRect.zero
-      }
-    }
-  }
+//  public var bounds: CGRect {
+//    get {
+//      if let descender = self.descender,
+//        let ascender = self.ascender {
+//        return CGRect(x: 0.0, y: descender,
+//                      width: 0.0, height: ascender - descender)
+//      } else {
+//        return CGRect.zero
+//      }
+//    }
+//  }
 }

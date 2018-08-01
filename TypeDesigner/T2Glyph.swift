@@ -7,13 +7,13 @@
 //
 
 import Foundation
-import os.log
 import CFF
+import os.log
 
 /**
  An individual Type 2 Charstring glyph within a font.
  */
-class T2Glyph: Glyph {
+class T2Glyph {
   let glyphIndex: Int
   var leftSideBearing: Int
   var advanceWidth: Int
@@ -23,7 +23,7 @@ class T2Glyph: Glyph {
 
   /**
    Construct a Glyph from a PostScript outline described by a Charstring.
-   - parameters
+   - parameters:
      - charstring: The Charstring describing the glyph.
      - leftSideBearing: The Left Side Bearing.
      - advanceWidth: The advance width.
@@ -53,14 +53,4 @@ class T2Glyph: Glyph {
     }
   }
 
-//  var bounds: CGRect {
-//    var r: CGRect
-//    for p in points) {
-//      if (r == null) {
-//        r = new Rectangle(p.x, p.y, 0, 0);
-//      }
-//      r.add(new java.awt.Point(p.x, p.y));
-//    }
-//    return r != null ? r : new Rectangle(0, 0, 0, 0);
-//  }
 }

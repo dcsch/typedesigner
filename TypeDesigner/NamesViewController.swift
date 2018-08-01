@@ -19,7 +19,7 @@ class NamesViewController: NSViewController, FontControllerConsumer {
       if let new = fontController { new.addSubscriber(self) }
 
       if let font = fontController?.font {
-        familyName?.stringValue = font.nameTable.record(nameID: .fullFontName)!.record
+//        familyName?.stringValue = font.nameTable.record(nameID: .fullFontName)!.record
       }
     }
   }
@@ -31,7 +31,7 @@ class NamesViewController: NSViewController, FontControllerConsumer {
 }
 
 extension NamesViewController: FontSubscriber {
-  func font(_ font: Font, didChangeGlyphIndex glyphIndex: Int) {
-    os_log("NamesViewController: didChangeGlyphIndex:")
+  func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
+    os_log("NamesViewController: didChangeGlyphName:")
   }
 }

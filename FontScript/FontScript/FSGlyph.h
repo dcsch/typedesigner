@@ -23,8 +23,8 @@ NS_SWIFT_NAME(Glyph)
 - (instancetype)init __attribute__((unavailable));
 
 // Parents
-@property(weak) FSLayer *layer;
-@property(weak) FSFont *font;
+@property(nullable, weak) FSLayer *layer;
+@property(nullable, weak) FSFont *font;
 
 // Identification
 @property(nonnull) NSString *name;
@@ -44,8 +44,10 @@ NS_SWIFT_NAME(Glyph)
 @property(readonly) CGRect bounds;
 
 // Pens and Drawing
-- (void)drawWithPen:(NSObject<FSPen> *)pen;
-- (void)drawWithPointPen:(NSObject<FSPointPen> *)pointPen;
+@property(nonnull, readonly) id <FSPen> pen;
+@property(nonnull, readonly) id <FSPointPen> pointPen;
+- (void)drawWithPen:(nonnull id <FSPen>)pen;
+- (void)drawWithPointPen:(nonnull id <FSPointPen>)pointPen;
 
 // Layers
 

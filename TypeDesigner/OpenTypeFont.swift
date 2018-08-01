@@ -1,5 +1,5 @@
 //
-//  Font.swift
+//  OpenTypeFont.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/27/17.
@@ -10,14 +10,14 @@ import Foundation
 import os.log
 import IOUtils
 
-enum FontError: Error {
+enum OpenTypeFontError: Error {
   case missingTable
 }
 
 /**
  An OpenType font.
  */
-class Font: Codable, CustomStringConvertible {
+class OpenTypeFont: Codable, CustomStringConvertible {
 
   var headTable: HeadTable
   var hheaTable: HheaTable
@@ -65,42 +65,42 @@ class Font: Codable, CustomStringConvertible {
     // Load some prerequisite tables
     // (These are tables that are referenced by other tables, so we need to load
     // them first)
-    var tableData = try Font.tableData(directory: tableDirectory, tag: .head,
+    var tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .head,
                                        data: data, tablesOrigin: tablesOrigin)
     headTable = HeadTable(data: tableData)
 
     // 'hhea' is required by 'hmtx'
-    tableData = try Font.tableData(directory: tableDirectory, tag: .hhea,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .hhea,
                                    data: data, tablesOrigin: tablesOrigin)
     hheaTable = HheaTable(data: tableData)
 
     // 'maxp' is required by 'glyf', 'hmtx', 'loca', and 'vmtx'
-    tableData = try Font.tableData(directory: tableDirectory, tag: .maxp,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .maxp,
                                    data: data, tablesOrigin: tablesOrigin)
     maxpTable = MaxpTable(data: tableData)
 
     if tableDirectory.hasEntry(tag: .vhea) {
       // 'vhea' is required by 'vmtx'
-      tableData = try Font.tableData(directory: tableDirectory, tag: .vhea,
+      tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .vhea,
                                      data: data, tablesOrigin: tablesOrigin)
       vheaTable = VheaTable(data: tableData)
     }
     // 'post' is required by 'glyf'
-    tableData = try Font.tableData(directory: tableDirectory, tag: .post,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .post,
                                    data: data, tablesOrigin: tablesOrigin)
     postTable = PostTable(data: tableData)
 
     // Load all the other required tables
-    tableData = try Font.tableData(directory: tableDirectory, tag: .cmap,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .cmap,
                                    data: data, tablesOrigin: tablesOrigin)
     cmapTable = try CmapTable(data: tableData)
-    tableData = try Font.tableData(directory: tableDirectory, tag: .hmtx,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .hmtx,
                                    data: data, tablesOrigin: tablesOrigin)
     hmtxTable = HmtxTable(data: tableData, hheaTable: hheaTable, maxpTable: maxpTable)
-    tableData = try Font.tableData(directory: tableDirectory, tag: .name,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .name,
                                    data: data, tablesOrigin: tablesOrigin)
     nameTable = NameTable(data: tableData)
-    tableData = try Font.tableData(directory: tableDirectory, tag: .OS_2,
+    tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .OS_2,
                                    data: data, tablesOrigin: tablesOrigin)
     os2Table = Os2Table(data: tableData)
     os_log("%@", String(describing: hmtxTable))
@@ -111,7 +111,7 @@ class Font: Codable, CustomStringConvertible {
       let offset = entry.offset - tablesOrigin
       return data.subdata(in: offset..<offset + entry.length)
     }
-    throw FontError.missingTable
+    throw OpenTypeFontError.missingTable
   }
 
   var description: String {

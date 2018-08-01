@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, FSSegmentType)
   FSSegmentTypeLine,
   FSSegmentTypeCurve,
   FSSegmentTypeQCurve
-} NS_SWIFT_NAME(Segment.Type);
+} NS_SWIFT_NAME(SegmentType);
 
 NS_SWIFT_NAME(Segment)
 @interface FSSegment : NSObject
