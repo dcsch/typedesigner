@@ -44,11 +44,10 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 //        }
 
         // No mapping - just the glyph order
-        if let glyphOrder = font.libProps.glyphOrder {
-          characterMappings.removeAll()
-          for i in 0..<glyphOrder.count {
-            characterMappings.append((i, i))
-          }
+        let glyphOrder = font.libProps.glyphOrder
+        characterMappings.removeAll()
+        for i in 0..<glyphOrder.count {
+          characterMappings.append((i, i))
         }
         collectionView?.reloadData()
       } else {
@@ -179,11 +178,10 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 
   func collectionView(_ collectionView: NSCollectionView,
                       didSelectItemsAt indexPaths: Set<IndexPath>) {
-    os_log("Selected: %@", indexPaths)
     if let indexPath = indexPaths.first,
       indexPath.item > -1,
-      let font = self.font,
-      let glyphOrder = font.libProps.glyphOrder {
+      let font = self.font {
+      let glyphOrder = font.libProps.glyphOrder
       let glyphIndex = characterMappings[indexPath.item].1
       fontController?.setGlyphName(glyphOrder[glyphIndex])
     }
@@ -191,7 +189,6 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
   
   func collectionView(_ collectionView: NSCollectionView,
                       didDeselectItemsAt indexPaths: Set<IndexPath>) {
-    os_log("Deselected: %@", indexPaths)
   }
 }
 

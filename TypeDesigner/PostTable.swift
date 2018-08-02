@@ -378,6 +378,20 @@ class PostTable: Table, Codable {
     }
   }
 
+  func name(at index: Int) -> String? {
+    if version == 0x00020000 {
+      if isMacGlyphName(at: index) {
+        let nameIndex = glyphNameIndex[index]
+        return PostTable.macGlyphName[nameIndex]
+      } else {
+        let nameIndex = glyphNameIndex[index] - 257
+        return psGlyphName[nameIndex - 1]
+      }
+    } else {
+      return nil
+    }
+  }
+
   override var description: String {
     get {
       var str = String(format:

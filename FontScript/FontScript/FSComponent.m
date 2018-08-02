@@ -21,7 +21,7 @@
 
 @implementation FSComponent
 
-- (instancetype)initWithBaseGlyphName:(NSString *)baseGlyphName {
+- (nonnull instancetype)initWithBaseGlyphName:(nonnull NSString *)baseGlyphName {
   self = [super init];
   if (self) {
     _baseGlyphName = baseGlyphName;

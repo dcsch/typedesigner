@@ -18,7 +18,7 @@
 NS_SWIFT_NAME(Component)
 @interface FSComponent : NSObject <NSCopying>
 
-- (instancetype)initWithBaseGlyphName:(NSString *)baseGlyphName NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithBaseGlyphName:(nonnull NSString *)baseGlyphName NS_DESIGNATED_INITIALIZER;
 - (instancetype)init __attribute__((unavailable));
 
 // Parents
@@ -31,7 +31,7 @@ NS_SWIFT_NAME(Component)
 @property(readonly) NSUInteger index;
 
 // Attributes
-@property NSString *baseGlyphName;
+@property(nonnull) NSString *baseGlyphName;
 @property CGAffineTransform transformation;
 @property CGPoint offset;
 @property CGPoint scale;

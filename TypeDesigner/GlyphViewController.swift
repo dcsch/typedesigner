@@ -62,14 +62,15 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
     glyphView.controlPoints.removeAll()
 
     let glyphs = font.defaultLayer.glyphs
-    let glyph = glyphs[glyphName] as! FontScript.Glyph
-    let pen = QuartzPen(layer: font.defaultLayer)
-    glyph.draw(with: pen)
+    if let glyph = glyphs[glyphName] as? FontScript.Glyph {
+      let pen = QuartzPen(layer: font.defaultLayer)
+      glyph.draw(with: pen)
 
-    glyphView.transforms.append(CGAffineTransform.identity)
-    glyphView.glyphPaths.append(pen.path)
+      glyphView.transforms.append(CGAffineTransform.identity)
+      glyphView.glyphPaths.append(pen.path)
 
-    sizeToFit()
+      sizeToFit()
+    }
     glyphView.needsDisplay = true
   }
 

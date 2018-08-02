@@ -41,14 +41,12 @@ class UFOFont : FontScript.Font {
 
     super.init()
 
-    if let names = libProps.glyphOrder {
-      let layer = newLayer(name: "default", color: CGColor.black)
-      let glyphSet = try reader.glyphSet()
-      for name in names {
-        let glyph = layer.newGlyph(name: name, clear: false) as! UFOGlyph
-        try glyphSet.readGlyph(glyphName: name, pointPen: glyph.ufoPointPen)
-        bounds = bounds.union(glyph.bounds)
-      }
+    let layer = newLayer(name: "default", color: CGColor.black)
+    let glyphSet = try reader.glyphSet()
+    for name in libProps.glyphOrder {
+      let glyph = layer.newGlyph(name: name, clear: false) as! UFOGlyph
+      try glyphSet.readGlyph(glyphName: name, pointPen: glyph.ufoPointPen)
+      bounds = bounds.union(glyph.bounds)
     }
   }
 

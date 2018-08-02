@@ -9,3 +9,4 @@ Unified Font Object Editor for macOS. *Under construction — not yet a useful a
  - [Microsoft Font Validator](https://github.com/HinTak/Font-Validator)
  - [OpenType specification](https://www.microsoft.com/en-us/Typography/OpenTypeSpecification.aspx)
  - [TrueType™ Reference Manual](https://developer.apple.com/fonts/TrueType-Reference-Manual/)
+ - [SIL International: Font Development Best Practices](http://silnrsi.github.io/FDBP/en-US/index.html)

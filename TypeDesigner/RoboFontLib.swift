@@ -37,7 +37,7 @@ class RoboFontLib: Codable {
   var shouldAddPointsInSplineConversion: Bool?
   var sort: [RoboFontSort]?
   var groupColors: [String: [Double]]?
-  var glyphOrder: [String]?
+  var glyphOrder: [String]
   var postscriptNames: [String: String]?
 
   enum CodingKeys: String, CodingKey {
@@ -57,5 +57,9 @@ class RoboFontLib: Codable {
     case groupColors = "com.typesupply.MetricsMachine4.groupColors"
     case glyphOrder = "public.glyphOrder"
     case postscriptNames = "public.postscriptNames"
+  }
+
+  init() {
+    glyphOrder = []
   }
 }
