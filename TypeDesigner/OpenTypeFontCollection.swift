@@ -56,8 +56,11 @@ class OpenTypeFontCollection {
     } else {
 
       // This is a standalone font file
-      let font = try TTFont(data: data, tablesOrigin: 0)
-      fonts.append(font)
+      if OpenTypeFont.isTrueType(data: data) {
+        fonts.append(try TTFont(data: data, tablesOrigin: 0))
+      } else if OpenTypeFont.isCFF(data: data) {
+        fonts.append(try T2Font(data: data, tablesOrigin: 0))
+      }
     }
   }
 }

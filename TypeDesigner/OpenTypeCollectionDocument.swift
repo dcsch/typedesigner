@@ -9,7 +9,7 @@
 import Cocoa
 
 class OpenTypeCollectionDocument: NSDocument {
-  var fontCollection: OpenTypeFontCollection?
+  var converter: FontConverter?
 
   override init() {
     super.init()
@@ -36,7 +36,7 @@ class OpenTypeCollectionDocument: NSDocument {
     if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
       suitcase = true
     }
-    fontCollection = try OpenTypeFontCollection(data: data, isSuitcase: suitcase)
+    converter = try OpenTypeConverter(openTypeData: data, isSuitcase: suitcase)
   }
 
   override class var autosavesInPlace: Bool {

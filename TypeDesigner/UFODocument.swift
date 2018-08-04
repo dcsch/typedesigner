@@ -42,8 +42,8 @@ class UFODocument: NSDocument {
     if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
       suitcase = true
     }
-    let importer = try OpenTypeImporter(openTypeData: data, isSuitcase: suitcase)
-    font = try importer.convert(index: 0)
+    let converter = try OpenTypeConverter(openTypeData: data, isSuitcase: suitcase)
+    font = try converter.convert(index: 0)
   }
 
   override func read(from url: URL, ofType typeName: String) throws {

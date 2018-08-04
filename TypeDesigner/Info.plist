@@ -34,7 +34,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.UFODocument</string>
+			<string>Type_Designer.OpenTypeCollectionDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
@@ -50,7 +50,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.UFODocument</string>
+			<string>Type_Designer.OpenTypeCollectionDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -102,7 +102,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>Type_Designer.UFODocument</string>
+			<string>Type_Designer.OpenTypeCollectionDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

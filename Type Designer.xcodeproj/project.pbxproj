@@ -28,7 +28,7 @@
 		035AD8A720B8B70E006494B7 /* UFOKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD8A320B8B590006494B7 /* UFOKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		035AD8AB20B8BB1C006494B7 /* UFODocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8AA20B8BB1C006494B7 /* UFODocument.swift */; };
 		035AD8AD20B8BC64006494B7 /* UFOFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8AC20B8BC64006494B7 /* UFOFont.swift */; };
-		036383A42112392900E7E26C /* OpenTypeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036383A32112392900E7E26C /* OpenTypeImporter.swift */; };
+		036383A42112392900E7E26C /* OpenTypeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036383A32112392900E7E26C /* OpenTypeConverter.swift */; };
 		03924DC82109085F00928986 /* FontScript.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03924DBF2108ED5900928986 /* FontScript.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03924DCC21090D3D00928986 /* RoboFontLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03924DCB21090D3D00928986 /* RoboFontLib.swift */; };
 		03924DCE21092AA900928986 /* UFOGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03924DCD21092AA900928986 /* UFOGlyph.swift */; };
@@ -63,6 +63,7 @@
 		03CE9CA71FBE806C002FE971 /* TTFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE9CA11FBE78A2002FE971 /* TTFont.swift */; };
 		03CE9CA81FBE8074002FE971 /* T2Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE9CA51FBE78B1002FE971 /* T2Font.swift */; };
 		03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D07AA91F4F87580070F49D /* CharacterMapItem.swift */; };
+		03EF55DA2114E79700D11462 /* FontConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EF55D92114E79700D11462 /* FontConverter.swift */; };
 		03F1F20B1FCA527D00813EDD /* NamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F20A1FCA527D00813EDD /* NamesViewController.swift */; };
 		03F1F20F1FCA52DC00813EDD /* FontPropertyWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F20E1FCA52DC00813EDD /* FontPropertyWindowController.swift */; };
 		03F1F2111FCC985D00813EDD /* TableWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F1F2101FCC985D00813EDD /* TableWriter.swift */; };
@@ -251,7 +252,7 @@
 		035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UFOKit.xcodeproj; path = UFOKit/UFOKit.xcodeproj; sourceTree = "<group>"; };
 		035AD8AA20B8BB1C006494B7 /* UFODocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFODocument.swift; sourceTree = "<group>"; };
 		035AD8AC20B8BC64006494B7 /* UFOFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOFont.swift; sourceTree = "<group>"; };
-		036383A32112392900E7E26C /* OpenTypeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeImporter.swift; sourceTree = "<group>"; };
+		036383A32112392900E7E26C /* OpenTypeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeConverter.swift; sourceTree = "<group>"; };
 		03924DB62108ED5900928986 /* FontScript.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FontScript.xcodeproj; path = FontScript/FontScript.xcodeproj; sourceTree = "<group>"; };
 		03924DCB21090D3D00928986 /* RoboFontLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoboFontLib.swift; sourceTree = "<group>"; };
 		03924DCD21092AA900928986 /* UFOGlyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOGlyph.swift; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 		03CE9CA11FBE78A2002FE971 /* TTFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTFont.swift; sourceTree = "<group>"; };
 		03CE9CA51FBE78B1002FE971 /* T2Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = T2Font.swift; sourceTree = "<group>"; };
 		03D07AA91F4F87580070F49D /* CharacterMapItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMapItem.swift; sourceTree = "<group>"; };
+		03EF55D92114E79700D11462 /* FontConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConverter.swift; sourceTree = "<group>"; };
 		03F1F20A1FCA527D00813EDD /* NamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesViewController.swift; sourceTree = "<group>"; };
 		03F1F20E1FCA52DC00813EDD /* FontPropertyWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPropertyWindowController.swift; sourceTree = "<group>"; };
 		03F1F2101FCC985D00813EDD /* TableWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableWriter.swift; sourceTree = "<group>"; };
@@ -452,7 +454,8 @@
 				03C5674C1F6B5195004C915B /* OpenTypeCollectionDocument.swift */,
 				03A72DD61F5CB781003ABF74 /* FontController.swift */,
 				03B311F81F2A9D60001E6712 /* OpenTypeFontCollection.swift */,
-				036383A32112392900E7E26C /* OpenTypeImporter.swift */,
+				03EF55D92114E79700D11462 /* FontConverter.swift */,
+				036383A32112392900E7E26C /* OpenTypeConverter.swift */,
 				03F905DB1F38DDF70008FF3E /* GlyphImageFactory.swift */,
 				03CBC249210A79A70031244D /* QuartzPen.swift */,
 			);
@@ -859,6 +862,7 @@
 				03C5674D1F6B5195004C915B /* OpenTypeCollectionDocument.swift in Sources */,
 				03FF506E1F4BE212009F5F0C /* GlyfCompositeDescript.swift in Sources */,
 				03B619141F3D283D00EA1D0E /* CmapFormat12.swift in Sources */,
+				03EF55DA2114E79700D11462 /* FontConverter.swift in Sources */,
 				03A72DD31F5A17A9003ABF74 /* FontDocumentWindowController.swift in Sources */,
 				03B311FB1F2AC062001E6712 /* TCResourceHeader.swift in Sources */,
 				0348BE6D1F33DD3700446B58 /* GlyfDescript.swift in Sources */,
@@ -911,7 +915,7 @@
 				03B311F91F2A9D60001E6712 /* OpenTypeFontCollection.swift in Sources */,
 				030A32A91F314823006B2BAC /* AppDelegate.swift in Sources */,
 				03924DD02109338C00928986 /* UFOLayer.swift in Sources */,
-				036383A42112392900E7E26C /* OpenTypeImporter.swift in Sources */,
+				036383A42112392900E7E26C /* OpenTypeConverter.swift in Sources */,
 				03D07AAA1F4F87580070F49D /* CharacterMapItem.swift in Sources */,
 				03F905DC1F38DDF70008FF3E /* GlyphImageFactory.swift in Sources */,
 				03FF502B1F477496009F5F0C /* VmtxTable.swift in Sources */,

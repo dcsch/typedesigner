@@ -1,5 +1,5 @@
 //
-//  OpenTypeImporter.swift
+//  OpenTypeConverter.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/1/18.
@@ -8,12 +8,23 @@
 
 import Foundation
 import FontScript
+import CFF
 
-class OpenTypeImporter {
+class OpenTypeConverter : FontConverter {
   var fontCollection: OpenTypeFontCollection
 
   init(openTypeData: Data, isSuitcase: Bool) throws {
     fontCollection = try OpenTypeFontCollection(data: openTypeData, isSuitcase: isSuitcase)
+  }
+
+  var fontNames: [String] {
+    get {
+      var names = [String]()
+      for font in fontCollection.fonts {
+        names.append(font.nameTable.record(nameID: .fullFontName)!.record)
+      }
+      return names
+    }
   }
 
   var fontCount: Int {
@@ -31,29 +42,38 @@ class OpenTypeImporter {
 
     if let ttFont = otFont as? TTFont {
 
-      // Convert all the glyph names
-      var i = 0
-
-      for descript in ttFont.glyfTable.descript {
+      // TrueType outlines
+      for (i, descript) in ttFont.glyfTable.descript.enumerated() {
 
         let name = otFont.postTable.name(at: i) ?? "glyph\(i)"
-        i = i + 1
-
         ufoFont.libProps.glyphOrder.append(name)
 
         if descript is GlyfNullDescript {
           layer.glyphs[name] = UFOGlyph(name: name, layer: layer)
         } else if let simpleDescript = descript as? GlyfSimpleDescript {
-          let glyph = OpenTypeImporter.convert(glyph: simpleDescript, name: name, layer: layer)
+          let glyph = OpenTypeConverter.convert(glyph: simpleDescript, name: name, layer: layer)
           bounds = bounds.union(glyph.bounds)
           layer.glyphs[name] = glyph
         } else if let compositeDescript = descript as? GlyfCompositeDescript {
-          let glyph = OpenTypeImporter.convert(glyph: compositeDescript, otFont: otFont, name: name, layer: layer)
+          let glyph = OpenTypeConverter.convert(glyph: compositeDescript, otFont: otFont, name: name, layer: layer)
+          bounds = bounds.union(glyph.bounds)
+          layer.glyphs[name] = glyph
+        }
+      }
+    } else if let t2Font = otFont as? T2Font {
+
+      // Type 2 / CFF outlines
+      for i in 0..<t2Font.cffTable.fonts[0].charstrings.count {
+        let name = otFont.postTable.name(at: i) ?? "glyph\(i)"
+        if let t2Glyph = t2Font.glyph(at: i) {
+          ufoFont.libProps.glyphOrder.append(name)
+          let glyph = OpenTypeConverter.convert(glyph: t2Glyph, name: name, layer: layer)
           bounds = bounds.union(glyph.bounds)
           layer.glyphs[name] = glyph
         }
       }
     }
+
     ufoFont.bounds = bounds;
 
     return ufoFont
@@ -80,6 +100,20 @@ class OpenTypeImporter {
       let ufoComponent = Component(baseGlyphName: componentName)
       ufoComponent.transformation = tranform
       ufoGlyph.appendComponent(ufoComponent)
+    }
+    return ufoGlyph
+  }
+
+  class func convert(glyph: T2Glyph, name: String, layer: Layer?) -> UFOGlyph {
+    let ufoGlyph = UFOGlyph(name: name, layer: layer)
+    var cffPoints = [CFFPoint]()
+    for point in glyph.points {
+      cffPoints.append(point)
+      if point.endOfContour {
+        let contour = contourFromPoints(points: cffPoints)
+        ufoGlyph.appendContour(contour, offset: CGPoint.zero)
+        cffPoints.removeAll()
+      }
     }
     return ufoGlyph
   }
@@ -114,6 +148,28 @@ class OpenTypeImporter {
       }
       previousOnCurve = onCurve
       contour.appendPoint(cgPoint, type: pointType, smooth: smooth)
+    }
+    return contour
+  }
+
+  private class func contourFromPoints(points: [CFFPoint]) -> Contour {
+    let contour = Contour(glyph: nil)
+    var previousOnCurve = points.last?.onCurve ?? true
+    for point in points {
+      var pointType: PointType
+      var smooth: Bool
+      if previousOnCurve && point.onCurve {
+        pointType = .line
+        smooth = false
+      } else if !previousOnCurve && point.onCurve {
+        pointType = .curve
+        smooth = true
+      } else {
+        pointType = .offCurve
+        smooth = false
+      }
+      previousOnCurve = point.onCurve
+      contour.appendPoint(CGPoint(x: point.x, y: point.y), type: pointType, smooth: smooth)
     }
     return contour
   }

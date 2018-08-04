@@ -158,4 +158,16 @@ class OpenTypeFont: Codable, CustomStringConvertible {
 
   func buildFont(url: URL) throws {
   }
+
+  class func isTrueType(data: Data) -> Bool {
+    let dataInput = TCDataInput(data: data)
+    let tableDirectory = TableDirectory(dataInput: dataInput)
+    return tableDirectory.hasEntry(tag: .glyf)
+  }
+
+  class func isCFF(data: Data) -> Bool {
+    let dataInput = TCDataInput(data: data)
+    let tableDirectory = TableDirectory(dataInput: dataInput)
+    return tableDirectory.hasEntry(tag: .CFF)
+  }
 }
