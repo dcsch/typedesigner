@@ -74,7 +74,7 @@ class OpenTypeConverter : FontConverter {
       }
     }
 
-    ufoFont.bounds = bounds;
+    ufoFont.bounds = bounds
 
     return ufoFont
   }

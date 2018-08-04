@@ -193,6 +193,7 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 }
 
 extension CharacterMapViewController: FontSubscriber {
+
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
   }
 }

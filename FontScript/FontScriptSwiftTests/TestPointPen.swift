@@ -9,8 +9,8 @@
 import Foundation
 import FontScript
 
-class TestPointPen : NSObject, PointPen
-{
+class TestPointPen : NSObject, PointPen {
+
   func addCGPoint(_ point: CGPoint, type: Point.Type, smooth: Bool) {
   }
 

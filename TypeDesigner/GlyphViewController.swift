@@ -101,6 +101,7 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
 }
 
 extension GlyphViewController: FontSubscriber {
+
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
     updateGlyph()
   }

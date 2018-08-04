@@ -170,4 +170,5 @@ class OpenTypeFont: Codable, CustomStringConvertible {
     let tableDirectory = TableDirectory(dataInput: dataInput)
     return tableDirectory.hasEntry(tag: .CFF)
   }
+
 }

@@ -47,7 +47,7 @@ class UFODocument: NSDocument {
   }
 
   override func read(from url: URL, ofType typeName: String) throws {
-    if (typeName == "Unified Font Object") {
+    if typeName == "Unified Font Object" {
       let ufoReader = try UFOReader(url: url);
       font = try UFOFont(reader: ufoReader)
     } else {
