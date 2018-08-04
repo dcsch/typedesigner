@@ -1,5 +1,5 @@
 //
-//  FontCollection.swift
+//  OpenTypeFontCollection.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 7/27/17.
@@ -9,8 +9,8 @@
 import Foundation
 import IOUtils
 
-class FontCollection {
-  var fonts: [Font]
+class OpenTypeFontCollection {
+  var fonts: [OpenTypeFont]
   var ttcHeader: TTCHeader?
   var suitcase: Bool
 
@@ -56,8 +56,11 @@ class FontCollection {
     } else {
 
       // This is a standalone font file
-      let font = try TTFont(data: data, tablesOrigin: 0)
-      fonts.append(font)
+      if OpenTypeFont.isTrueType(data: data) {
+        fonts.append(try TTFont(data: data, tablesOrigin: 0))
+      } else if OpenTypeFont.isCFF(data: data) {
+        fonts.append(try T2Font(data: data, tablesOrigin: 0))
+      }
     }
   }
 }

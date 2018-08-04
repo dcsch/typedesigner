@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  FontScript
+
+  Created by David Schweinsberg on 6/7/18.
+  Copyright © 2018 David Schweinsberg. All rights reserved.
+*/
+
+"A glyph with the name '%@' already exists" = "A glyph with the name '%@' already exists";
+"Contour not located in Glyph" = "Contour not located in Glyph";
+"Component not located in Glyph" = "Component not located in Glyph";
+"No contour located at index %u" = "No contour located at index %u";
+"No component located at index %u" = "No component located at index %u";
+"Index %u is out-of-range" = "Index %u is out-of-range";

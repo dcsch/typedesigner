@@ -11,7 +11,11 @@ import UFOKit
 
 class UFODocument: NSDocument {
   var font: UFOFont?
-  var glyphSet: GlyphSet?
+
+  override init() {
+    super.init()
+    hasUndoManager = true
+  }
 
   override func makeWindowControllers() {
     let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
@@ -33,9 +37,22 @@ class UFODocument: NSDocument {
     throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
   }
 
+  override func read(from data: Data, ofType typeName: String) throws {
+    var suitcase = false
+    if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
+      suitcase = true
+    }
+    let converter = try OpenTypeConverter(openTypeData: data, isSuitcase: suitcase)
+    font = try converter.convert(index: 0)
+  }
+
   override func read(from url: URL, ofType typeName: String) throws {
-    let ufoReader = try UFOReader(url: url);
-    glyphSet = try ufoReader.glyphSet()
+    if typeName == "Unified Font Object" {
+      let ufoReader = try UFOReader(url: url);
+      font = try UFOFont(reader: ufoReader)
+    } else {
+      try super.read(from: url, ofType: typeName)
+    }
   }
 
   override class var autosavesInPlace: Bool {

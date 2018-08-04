@@ -7,12 +7,13 @@
 //
 
 import Cocoa
+import FontScript
 import os.log
 
 class GlyphViewController: NSViewController, FontControllerConsumer {
 
-  @IBOutlet weak var scrollView: NSScrollView?
-  @IBOutlet weak var glyphView: GlyphView?
+  @IBOutlet weak var scrollView: NSScrollView!
+  @IBOutlet weak var glyphView: GlyphView!
 
   var fontController: FontController? {
     didSet {
@@ -33,7 +34,7 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
     nc.addObserver(forName: NSView.frameDidChangeNotification,
                    object: view,
                    queue: nil) { (Notification) in
-//      self.calculateGlyphViewSize()
+      self.sizeToFit()
     }
 
 //    scrollView!.hasHorizontalRuler = true
@@ -43,88 +44,66 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
 
   func updateGlyph() {
     guard let font = fontController?.font,
-      let glyphIndex = fontController?.glyphIndex,
+      let glyphName = fontController?.glyphName,
       let glyphView = glyphView else { return }
 
-    glyphView.unitsPerEm = font.headTable.unitsPerEm
-    glyphView.xMin = font.headTable.xMin
-    glyphView.xMax = font.headTable.xMax
-    glyphView.yMin = font.headTable.yMin
-    glyphView.yMax = font.headTable.yMax
-    glyphView.ascent = font.hheaTable.ascender
-    glyphView.descent = font.hheaTable.descender
-    glyphView.leftSideBearing = font.hmtxTable.leftSideBearing(at: glyphIndex)
-    glyphView.advanceWidth = font.hmtxTable.advanceWidth(at: glyphIndex)
+    glyphView.unitsPerEm = font.unitsPerEm
+    glyphView.xMin = Int(font.bounds.minX)
+    glyphView.xMax = Int(font.bounds.maxX)
+    glyphView.yMin = Int(font.bounds.minY)
+    glyphView.yMax = Int(font.bounds.maxY)
+    glyphView.ascent = Int(font.ufoInfo.ascender ?? 100)
+    glyphView.descent = Int(font.ufoInfo.descender ?? 100)
+//    glyphView.leftSideBearing = font.hmtxTable.leftSideBearing(at: glyphIndex)
+//    glyphView.advanceWidth = font.hmtxTable.advanceWidth(at: glyphIndex)
 
     glyphView.transforms.removeAll()
     glyphView.glyphPaths.removeAll()
     glyphView.controlPoints.removeAll()
 
-    if let ttFont = font as? TTFont {
-      let descript = ttFont.glyfTable.descript[glyphIndex]
-      if let simpleDescript = descript as? GlyfSimpleDescript {
+    let glyphs = font.defaultLayer.glyphs
+    if let glyph = glyphs[glyphName] as? FontScript.Glyph {
+      let pen = QuartzPen(layer: font.defaultLayer)
+      glyph.draw(with: pen)
 
-//        let scale = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
-//        glyphView.scale
+      glyphView.transforms.append(CGAffineTransform.identity)
+      glyphView.glyphPaths.append(pen.path)
 
-        // Since this is a simple glyph, append the single glyph path, along with
-        // the identity matrix for "no transformation"
-        glyphView.transforms.append(CGAffineTransform.identity)
-//        glyphView.transforms.append(scale)
-        glyphView.glyphPaths.append(GlyphPathFactory.buildPath(with: simpleDescript))
-
-        for ((x, y), flags) in zip(zip(simpleDescript.xCoordinates, simpleDescript.yCoordinates), simpleDescript.flags) {
-          let cp = GlyphView.ControlPoint(position: CGPoint(x: x, y: y),
-                                          onCurve: flags.contains(.onCurvePoint))
-          glyphView.controlPoints.append(cp)
-        }
-
-      } else if let compositeDescript = descript as? GlyfCompositeDescript {
-
-        // Add a glyph path for each component of the composite glyph, building a
-        // transformation matrix for each part
-        for component in compositeDescript.components {
-          let componentGlyphIndex = component.glyphIndex
-          if let componentDescript = ttFont.glyfTable.descript[componentGlyphIndex] as? GlyfSimpleDescript {
-            let transform = CGAffineTransform(a: CGFloat(component.xscale), b: CGFloat(component.scale01),
-                                              c: CGFloat(component.scale10), d: CGFloat(component.yscale),
-                                              tx: CGFloat(component.xtranslate), ty: CGFloat(component.ytranslate))
-            glyphView.transforms.append(transform)
-            glyphView.glyphPaths.append(GlyphPathFactory.buildPath(with: componentDescript))
-          }
-        }
-      }
-      os_log("updateGlyph: %@", String(describing: descript))
+      sizeToFit()
     }
-//    calculateGlyphViewSize()
     glyphView.needsDisplay = true
   }
 
-  func calculateGlyphViewSize() {
-
-    // Calculate a space in which to place the glyph in font design units. This
-    // will be limited by the xMin, yMin, xMax, and yMax values in the
-    // head table.
-    if let rect = scrollView?.bounds {
-      glyphView?.frame = NSRect(x: -rect.size.width,
-                                y: -rect.size.height,
-                                width: rect.size.width,
-                                height: rect.size.height)
+  func sizeToFit() {
+    var boundingBox = fontController?.font.bounds ?? CGRect.zero
+    for path in glyphView.glyphPaths {
+      boundingBox = boundingBox.union(path.boundingBox)
     }
-
-    if let font = fontController?.font {
-      let head = font.headTable
-      glyphView?.bounds = CGRect(x: Int(head.xMin), y: Int(head.yMin),
-                                 width: Int(head.xMax) - Int(head.xMin),
-                                 height: Int(head.yMax) - Int(head.yMin))
-    }
-    glyphView?.needsDisplay = true
+    calculateBounds(containing: boundingBox)
+    glyphView.needsDisplay = true
   }
+
+  func calculateBounds(containing rect: CGRect) {
+    let margin: CGFloat = 20.0
+    let bounds = rect
+    let boundsAspectRatio = bounds.width / bounds.height
+    let frame = glyphView.frame
+    let frameAspectRatio = frame.width / frame.height
+    let scale = frameAspectRatio < boundsAspectRatio ?
+      bounds.width / frame.width :
+      bounds.height / frame.height
+    let width = frame.size.width * scale
+    let height = frame.size.height * scale
+    glyphView.bounds = bounds.insetBy(dx: (bounds.width - width) / 2.0 - 2.0 * margin,
+                                      dy: (bounds.height - height) / 2.0 - 2.0 * margin)
+  }
+
 }
 
 extension GlyphViewController: FontSubscriber {
-  func font(_ font: Font, didChangeGlyphIndex glyphIndex: Int) {
-//    os_log("GlyphViewController:didChangeGlyphIndex:")
+
+  func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
     updateGlyph()
   }
+
 }

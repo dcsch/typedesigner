@@ -10,12 +10,12 @@ import Foundation
 
 class FontController {
   private let subscribers = NSHashTable<AnyObject>.weakObjects()
-  var font: Font
-  var glyphIndex: Int
+  var font: UFOFont
+  var glyphName: String
 
-  init(font: Font) {
+  init(font: UFOFont) {
     self.font = font
-    self.glyphIndex = 0
+    self.glyphName = ".notdef"
   }
 
   // MARK: - Subscription
@@ -37,14 +37,14 @@ class FontController {
 
   // MARK: - Actions
 
-  func setGlyphIndex(_ glyphIndex: Int) {
-    self.glyphIndex = glyphIndex
-    forEachSubscriber { $0.font(font, didChangeGlyphIndex: glyphIndex) }
+  func setGlyphName(_ glyphName: String) {
+    self.glyphName = glyphName
+    forEachSubscriber { $0.font(font, didChangeGlyphName: glyphName) }
   }
 }
 
 protocol FontSubscriber: class {
-  func font(_ font: Font, didChangeGlyphIndex glyphIndex: Int)
+  func font(_ font: UFOFont, didChangeGlyphName glyphName: String)
 }
 
 // Any given view controller can implement the FontControllerConsumer to get assigned the current FontController

@@ -18,7 +18,7 @@ class ImportWindowController: NSWindowController {
 
   override var document: AnyObject? {
     didSet {
-      guard let importDocument = document as? ImportDocument,
+      guard let importDocument = document as? OpenTypeCollectionDocument,
         let importViewController = contentViewController as? ImportViewController
         else {
           return

@@ -10,7 +10,7 @@ import Cocoa
 import os.log
 
 class FontDocumentController: NSDocumentController {
-  var importFont: Font?
+  var importFont: UFOFont?
 
   override init() {
     super.init()
@@ -25,15 +25,6 @@ class FontDocumentController: NSDocumentController {
     return document
   }
 
-//  func openUntitledDocument(withFont font: Font, displayDocument: Bool) throws -> NSDocument {
-//    let document = try makeDocument(withFont: font)
-//    addDocument(document)
-//    if displayDocument {
-//      document.makeWindowControllers()
-//    }
-//    return document
-//  }
-
   override func makeDocument(withContentsOf url: URL, ofType typeName: String) throws -> NSDocument {
     let resourceURL: URL
     if typeName == "Font Suitcase"  {
@@ -47,17 +38,12 @@ class FontDocumentController: NSDocumentController {
 
   override func makeUntitledDocument(ofType typeName: String) throws -> NSDocument {
     let document = try super.makeUntitledDocument(ofType: typeName)
-    if let fontDocument = document as? FontDocument,
+    if let fontDocument = document as? UFODocument,
       let font = importFont {
       fontDocument.font = font
-      fontDocument.displayName = font.nameTable.record(nameID: .fullFontName)!.record
+      fontDocument.displayName = font.ufoInfo.familyName
       importFont = nil
     }
     return document
   }
-
-//  func makeDocument(withFont font: Font) throws -> NSDocument {
-//    let document = try makeUntitledDocument(ofType: "TrueType font")
-//    return document
-//  }
 }

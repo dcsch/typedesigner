@@ -10,9 +10,13 @@ import Cocoa
 import os.log
 
 class ImportViewController: NSViewController {
-  var importDocument: ImportDocument? {
+  var names = [String]()
+  var importDocument: OpenTypeCollectionDocument? {
     didSet {
-      tableView?.reloadData()
+      if let converter = importDocument?.converter {
+        names = converter.fontNames
+        tableView?.reloadData()
+      }
     }
   }
   @IBOutlet weak var tableView: NSTableView?
@@ -25,11 +29,15 @@ class ImportViewController: NSViewController {
 
   @IBAction func open(_ sender: Any?) {
     if let docController = NSDocumentController.shared as? FontDocumentController,
-      let fonts = importDocument?.fontCollection?.fonts,
+      let converter = importDocument?.converter,
       let selectedRow = tableView?.selectedRow,
       selectedRow > -1 {
-      docController.importFont = fonts[selectedRow]
-      docController.newDocument(self)
+      do {
+        docController.importFont = try converter.convert(index: selectedRow)
+        docController.newDocument(self)
+      } catch {
+        os_log("Failed to convert font")
+      }
       importDocument?.close()
     }
   }
@@ -42,18 +50,13 @@ class ImportViewController: NSViewController {
 extension ImportViewController: NSTableViewDelegate, NSTableViewDataSource {
 
   func numberOfRows(in tableView: NSTableView) -> Int {
-    if let count = importDocument?.fontCollection?.fonts.count {
-      return count
-    } else {
-      return 0
-    }
+    return names.count
   }
 
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-    guard let fonts = importDocument?.fontCollection?.fonts,
-      let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Name"), owner: self) as? NSTableCellView
+    guard let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Name"), owner: self) as? NSTableCellView
       else { return nil }
-    view.textField?.stringValue = fonts[row].nameTable.record(nameID: .fullFontName)!.record
+    view.textField?.stringValue = names[row]
     return view
   }
 

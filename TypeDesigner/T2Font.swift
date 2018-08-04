@@ -12,7 +12,7 @@ import IOUtils
 /**
  An OpenType font with Type 2 (CFF) outlines.
  */
-class T2Font: Font {
+class T2Font: OpenTypeFont {
   var cffTable: CffTable
 
   override init(data: Data, tablesOrigin: Int) throws {
@@ -21,7 +21,7 @@ class T2Font: Font {
     let dataInput = TCDataInput(data: data)
     let tableDirectory = TableDirectory(dataInput: dataInput)
 
-    let tableData = try Font.tableData(directory: tableDirectory, tag: .CFF,
+    let tableData = try OpenTypeFont.tableData(directory: tableDirectory, tag: .CFF,
                                        data: data, tablesOrigin: tablesOrigin)
     cffTable = CffTable(data: tableData)
 
@@ -33,7 +33,7 @@ class T2Font: Font {
    - returns: a glyph
    - parameter at: the glyph index
    */
-  func glyph(at index: Int) -> Glyph? {
+  func glyph(at index: Int) -> T2Glyph? {
     let font = cffTable.fonts[0]
     let charstring = font.charstrings[index]
     let localSubrIndex = font.localSubrIndex
