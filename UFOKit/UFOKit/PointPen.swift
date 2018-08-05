@@ -116,4 +116,5 @@ public class QuartzPen: PointPen {
     return CGPoint(x: a.x + (b.x - a.x) / 2.0,
                    y: a.y + (b.y - a.y) / 2.0)
   }
+
 }

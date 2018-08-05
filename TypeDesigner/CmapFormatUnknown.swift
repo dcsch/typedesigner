@@ -12,7 +12,7 @@ import IOUtils
 /**
  When we encounter a cmap format we don't understand, we can use this class
  to hold the bare minimum information about it.
- */ 
+ */
 class CmapFormatUnknown: CmapFormat {
   let format: Int
   let length: Int
@@ -27,7 +27,7 @@ class CmapFormatUnknown: CmapFormat {
       // We don't know how to handle this data, so we'll just skip over it
       _ = dataInput.read(length: length - 6)
     } else {
-      _ = dataInput.readUInt16();
+      _ = dataInput.readUInt16()
       length = Int(dataInput.readInt32())
       language = Int(dataInput.readInt32())
 
@@ -43,4 +43,5 @@ class CmapFormatUnknown: CmapFormat {
   func glyphCode(characterCode: Int) -> Int {
     return 0
   }
+
 }

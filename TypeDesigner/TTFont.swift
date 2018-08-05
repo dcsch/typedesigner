@@ -205,4 +205,5 @@ class TTFont: OpenTypeFont {
     fileData.append(fontData)
     try fileData.write(to: url, options: .atomicWrite)
   }
+
 }

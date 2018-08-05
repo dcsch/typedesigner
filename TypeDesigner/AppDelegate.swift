@@ -27,4 +27,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
     return false
   }
+
 }

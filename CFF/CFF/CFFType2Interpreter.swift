@@ -144,7 +144,7 @@ public class CFFType2Interpreter {
       name: "Global subrs",
       data: globalSubrIndex.data[globalStart..<globalEnd])
 
-    // TODO redesign the class so we don't have this charstring as part of it
+    // TODO: redesign the class so we don't have this charstring as part of it
     cs = CFFCharstringType2()
   }
 
@@ -1168,7 +1168,7 @@ public class CFFType2Interpreter {
       } else {
 
         // One-byte operators
-        switch (opr) {
+        switch opr {
         case T2Mnemonic.HSTEM:
           try _hstem()
         case T2Mnemonic.VSTEM:
@@ -1295,4 +1295,5 @@ public class CFFType2Interpreter {
       lastPoint.endOfContour = true
     }
   }
+
 }

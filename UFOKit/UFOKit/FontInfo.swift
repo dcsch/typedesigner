@@ -207,8 +207,8 @@ public struct FontInfo: Codable {
   }
 
   init(fontInfoV1: FontInfoV1) throws {
-    self.ascender = fontInfoV1.ascender;
-    self.capHeight = fontInfoV1.capHeight;
+    self.ascender = fontInfoV1.ascender
+    self.capHeight = fontInfoV1.capHeight
     self.copyright = fontInfoV1.copyright
     self.openTypeNameManufacturer = fontInfoV1.createdBy
     self.descender = fontInfoV1.descender
@@ -221,7 +221,7 @@ public struct FontInfo: Codable {
     self.postscriptFontName = fontInfoV1.fontName
     if let fontStyle = fontInfoV1.fontStyle {
       if fontStyleToName.keys.contains(fontStyle) {
-        self.styleMapStyleName = fontStyleToName[fontStyle];
+        self.styleMapStyleName = fontStyleToName[fontStyle]
       } else {
         throw UFOError.cannotConvertValue
       }
@@ -233,7 +233,7 @@ public struct FontInfo: Codable {
     self.styleMapFamilyName = fontInfoV1.menuName
     if let msCharSet = fontInfoV1.msCharSet {
       if msCharSetToWindowsCharacterSet.keys.contains(msCharSet) {
-        self.self.postscriptWindowsCharacterSet = msCharSetToWindowsCharacterSet[msCharSet];
+        self.self.postscriptWindowsCharacterSet = msCharSetToWindowsCharacterSet[msCharSet]
       } else {
         throw UFOError.cannotConvertValue
       }
@@ -258,7 +258,7 @@ public struct FontInfo: Codable {
     self.openTypeOS2WeightClass = fontInfoV1.weightValue
     if let widthName = fontInfoV1.widthName {
       if widthNameToClass.keys.contains(widthName) {
-        self.openTypeOS2WidthClass = widthNameToClass[widthName];
+        self.openTypeOS2WidthClass = widthNameToClass[widthName]
       } else {
         throw UFOError.cannotConvertValue
       }

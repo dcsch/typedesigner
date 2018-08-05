@@ -31,6 +31,7 @@ class UnicodesParser: NSObject, XMLParserDelegate {
       break
     }
   }
+
 }
 
 class ComponentsParser: NSObject, XMLParserDelegate {

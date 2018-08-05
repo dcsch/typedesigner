@@ -46,9 +46,10 @@ class TCResourceMap {
   func resourceType(name typeName: String) -> TCResourceType? {
     for type in types {
       if type.typeAsString() == typeName {
-        return type;
+        return type
       }
     }
-    return nil;
+    return nil
   }
+
 }

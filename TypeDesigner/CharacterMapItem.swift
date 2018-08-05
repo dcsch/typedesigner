@@ -25,4 +25,5 @@ class CharacterMapItem: NSCollectionViewItem {
       super.mouseDown(with: event)
     }
   }
+
 }

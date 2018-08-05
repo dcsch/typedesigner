@@ -41,4 +41,5 @@ class TCResourceType {
                   CChar((type >> 8) & 0xff),
                   CChar(type & 0xff))
   }
+
 }

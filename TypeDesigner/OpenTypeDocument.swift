@@ -84,7 +84,7 @@ class OpenTypeDocument: NSDocument {
 //    // Otherwise we create a new one
 //    if let collection = fontCollection {
 //
-//      // TODO Manage collections
+//      // TODO: Manage collections
 //      if collection.fonts.count == 1 {
 //        let controller = TCTablesWindowController(windowNibName: "TablesWindow")
 //        controller.font = collection.fonts[0]

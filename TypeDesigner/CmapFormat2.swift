@@ -59,7 +59,7 @@ class CmapFormat2: CmapFormat {
     // Read the subheaders, once again noting the highest glyphIndexArray
     // index range.
     let indexArrayOffset = 8 * subHeaderCount + 518;
-    highest = 0;
+    highest = 0
     for _ in 0..<subHeaderCount {
       let firstCode = dataInput.readUInt16()
       let entryCount = dataInput.readUInt16()

@@ -196,7 +196,7 @@ class PostTable: Table, Codable {
     "approxequal",  // 167
     "increment",    // 168
     "guillemotleft",// 169
-    "guillemotright",//170
+    "guillemotright",// 170
     "ellipsis",     // 171
     "nbspace",      // 172
     "Agrave",       // 173
@@ -344,11 +344,11 @@ class PostTable: Table, Codable {
         }
       }
       self.psGlyphName = psGlyphName
-    } else if (version == 0x00025000) {
+    } else if version == 0x00025000 {
       numGlyphs = 0
       glyphNameIndex = []
       psGlyphName = []
-    } else if (version == 0x00030000) {
+    } else if version == 0x00030000 {
       numGlyphs = 0
       glyphNameIndex = []
       psGlyphName = []
@@ -396,15 +396,15 @@ class PostTable: Table, Codable {
     get {
       var str = String(format:
         "'post' Table - PostScript Metrics\n---------------------------------\n" +
-        "\n        'post' version:        %x" + //).append(Fixed.floatValue(version))
-        "\n        italicAngle:           %x" + //).append(Fixed.floatValue(italicAngle))
-        "\n        underlinePosition:     %d" + //).append(underlinePosition)
-        "\n        underlineThickness:    %d" + //).append(underlineThickness)
-        "\n        isFixedPitch:          %d" + //).append(isFixedPitch)
-        "\n        minMemType42:          %d" + //).append(minMemType42)
-        "\n        maxMemType42:          %d" + //).append(maxMemType42)
-        "\n        minMemType1:           %d" + //).append(minMemType1)
-        "\n        maxMemType1:           %d", //).append(maxMemType1);
+        "\n        'post' version:        %x" + // ).append(Fixed.floatValue(version))
+        "\n        italicAngle:           %x" + // ).append(Fixed.floatValue(italicAngle))
+        "\n        underlinePosition:     %d" + // ).append(underlinePosition)
+        "\n        underlineThickness:    %d" + // ).append(underlineThickness)
+        "\n        isFixedPitch:          %d" + // ).append(isFixedPitch)
+        "\n        minMemType42:          %d" + // ).append(minMemType42)
+        "\n        maxMemType42:          %d" + // ).append(maxMemType42)
+        "\n        minMemType1:           %d" + // ).append(minMemType1)
+        "\n        maxMemType1:           %d", // ).append(maxMemType1);
         version,
         italicAngle,
         underlinePosition,

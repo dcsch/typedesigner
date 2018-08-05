@@ -96,7 +96,7 @@ class GlyfTable: Table, Codable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     var nestedArrayContainer = try container.nestedUnkeyedContainer(forKey: CodingKeys.descript)
     var descripts = [GlyfDescript]()
-    while(!nestedArrayContainer.isAtEnd) {
+    while !nestedArrayContainer.isAtEnd {
       let nestedDescriptContainer = try nestedArrayContainer.nestedContainer(keyedBy: DescriptTypeKey.self)
       let type = try nestedDescriptContainer.decode(DescriptTypes.self, forKey: DescriptTypeKey.type)
       switch type {
@@ -131,4 +131,5 @@ class GlyfTable: Table, Codable {
       }
     }
   }
+
 }

@@ -98,4 +98,5 @@ public class UFOReader {
     }
     return characterMap
   }
+
 }

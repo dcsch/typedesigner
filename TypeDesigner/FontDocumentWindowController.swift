@@ -30,6 +30,7 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
     }
 
     didSet {
+
       // We want to abstractly push state down the view controller hierarchy; we walk down the chain and assign the controller to the children that need it
       func propagateToChildren(of parent: NSViewController) {
         if var fontControllerConsumer: FontControllerConsumer = parent as? FontControllerConsumer {
@@ -87,11 +88,13 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
       }
     }
   }
+
 }
 
 // MARK: Font Subscriber Protocol
 
 extension FontDocumentWindowController: FontSubscriber {
+
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
 //    document?.updateChangeCount(.changeDone)
   }

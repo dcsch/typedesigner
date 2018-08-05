@@ -74,4 +74,5 @@ class CffTable: Table {
     let fontData = data.subdata(in: offset..<data.count)
     return TCDataInput(data: fontData)
   }
+
 }

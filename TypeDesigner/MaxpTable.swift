@@ -139,7 +139,8 @@ class MaxpTable: Table, Codable {
       } else {
         str.append("\n")
       }
-      return str;
+      return str
     }
   }
+
 }

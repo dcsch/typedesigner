@@ -30,7 +30,7 @@ class OpenTypeCollectionDocument: NSDocument {
   override func data(ofType typeName: String) throws -> Data {
     throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
   }
-  
+
   override func read(from data: Data, ofType typeName: String) throws {
     var suitcase = false
     if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {

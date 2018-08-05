@@ -121,4 +121,5 @@ class GlyphView: NSView {
       }
     }
   }
+
 }

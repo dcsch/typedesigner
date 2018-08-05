@@ -55,7 +55,7 @@ public class CFFDict {
     }
     var opr = Int(data[index])
     index += 1
-    if (opr == 12) {
+    if opr == 12 {
       opr <<= 8
       opr |= Int(data[index])
       index += 1

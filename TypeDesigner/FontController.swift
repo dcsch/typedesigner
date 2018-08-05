@@ -41,6 +41,7 @@ class FontController {
     self.glyphName = glyphName
     forEachSubscriber { $0.font(font, didChangeGlyphName: glyphName) }
   }
+
 }
 
 protocol FontSubscriber: class {

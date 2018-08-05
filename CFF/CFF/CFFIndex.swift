@@ -45,6 +45,7 @@ public class CFFTopDictIndex: CFFIndex {
     let len = offset[index + 1] - off - 1
     return CFFDict(data: data, offset: off, length: len)
   }
+
 }
 
 public class CFFNameIndex: CFFIndex {
@@ -69,4 +70,5 @@ public class CFFStringIndex: CFFIndex {
       return String(bytes: stringSlice, encoding: .ascii) ?? "<malformed name>"
     }
   }
+
 }
