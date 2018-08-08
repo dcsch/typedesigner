@@ -52,4 +52,5 @@ class GLIF2Tests: XCTestCase {
       XCTAssertNoThrow(try glyphSet.readGlyph(glyphName: "A", pointPen: pen))
     }())
   }
+
 }

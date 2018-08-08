@@ -12,6 +12,7 @@ import CFF
 
 class OpenTypeConverter : FontConverter {
   var fontCollection: OpenTypeFontCollection
+  let glyphList = AdobeGlyphListForNewFonts()
 
   init(openTypeData: Data, isSuitcase: Bool) throws {
     fontCollection = try OpenTypeFontCollection(data: openTypeData, isSuitcase: isSuitcase)

@@ -49,4 +49,5 @@ class CmapFormat12: CmapFormat {
     }
     return 0
   }
+
 }

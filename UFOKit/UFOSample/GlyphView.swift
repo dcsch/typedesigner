@@ -28,7 +28,6 @@ class GlyphView: NSView {
   var controlPoints = [ControlPoint]()
   private var translate = CGPoint(x: 0, y: 0)
   private var scale: CGFloat = 1.0
-//  private var scale: CGFloat = 0.2
   var controlPointsVisible = true
 
   override init(frame: NSRect) {
@@ -87,28 +86,14 @@ class GlyphView: NSView {
 
     context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
     context.strokePath()
-//    context.fillPath()
 
     if controlPointsVisible {
 
       // Draw control points
       for cp in controlPoints {
 
-        // Note: The original intention of scaling and translating the
-        // following was to first restore the transformation matrix
-        // so that no matter the scaling of the glyph, the control points
-        // would appear as rects of a fixed size.
-        //int x = (int) (_scaleFactor * ([point x] + _translate.x));
-        //int y = (int) (_scaleFactor * ([point y] + _translate.y));
         let x = cp.position.x
         let y = cp.position.y
-
-        // Set the point colour based on selection
-        //            if (_selectedPoints.contains(_glyph.getPoint(i))) {
-        //                g2d.setPaint(Color.blue);
-        //            } else {
-        //                g2d.setPaint(Color.black);
-        //            }
 
         // Draw the point based on its type (on or off curve)
         context.addRect(CGRect(x: x - 2, y: y - 2, width: 5, height: 5))
@@ -116,10 +101,9 @@ class GlyphView: NSView {
           context.fillPath()
         } else {
           context.strokePath()
-          //            g2d.drawString(Integer.toString(i), x + 4, y - 4);
         }
       }
     }
   }
-}
 
+}

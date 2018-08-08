@@ -133,7 +133,7 @@ public class CFFCharstringType2: CFFCharstring {
     var opr = Int(byte(at: ip))
     ip += 1
     let mnemonic: String
-    if (opr == 12) {
+    if opr == 12 {
       opr = Int(byte(at: ip))
       ip += 1
 

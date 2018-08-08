@@ -579,7 +579,7 @@ class TableWriter {
     }
 
     var data = Data()
-    data.append(UInt16(0))  // TODO Support format 1
+    data.append(UInt16(0))  // TODO: Support format 1
     data.append(UInt16(table.nameRecords.count))
     data.append(UInt16(12 * table.nameRecords.count + 6)) // This is only correct for format 0
     for (record, (length, offset)) in zip(table.nameRecords, lengthAndOffsets) {
@@ -635,6 +635,7 @@ class TableWriter {
     data.pad32()
     return data
   }
+
 }
 
 extension Data {
@@ -666,4 +667,5 @@ extension Data {
       }
     }
   }
+
 }

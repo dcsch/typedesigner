@@ -83,7 +83,7 @@ class Disassembler {
         values.append(Int(Int16(Int8(bitPattern: instructions[i + j*2 + 1])) << 8) | Int(instructions[i + j*2 + 2]))
       }
     }
-    return values;
+    return values
   }
 
   class func disassemble(instructions: [UInt8], leadingSpaceCount: Int) -> String {
@@ -103,6 +103,7 @@ class Disassembler {
       str.append("\n")
       ip = advance(ip: ip, instructions: instructions)
     }
-    return str;
+    return str
   }
+
 }

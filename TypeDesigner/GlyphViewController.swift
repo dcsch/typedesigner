@@ -17,8 +17,12 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
 
   var fontController: FontController? {
     didSet {
-      if let old = oldValue { old.removeSubscriber(self) }
-      if let new = fontController { new.addSubscriber(self) }
+      if let old = oldValue {
+        old.removeSubscriber(self)
+      }
+      if let new = fontController {
+        new.addSubscriber(self)
+      }
       updateGlyph()
     }
   }

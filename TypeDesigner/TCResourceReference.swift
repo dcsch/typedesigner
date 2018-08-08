@@ -32,4 +32,5 @@ class TCResourceReference {
       name = String(bytes: bytes, encoding: String.Encoding.ascii)!
     }
   }
+
 }

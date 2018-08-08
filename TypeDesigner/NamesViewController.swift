@@ -38,4 +38,5 @@ extension NamesViewController: FontSubscriber {
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
     os_log("NamesViewController: didChangeGlyphName:")
   }
+
 }

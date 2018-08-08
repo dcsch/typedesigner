@@ -62,4 +62,5 @@ class T2Font: OpenTypeFont {
 //    try container.encode(cffTable, forKey: .cff)
     try super.encode(to: encoder)
   }
+
 }

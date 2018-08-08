@@ -190,14 +190,16 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
       fontController?.setGlyphName(glyphOrder[glyphIndex])
     }
   }
-  
+
   func collectionView(_ collectionView: NSCollectionView,
                       didDeselectItemsAt indexPaths: Set<IndexPath>) {
   }
+
 }
 
 extension CharacterMapViewController: FontSubscriber {
 
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
   }
+
 }

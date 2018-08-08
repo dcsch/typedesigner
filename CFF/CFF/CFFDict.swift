@@ -81,7 +81,7 @@ public class CFFDict {
     } else if 247 <= b0 && b0 <= 250 {
       // 2 byte integer
       let b1 = Int(data[index + 1])
-      index += 2;
+      index += 2
       return (b0 - 247) * 256 + b1 + 108
     } else if 251 <= b0 && b0 <= 254 {
       // 2 byte integer
@@ -125,7 +125,7 @@ public class CFFDict {
     }
   }
 
-  func decodeRealNibble(_ nibble: UInt8) -> String  {
+  func decodeRealNibble(_ nibble: UInt8) -> String {
     let nibbles = [
       "0",
       "1",
@@ -146,4 +146,5 @@ public class CFFDict {
     ]
     return nibbles[Int(nibble % 0x10)]
   }
+
 }

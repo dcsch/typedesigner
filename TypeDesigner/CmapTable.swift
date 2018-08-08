@@ -43,6 +43,7 @@ class CmapTable: Table, Codable {
       try container.encode(encodingID.rawValue, forKey: .encodingID)
       try container.encode(mappingIndex, forKey: .mappingIndex)
     }
+  
   }
 
   class OffsetIndexEntry: CustomStringConvertible {

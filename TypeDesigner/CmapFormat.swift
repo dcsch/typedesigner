@@ -23,6 +23,7 @@ protocol CmapFormat {
 }
 
 class CmapFormatFactory {
+
   class func cmapFormat(type formatType: Int, dataInput: TCDataInput) -> CmapFormat {
     switch formatType {
     case 0:
@@ -39,4 +40,5 @@ class CmapFormatFactory {
       return CmapFormatUnknown(type: formatType, dataInput: dataInput)
     }
   }
+
 }

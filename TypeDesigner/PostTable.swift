@@ -217,12 +217,12 @@ class PostTable: Table, Codable {
     "fraction",     // 188
     "currency",     // 189
     "guilsinglleft",// 190
-    "guilsinglright",//191
+    "guilsinglright",// 191
     "fi",           // 192
     "fl",           // 193
     "daggerdbl",    // 194
     "middot",       // 195
-    "quotesinglbase",//196
+    "quotesinglbase",// 196
     "quotedblbase", // 197
     "perthousand",  // 198
     "Acircumflex",  // 199

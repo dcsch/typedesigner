@@ -22,6 +22,7 @@ class FontPropertyWindowController: NSWindowController {
     }
 
     didSet {
+
       // We want to abstractly push state down the view controller hierarchy; we walk down the chain and assign the controller to the children that need it
       func propagateToChildren(of parent: NSViewController) {
         if var fontControllerConsumer: FontControllerConsumer = parent as? FontControllerConsumer {
@@ -60,4 +61,5 @@ extension FontPropertyWindowController: FontSubscriber {
 
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
   }
+
 }

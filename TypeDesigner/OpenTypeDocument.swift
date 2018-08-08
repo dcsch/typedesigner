@@ -35,7 +35,7 @@ class OpenTypeDocument: NSDocument {
     // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
     throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
   }
-    
+
   override func read(from data: Data, ofType typeName: String) throws {
     if typeName == "Font Project" {
       let decoder = JSONDecoder()
@@ -100,4 +100,5 @@ class OpenTypeDocument: NSDocument {
     addWindowController(windowController)
     windowController.showWindow(self)
   }
+
 }

@@ -98,4 +98,5 @@ extension FontDocumentWindowController: FontSubscriber {
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
 //    document?.updateChangeCount(.changeDone)
   }
+
 }

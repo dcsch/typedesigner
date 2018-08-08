@@ -37,6 +37,7 @@ class CFFCharsetFormat0: CFFCharset {
     }
     return glyphs[gid - 1]
   }
+
 }
 
 class CFFCharsetFormat1: CFFCharset {
@@ -78,6 +79,7 @@ class CFFCharsetFormat1: CFFCharset {
     }
     return 0
   }
+
 }
 
 class CFFCharsetFormat2: CFFCharset {
@@ -119,4 +121,5 @@ class CFFCharsetFormat2: CFFCharset {
     }
     return 0
   }
+
 }

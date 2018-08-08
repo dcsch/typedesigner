@@ -94,9 +94,9 @@ public enum CFFType2InterpreterError: Error {
  */
 public class CFFType2Interpreter {
 
-  static let ARGUMENT_STACK_LIMIT = 48
-  static let SUBR_STACK_LIMIT = 10
-  static let TRANSIENT_ARRAY_ELEMENT_COUNT = 32
+  static let argumentStackLimit = 48
+  static let subrStackLimit = 10
+  static let transientArrayElementCount = 32
 
   var argStack = [NSNumber]()
   var argStackIndex: Int {
@@ -357,8 +357,8 @@ public class CFFType2Interpreter {
       var dxe = [Int]()
       var dye = [Int]()
       var dxf = [Int]()
-      var dyf = 0;
-      if (argCount % 8 == 1) {
+      var dyf = 0
+      if argCount % 8 == 1 {
         dyf = try popArg().intValue
       }
       for _ in 0..<count {

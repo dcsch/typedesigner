@@ -10,6 +10,8 @@
 		030A32A51F31054C006B2BAC /* Os2Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030A32A41F31054C006B2BAC /* Os2Table.swift */; };
 		030A32A71F312A4E006B2BAC /* NameTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030A32A61F312A4E006B2BAC /* NameTable.swift */; };
 		030A32A91F314823006B2BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030A32A81F314823006B2BAC /* AppDelegate.swift */; };
+		0335858A211A6C3F0075FD98 /* aglfn.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03358583211A6C3F0075FD98 /* aglfn.txt */; };
+		0335858C211A6E680075FD98 /* AdobeGlyphListForNewFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0335858B211A6E680075FD98 /* AdobeGlyphListForNewFonts.swift */; };
 		033CF10A1F5628C3005D15ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033CF1091F5628C3005D15ED /* Assets.xcassets */; };
 		033CF10E1F56293E005D15ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033CF10D1F56293E005D15ED /* Main.storyboard */; };
 		033CF1101F568C45005D15ED /* CharacterMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033CF10F1F568C45005D15ED /* CharacterMapViewController.swift */; };
@@ -231,6 +233,8 @@
 		030A32A41F31054C006B2BAC /* Os2Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Os2Table.swift; sourceTree = "<group>"; };
 		030A32A61F312A4E006B2BAC /* NameTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTable.swift; sourceTree = "<group>"; };
 		030A32A81F314823006B2BAC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		03358583211A6C3F0075FD98 /* aglfn.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aglfn.txt; sourceTree = "<group>"; };
+		0335858B211A6E680075FD98 /* AdobeGlyphListForNewFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdobeGlyphListForNewFonts.swift; sourceTree = "<group>"; };
 		033CF1091F5628C3005D15ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		033CF10D1F56293E005D15ED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		033CF10F1F568C45005D15ED /* CharacterMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMapViewController.swift; sourceTree = "<group>"; };
@@ -421,6 +425,7 @@
 		03D07AA61F4F80340070F49D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				03358583211A6C3F0075FD98 /* aglfn.txt */,
 				03A72DCE1F578E8C003ABF74 /* CharacterMapItem.xib */,
 				033CF1091F5628C3005D15ED /* Assets.xcassets */,
 				033CF10D1F56293E005D15ED /* Main.storyboard */,
@@ -458,6 +463,7 @@
 				036383A32112392900E7E26C /* OpenTypeConverter.swift */,
 				03F905DB1F38DDF70008FF3E /* GlyphImageFactory.swift */,
 				03CBC249210A79A70031244D /* QuartzPen.swift */,
+				0335858B211A6E680075FD98 /* AdobeGlyphListForNewFonts.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -823,6 +829,7 @@
 				033CF10A1F5628C3005D15ED /* Assets.xcassets in Resources */,
 				033CF10E1F56293E005D15ED /* Main.storyboard in Resources */,
 				03A72DCF1F578E8C003ABF74 /* CharacterMapItem.xib in Resources */,
+				0335858A211A6C3F0075FD98 /* aglfn.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,6 +885,7 @@
 				0348BE691F33C67F00446B58 /* GlyfTable.swift in Sources */,
 				03C40BF11F36A49F00CD6BAC /* VheaTable.swift in Sources */,
 				034BF03B1F96A9AA00BFE9F1 /* CharacterToGlyphMapping.swift in Sources */,
+				0335858C211A6E680075FD98 /* AdobeGlyphListForNewFonts.swift in Sources */,
 				03F905D21F37D38E0008FF3E /* CmapFormat0.swift in Sources */,
 				03B619181F3E128200EA1D0E /* T2Glyph.swift in Sources */,
 				03FF3A261F2FA86A005F07AB /* TableDirectory.swift in Sources */,
