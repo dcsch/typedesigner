@@ -47,7 +47,7 @@ NS_SWIFT_NAME(Contour)
 // bPoints
 
 // Points
-@property(readonly) NSArray<FSPoint *> *points;
+@property(nonnull, readonly) NSArray<FSPoint *> *points;
 - (void)appendPoint:(CGPoint)point type:(FSPointType)type smooth:(BOOL)smooth;
 - (void)insertPoint:(CGPoint)point type:(FSPointType)type smooth:(BOOL)smooth atIndex:(NSUInteger)index;
 - (void)removePoint:(CGPoint)point;

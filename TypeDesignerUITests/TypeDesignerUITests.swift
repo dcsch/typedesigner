@@ -9,7 +9,7 @@
 import XCTest
 
 class TypeDesignerUITests: XCTestCase {
-        
+
   override func setUp() {
     super.setUp()
 

@@ -30,6 +30,6 @@ class NamesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
   }
 
   func tableViewSelectionDidChange(_ notification: Notification) {
-
   }
+
 }

@@ -7,13 +7,10 @@
 //
 
 import Cocoa
+import FontScript
+import os.log
 
 class GlyphView: NSView {
-
-  struct ControlPoint {
-    var position: CGPoint
-    var onCurve: Bool
-  }
 
   var unitsPerEm = 2048
   var xMin = 0
@@ -26,10 +23,9 @@ class GlyphView: NSView {
   var advanceWidth = 0
   var glyphPaths = [CGPath]()
   var transforms = [CGAffineTransform]()
-  var controlPoints = [ControlPoint]()
-  private var translate = CGPoint(x: 0, y: 0)
-  private var scale: CGFloat = 1.0
-  var controlPointsVisible = true
+  var points = [Point]()
+  var pointsVisible = true
+  var pointSize: CGFloat = 8
 
   override init(frame: NSRect) {
     super.init(frame: frame)
@@ -39,14 +35,30 @@ class GlyphView: NSView {
     super.init(coder: coder)
   }
 
+  override var isOpaque: Bool {
+    get {
+      return true
+    }
+  }
+
+  override var wantsDefaultClipping: Bool {
+    get {
+      return true
+    }
+  }
+
   override func draw(_ dirtyRect: NSRect) {
+    // TODO: Only draw inside the dirtyRect
+
     guard let context = NSGraphicsContext.current?.cgContext else {
       return
     }
 
-    context.scaleBy(x: CGFloat(scale), y: scale)
-    context.translateBy(x: translate.x, y: translate.y)
-    context.setLineWidth(2)
+    context.setFillColor(.white)
+    context.fill(dirtyRect)
+
+    let scaleToOne = 1.0 / context.ctm.a
+    context.setLineWidth(scaleToOne)
 
     // Draw grid
     let unitsPerEmBy2 = unitsPerEm / 2
@@ -87,39 +99,50 @@ class GlyphView: NSView {
 
     context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
     context.strokePath()
-//      context.fillPath()
 
-    if controlPointsVisible {
+    if pointsVisible {
 
-      // Draw control points
-      for cp in controlPoints {
-
-        // Note: The original intention of scaling and translating the
-        // following was to first restore the transformation matrix
-        // so that no matter the scaling of the glyph, the control points
-        // would appear as rects of a fixed size.
-        //int x = (int) (_scaleFactor * ([point x] + _translate.x));
-        //int y = (int) (_scaleFactor * ([point y] + _translate.y));
-        let x = cp.position.x
-        let y = cp.position.y
-
-        // Set the point colour based on selection
-        //            if (_selectedPoints.contains(_glyph.getPoint(i))) {
-        //                g2d.setPaint(Color.blue);
-        //            } else {
-        //                g2d.setPaint(Color.black);
-        //            }
-
-        // Draw the point based on its type (on or off curve)
-        context.addRect(CGRect(x: x - 2, y: y - 2, width: 5, height: 5))
-        if cp.onCurve {
-          context.fillPath()
+      // Draw points
+      for point in points {
+        if point.type == .curve && point.smooth {
+          drawSmoothNode(context: context, at: point.cgPoint, scale: scaleToOne)
+        } else if point.type == .offCurve {
+          drawControlPoint(context: context, at: point.cgPoint, scale: scaleToOne)
         } else {
-          context.strokePath()
-//            g2d.drawString(Integer.toString(i), x + 4, y - 4);
+          drawSharpNode(context: context, at: point.cgPoint, scale: scaleToOne)
         }
       }
     }
+  }
+
+  func drawSmoothNode(context: CGContext, at point: CGPoint, scale: CGFloat) {
+    let halfPointSize = pointSize / 2.0
+    context.setStrokeColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
+    context.addEllipse(in: CGRect(x: point.x - halfPointSize * scale,
+                                  y: point.y - halfPointSize * scale,
+                                  width: pointSize * scale,
+                                  height: pointSize * scale))
+    context.strokePath()
+  }
+
+  func drawSharpNode(context: CGContext, at point: CGPoint, scale: CGFloat) {
+    let halfPointSize = pointSize / 2.0
+    context.setStrokeColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+    context.addRect(CGRect(x: point.x - halfPointSize * scale,
+                           y: point.y - halfPointSize * scale,
+                           width: pointSize * scale,
+                           height: pointSize * scale))
+    context.strokePath()
+  }
+
+  func drawControlPoint(context: CGContext, at point: CGPoint, scale: CGFloat) {
+    let halfPointSize = pointSize / 2.0
+    context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+    context.addRect(CGRect(x: point.x - halfPointSize * scale,
+                           y: point.y - halfPointSize * scale,
+                           width: pointSize * scale,
+                           height: pointSize * scale))
+    context.strokePath()
   }
 
 }

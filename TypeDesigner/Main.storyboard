@@ -475,38 +475,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYa-z5-8es">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYa-z5-8es">
+                                <rect key="frame" x="0.0" y="30" width="480" height="340"/>
                                 <clipView key="contentView" id="YcA-DK-IXJ">
-                                    <rect key="frame" x="1" y="1" width="478" height="368"/>
+                                    <rect key="frame" x="1" y="1" width="463" height="323"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7i-RZ-QcN" customClass="GlyphView" customModule="Type_Designer" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="463" height="353"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="318"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="uDL-uM-XBj">
-                                    <rect key="frame" x="1" y="353" width="478" height="16"/>
+                                    <rect key="frame" x="1" y="324" width="463" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cdt-Cu-Zeb">
-                                    <rect key="frame" x="463" y="1" width="16" height="368"/>
+                                    <rect key="frame" x="464" y="1" width="15" height="323"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zuh-Hp-tPf">
+                                <rect key="frame" x="0.0" y="-2" width="76" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="qvG-8s-0eG"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="roundTextured" title="100%" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="amA-4b-A5D" id="MFF-Je-at8">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <menu key="menu" id="uhN-Pa-vux">
+                                        <items>
+                                            <menuItem title="Fit" id="Lme-ki-Z1U"/>
+                                            <menuItem title="25%" id="lDg-Dc-d9a"/>
+                                            <menuItem title="50%" id="wKQ-I6-f7j"/>
+                                            <menuItem title="75%" id="Fhf-yF-j1n">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="100%" state="on" id="amA-4b-A5D">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="150%" id="76i-di-twe">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="200%" id="8GG-YS-7qf">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="changeZoom:" target="Bfz-2k-Kaa" id="JOb-A1-P4F"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="VYa-z5-8es" firstAttribute="top" secondItem="R9R-9P-Huh" secondAttribute="top" id="GRN-i4-Qby"/>
-                            <constraint firstAttribute="trailing" secondItem="VYa-z5-8es" secondAttribute="trailing" id="L8N-r0-bQ5"/>
-                            <constraint firstAttribute="bottom" secondItem="VYa-z5-8es" secondAttribute="bottom" id="WMU-f9-p7b"/>
-                            <constraint firstItem="VYa-z5-8es" firstAttribute="leading" secondItem="R9R-9P-Huh" secondAttribute="leading" id="mMX-SB-ZqC"/>
+                            <constraint firstItem="VYa-z5-8es" firstAttribute="leading" secondItem="Zuh-Hp-tPf" secondAttribute="leading" id="0N9-js-sQ2"/>
+                            <constraint firstAttribute="bottom" secondItem="VYa-z5-8es" secondAttribute="bottom" constant="30" id="72m-pA-MQr"/>
+                            <constraint firstItem="VYa-z5-8es" firstAttribute="top" secondItem="R9R-9P-Huh" secondAttribute="top" id="JhD-la-pV2"/>
+                            <constraint firstItem="VYa-z5-8es" firstAttribute="leading" secondItem="R9R-9P-Huh" secondAttribute="leading" id="Vmx-Yq-roN"/>
+                            <constraint firstAttribute="bottom" secondItem="Zuh-Hp-tPf" secondAttribute="bottom" id="kRA-j4-gpJ"/>
+                            <constraint firstAttribute="trailing" secondItem="VYa-z5-8es" secondAttribute="trailing" id="kyS-vv-jbN"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="glyphView" destination="U7i-RZ-QcN" id="bX7-ND-APM"/>
                         <outlet property="scrollView" destination="VYa-z5-8es" id="hRf-9R-Sq1"/>
+                        <outlet property="zoomPopUpButton" destination="Zuh-Hp-tPf" id="eag-8s-Tbf"/>
                     </connections>
                 </viewController>
                 <customObject id="FWY-qB-HAC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -799,7 +834,7 @@ Gw
             <objects>
                 <splitViewController id="ScE-0F-B6y" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="u6G-fg-O8p"/>
+                        <splitViewItem holdingPriority="255" id="u6G-fg-O8p"/>
                         <splitViewItem id="M3u-ia-NF5"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="DW8-uZ-oap">

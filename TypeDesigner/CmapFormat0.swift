@@ -44,4 +44,5 @@ class CmapFormat0: CmapFormat {
       return 0
     }
   }
+
 }

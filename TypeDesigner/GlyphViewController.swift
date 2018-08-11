@@ -11,9 +11,9 @@ import FontScript
 import os.log
 
 class GlyphViewController: NSViewController, FontControllerConsumer {
-
   @IBOutlet weak var scrollView: NSScrollView!
   @IBOutlet weak var glyphView: GlyphView!
+  @IBOutlet weak var zoomPopUpButton: NSPopUpButton!
 
   var fontController: FontController? {
     didSet {
@@ -38,12 +38,29 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
     nc.addObserver(forName: NSView.frameDidChangeNotification,
                    object: view,
                    queue: nil) { (Notification) in
-      self.sizeToFit()
+//      self.sizeGlyphView()
     }
+  }
 
-//    scrollView!.hasHorizontalRuler = true
-//    scrollView!.hasVerticalRuler = true
-//    scrollView!.rulersVisible = true
+  @IBAction func changeZoom(_ sender: Any?) {
+    switch zoomPopUpButton.indexOfSelectedItem {
+    case 0:
+      scrollView.magnify(toFit: glyphView.frame)
+    case 1:
+      scrollView.magnification = 0.25
+    case 2:
+      scrollView.magnification = 0.5
+    case 3:
+      scrollView.magnification = 0.75
+    case 4:
+      scrollView.magnification = 1.0
+    case 5:
+      scrollView.magnification = 1.5
+    case 6:
+      scrollView.magnification = 2.0
+    default:
+      break
+    }
   }
 
   func updateGlyph() {
@@ -63,43 +80,37 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
 
     glyphView.transforms.removeAll()
     glyphView.glyphPaths.removeAll()
-    glyphView.controlPoints.removeAll()
+    glyphView.points.removeAll()
 
     let glyphs = font.defaultLayer.glyphs
     if let glyph = glyphs[glyphName] as? FontScript.Glyph {
       let pen = QuartzPen(layer: font.defaultLayer)
       glyph.draw(with: pen)
 
+      // Add the path for the glyph
       glyphView.transforms.append(CGAffineTransform.identity)
       glyphView.glyphPaths.append(pen.path)
 
-      sizeToFit()
+      // Add the glyph's points
+      var points = [Point]()
+      for contour in glyph.contours {
+        for point in contour.points {
+          points.append(point)
+        }
+      }
+      glyphView.points = points
+      sizeGlyphView()
     }
     glyphView.needsDisplay = true
   }
 
-  func sizeToFit() {
+  func sizeGlyphView() {
     var boundingBox = fontController?.font.bounds ?? CGRect.zero
     for path in glyphView.glyphPaths {
       boundingBox = boundingBox.union(path.boundingBox)
     }
-    calculateBounds(containing: boundingBox)
-    glyphView.needsDisplay = true
-  }
-
-  func calculateBounds(containing rect: CGRect) {
-    let margin: CGFloat = 20.0
-    let bounds = rect
-    let boundsAspectRatio = bounds.width / bounds.height
-    let frame = glyphView.frame
-    let frameAspectRatio = frame.width / frame.height
-    let scale = frameAspectRatio < boundsAspectRatio ?
-      bounds.width / frame.width :
-      bounds.height / frame.height
-    let width = frame.size.width * scale
-    let height = frame.size.height * scale
-    glyphView.bounds = bounds.insetBy(dx: (bounds.width - width) / 2.0 - 2.0 * margin,
-                                      dy: (bounds.height - height) / 2.0 - 2.0 * margin)
+    glyphView.setBoundsOrigin(boundingBox.origin)
+    glyphView.frame = boundingBox
   }
 
 }
