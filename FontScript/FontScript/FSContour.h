@@ -13,6 +13,7 @@
 @class FSLayer;
 @class FSFont;
 @class FSSegment;
+@class FSBPoint;
 @protocol FSPen;
 @protocol FSPointPen;
 
@@ -45,6 +46,7 @@ NS_SWIFT_NAME(Contour)
 @property(nonnull, readonly) NSArray<FSSegment *> *segments;
 
 // bPoints
+@property(nonnull, readonly) NSArray<FSBPoint *> *bPoints;
 
 // Points
 @property(nonnull, readonly) NSArray<FSPoint *> *points;

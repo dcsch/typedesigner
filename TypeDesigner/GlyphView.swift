@@ -11,21 +11,43 @@ import FontScript
 import os.log
 
 class GlyphView: NSView {
-
-  var unitsPerEm = 2048
-  var xMin = 0
-  var xMax = 0
-  var yMin = 0
-  var yMax = 0
-  var ascent = 0
-  var descent = 0
-  var leftSideBearing = 0
-  var advanceWidth = 0
-  var glyphPaths = [CGPath]()
-  var transforms = [CGAffineTransform]()
-  var points = [Point]()
+  private var unitsPerEm = 2048
+  private var xMin = 0
+  private var xMax = 0
+  private var yMin = 0
+  private var yMax = 0
+  private var ascent = 0
+  private var descent = 0
+  private var leftSideBearing = 0
+  private var advanceWidth = 0
+  private var glyphPath: CGPath?
+  private var scaleToOne: CGFloat = 1.0
+  private var bPoints = [BPoint]()
+  private var selection = [Point]()
+  private var mouseDownLocation = CGPoint.zero
   var pointsVisible = true
   var pointSize: CGFloat = 8
+
+  var glyph: UFOGlyph? {
+    didSet {
+      updateGlyphPath()
+
+      // Cache the bPoints
+      bPoints.removeAll()
+      if let glyph = self.glyph {
+        for contour in glyph.contours {
+          bPoints.append(contentsOf: contour.bPoints)
+        }
+      }
+      self.needsDisplay = true
+    }
+  }
+
+  var glyphBoundingBox: CGRect {
+    get {
+      return glyphPath?.boundingBox ?? CGRect.zero
+    }
+  }
 
   override init(frame: NSRect) {
     super.init(frame: frame)
@@ -57,7 +79,7 @@ class GlyphView: NSView {
     context.setFillColor(.white)
     context.fill(dirtyRect)
 
-    let scaleToOne = 1.0 / context.ctm.a
+    scaleToOne = 1.0 / context.ctm.a
     context.setLineWidth(scaleToOne)
 
     // Draw grid
@@ -90,28 +112,33 @@ class GlyphView: NSView {
     context.strokePath()
 
     // Render the glyph path
-    for (path, transform) in zip(glyphPaths, transforms) {
-      context.saveGState()
-      context.concatenate(transform)
+    if let path = glyphPath {
       context.addPath(path)
-      context.restoreGState()
+      context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+      context.strokePath()
     }
-
-    context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-    context.strokePath()
 
     if pointsVisible {
 
       // Draw points
-      for point in points {
-        if point.type == .curve && point.smooth {
-          drawSmoothNode(context: context, at: point.cgPoint, scale: scaleToOne)
-        } else if point.type == .offCurve {
-          drawControlPoint(context: context, at: point.cgPoint, scale: scaleToOne)
+      for bPoint in bPoints {
+        if bPoint.type == .curve {
+          drawSmoothNode(context: context, at: bPoint.anchor, scale: scaleToOne)
         } else {
-          drawSharpNode(context: context, at: point.cgPoint, scale: scaleToOne)
+          drawSharpNode(context: context, at: bPoint.anchor, scale: scaleToOne)
         }
       }
+//      for contour in glyph.contours {
+//        for point in contour.points {
+//          if point.type == .curve && point.smooth {
+//            drawSmoothNode(context: context, at: point.cgPoint, scale: scaleToOne)
+//          } else if point.type == .offCurve {
+//            drawControlPoint(context: context, at: point.cgPoint, scale: scaleToOne)
+//          } else {
+//            drawSharpNode(context: context, at: point.cgPoint, scale: scaleToOne)
+//          }
+//        }
+//      }
     }
   }
 
@@ -143,6 +170,57 @@ class GlyphView: NSView {
                            width: pointSize * scale,
                            height: pointSize * scale))
     context.strokePath()
+  }
+
+  func updateGlyphPath() {
+    if let glyph = self.glyph {
+      if let font = glyph.font as? UFOFont {
+        unitsPerEm = font.unitsPerEm
+        xMin = Int(font.bounds.minX)
+        xMax = Int(font.bounds.maxX)
+        yMin = Int(font.bounds.minY)
+        yMax = Int(font.bounds.maxY)
+        ascent = Int(font.ufoInfo.ascender ?? 100)
+        descent = Int(font.ufoInfo.descender ?? 100)
+      }
+      let pen = QuartzPen(layer: glyph.layer)
+      glyph.draw(with: pen)
+      glyphPath = pen.path
+    }
+  }
+
+  override func mouseDown(with event: NSEvent) {
+    selection.removeAll()
+    mouseDownLocation = convert(event.locationInWindow, from: nil)
+    let halfPointSize = pointSize / 2.0
+    if let glyph = self.glyph, pointsVisible {
+      for contour in glyph.contours {
+        for point in contour.points {
+          let pointRect = CGRect(x: point.x - halfPointSize * scaleToOne,
+                                 y: point.y - halfPointSize * scaleToOne,
+                                 width: pointSize * scaleToOne,
+                                 height: pointSize * scaleToOne)
+          if pointRect.contains(mouseDownLocation) {
+            selection.append(point)
+          }
+        }
+      }
+    }
+  }
+
+  override func mouseUp(with event: NSEvent) {
+  }
+
+  override func mouseDragged(with event: NSEvent) {
+    let newLocation = convert(event.locationInWindow, from: nil)
+    let delta = CGPoint(x: newLocation.x - mouseDownLocation.x,
+                        y: newLocation.y - mouseDownLocation.y)
+    for point in selection {
+      point.cgPoint = CGPoint(x: point.cgPoint.x + delta.x, y: point.cgPoint.y + delta.y)
+    }
+    mouseDownLocation = newLocation
+    updateGlyphPath()
+    self.needsDisplay = true
   }
 
 }

@@ -66,6 +66,7 @@
 
 - (nonnull FSLayer *)newLayerWithName:(nonnull NSString *)name color:(CGColorRef)color {
   FSLayer *layer = [self layerWithName:name color:color];
+  layer.font = self;
   [_layers addObject:layer];
   return layer;
 }

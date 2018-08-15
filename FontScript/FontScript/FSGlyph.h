@@ -24,7 +24,7 @@ NS_SWIFT_NAME(Glyph)
 
 // Parents
 @property(nullable, weak) FSLayer *layer;
-@property(nullable, weak) FSFont *font;
+@property(nullable, readonly, weak) FSFont *font;
 
 // Identification
 @property(nonnull) NSString *name;

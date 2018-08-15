@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0321744E20F56D3F0046C12F /* FSPointToSegmentPenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0321744D20F56D3F0046C12F /* FSPointToSegmentPenTests.m */; };
+		033585912123B0770075FD98 /* FSBPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 0335858F2123B0770075FD98 /* FSBPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		033585922123B0770075FD98 /* FSBPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 0335858F2123B0770075FD98 /* FSBPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		033585932123B0770075FD98 /* FSBPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 033585902123B0770075FD98 /* FSBPoint.m */; };
+		033585942123B0770075FD98 /* FSBPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 033585902123B0770075FD98 /* FSBPoint.m */; };
 		033E956520C8A1C3005AB611 /* new_glyph.py in Resources */ = {isa = PBXBuildFile; fileRef = 033E956420C8A1C3005AB611 /* new_glyph.py */; };
 		033E956720C9BE31005AB611 /* rename_glyph.py in Resources */ = {isa = PBXBuildFile; fileRef = 033E956620C9BE31005AB611 /* rename_glyph.py */; };
 		0348F58720BA22E700FDC6E2 /* FSFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 0348F58520BA22E700FDC6E2 /* FSFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -124,6 +128,8 @@
 
 /* Begin PBXFileReference section */
 		0321744D20F56D3F0046C12F /* FSPointToSegmentPenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPointToSegmentPenTests.m; sourceTree = "<group>"; };
+		0335858F2123B0770075FD98 /* FSBPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBPoint.h; sourceTree = "<group>"; };
+		033585902123B0770075FD98 /* FSBPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSBPoint.m; sourceTree = "<group>"; };
 		033E956420C8A1C3005AB611 /* new_glyph.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = new_glyph.py; sourceTree = "<group>"; };
 		033E956620C9BE31005AB611 /* rename_glyph.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = rename_glyph.py; sourceTree = "<group>"; };
 		0348F58520BA22E700FDC6E2 /* FSFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFont.h; sourceTree = "<group>"; };
@@ -280,6 +286,8 @@
 				03F46A1D20D2F7360073B844 /* FSContour.m */,
 				03E49DF620F436E30039776E /* FSSegment.h */,
 				03E49DF720F436E30039776E /* FSSegment.m */,
+				0335858F2123B0770075FD98 /* FSBPoint.h */,
+				033585902123B0770075FD98 /* FSBPoint.m */,
 				03E49DDB20EFFCDF0039776E /* FSPoint.h */,
 				03E49DDC20EFFCDF0039776E /* FSPoint.m */,
 				0366C81221016982003EEEB6 /* FSComponent.h */,
@@ -371,6 +379,7 @@
 				03879D5320C1DD5D0033A7C4 /* FSInfo.h in Headers */,
 				03A1CED52107A4D000127C55 /* FSPythonObjects.h in Headers */,
 				0348F58D20BCCD0600FDC6E2 /* FSLayer.h in Headers */,
+				033585912123B0770075FD98 /* FSBPoint.h in Headers */,
 				03E49DDD20EFFCDF0039776E /* FSPoint.h in Headers */,
 				03A1CEDA2107A7BA00127C55 /* FontScriptFunctions.h in Headers */,
 				0348F59120BCCD1F00FDC6E2 /* FSGlyph.h in Headers */,
@@ -396,6 +405,7 @@
 				03924DD4210940B300928986 /* FSContourPointPen.h in Headers */,
 				03A1CEAA2106A68E00127C55 /* FontScript.h in Headers */,
 				03A1CEBF2106A68E00127C55 /* FSPointPen.h in Headers */,
+				033585922123B0770075FD98 /* FSBPoint.h in Headers */,
 				03A1CEB82106A68E00127C55 /* FSPoint.h in Headers */,
 				03A1CEAC2106A68E00127C55 /* FSScript.h in Headers */,
 				03A1CEAE2106A68E00127C55 /* FSFont.h in Headers */,
@@ -589,6 +599,7 @@
 				035AD8D520B8CD68006494B7 /* FSScript.m in Sources */,
 				03A1CECA2106AD0F00127C55 /* FSScriptPy.m in Sources */,
 				03924DD5210940B300928986 /* FSContourPointPen.m in Sources */,
+				033585932123B0770075FD98 /* FSBPoint.m in Sources */,
 				03E49DFD20F43C030039776E /* FSPointToSegmentPen.m in Sources */,
 				03E49DDE20EFFCDF0039776E /* FSPoint.m in Sources */,
 				03F46A1F20D2F7360073B844 /* FSContour.m in Sources */,
@@ -629,6 +640,7 @@
 				03A1CEB12106A68E00127C55 /* FSLayer.m in Sources */,
 				03A1CEC12106A68E00127C55 /* FSPointToSegmentPen.m in Sources */,
 				03A1CEB32106A68E00127C55 /* FSGlyph.m in Sources */,
+				033585942123B0770075FD98 /* FSBPoint.m in Sources */,
 				03A1CEC32106A68E00127C55 /* FSBoundsPen.m in Sources */,
 				03A1CEBD2106A68E00127C55 /* FSInfo.m in Sources */,
 				03A1CEAF2106A68E00127C55 /* FSFont.m in Sources */,

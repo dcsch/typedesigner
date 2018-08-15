@@ -10,6 +10,7 @@
 #import "FSGlyph.h"
 #import "FSLayer.h"
 #import "FSFont.h"
+#import "FSBPoint.h"
 #import "FSPen.h"
 #import "FSPointToSegmentPen.h"
 #import "FSIdentifier.h"
@@ -144,6 +145,21 @@
     [segments addObject:segment];
   }
   return segments;
+}
+
+- (nonnull NSArray<FSBPoint *> *)bPoints {
+  NSMutableArray<FSBPoint *> *bPoints = [NSMutableArray array];
+  for (FSPoint *point in _points) {
+    if (point.type != FSPointTypeMove &&
+        point.type != FSPointTypeLine &&
+        point.type != FSPointTypeCurve) {
+      continue;
+    }
+    FSBPoint *bPoint = [[FSBPoint alloc] initWithPoint:point];
+    bPoint.contour = self;
+    [bPoints addObject:bPoint];
+  }
+  return bPoints;
 }
 
 - (void)appendPoint:(CGPoint)point type:(FSPointType)type smooth:(BOOL)smooth {

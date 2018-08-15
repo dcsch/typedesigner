@@ -67,48 +67,16 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
     guard let font = fontController?.font,
       let glyphName = fontController?.glyphName,
       let glyphView = glyphView else { return }
-
-    glyphView.unitsPerEm = font.unitsPerEm
-    glyphView.xMin = Int(font.bounds.minX)
-    glyphView.xMax = Int(font.bounds.maxX)
-    glyphView.yMin = Int(font.bounds.minY)
-    glyphView.yMax = Int(font.bounds.maxY)
-    glyphView.ascent = Int(font.ufoInfo.ascender ?? 100)
-    glyphView.descent = Int(font.ufoInfo.descender ?? 100)
-//    glyphView.leftSideBearing = font.hmtxTable.leftSideBearing(at: glyphIndex)
-//    glyphView.advanceWidth = font.hmtxTable.advanceWidth(at: glyphIndex)
-
-    glyphView.transforms.removeAll()
-    glyphView.glyphPaths.removeAll()
-    glyphView.points.removeAll()
-
     let glyphs = font.defaultLayer.glyphs
-    if let glyph = glyphs[glyphName] as? FontScript.Glyph {
-      let pen = QuartzPen(layer: font.defaultLayer)
-      glyph.draw(with: pen)
-
-      // Add the path for the glyph
-      glyphView.transforms.append(CGAffineTransform.identity)
-      glyphView.glyphPaths.append(pen.path)
-
-      // Add the glyph's points
-      var points = [Point]()
-      for contour in glyph.contours {
-        for point in contour.points {
-          points.append(point)
-        }
-      }
-      glyphView.points = points
+    if let glyph = glyphs[glyphName] as? UFOGlyph {
+      glyphView.glyph = glyph
       sizeGlyphView()
     }
-    glyphView.needsDisplay = true
   }
 
   func sizeGlyphView() {
     var boundingBox = fontController?.font.bounds ?? CGRect.zero
-    for path in glyphView.glyphPaths {
-      boundingBox = boundingBox.union(path.boundingBox)
-    }
+    boundingBox = boundingBox.union(glyphView.glyphBoundingBox)
     glyphView.setBoundsOrigin(boundingBox.origin)
     glyphView.frame = boundingBox
   }

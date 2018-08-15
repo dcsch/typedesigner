@@ -21,6 +21,7 @@ FOUNDATION_EXPORT const unsigned char FontScriptVersionString[];
 #import <FontScript/FSGlyph.h>
 #import <FontScript/FSContour.h>
 #import <FontScript/FSSegment.h>
+#import <FontScript/FSBPoint.h>
 #import <FontScript/FSPoint.h>
 #import <FontScript/FSComponent.h>
 #import <FontScript/FSInfo.h>

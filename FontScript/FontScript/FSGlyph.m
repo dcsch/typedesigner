@@ -55,6 +55,10 @@
 //  }
 }
 
+- (nullable FSFont *)font {
+  return _layer.font;
+}
+
 - (nonnull NSString *)name {
   return _name;
 }
