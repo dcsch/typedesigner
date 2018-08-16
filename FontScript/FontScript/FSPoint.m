@@ -83,6 +83,11 @@
   _y = p1.y;
 }
 
+- (void)moveBy:(CGPoint)point {
+  _x += point.x;
+  _y += point.y;
+}
+
 - (void)round {
   _x = llrint(_x);
   _y = llrint(_y);

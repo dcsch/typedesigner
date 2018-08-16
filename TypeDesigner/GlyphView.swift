@@ -23,7 +23,7 @@ class GlyphView: NSView {
   private var glyphPath: CGPath?
   private var scaleToOne: CGFloat = 1.0
   private var bPoints = [BPoint]()
-  private var selection = [Point]()
+  private var selection = [BPoint]()
   private var mouseDownLocation = CGPoint.zero
   var pointsVisible = true
   var pointSize: CGFloat = 8
@@ -127,18 +127,29 @@ class GlyphView: NSView {
         } else {
           drawSharpNode(context: context, at: bPoint.anchor, scale: scaleToOne)
         }
+
+        let bcpIn = bPoint.bcpIn
+        if bcpIn != CGPoint.zero {
+          let absoluteControlPoint = CGPoint(x: bPoint.anchor.x + bcpIn.x,
+                                             y: bPoint.anchor.y + bcpIn.y)
+          context.move(to: bPoint.anchor)
+          context.addLine(to: absoluteControlPoint)
+          context.setStrokeColor(CGColor(gray: 0.6, alpha: 1.0))
+          context.strokePath()
+          drawControlPoint(context: context, at: absoluteControlPoint, scale: scaleToOne)
+        }
+
+        let bcpOut = bPoint.bcpOut
+        if bcpOut != CGPoint.zero {
+          let absoluteControlPoint = CGPoint(x: bPoint.anchor.x + bcpOut.x,
+                                             y: bPoint.anchor.y + bcpOut.y)
+          context.move(to: bPoint.anchor)
+          context.addLine(to: absoluteControlPoint)
+          context.setStrokeColor(CGColor(gray: 0.6, alpha: 1.0))
+          context.strokePath()
+          drawControlPoint(context: context, at: absoluteControlPoint, scale: scaleToOne)
+        }
       }
-//      for contour in glyph.contours {
-//        for point in contour.points {
-//          if point.type == .curve && point.smooth {
-//            drawSmoothNode(context: context, at: point.cgPoint, scale: scaleToOne)
-//          } else if point.type == .offCurve {
-//            drawControlPoint(context: context, at: point.cgPoint, scale: scaleToOne)
-//          } else {
-//            drawSharpNode(context: context, at: point.cgPoint, scale: scaleToOne)
-//          }
-//        }
-//      }
     }
   }
 
@@ -193,16 +204,14 @@ class GlyphView: NSView {
     selection.removeAll()
     mouseDownLocation = convert(event.locationInWindow, from: nil)
     let halfPointSize = pointSize / 2.0
-    if let glyph = self.glyph, pointsVisible {
-      for contour in glyph.contours {
-        for point in contour.points {
-          let pointRect = CGRect(x: point.x - halfPointSize * scaleToOne,
-                                 y: point.y - halfPointSize * scaleToOne,
-                                 width: pointSize * scaleToOne,
-                                 height: pointSize * scaleToOne)
-          if pointRect.contains(mouseDownLocation) {
-            selection.append(point)
-          }
+    if pointsVisible {
+      for bPoint in bPoints {
+        let pointRect = CGRect(x: bPoint.anchor.x - halfPointSize * scaleToOne,
+                               y: bPoint.anchor.y - halfPointSize * scaleToOne,
+                               width: pointSize * scaleToOne,
+                               height: pointSize * scaleToOne)
+        if pointRect.contains(mouseDownLocation) {
+          selection.append(bPoint)
         }
       }
     }
@@ -215,8 +224,8 @@ class GlyphView: NSView {
     let newLocation = convert(event.locationInWindow, from: nil)
     let delta = CGPoint(x: newLocation.x - mouseDownLocation.x,
                         y: newLocation.y - mouseDownLocation.y)
-    for point in selection {
-      point.cgPoint = CGPoint(x: point.cgPoint.x + delta.x, y: point.cgPoint.y + delta.y)
+    for bPoint in selection {
+      bPoint.move(by: delta)
     }
     mouseDownLocation = newLocation
     updateGlyphPath()

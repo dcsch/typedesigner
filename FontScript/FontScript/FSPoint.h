@@ -52,6 +52,7 @@ NS_SWIFT_NAME(Point)
 
 // Transformations
 - (void)transformBy:(CGAffineTransform)transform;
+- (void)moveBy:(CGPoint)point;
 
 // Normalization
 - (void)round;

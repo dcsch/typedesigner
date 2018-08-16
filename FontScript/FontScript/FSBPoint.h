@@ -26,4 +26,8 @@ NS_SWIFT_NAME(BPoint)
 @property CGPoint bcpIn;
 @property CGPoint bcpOut;
 
+// Transformations
+- (void)transformBy:(CGAffineTransform)transform;
+- (void)moveBy:(CGPoint)point;
+
 @end
