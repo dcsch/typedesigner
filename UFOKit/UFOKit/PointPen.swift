@@ -9,12 +9,27 @@
 import Foundation
 import os.log
 
-public enum SegmentType {
+public enum SegmentType: CustomStringConvertible {
   case move
   case line
   case offCurve
   case curve
   case qCurve
+
+  public var description: String {
+    switch self {
+    case .move:
+      return "move"
+    case .line:
+      return "line"
+    case .offCurve:
+      return "offcurve"
+    case .curve:
+      return "curve"
+    case .qCurve:
+      return "qcurve"
+    }
+  }
 }
 
 struct Point {
@@ -26,9 +41,9 @@ struct Point {
 }
 
 public protocol PointPen {
-  func beginPath(identifier: String?)
-  func endPath()
-  func addPoint(_ pt: CGPoint, segmentType: SegmentType, smooth: Bool, name: String?, identifier: String?)
+  func beginPath(identifier: String?) throws
+  func endPath() throws
+  func addPoint(_ pt: CGPoint, segmentType: SegmentType, smooth: Bool, name: String?, identifier: String?) throws
   func addComponent(baseGlyphName: String, transformation: CGAffineTransform, identifier: String?) throws
 }
 
@@ -41,10 +56,10 @@ public class QuartzPen: PointPen {
     self.glyphSet = glyphSet
   }
 
-  public func beginPath(identifier: String?) {
+  public func beginPath(identifier: String?) throws {
   }
 
-  public func endPath() {
+  public func endPath() throws {
 
     // Duplicate points from the beginning of the contour to the end
     // to simplify interating completely through all the points
@@ -102,7 +117,11 @@ public class QuartzPen: PointPen {
     points.removeAll()
   }
 
-  public func addPoint(_ pt: CGPoint, segmentType: SegmentType, smooth: Bool, name: String?, identifier: String?) {
+  public func addPoint(_ pt: CGPoint,
+                       segmentType: SegmentType,
+                       smooth: Bool = false,
+                       name: String? = nil,
+                       identifier: String? = nil) throws {
     points.append(Point(pt: pt, type: segmentType, smooth: smooth, name: name, identifier: identifier))
   }
 

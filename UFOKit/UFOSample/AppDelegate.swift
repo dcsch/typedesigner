@@ -11,11 +11,25 @@ import UFOKit
 
 struct RoboFontGuide: Codable {
   var angle: Int
-  var isGlobal: Int
+  var isGlobal: Bool
   var magnetic: Int
   var name: String
   var x: Int
   var y: Int
+
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    angle = try container.decode(Int.self, forKey: .angle)
+    do {
+      isGlobal = try container.decode(Bool.self, forKey: .isGlobal)
+    } catch DecodingError.typeMismatch {
+      isGlobal = try container.decode(Int.self, forKey: .isGlobal) == 1 ? true : false
+    }
+    magnetic = try container.decode(Int.self, forKey: .magnetic)
+    name = try container.decode(String.self, forKey: .name)
+    x = try container.decode(Int.self, forKey: .x)
+    y = try container.decode(Int.self, forKey: .y)
+  }
 }
 
 struct RoboFontSort: Codable {
@@ -61,6 +75,16 @@ class RoboFontLib: Codable {
   }
 }
 
+class RoboFontGlifLib: Codable {
+  var mark: [Double]?
+  var autohint: Data?
+
+  enum CodingKeys: String, CodingKey {
+    case mark = "com.typemytype.robofont.mark"
+    case autohint = "com.adobe.type.autohint"
+  }
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -74,8 +98,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let splitViewController = NSApp.windows[0].contentViewController as! NSSplitViewController
     let items = splitViewController.splitViewItems
-    namesViewController = items[0].viewController as! NamesViewController
-    glyphViewController = items[1].viewController as! ViewController
+    namesViewController = items[0].viewController as? NamesViewController
+    glyphViewController = items[1].viewController as? ViewController
 
     let nc = NotificationCenter.default
     nc.addObserver(forName: NSTableView.selectionDidChangeNotification, object: nil, queue: nil) { (notification: Notification) in
@@ -83,9 +107,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let selectedRow = self.namesViewController.tableView.selectedRow
         if let glyphSet = self.glyphSet,
           let libProps = self.libProps {
+          var glyph = Glyph()
           let pen = QuartzPen(glyphSet: glyphSet)
-          try glyphSet.readGlyph(glyphName: libProps.glyphOrder![selectedRow], pointPen: pen)
+          try glyphSet.readGlyph(glyphName: libProps.glyphOrder![selectedRow], glyph: &glyph, pointPen: pen)
           self.glyphViewController.glyphView.glyphPath = pen.path
+          if let data = glyph.lib {
+            let cleanData = AdobeMigration.migrate(data: data)
+            let decoder = PropertyListDecoder()
+            let glifLibProps = try decoder.decode(RoboFontGlifLib.self, from: cleanData)
+            if let autohint = glifLibProps.autohint,
+              let autohintStr = String(data: autohint, encoding: .utf8) {
+              print(autohintStr)
+            }
+          }
         }
         self.glyphViewController.sizeToFit()
         self.glyphViewController.glyphView.needsDisplay = true
@@ -130,6 +164,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
+  func save(url: URL) {
+    if let info = info {
+      do {
+        let ufoWriter = try UFOWriter(url: url)
+        try ufoWriter.writeInfo(info)
+        // TODO groups
+        // TODO kerning
+        // TODO features
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        let libData = try encoder.encode(libProps)
+        try ufoWriter.writeLib(libData)
+        // TODO layercontents
+
+        if let libProps = libProps, let glyphNames = libProps.glyphOrder {
+          let writerGlyphSet = try ufoWriter.glyphSet()
+          for glyphName in glyphNames {
+            try writerGlyphSet.writeGlyph(glyphName: glyphName) { (_ pen: PointPen) in
+              if let glyphSet = glyphSet {
+                do {
+                  try glyphSet.readGlyph(glyphName: glyphName, pointPen: pen)
+                } catch {
+                  print("Exception: \(error)")
+                }
+              }
+            }
+          }
+          try writerGlyphSet.writeContents()
+        }
+      } catch UFOError.notDirectoryPath {
+        print("Exception: ")
+      } catch {
+        print("Something else: \(error)")
+      }
+    }
+  }
+
   @IBAction func openDocument(_ sender: Any?) {
     let panel = NSOpenPanel()
     panel.allowedFileTypes = ["ufo"]
@@ -139,4 +210,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       }
     }
   }
+
+  @IBAction func saveDocument(_ sender: Any?) {
+    let panel = NSSavePanel()
+    panel.allowedFileTypes = ["ufo"]
+    panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
+      if response == .OK {
+        self.save(url: panel.url!)
+      }
+    }
+  }
+
 }

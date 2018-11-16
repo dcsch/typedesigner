@@ -1,6 +1,6 @@
 //
 //  GlyphView.swift
-//  Type Designer
+//  UFOSample
 //
 //  Created by David Schweinsberg on 7/20/17.
 //  Copyright © 2017 David Schweinsberg. All rights reserved.
@@ -15,7 +15,7 @@ class GlyphView: NSView {
     var onCurve: Bool
   }
 
-  var unitsPerEm = 1024
+  var unitsPerEm = 2048
   var xMin = 0
   var xMax = 0
   var yMin = 0
@@ -25,13 +25,11 @@ class GlyphView: NSView {
   var leftSideBearing = 0
   var advanceWidth = 0
   var glyphPath: CGPath?
-  var controlPoints = [ControlPoint]()
   private var translate = CGPoint(x: 0, y: 0)
   private var scale: CGFloat = 1.0
-  var controlPointsVisible = true
 
   override init(frame: NSRect) {
-    super.init(frame:frame)
+    super.init(frame: frame)
   }
 
   required init?(coder: NSCoder) {
@@ -43,7 +41,7 @@ class GlyphView: NSView {
       return
     }
 
-    context.setFillColor(CGColor.white)
+    context.setFillColor(NSColor.textBackgroundColor.cgColor)
     context.fill(self.bounds)
 
     context.scaleBy(x: CGFloat(scale), y: scale)
@@ -84,26 +82,9 @@ class GlyphView: NSView {
       context.addPath(path)
     }
 
-    context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+    context.setStrokeColor(NSColor.textColor.cgColor)
     context.strokePath()
-
-    if controlPointsVisible {
-
-      // Draw control points
-      for cp in controlPoints {
-
-        let x = cp.position.x
-        let y = cp.position.y
-
-        // Draw the point based on its type (on or off curve)
-        context.addRect(CGRect(x: x - 2, y: y - 2, width: 5, height: 5))
-        if cp.onCurve {
-          context.fillPath()
-        } else {
-          context.strokePath()
-        }
-      }
-    }
+//    context.fillPath()
   }
 
 }

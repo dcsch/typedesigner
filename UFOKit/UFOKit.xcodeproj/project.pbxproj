@@ -12,9 +12,14 @@
 		03601D7F1FDF67F8000B1401 /* UFOKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03601D7E1FDF67F8000B1401 /* UFOKitTests.swift */; };
 		03601D811FDF67F8000B1401 /* UFOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 03601D731FDF67F8000B1401 /* UFOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		036092C120AE129800455961 /* FontInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036092C020AE129800455961 /* FontInfo.swift */; };
+		0375C708217FE1BC007E1B45 /* Filenames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0375C707217FE1BC007E1B45 /* Filenames.swift */; };
 		039485E11FE8457D00E92F03 /* GlyphSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039485E01FE8457D00E92F03 /* GlyphSet.swift */; };
 		039485E31FE853E800E92F03 /* PointPen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039485E21FE853E800E92F03 /* PointPen.swift */; };
 		03AEC0DA1FED89980063FC7B /* UFOReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AEC0D91FED89980063FC7B /* UFOReader.swift */; };
+		03C2FEC021751A710057E42D /* UFOWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2FEBF21751A710057E42D /* UFOWriter.swift */; };
+		03C2FEC2217676D90057E42D /* UFOKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2FEC1217676D90057E42D /* UFOKit.swift */; };
+		03C2FECB217810B30057E42D /* GLIFPointPen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2FECA217810B30057E42D /* GLIFPointPen.swift */; };
+		03C2FECD217815310057E42D /* GLIFPointPenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2FECC217815310057E42D /* GLIFPointPenTests.swift */; };
 		03F5182820A63DB80011CE47 /* FilenameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F5182720A63DB80011CE47 /* FilenameTests.swift */; };
 		03F5182A20A647CB0011CE47 /* GLIF2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F5182920A647CB0011CE47 /* GLIF2Tests.swift */; };
 		03F5182C20A649D40011CE47 /* UFO3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F5182B20A649D40011CE47 /* UFO3Tests.swift */; };
@@ -40,9 +45,14 @@
 		03601D7E1FDF67F8000B1401 /* UFOKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOKitTests.swift; sourceTree = "<group>"; };
 		03601D801FDF67F8000B1401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		036092C020AE129800455961 /* FontInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInfo.swift; sourceTree = "<group>"; };
+		0375C707217FE1BC007E1B45 /* Filenames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filenames.swift; sourceTree = "<group>"; };
 		039485E01FE8457D00E92F03 /* GlyphSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphSet.swift; sourceTree = "<group>"; };
 		039485E21FE853E800E92F03 /* PointPen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointPen.swift; sourceTree = "<group>"; };
 		03AEC0D91FED89980063FC7B /* UFOReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOReader.swift; sourceTree = "<group>"; };
+		03C2FEBF21751A710057E42D /* UFOWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOWriter.swift; sourceTree = "<group>"; };
+		03C2FEC1217676D90057E42D /* UFOKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOKit.swift; sourceTree = "<group>"; };
+		03C2FECA217810B30057E42D /* GLIFPointPen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLIFPointPen.swift; sourceTree = "<group>"; };
+		03C2FECC217815310057E42D /* GLIFPointPenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLIFPointPenTests.swift; sourceTree = "<group>"; };
 		03F5182720A63DB80011CE47 /* FilenameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilenameTests.swift; sourceTree = "<group>"; };
 		03F5182920A647CB0011CE47 /* GLIF2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLIF2Tests.swift; sourceTree = "<group>"; };
 		03F5182B20A649D40011CE47 /* UFO3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFO3Tests.swift; sourceTree = "<group>"; };
@@ -102,7 +112,11 @@
 				039485E01FE8457D00E92F03 /* GlyphSet.swift */,
 				039485E21FE853E800E92F03 /* PointPen.swift */,
 				03AEC0D91FED89980063FC7B /* UFOReader.swift */,
+				03C2FEBF21751A710057E42D /* UFOWriter.swift */,
+				03C2FECA217810B30057E42D /* GLIFPointPen.swift */,
 				036092C020AE129800455961 /* FontInfo.swift */,
+				03C2FEC1217676D90057E42D /* UFOKit.swift */,
+				0375C707217FE1BC007E1B45 /* Filenames.swift */,
 			);
 			path = UFOKit;
 			sourceTree = "<group>";
@@ -116,6 +130,7 @@
 				03F5182720A63DB80011CE47 /* FilenameTests.swift */,
 				03F5182920A647CB0011CE47 /* GLIF2Tests.swift */,
 				03F5182B20A649D40011CE47 /* UFO3Tests.swift */,
+				03C2FECC217815310057E42D /* GLIFPointPenTests.swift */,
 			);
 			path = UFOKitTests;
 			sourceTree = "<group>";
@@ -142,6 +157,7 @@
 				03601D6C1FDF67F8000B1401 /* Frameworks */,
 				03601D6D1FDF67F8000B1401 /* Headers */,
 				03601D6E1FDF67F8000B1401 /* Resources */,
+				53575D955A0BF3FFEE8AE4D8 /* Tailor */,
 			);
 			buildRules = (
 			);
@@ -182,7 +198,7 @@
 				TargetAttributes = {
 					03601D6F1FDF67F8000B1401 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					03601D781FDF67F8000B1401 = {
@@ -227,6 +243,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		53575D955A0BF3FFEE8AE4D8 /* Tailor */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Tailor;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "if hash tailor 2>/dev/null; then\n  tailor\nelse\n  echo \"warning: Please install Tailor from https://tailor.sh\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		03601D6B1FDF67F8000B1401 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -234,8 +267,12 @@
 			files = (
 				036092C120AE129800455961 /* FontInfo.swift in Sources */,
 				039485E31FE853E800E92F03 /* PointPen.swift in Sources */,
+				03C2FEC021751A710057E42D /* UFOWriter.swift in Sources */,
+				03C2FECB217810B30057E42D /* GLIFPointPen.swift in Sources */,
 				03AEC0DA1FED89980063FC7B /* UFOReader.swift in Sources */,
 				039485E11FE8457D00E92F03 /* GlyphSet.swift in Sources */,
+				0375C708217FE1BC007E1B45 /* Filenames.swift in Sources */,
+				03C2FEC2217676D90057E42D /* UFOKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +283,7 @@
 				03F5182820A63DB80011CE47 /* FilenameTests.swift in Sources */,
 				03601D7F1FDF67F8000B1401 /* UFOKitTests.swift in Sources */,
 				03F5182C20A649D40011CE47 /* UFO3Tests.swift in Sources */,
+				03C2FECD217815310057E42D /* GLIFPointPenTests.swift in Sources */,
 				03F5182A20A647CB0011CE47 /* GLIF2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,7 +435,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -420,7 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.UFOKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
