@@ -96,7 +96,7 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
   }
 
   override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-    if segue.identifier?.rawValue == "ShowGlyph" {
+    if segue.identifier == "ShowGlyph" {
       if let windowController = segue.destinationController as? NSWindowController,
         let viewController = windowController.contentViewController as? GlyphViewController,
         let index = collectionView?.selectionIndexes.first,

@@ -17,8 +17,8 @@ class OpenTypeCollectionDocument: NSDocument {
   }
 
   override func makeWindowControllers() {
-    let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-    let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "Document Import Controller")) as! NSWindowController
+    let storyboard = NSStoryboard(name: "Main", bundle: nil)
+    let windowController = storyboard.instantiateController(withIdentifier: "Document Import Controller") as! NSWindowController
     self.addWindowController(windowController)
   }
 

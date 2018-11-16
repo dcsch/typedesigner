@@ -185,7 +185,7 @@
 					03C2F4F61F43FDDB00B2A3BC = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 9MWCHY26A8;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					03C2F4FF1F43FDDC00B2A3BC = {
@@ -402,8 +402,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.CFF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -428,8 +427,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.CFF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

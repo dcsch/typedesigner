@@ -17,8 +17,8 @@ class OpenTypeDocument: NSDocument {
   }
 
   override func makeWindowControllers() {
-    let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-    let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "Document Window Controller")) as! NSWindowController
+    let storyboard = NSStoryboard(name: "Main", bundle: nil)
+    let windowController = storyboard.instantiateController(withIdentifier: "Document Window Controller") as! NSWindowController
 
     // This will set the window controller's document property, so the data
     // must be set up by that point
@@ -95,8 +95,8 @@ class OpenTypeDocument: NSDocument {
   }
 
   @IBAction func showFontProperties(_ sender: Any?) {
-    let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-    let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "Font Properties")) as! NSWindowController
+    let storyboard = NSStoryboard(name: "Main", bundle: nil)
+    let windowController = storyboard.instantiateController(withIdentifier: "Font Properties") as! NSWindowController
     addWindowController(windowController)
     windowController.showWindow(self)
   }

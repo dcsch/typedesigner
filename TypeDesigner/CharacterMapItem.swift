@@ -20,7 +20,7 @@ class CharacterMapItem: NSCollectionViewItem {
   override func mouseDown(with event: NSEvent) {
     if event.clickCount == 2,
       let controller = characterMapViewController {
-      controller.performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "ShowGlyph"), sender: self)
+      controller.performSegue(withIdentifier: "ShowGlyph", sender: self)
     } else {
       super.mouseDown(with: event)
     }

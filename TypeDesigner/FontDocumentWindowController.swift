@@ -36,7 +36,7 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
         if var fontControllerConsumer: FontControllerConsumer = parent as? FontControllerConsumer {
           fontControllerConsumer.fontController = fontController
         }
-        for childVC in parent.childViewControllers {
+        for childVC in parent.children {
           propagateToChildren(of: childVC)
         }
       }
