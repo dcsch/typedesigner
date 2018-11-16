@@ -8,24 +8,6 @@
 
 import Foundation
 
-public enum UFOError: Error {
-  case unsupportedVersion
-  case notDirectoryPath
-  case glyphNameNotFound
-  case cannotConvertValue
-}
-
-public enum UFOFormatVersion: Int, Codable {
-  case version1 = 1
-  case version2 = 2
-  case version3 = 3
-}
-
-public struct MetaInfo: Codable {
-  let creator: String
-  let formatVersion: UFOFormatVersion
-}
-
 public class UFOReader {
   public let url: URL
   public let metaInfo: MetaInfo
@@ -36,21 +18,21 @@ public class UFOReader {
   }
 
   class func readMetaInfo(url: URL) throws -> MetaInfo {
-    let metaInfoURL = url.appendingPathComponent("metainfo.plist")
+    let metaInfoURL = url.appendingPathComponent(Filename.metaInfoFilename)
     let metaInfoData = try Data(contentsOf: metaInfoURL)
     let decoder = PropertyListDecoder()
     return try decoder.decode(MetaInfo.self, from: metaInfoData)
   }
 
   public func readGroups() throws -> [String: [String]] {
-    let groupsURL = url.appendingPathComponent("groups.plist")
+    let groupsURL = url.appendingPathComponent(Filename.groupsFilename)
     let groupsData = try Data(contentsOf: groupsURL)
     let decoder = PropertyListDecoder()
     return try decoder.decode([String: [String]].self, from: groupsData)
   }
 
   public func readInfo() throws -> FontInfo {
-    let infoURL = url.appendingPathComponent("fontinfo.plist")
+    let infoURL = url.appendingPathComponent(Filename.fontInfoFilename)
     let infoData = try Data(contentsOf: infoURL)
     let decoder = PropertyListDecoder()
     if metaInfo.formatVersion == .version1 {
@@ -61,25 +43,39 @@ public class UFOReader {
   }
 
   public func readKerning() throws -> [String: [String: Int]] {
-    let kerningURL = url.appendingPathComponent("kerning.plist")
+    let kerningURL = url.appendingPathComponent(Filename.kerningFilename)
     let kerningData = try Data(contentsOf: kerningURL)
     let decoder = PropertyListDecoder()
     return try decoder.decode([String: [String: Int]].self, from: kerningData)
   }
 
   public func readLib() throws -> Data {
-    let libURL = url.appendingPathComponent("lib.plist")
+    let libURL = url.appendingPathComponent(Filename.libFilename)
     return try Data(contentsOf: libURL)
   }
 
   public func readFeatures() throws -> String {
-    let featuresURL = url.appendingPathComponent("features.fea")
+    let featuresURL = url.appendingPathComponent(Filename.featuresFilename)
     let featuresData = try Data(contentsOf: featuresURL)
     return String(data: featuresData, encoding: .ascii) ?? ""
   }
 
+  class func readLayerContents(url: URL) throws -> [(String, String)] {
+    let layerContentsURL = url.appendingPathComponent(Filename.layerContentsFilename)
+    let layerContentsData = try Data(contentsOf: layerContentsURL)
+    let decoder = PropertyListDecoder()
+    let layerArrays = try decoder.decode([[String]].self, from: layerContentsData)
+
+    // Convert the arrays into tuples
+    var layerContents = [(String, String)]()
+    for layer in layerArrays {
+      layerContents.append((layer[0], layer[1]))
+    }
+    return layerContents
+  }
+
   public func glyphSet() throws -> GlyphSet {
-    let glyphDirURL = url.appendingPathComponent("glyphs")
+    let glyphDirURL = url.appendingPathComponent(DirectoryName.defaultGlyphsDirName)
     return try GlyphSet(dirURL: glyphDirURL, ufoFormatVersion: metaInfo.formatVersion)
   }
 
@@ -98,4 +94,5 @@ public class UFOReader {
     }
     return characterMap
   }
+
 }

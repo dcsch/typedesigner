@@ -15,14 +15,8 @@ class GLIF2Tests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    var testBundle: Bundle!
-    for bundle in Bundle.allBundles {
-      if bundle.bundleIdentifier == "com.typista.UFOKitTests" {
-        testBundle = bundle
-        break
-      }
-    }
-    if let url = testBundle.url(forResource: "test_v3", withExtension: "ufo") {
+    if let testBundle = Bundle(identifier: "com.typista.UFOKitTests"),
+      let url = testBundle.url(forResource: "test_v3", withExtension: "ufo") {
       do {
         ufoReader = try UFOReader(url: url)
       } catch {

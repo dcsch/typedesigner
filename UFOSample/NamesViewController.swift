@@ -24,12 +24,15 @@ class NamesViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
 
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
     let cellId = NSUserInterfaceItemIdentifier(rawValue: "TableViewCell")
-    let view = tableView.makeView(withIdentifier: cellId, owner: self) as! NSTableCellView
-    view.textField!.stringValue = names[row]
+    let view = tableView.makeView(withIdentifier: cellId, owner: self)
+    if let cellView = view as? NSTableCellView {
+      cellView.textField!.stringValue = names[row]
+    }
     return view
   }
 
   func tableViewSelectionDidChange(_ notification: Notification) {
 
   }
+
 }

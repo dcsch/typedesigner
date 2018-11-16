@@ -46,8 +46,8 @@ class ViewController: NSViewController {
     let scale = frameAspectRatio < boundsAspectRatio ?
       bounds.width / frame.width :
       bounds.height / frame.height
-    let width = frame.size.width * scale;
-    let height = frame.size.height * scale;
+    let width = frame.size.width * scale
+    let height = frame.size.height * scale
     glyphView.bounds = bounds.insetBy(dx: (bounds.width - width) / 2.0 - 2.0 * margin,
                                       dy: (bounds.height - height) / 2.0 - 2.0 * margin)
   }
