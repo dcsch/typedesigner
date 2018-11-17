@@ -10,10 +10,17 @@ import Cocoa
 import FontScript
 import os.log
 
-class GlyphViewController: NSViewController, FontControllerConsumer {
+class GlyphViewController: NSViewController, GlyphViewDelegate, FontControllerConsumer {
+  var undoManagers = [String:UndoManager]()
   @IBOutlet weak var scrollView: NSScrollView!
   @IBOutlet weak var glyphView: GlyphView!
   @IBOutlet weak var zoomPopUpButton: NSPopUpButton!
+
+  override var acceptsFirstResponder: Bool {
+    get {
+      return true
+    }
+  }
 
   var fontController: FontController? {
     didSet {
@@ -63,6 +70,14 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
     }
   }
 
+  @IBAction func undo(_ sender: Any?) {
+    let foo = 0
+  }
+
+  @IBAction func redo(_ sender: Any?) {
+    let foo = 0
+  }
+
   func updateGlyph() {
     guard let font = fontController?.font,
       let glyphName = fontController?.glyphName,
@@ -79,6 +94,22 @@ class GlyphViewController: NSViewController, FontControllerConsumer {
     boundingBox = boundingBox.union(glyphView.glyphBoundingBox)
     glyphView.setBoundsOrigin(boundingBox.origin)
     glyphView.frame = boundingBox
+  }
+
+  override var undoManager: UndoManager? {
+    get {
+      guard let glyphName = fontController?.glyphName else { return nil }
+      var undoManager = undoManagers[glyphName]
+      if undoManager == nil {
+        undoManager = UndoManager()
+        undoManagers[glyphName] = undoManager
+      }
+      return undoManager
+    }
+  }
+
+  func undoManager(for view: GlyphView) -> UndoManager? {
+    return self.undoManager
   }
 
 }

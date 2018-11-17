@@ -10,11 +10,25 @@ import Foundation
 
 struct RoboFontGuide: Codable {
   var angle: Int
-  var isGlobal: Int
+  var isGlobal: Bool
   var magnetic: Int
   var name: String
   var x: Int
   var y: Int
+
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    angle = try container.decode(Int.self, forKey: .angle)
+    do {
+      isGlobal = try container.decode(Bool.self, forKey: .isGlobal)
+    } catch DecodingError.typeMismatch {
+      isGlobal = try container.decode(Int.self, forKey: .isGlobal) == 1 ? true : false
+    }
+    magnetic = try container.decode(Int.self, forKey: .magnetic)
+    name = try container.decode(String.self, forKey: .name)
+    x = try container.decode(Int.self, forKey: .x)
+    y = try container.decode(Int.self, forKey: .y)
+  }
 }
 
 struct RoboFontSort: Codable {

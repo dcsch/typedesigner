@@ -62,6 +62,10 @@ class FontDocumentWindowController: NSWindowController, NSWindowDelegate {
     }
   }
 
+  func windowWillReturnUndoManager(_ window: NSWindow) -> UndoManager? {
+    return self.nextResponder?.undoManager
+  }
+
   func windowDidEndSheet(_ notification: Notification) {
     os_log("windowDidEndSheet")
   }

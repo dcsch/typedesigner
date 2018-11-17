@@ -1,16 +1,14 @@
 //
-//  UFODocument.swift
+//  GLIFDocument.swift
 //  Type Designer
 //
-//  Created by David Schweinsberg on 5/25/18.
+//  Created by David Schweinsberg on 8/31/18.
 //  Copyright © 2018 David Schweinsberg. All rights reserved.
 //
 
 import Cocoa
-import UFOKit
 
-class UFODocument: NSDocument {
-  var font: UFOFont?
+class GLIFDocument: NSDocument {
 
   override init() {
     super.init()
@@ -19,7 +17,7 @@ class UFODocument: NSDocument {
 
   override func makeWindowControllers() {
     let storyboard = NSStoryboard(name: "Main", bundle: nil)
-    let windowController = storyboard.instantiateController(withIdentifier: "Document Window Controller") as! NSWindowController
+    let windowController = storyboard.instantiateController(withIdentifier: "GLIF Window Controller") as! NSWindowController
 
     // This will set the window controller's document property, so the data
     // must be set up by that point
@@ -38,29 +36,14 @@ class UFODocument: NSDocument {
   }
 
   override func read(from data: Data, ofType typeName: String) throws {
-    var suitcase = false
-    if typeName == "Font Suitcase" || typeName == "Datafork TrueType font" {
-      suitcase = true
-    }
-    let converter = try OpenTypeConverter(openTypeData: data, isSuitcase: suitcase)
-    font = try converter.convert(index: 0)
-  }
-
-  override func read(from url: URL, ofType typeName: String) throws {
-    if typeName == "Unified Font Object" {
-      let ufoReader = try UFOReader(url: url)
-      font = try UFOFont(reader: ufoReader)
-    } else {
-      try super.read(from: url, ofType: typeName)
-    }
+    // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning false.
+    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
+    // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
+    throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
   }
 
   override class var autosavesInPlace: Bool {
     return true
-  }
-
-  @IBAction func undo(_ sender: Any?) {
-    let foo = 0
   }
 
 }

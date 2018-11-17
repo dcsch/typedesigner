@@ -8,6 +8,7 @@
 
 import Foundation
 import FontScript
+import os.log
 
 class QuartzPen : Pen {
   let path = CGMutablePath()
@@ -35,6 +36,7 @@ class QuartzPen : Pen {
       let c = points[0].pointValue
       let pt = points[1].pointValue
       path.addQuadCurve(to: pt, control: c)
+//      os_log("NOTE addQuadCurve: to: %f, %f, control: %f, %f", pt.x, pt.y, c.x, c.y)
     }
   }
 

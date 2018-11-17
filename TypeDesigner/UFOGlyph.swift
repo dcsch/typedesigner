@@ -55,7 +55,14 @@ class UFOToFSPointPen : UFOKit.PointPen {
 
 }
 
-class UFOGlyph : FontScript.Glyph {
+class UFOGlyph : FontScript.Glyph, UFOKit.FSGlyph {
+
+  // TODO: Temporary placeholders
+  var note: String = ""
+  var lib: Data = Data()
+  var image: [String : Any] = [:]
+  var guidelines: [[String : Any]] = []
+  var anchors: [[String : Any]] = []
 
   var ufoPointPen: UFOKit.PointPen {
     get {

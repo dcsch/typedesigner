@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -141,7 +142,11 @@
                                                 <action selector="undo:" target="8V6-z5-n10" id="waJ-w4-wMB"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Redo" keyEquivalent="Z" id="wY5-EN-jrD"/>
+                                        <menuItem title="Redo" keyEquivalent="Z" id="wY5-EN-jrD">
+                                            <connections>
+                                                <action selector="redo:" target="8V6-z5-n10" id="AB1-dk-V74"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="UMO-MY-wdl"/>
                                         <menuItem title="Cut" keyEquivalent="x" id="oBp-oH-cnq">
                                             <connections>
@@ -356,7 +361,7 @@
         <scene sceneID="pLq-oA-4Lc">
             <objects>
                 <windowController storyboardIdentifier="Document Import Controller" id="JNq-vd-evj" customClass="ImportWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="5a6-7j-A2s">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="5a6-7j-A2s">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="425" y="461" width="480" height="270"/>
@@ -377,7 +382,7 @@
         <scene sceneID="lIU-vX-VSv">
             <objects>
                 <windowController storyboardIdentifier="Document Window Controller" id="dbg-D2-3jH" customClass="FontDocumentWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="RSy-fl-pyn">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="RSy-fl-pyn">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -398,7 +403,7 @@
         <scene sceneID="PE0-Ne-OMH">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="lhE-Pe-1X5" sceneMemberID="viewController">
-                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="7EU-ds-lkE">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="7EU-ds-lkE">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -414,6 +419,75 @@
                 <customObject id="f9D-Up-vER" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="623" y="-357"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="2Ft-xi-CVW">
+            <objects>
+                <windowController storyboardIdentifier="GLIF Window Controller" id="cBU-fh-Ico" customClass="GLIFWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="QZV-Pf-zvd">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+                        <connections>
+                            <outlet property="delegate" destination="cBU-fh-Ico" id="Ge5-Sz-Ld7"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="GRU-m2-0Qf" kind="relationship" relationship="window.shadowedContentViewController" id="Yjk-ef-QMB"/>
+                    </connections>
+                </windowController>
+                <customObject id="N6Q-3B-w0V" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1225" y="116"/>
+        </scene>
+        <!--Glyph View Controller-->
+        <scene sceneID="zME-1E-nNW">
+            <objects>
+                <viewController id="GRU-m2-0Qf" customClass="GlyphViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Pn4-i5-O5Z">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="340"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0K-QQ-bTJ">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="340"/>
+                                <clipView key="contentView" id="sZo-Tg-Ogi">
+                                    <rect key="frame" x="1" y="1" width="463" height="323"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ym5-6c-can" customClass="GlyphView" customModule="Type_Designer" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="318"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="Bfz-2k-Kaa" id="SFi-Yk-ubG"/>
+                                            </connections>
+                                        </view>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="XbE-dr-i03">
+                                    <rect key="frame" x="1" y="324" width="463" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="MxL-nA-R8L">
+                                    <rect key="frame" x="464" y="1" width="15" height="323"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="z0K-QQ-bTJ" secondAttribute="bottom" id="7bE-D2-mnN"/>
+                            <constraint firstItem="z0K-QQ-bTJ" firstAttribute="top" secondItem="Pn4-i5-O5Z" secondAttribute="top" id="NK5-vV-hIc"/>
+                            <constraint firstItem="z0K-QQ-bTJ" firstAttribute="leading" secondItem="Pn4-i5-O5Z" secondAttribute="leading" id="WcB-JP-Mxm"/>
+                            <constraint firstAttribute="trailing" secondItem="z0K-QQ-bTJ" secondAttribute="trailing" id="iFk-eH-2HL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="glyphView" destination="Ym5-6c-can" id="4fd-r7-BfE"/>
+                    </connections>
+                </viewController>
+                <customObject id="wcm-Rg-p61" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1225" y="606"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Wpa-2H-vsn">
@@ -467,7 +541,7 @@
             </objects>
             <point key="canvasLocation" x="1840" y="-224"/>
         </scene>
-        <!--Glyph View Controller-->
+        <!--Delegate-->
         <scene sceneID="Y79-Ly-bgo">
             <objects>
                 <viewController id="Bfz-2k-Kaa" customClass="GlyphViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
@@ -484,6 +558,9 @@
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7i-RZ-QcN" customClass="GlyphView" customModule="Type_Designer" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="448" height="318"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="Bfz-2k-Kaa" id="2Bf-Dc-QOf"/>
+                                            </connections>
                                         </view>
                                     </subviews>
                                 </clipView>
@@ -497,13 +574,13 @@
                                 </scroller>
                             </scrollView>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zuh-Hp-tPf">
-                                <rect key="frame" x="0.0" y="-2" width="76" height="25"/>
+                                <rect key="frame" x="0.0" y="-1" width="76" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="qvG-8s-0eG"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="roundTextured" title="100%" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="amA-4b-A5D" id="MFF-Je-at8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="uhN-Pa-vux">
                                         <items>
                                             <menuItem title="Fit" id="Lme-ki-Z1U"/>
@@ -617,7 +694,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="vCF-K0-BvR">
-                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
+                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="QGc-e2-8ZJ">
@@ -684,7 +761,7 @@ Gw
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxW-Rl-Dn4">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
-                                <clipView key="contentView" drawsBackground="NO" id="f2Q-Cn-osx">
+                                <clipView key="contentView" id="f2Q-Cn-osx">
                                     <rect key="frame" x="1" y="1" width="478" height="368"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -722,6 +799,7 @@ Gw
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Fsn-S4-KMg" id="3Rc-3y-ckB"/>
+                        <segue destination="cBU-fh-Ico" kind="show" identifier="ShowGlyph" id="P7L-Wd-APf"/>
                     </connections>
                 </viewController>
                 <customObject id="GUB-wf-IWP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -732,7 +810,7 @@ Gw
         <scene sceneID="oOd-rl-0qx">
             <objects>
                 <windowController storyboardIdentifier="Font Properties" id="0Wg-Qh-Uzm" customClass="FontPropertyWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="n9k-qn-sPM">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="n9k-qn-sPM">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -795,7 +873,7 @@ Gw
                                 <rect key="frame" x="110" y="260" width="320" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Hmi-0X-4Ae">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>

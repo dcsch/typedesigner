@@ -10,7 +10,12 @@ import Cocoa
 import FontScript
 import os.log
 
+@objc protocol GlyphViewDelegate {
+  @objc func undoManager(for view: GlyphView) -> UndoManager?
+}
+
 class GlyphView: NSView {
+  @IBOutlet var delegate: GlyphViewDelegate?
   private var unitsPerEm = 2048
   private var xMin = 0
   private var xMax = 0
@@ -25,6 +30,7 @@ class GlyphView: NSView {
   private var bPoints = [BPoint]()
   private var selection = [BPoint]()
   private var mouseDownLocation = CGPoint.zero
+  private var mouseDraggedLocation = CGPoint.zero
   var pointsVisible = true
   var pointSize: CGFloat = 8
 
@@ -203,6 +209,7 @@ class GlyphView: NSView {
   override func mouseDown(with event: NSEvent) {
     selection.removeAll()
     mouseDownLocation = convert(event.locationInWindow, from: nil)
+    mouseDraggedLocation = mouseDownLocation
     let halfPointSize = pointSize / 2.0
     if pointsVisible {
       for bPoint in bPoints {
@@ -218,16 +225,34 @@ class GlyphView: NSView {
   }
 
   override func mouseUp(with event: NSEvent) {
+    let newLocation = convert(event.locationInWindow, from: nil)
+    let delta = CGPoint(x: newLocation.x - mouseDraggedLocation.x,
+                        y: newLocation.y - mouseDraggedLocation.y)
+    for bPoint in selection {
+      bPoint.move(by: delta)
+    }
+    updateGlyphPath()
+    self.needsDisplay = true
+
+    if let undoManager = delegate?.undoManager(for: self) {
+      let deltaToPrev = CGPoint(x: mouseDownLocation.x - newLocation.x,
+                                y: mouseDownLocation.y - newLocation.y)
+      for bPoint in selection {
+        undoManager.registerUndo(withTarget: bPoint) {
+          $0.move(by: deltaToPrev)
+        }
+      }
+    }
   }
 
   override func mouseDragged(with event: NSEvent) {
     let newLocation = convert(event.locationInWindow, from: nil)
-    let delta = CGPoint(x: newLocation.x - mouseDownLocation.x,
-                        y: newLocation.y - mouseDownLocation.y)
+    let delta = CGPoint(x: newLocation.x - mouseDraggedLocation.x,
+                        y: newLocation.y - mouseDraggedLocation.y)
     for bPoint in selection {
       bPoint.move(by: delta)
     }
-    mouseDownLocation = newLocation
+    mouseDraggedLocation = newLocation
     updateGlyphPath()
     self.needsDisplay = true
   }
