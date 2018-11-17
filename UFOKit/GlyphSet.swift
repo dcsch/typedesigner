@@ -52,6 +52,17 @@ class ComponentsParser: NSObject, XMLParserDelegate {
 
 }
 
+public protocol FSGlyph {
+  var width: CGFloat { get set }
+  var height: CGFloat { get set }
+  var unicodes: [NSNumber] { get set }
+  var note: String { get set }
+  var lib: Data { get set }
+  var image: [String: Any] { get set }
+  var guidelines: [[String: Any]] { get set }
+  var anchors: [[String: Any]] { get set }
+}
+
 public struct Glyph {
   public var width: Double?
   public var height: Double?
@@ -214,9 +225,43 @@ public class GlyphSet {
     }
   }
 
-  public func readGlyph(glyphName: String, glyph: inout Glyph, pointPen: PointPen) throws {
+  public func readGlyph(glyphName: String,
+                        glyph: inout Glyph,
+                        pointPen: PointPen = NullPen()) throws {
     let glifData = try glif(glyphName: glyphName)
     try readGlyph(glifData: glifData, glyph: &glyph, pointPen: pointPen)
+  }
+
+  public func readGlyph(glyphName: String,
+                        glyph fsGlyph: inout FSGlyph,
+                        pointPen: PointPen = NullPen()) throws {
+    let glifData = try glif(glyphName: glyphName)
+    var glyph = Glyph()
+    try readGlyph(glifData: glifData, glyph: &glyph, pointPen: pointPen)
+    if let width = glyph.width {
+      fsGlyph.width = CGFloat(width)
+    }
+    if let height = glyph.height {
+      fsGlyph.height = CGFloat(height)
+    }
+    if let unicodes = glyph.unicodes {
+      fsGlyph.unicodes = unicodes.map { NSNumber(value: $0.value) }
+    }
+    if let note = glyph.note {
+      fsGlyph.note = note
+    }
+    if let lib = glyph.lib {
+      fsGlyph.lib = lib
+    }
+    if let image = glyph.image {
+      fsGlyph.image = image
+    }
+    if let guidelines = glyph.guidelines {
+      fsGlyph.guidelines = guidelines
+    }
+    if let anchors = glyph.anchors {
+      fsGlyph.anchors = anchors
+    }
   }
 
   public func readGlyph(glyphName: String, pointPen: PointPen) throws {

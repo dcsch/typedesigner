@@ -47,6 +47,14 @@ public protocol PointPen {
   func addComponent(baseGlyphName: String, transformation: CGAffineTransform, identifier: String?) throws
 }
 
+public class NullPen: PointPen {
+  public func beginPath(identifier: String?) throws { }
+  public func endPath() throws { }
+  public func addPoint(_ pt: CGPoint, segmentType: SegmentType, smooth: Bool, name: String?, identifier: String?) throws { }
+  public func addComponent(baseGlyphName: String, transformation: CGAffineTransform, identifier: String?) throws { }
+  public init() { }
+}
+
 public class QuartzPen: PointPen {
   public let path = CGMutablePath()
   var points = [Point]()
