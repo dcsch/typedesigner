@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,37 +10,30 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEK-rS-jSa">
-                    <rect key="frame" x="-2" y="7" width="84" height="17"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wHR-LU-bu6">
+                    <rect key="frame" x="0.0" y="20" width="160" height="140"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Mbn-Bw-gn1"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GEK-rS-jSa">
+                    <rect key="frame" x="-2" y="1" width="164" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="Sgk-gG-aIq">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wHR-LU-bu6">
-                    <rect key="frame" x="16" y="26" width="48" height="48"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="48" id="a8p-hp-mE4"/>
-                        <constraint firstAttribute="height" constant="48" id="pot-Ty-n3F"/>
-                    </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Mbn-Bw-gn1"/>
-                </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="GEK-rS-jSa" firstAttribute="top" secondItem="wHR-LU-bu6" secondAttribute="bottom" constant="2" id="3vt-9J-Kmd"/>
-                <constraint firstItem="wHR-LU-bu6" firstAttribute="centerX" secondItem="GEK-rS-jSa" secondAttribute="centerX" id="6K3-OU-gTy"/>
-                <constraint firstAttribute="trailing" secondItem="GEK-rS-jSa" secondAttribute="trailing" id="8Tw-QD-W4g"/>
-                <constraint firstAttribute="bottom" secondItem="GEK-rS-jSa" secondAttribute="bottom" constant="7" id="8Xb-va-Pjb"/>
-                <constraint firstItem="wHR-LU-bu6" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="6" id="Aht-3Q-wUp"/>
-                <constraint firstItem="wHR-LU-bu6" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="cg7-8X-RoG"/>
-                <constraint firstItem="wHR-LU-bu6" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="ecc-nT-4Pk"/>
-                <constraint firstItem="wHR-LU-bu6" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="6" id="sgQ-rP-8se"/>
-                <constraint firstItem="GEK-rS-jSa" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="tn9-7y-JRs"/>
-                <constraint firstAttribute="trailing" secondItem="wHR-LU-bu6" secondAttribute="trailing" constant="16" id="xgA-uP-aPs"/>
+                <constraint firstItem="GEK-rS-jSa" firstAttribute="leading" secondItem="wHR-LU-bu6" secondAttribute="leading" id="0aV-0N-bPb"/>
+                <constraint firstItem="GEK-rS-jSa" firstAttribute="top" secondItem="wHR-LU-bu6" secondAttribute="bottom" constant="2" id="AVG-ud-WVB"/>
+                <constraint firstAttribute="trailing" secondItem="wHR-LU-bu6" secondAttribute="trailing" id="F5d-Zw-uTW"/>
+                <constraint firstAttribute="bottom" secondItem="wHR-LU-bu6" secondAttribute="bottom" constant="20" symbolic="YES" id="JX3-Te-p9d"/>
+                <constraint firstItem="wHR-LU-bu6" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Mao-VJ-1Ha"/>
+                <constraint firstItem="GEK-rS-jSa" firstAttribute="trailing" secondItem="wHR-LU-bu6" secondAttribute="trailing" id="Noo-mp-b7J"/>
+                <constraint firstItem="wHR-LU-bu6" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="ewJ-qY-CzE"/>
             </constraints>
             <point key="canvasLocation" x="-62" y="78"/>
         </customView>

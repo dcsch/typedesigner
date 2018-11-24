@@ -392,7 +392,7 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="ScE-0F-B6y" kind="relationship" relationship="window.shadowedContentViewController" id="vk8-p4-mPa"/>
+                        <segue destination="hz7-7Q-jgO" kind="relationship" relationship="window.shadowedContentViewController" id="mQu-az-iFz"/>
                     </connections>
                 </windowController>
                 <customObject id="fp0-uc-6xb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -452,24 +452,21 @@
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0K-QQ-bTJ">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="340"/>
                                 <clipView key="contentView" id="sZo-Tg-Ogi">
-                                    <rect key="frame" x="1" y="1" width="463" height="323"/>
+                                    <rect key="frame" x="1" y="1" width="478" height="338"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ym5-6c-can" customClass="GlyphView" customModule="Type_Designer" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="318"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="463" height="333"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="Bfz-2k-Kaa" id="SFi-Yk-ubG"/>
-                                            </connections>
                                         </view>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="XbE-dr-i03">
-                                    <rect key="frame" x="1" y="324" width="463" height="15"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="XbE-dr-i03">
+                                    <rect key="frame" x="1" y="323" width="478" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="MxL-nA-R8L">
-                                    <rect key="frame" x="464" y="1" width="15" height="323"/>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="MxL-nA-R8L">
+                                    <rect key="frame" x="463" y="1" width="16" height="338"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -541,90 +538,6 @@
             </objects>
             <point key="canvasLocation" x="1840" y="-224"/>
         </scene>
-        <!--Delegate-->
-        <scene sceneID="Y79-Ly-bgo">
-            <objects>
-                <viewController id="Bfz-2k-Kaa" customClass="GlyphViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="R9R-9P-Huh">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYa-z5-8es">
-                                <rect key="frame" x="0.0" y="30" width="480" height="340"/>
-                                <clipView key="contentView" id="YcA-DK-IXJ">
-                                    <rect key="frame" x="1" y="1" width="463" height="323"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7i-RZ-QcN" customClass="GlyphView" customModule="Type_Designer" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="318"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="Bfz-2k-Kaa" id="2Bf-Dc-QOf"/>
-                                            </connections>
-                                        </view>
-                                    </subviews>
-                                </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="uDL-uM-XBj">
-                                    <rect key="frame" x="1" y="324" width="463" height="15"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cdt-Cu-Zeb">
-                                    <rect key="frame" x="464" y="1" width="15" height="323"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zuh-Hp-tPf">
-                                <rect key="frame" x="0.0" y="-1" width="76" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="76" id="qvG-8s-0eG"/>
-                                </constraints>
-                                <popUpButtonCell key="cell" type="roundTextured" title="100%" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="amA-4b-A5D" id="MFF-Je-at8">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="uhN-Pa-vux">
-                                        <items>
-                                            <menuItem title="Fit" id="Lme-ki-Z1U"/>
-                                            <menuItem title="25%" id="lDg-Dc-d9a"/>
-                                            <menuItem title="50%" id="wKQ-I6-f7j"/>
-                                            <menuItem title="75%" id="Fhf-yF-j1n">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="100%" state="on" id="amA-4b-A5D">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="150%" id="76i-di-twe">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="200%" id="8GG-YS-7qf">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="changeZoom:" target="Bfz-2k-Kaa" id="JOb-A1-P4F"/>
-                                </connections>
-                            </popUpButton>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="VYa-z5-8es" firstAttribute="leading" secondItem="Zuh-Hp-tPf" secondAttribute="leading" id="0N9-js-sQ2"/>
-                            <constraint firstAttribute="bottom" secondItem="VYa-z5-8es" secondAttribute="bottom" constant="30" id="72m-pA-MQr"/>
-                            <constraint firstItem="VYa-z5-8es" firstAttribute="top" secondItem="R9R-9P-Huh" secondAttribute="top" id="JhD-la-pV2"/>
-                            <constraint firstItem="VYa-z5-8es" firstAttribute="leading" secondItem="R9R-9P-Huh" secondAttribute="leading" id="Vmx-Yq-roN"/>
-                            <constraint firstAttribute="bottom" secondItem="Zuh-Hp-tPf" secondAttribute="bottom" id="kRA-j4-gpJ"/>
-                            <constraint firstAttribute="trailing" secondItem="VYa-z5-8es" secondAttribute="trailing" id="kyS-vv-jbN"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="glyphView" destination="U7i-RZ-QcN" id="bX7-ND-APM"/>
-                        <outlet property="scrollView" destination="VYa-z5-8es" id="hRf-9R-Sq1"/>
-                        <outlet property="zoomPopUpButton" destination="Zuh-Hp-tPf" id="eag-8s-Tbf"/>
-                    </connections>
-                </viewController>
-                <customObject id="FWY-qB-HAC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="623" y="621"/>
-        </scene>
         <!--Import View Controller-->
         <scene sceneID="z1Y-tN-Tx0">
             <objects>
@@ -693,11 +606,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="vCF-K0-BvR">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="vCF-K0-BvR">
                                     <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="QGc-e2-8ZJ">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="QGc-e2-8ZJ">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -760,13 +673,13 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxW-Rl-Dn4">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
+                                <rect key="frame" x="0.0" y="37" width="480" height="333"/>
                                 <clipView key="contentView" id="f2Q-Cn-osx">
-                                    <rect key="frame" x="1" y="1" width="478" height="368"/>
+                                    <rect key="frame" x="1" y="1" width="478" height="331"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="Fsn-S4-KMg">
-                                            <rect key="frame" x="0.0" y="0.0" width="478" height="368"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="478" height="331"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="HbK-bI-34b">
                                                 <size key="itemSize" width="80" height="80"/>
@@ -780,31 +693,44 @@ Gw
                                     </subviews>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="T2E-11-Tbb">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="T2E-11-Tbb">
                                     <rect key="frame" x="-100" y="-100" width="380" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Iek-Yo-UEe">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Iek-Yo-UEe">
                                     <rect key="frame" x="234" y="1" width="15" height="143"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gbv-np-uPf">
+                                <rect key="frame" x="366" y="5" width="96" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="FPe-j3-czP"/>
+                                </constraints>
+                                <sliderCell key="cell" state="on" alignment="left" minValue="6" maxValue="10" doubleValue="8" tickMarkPosition="above" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Omc-gL-gML"/>
+                                <connections>
+                                    <action selector="sizeSliderChanged:" target="hz7-7Q-jgO" id="fR2-1J-liE"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="FxW-Rl-Dn4" secondAttribute="trailing" id="59x-zN-tcw"/>
-                            <constraint firstAttribute="bottom" secondItem="FxW-Rl-Dn4" secondAttribute="bottom" id="Dvs-WT-lFo"/>
+                            <constraint firstAttribute="bottom" secondItem="FxW-Rl-Dn4" secondAttribute="bottom" constant="37" id="Dvs-WT-lFo"/>
+                            <constraint firstItem="gbv-np-uPf" firstAttribute="top" secondItem="FxW-Rl-Dn4" secondAttribute="bottom" constant="8" symbolic="YES" id="Ilw-bF-lKN"/>
+                            <constraint firstAttribute="trailing" secondItem="gbv-np-uPf" secondAttribute="trailing" constant="20" symbolic="YES" id="RjG-sl-4EF"/>
                             <constraint firstItem="FxW-Rl-Dn4" firstAttribute="top" secondItem="9wA-Kg-Gun" secondAttribute="top" id="Vuj-zs-czz"/>
                             <constraint firstItem="FxW-Rl-Dn4" firstAttribute="leading" secondItem="9wA-Kg-Gun" secondAttribute="leading" id="Yen-1I-swH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Fsn-S4-KMg" id="3Rc-3y-ckB"/>
+                        <outlet property="sizeSlider" destination="gbv-np-uPf" id="DzW-jl-kd5"/>
                         <segue destination="cBU-fh-Ico" kind="show" identifier="ShowGlyph" id="P7L-Wd-APf"/>
                     </connections>
                 </viewController>
                 <customObject id="GUB-wf-IWP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="621"/>
+            <point key="canvasLocation" x="61" y="91"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="oOd-rl-0qx">
@@ -906,31 +832,6 @@ Gw
                 <customObject id="GdO-wg-0rc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="692" y="1474"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="bDU-Rd-ctB">
-            <objects>
-                <splitViewController id="ScE-0F-B6y" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem holdingPriority="255" id="u6G-fg-O8p"/>
-                        <splitViewItem id="M3u-ia-NF5"/>
-                    </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="DW8-uZ-oap">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <outlet property="delegate" destination="ScE-0F-B6y" id="FIa-Mt-J83"/>
-                        </connections>
-                    </splitView>
-                    <connections>
-                        <outlet property="splitView" destination="DW8-uZ-oap" id="vZF-r5-ROn"/>
-                        <segue destination="hz7-7Q-jgO" kind="relationship" relationship="splitItems" id="Hto-Gf-b9r"/>
-                        <segue destination="Bfz-2k-Kaa" kind="relationship" relationship="splitItems" id="ons-QW-6nf"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="co3-Gf-FwR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="61" y="80"/>
         </scene>
     </scenes>
 </document>

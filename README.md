@@ -2,6 +2,11 @@
 
 Unified Font Object Editor for macOS. *Under construction — not yet a useful application!*
 
+## Companion Projects
+ - [UFOKit](https://github.com/dcsch/ufokit): [Unified Font Object](http://unifiedfontobject.org/) file handling
+ - [FontScript](https://github.com/dcsch/fontscript): An Objective-C implementation of the
+ [FontParts API](http://fontparts.readthedocs.io/en/stable/index.html)
+
 ## Useful Links
  - [Unified Font Object](http://unifiedfontobject.org/)
  - [FontParts API](http://fontparts.readthedocs.io/en/stable/index.html)

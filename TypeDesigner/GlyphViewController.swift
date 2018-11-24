@@ -30,7 +30,7 @@ class GlyphViewController: NSViewController, GlyphViewDelegate, FontControllerCo
       if let new = fontController {
         new.addSubscriber(self)
       }
-      updateGlyph()
+//      updateGlyph()
     }
   }
 
@@ -78,16 +78,23 @@ class GlyphViewController: NSViewController, GlyphViewDelegate, FontControllerCo
     let foo = 0
   }
 
-  func updateGlyph() {
-    guard let font = fontController?.font,
-      let glyphName = fontController?.glyphName,
-      let glyphView = glyphView else { return }
-    let glyphs = font.defaultLayer.glyphs
-    if let glyph = glyphs[glyphName] as? UFOGlyph {
+  var glyph: UFOGlyph? {
+    didSet {
       glyphView.glyph = glyph
       sizeGlyphView()
     }
   }
+
+//  func updateGlyph() {
+//    guard let font = fontController?.font,
+//      let glyphName = fontController?.glyphName,
+//      let glyphView = glyphView else { return }
+//    let glyphs = font.defaultLayer.glyphs
+//    if let glyph = glyphs[glyphName] as? UFOGlyph {
+//      glyphView.glyph = glyph
+//      sizeGlyphView()
+//    }
+//  }
 
   func sizeGlyphView() {
     var boundingBox = fontController?.font.bounds ?? CGRect.zero
@@ -117,7 +124,7 @@ class GlyphViewController: NSViewController, GlyphViewDelegate, FontControllerCo
 extension GlyphViewController: FontSubscriber {
 
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
-    updateGlyph()
+//    updateGlyph()
   }
 
 }

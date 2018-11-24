@@ -11,7 +11,8 @@ import os.log
 
 class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
     NSCollectionViewDelegate, FontControllerConsumer {
-  @IBOutlet weak var collectionView: NSCollectionView?
+  @IBOutlet weak var collectionView: NSCollectionView!
+  @IBOutlet weak var sizeSlider: NSSlider!
 //  weak var cmapIndexEntry: TCCmapIndexEntry?
   var characterMappings = [(Int, Int)]()
   var font: UFOFont?
@@ -53,7 +54,7 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
         for i in 0..<glyphOrder.count {
           characterMappings.append((i, i))
         }
-        collectionView?.reloadData()
+        collectionView.reloadData()
       } else {
         self.font = nil
 //        cmapIndexEntry = nil
@@ -102,12 +103,29 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
         let index = collectionView?.selectionIndexes.first,
         index >= 0 {
 
-//        // We're all part of the same document
-//        document?.addWindowController(windowController)
-//
-//        let glyph = font?.glyph(at: characterMappings[index].1)
-//        viewController.glyphReference = (font, glyph)
+        // We're all part of the same document
+        if let document = self.view.window?.windowController?.document {
+          document.addWindowController(windowController)
+        }
+
+        if let indexPath = collectionView.selectionIndexPaths.first,
+          indexPath.item > -1,
+          let glyphs = font?.defaultLayer.glyphs,
+          let glyphOrder = font?.libProps.glyphOrder {
+          let glyphIndex = characterMappings[indexPath.item].1
+          let glyphName = glyphOrder[glyphIndex]
+          let glyph = glyphs[glyphName] as! UFOGlyph
+          viewController.glyph = glyph
+        }
       }
+    }
+  }
+
+  @IBAction func sizeSliderChanged(_ target: Any?) {
+    let size = Double(truncating: pow(2, sizeSlider.integerValue) as NSNumber)
+    if let layout = collectionView.collectionViewLayout as? NSCollectionViewFlowLayout {
+      layout.itemSize = CGSize(width: size, height: size)
+      collectionView.reloadData()
     }
   }
 
@@ -119,20 +137,23 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
   func collectionView(_ collectionView: NSCollectionView,
                       itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
     let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CharacterMapItem"), for: indexPath)
-    let mapping = characterMappings[indexPath.item]
+//    let mapping = characterMappings[indexPath.item]
 
     if let characterMapItem = item as? CharacterMapItem {
       characterMapItem.characterMapViewController = self
     }
 
     // Character code
-    item.textField?.stringValue = String(format: "%04X", mapping.0)
+//    item.textField?.stringValue = String(format: "%04X", mapping.0)
 
     // Glyph
     if let glyphs = font?.defaultLayer.glyphs,
       let glyphOrder = font?.libProps.glyphOrder {
       let glyphIndex = characterMappings[indexPath.item].1
       let glyphName = glyphOrder[glyphIndex]
+
+      item.textField?.stringValue = glyphName
+
       let glyph = glyphs[glyphName] as! UFOGlyph
       let size = item.imageView?.bounds.size
       let pixelSize = collectionView.convertToBacking(size!)
@@ -145,10 +166,16 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
       transform = transform.translatedBy(x: -bounds.minX,
                                          y: -bounds.minY)
 
-      // Center the glyph bounding box within the image view
-      let imageWidthInUnits = pixelSize.width / scaleFactor
-      let tx = (imageWidthInUnits / 2) - (bounds.width / 2)
-      transform = transform.translatedBy(x: tx, y: 0)
+      // Does the thumbnail image fully contain the glyph?
+      let imageBounds = CGRect(x: bounds.minX, y: bounds.minY, width: bounds.height, height: bounds.height)
+      let glyphBounds = glyph.bounds
+      if !imageBounds.contains(glyphBounds) {
+
+        // Shift the glyph to the left of the image bounding box
+        let tx = imageBounds.minX - glyphBounds.minX
+        transform = transform.translatedBy(x: tx, y: 0)
+        os_log("Shifting glyph %@ by %f", glyph.name, tx)
+      }
 
       if let cgImage = GlyphImageFactory.buildImage(glyph: glyph,
                                                     transform: transform,

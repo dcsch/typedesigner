@@ -33,7 +33,7 @@ class GlyphImageFactory {
                                space: colorspace,
                                bitmapInfo: bitmapInfo.rawValue) {
       // Fill the background
-      context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+      context.setFillColor(NSColor.textBackgroundColor.cgColor)
       context.fill(CGRect(x: 0.0, y: 0.0,
                           width: size.width, height: size.height))
 
@@ -42,7 +42,7 @@ class GlyphImageFactory {
       glyph.draw(with: pen)
       context.concatenate(transform)
       context.addPath(pen.path)
-      context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+      context.setFillColor(NSColor.textColor.cgColor)
       context.fillPath()
       return context.makeImage()
     }

@@ -82,7 +82,7 @@ class GlyphView: NSView {
       return
     }
 
-    context.setFillColor(.white)
+    context.setFillColor(NSColor.textBackgroundColor.cgColor)
     context.fill(dirtyRect)
 
     scaleToOne = 1.0 / context.ctm.a
@@ -120,7 +120,7 @@ class GlyphView: NSView {
     // Render the glyph path
     if let path = glyphPath {
       context.addPath(path)
-      context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+      context.setStrokeColor(NSColor.textColor.cgColor)
       context.strokePath()
     }
 
