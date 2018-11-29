@@ -381,7 +381,7 @@
         <!--Window Controller-->
         <scene sceneID="lIU-vX-VSv">
             <objects>
-                <windowController storyboardIdentifier="Document Window Controller" id="dbg-D2-3jH" customClass="FontDocumentWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Document Window Controller" id="dbg-D2-3jH" customClass="FontWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="RSy-fl-pyn">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -423,7 +423,7 @@
         <!--Window Controller-->
         <scene sceneID="2Ft-xi-CVW">
             <objects>
-                <windowController storyboardIdentifier="GLIF Window Controller" id="cBU-fh-Ico" customClass="GLIFWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="GLIF Window Controller" id="cBU-fh-Ico" customClass="GlyphWindowController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="QZV-Pf-zvd">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -452,21 +452,21 @@
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0K-QQ-bTJ">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="340"/>
                                 <clipView key="contentView" id="sZo-Tg-Ogi">
-                                    <rect key="frame" x="1" y="1" width="478" height="338"/>
+                                    <rect key="frame" x="1" y="1" width="463" height="323"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ym5-6c-can" customClass="GlyphView" customModule="Type_Designer" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="463" height="333"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="318"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="XbE-dr-i03">
-                                    <rect key="frame" x="1" y="323" width="478" height="16"/>
+                                    <rect key="frame" x="1" y="324" width="463" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="MxL-nA-R8L">
-                                    <rect key="frame" x="463" y="1" width="16" height="338"/>
+                                    <rect key="frame" x="464" y="1" width="15" height="323"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -664,10 +664,10 @@ Gw
             </objects>
             <point key="canvasLocation" x="-566" y="80"/>
         </scene>
-        <!--Character Map View Controller-->
+        <!--Font View Controller-->
         <scene sceneID="3bY-Cd-jpJ">
             <objects>
-                <viewController id="hz7-7Q-jgO" customClass="CharacterMapViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hz7-7Q-jgO" customClass="FontViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="9wA-Kg-Gun">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="370"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -703,7 +703,7 @@ Gw
                                 </scroller>
                             </scrollView>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gbv-np-uPf">
-                                <rect key="frame" x="366" y="5" width="96" height="24"/>
+                                <rect key="frame" x="366" y="7" width="96" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="FPe-j3-czP"/>
                                 </constraints>
@@ -712,18 +712,43 @@ Gw
                                     <action selector="sizeSliderChanged:" target="hz7-7Q-jgO" id="fR2-1J-liE"/>
                                 </connections>
                             </slider>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uqf-Mg-eQr">
+                                <rect key="frame" x="18" y="6" width="142" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="137" id="KhJ-vG-QhA"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" title="Glyph Order" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="MhC-u0-Cg1" id="563-T0-9DO">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="RLz-lQ-D6y">
+                                        <items>
+                                            <menuItem title="Glyph Order" state="on" id="MhC-u0-Cg1"/>
+                                            <menuItem title="Adobe Glyph List" id="Irc-a7-nUp"/>
+                                            <menuItem title="Unicode" id="LnY-qR-mRq"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="orderPopUpChanged:" target="hz7-7Q-jgO" id="Xul-1l-oWs"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="uqf-Mg-eQr" secondAttribute="bottom" constant="9" id="4Qy-cb-IWy"/>
                             <constraint firstAttribute="trailing" secondItem="FxW-Rl-Dn4" secondAttribute="trailing" id="59x-zN-tcw"/>
+                            <constraint firstItem="uqf-Mg-eQr" firstAttribute="centerY" secondItem="gbv-np-uPf" secondAttribute="centerY" id="9q8-ZI-htG"/>
                             <constraint firstAttribute="bottom" secondItem="FxW-Rl-Dn4" secondAttribute="bottom" constant="37" id="Dvs-WT-lFo"/>
-                            <constraint firstItem="gbv-np-uPf" firstAttribute="top" secondItem="FxW-Rl-Dn4" secondAttribute="bottom" constant="8" symbolic="YES" id="Ilw-bF-lKN"/>
+                            <constraint firstItem="uqf-Mg-eQr" firstAttribute="top" secondItem="gbv-np-uPf" secondAttribute="top" id="EBa-Mv-JUS"/>
+                            <constraint firstItem="gbv-np-uPf" firstAttribute="top" secondItem="FxW-Rl-Dn4" secondAttribute="bottom" constant="7" id="Ilw-bF-lKN"/>
                             <constraint firstAttribute="trailing" secondItem="gbv-np-uPf" secondAttribute="trailing" constant="20" symbolic="YES" id="RjG-sl-4EF"/>
                             <constraint firstItem="FxW-Rl-Dn4" firstAttribute="top" secondItem="9wA-Kg-Gun" secondAttribute="top" id="Vuj-zs-czz"/>
                             <constraint firstItem="FxW-Rl-Dn4" firstAttribute="leading" secondItem="9wA-Kg-Gun" secondAttribute="leading" id="Yen-1I-swH"/>
+                            <constraint firstItem="uqf-Mg-eQr" firstAttribute="leading" secondItem="9wA-Kg-Gun" secondAttribute="leading" constant="20" symbolic="YES" id="uJc-gw-IfY"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Fsn-S4-KMg" id="3Rc-3y-ckB"/>
+                        <outlet property="orderPopUpButton" destination="uqf-Mg-eQr" id="wzk-6a-khe"/>
                         <outlet property="sizeSlider" destination="gbv-np-uPf" id="DzW-jl-kd5"/>
                         <segue destination="cBU-fh-Ico" kind="show" identifier="ShowGlyph" id="P7L-Wd-APf"/>
                     </connections>

@@ -1,5 +1,5 @@
 //
-//  CharacterMapViewController.swift
+//  FontViewController.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/29/17.
@@ -9,12 +9,19 @@
 import Cocoa
 import os.log
 
-class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
+class FontViewController: NSViewController, NSCollectionViewDataSource,
     NSCollectionViewDelegate, FontControllerConsumer {
+
+  enum GlyphDisplay {
+    case glyphOrder
+    case adobeGlyphList
+    case unicodeRange
+  }
+
   @IBOutlet weak var collectionView: NSCollectionView!
+  @IBOutlet weak var orderPopUpButton: NSPopUpButton!
   @IBOutlet weak var sizeSlider: NSSlider!
-//  weak var cmapIndexEntry: TCCmapIndexEntry?
-  var characterMappings = [(Int, Int)]()
+  var characterMappings = [(Int, String?)]()
   var font: UFOFont?
 
   var fontController: FontController? {
@@ -27,37 +34,9 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
       }
       if let font = fontController?.font {
         self.font = font
-
-        // TODO: The cmap should be selectable
-//        cmapIndexEntry = font.cmapTable.entries.first
-//        let mapping = font.cmapTable.mappings[0]
-
-//        characterMappings.removeAll()
-//        if let format = cmapIndexEntry?.format {
-//          for range in format.ranges {
-//            for i in range {
-//              let mapping = (i, format.glyphCode(characterCode: i))
-//              characterMappings.append(mapping)
-//            }
-//          }
-//        }
-//        let charCodes = mapping.glyphCodes.keys.sorted()
-//        for charCode in charCodes {
-//          if let glyphCode = mapping.glyphCodes[charCode] {
-//            characterMappings.append((charCode, glyphCode))
-//          }
-//        }
-
-        // No mapping - just the glyph order
-        let glyphOrder = font.libProps.glyphOrder
-        characterMappings.removeAll()
-        for i in 0..<glyphOrder.count {
-          characterMappings.append((i, i))
-        }
-        collectionView.reloadData()
+        display(by: selectedGlyphDisplay)
       } else {
         self.font = nil
-//        cmapIndexEntry = nil
       }
     }
   }
@@ -103,22 +82,41 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
         let index = collectionView?.selectionIndexes.first,
         index >= 0 {
 
+        // Set the glyph before connecting with the document, as we're using this information
+        // when the document property is set
+        if let indexPath = collectionView.selectionIndexPaths.first,
+          indexPath.item > -1,
+          let glyphs = font?.defaultLayer.glyphs,
+          let glyphName = characterMappings[indexPath.item].1,
+          let glyph = glyphs[glyphName] as? UFOGlyph {
+          viewController.glyph = glyph
+        }
+
         // We're all part of the same document
         if let document = self.view.window?.windowController?.document {
           document.addWindowController(windowController)
         }
-
-        if let indexPath = collectionView.selectionIndexPaths.first,
-          indexPath.item > -1,
-          let glyphs = font?.defaultLayer.glyphs,
-          let glyphOrder = font?.libProps.glyphOrder {
-          let glyphIndex = characterMappings[indexPath.item].1
-          let glyphName = glyphOrder[glyphIndex]
-          let glyph = glyphs[glyphName] as! UFOGlyph
-          viewController.glyph = glyph
-        }
       }
     }
+  }
+
+  var selectedGlyphDisplay: GlyphDisplay {
+    get {
+      switch orderPopUpButton.indexOfSelectedItem {
+      case 0:
+        return .glyphOrder
+      case 1:
+        return .adobeGlyphList
+      case 2:
+        return .unicodeRange
+      default:
+        return .glyphOrder
+      }
+    }
+  }
+
+  @IBAction func orderPopUpChanged(_ target: Any?) {
+    display(by: selectedGlyphDisplay)
   }
 
   @IBAction func sizeSliderChanged(_ target: Any?) {
@@ -126,6 +124,67 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
     if let layout = collectionView.collectionViewLayout as? NSCollectionViewFlowLayout {
       layout.itemSize = CGSize(width: size, height: size)
       collectionView.reloadData()
+    }
+  }
+
+  func displayGlyphOrder() {
+    if let font = self.font {
+      let glyphOrder = font.libProps.glyphOrder
+      characterMappings.removeAll()
+      for i in 0..<glyphOrder.count {
+        characterMappings.append((i, glyphOrder[i]))
+      }
+      collectionView.reloadData()
+    }
+  }
+
+  func displayAdobeGlyphList() {
+    let agl = AdobeGlyphListForNewFonts()
+    characterMappings.removeAll()
+    for entry in agl.entries {
+      characterMappings.append((entry.0, entry.1))
+    }
+    collectionView.reloadData()
+  }
+
+  func displayUnicodeRange() {
+    if let font = self.font {
+
+      // Build a dictionary of unicode scalars and their
+      // associated glyph names
+      var unicodeToGlyphName: [Unicode.Scalar: String] = [:]
+      for glyphEntry in font.defaultLayer.glyphs {
+        if let glyph = glyphEntry.value as? UFOGlyph,
+          let name = glyphEntry.key as? String {
+          for unicode in glyph.unicodes {
+            if let us = Unicode.Scalar(unicode.intValue) {
+              unicodeToGlyphName[us] = name
+            }
+          }
+        }
+      }
+
+      characterMappings.removeAll()
+      for i in 0..<0x7f {
+        if let us = Unicode.Scalar(i),
+          let name = unicodeToGlyphName[us] {
+          characterMappings.append((i, name))
+        } else {
+          characterMappings.append((i, nil))
+        }
+      }
+      collectionView.reloadData()
+    }
+  }
+
+  func display(by: GlyphDisplay) {
+    switch by {
+    case .glyphOrder:
+      displayGlyphOrder()
+    case .adobeGlyphList:
+      displayAdobeGlyphList()
+    case .unicodeRange:
+      displayUnicodeRange()
     }
   }
 
@@ -137,24 +196,24 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
   func collectionView(_ collectionView: NSCollectionView,
                       itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
     let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CharacterMapItem"), for: indexPath)
-//    let mapping = characterMappings[indexPath.item]
+    let mapping = characterMappings[indexPath.item]
 
     if let characterMapItem = item as? CharacterMapItem {
       characterMapItem.characterMapViewController = self
     }
 
     // Character code
-//    item.textField?.stringValue = String(format: "%04X", mapping.0)
+    if let glyphName = mapping.1 {
+      item.textField?.stringValue = glyphName
+    } else {
+      item.textField?.stringValue = String(format: "%04X", mapping.0)
+    }
 
     // Glyph
     if let glyphs = font?.defaultLayer.glyphs,
-      let glyphOrder = font?.libProps.glyphOrder {
-      let glyphIndex = characterMappings[indexPath.item].1
-      let glyphName = glyphOrder[glyphIndex]
+      let glyphName = mapping.1,
+      let glyph = glyphs[glyphName] as? UFOGlyph {
 
-      item.textField?.stringValue = glyphName
-
-      let glyph = glyphs[glyphName] as! UFOGlyph
       let size = item.imageView?.bounds.size
       let pixelSize = collectionView.convertToBacking(size!)
 
@@ -183,6 +242,9 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
         let image = NSImage(cgImage: cgImage, size: CGSize.zero)
         item.imageView?.image = image
       }
+    } else {
+      item.imageView?.image = nil
+    }
 
       //      // Are we selected?
       //      if item.isSelected {
@@ -201,9 +263,6 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
       //        item.view.layer?.backgroundColor = CGColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
       //      }
 
-    } else {
-      item.imageView?.image = nil
-    }
     return item
   }
 
@@ -211,10 +270,8 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
                       didSelectItemsAt indexPaths: Set<IndexPath>) {
     if let indexPath = indexPaths.first,
       indexPath.item > -1,
-      let font = self.font {
-      let glyphOrder = font.libProps.glyphOrder
-      let glyphIndex = characterMappings[indexPath.item].1
-      fontController?.setGlyphName(glyphOrder[glyphIndex])
+      let glyphName = characterMappings[indexPath.item].1 {
+      fontController?.setGlyphName(glyphName)
     }
   }
 
@@ -224,7 +281,7 @@ class CharacterMapViewController: NSViewController, NSCollectionViewDataSource,
 
 }
 
-extension CharacterMapViewController: FontSubscriber {
+extension FontViewController: FontSubscriber {
 
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
   }

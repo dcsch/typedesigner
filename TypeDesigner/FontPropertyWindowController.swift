@@ -47,10 +47,7 @@ class FontPropertyWindowController: NSWindowController {
   override var document: AnyObject? {
     didSet {
       guard let fontDocument = document as? UFODocument else { return }
-      if fontDocument.font == nil {
-        fontDocument.font = UFOFont()
-      }
-      fontController = FontController(font: fontDocument.font!)
+      fontController = FontController(font: fontDocument.font)
     }
   }
 }

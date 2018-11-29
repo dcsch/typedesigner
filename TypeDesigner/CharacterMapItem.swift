@@ -10,7 +10,7 @@ import Cocoa
 import os.log
 
 class CharacterMapItem: NSCollectionViewItem {
-  var characterMapViewController: CharacterMapViewController?
+  var characterMapViewController: FontViewController?
 
   override func viewDidLoad() {
     super.viewDidLoad()

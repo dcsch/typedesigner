@@ -1,5 +1,5 @@
 //
-//  GLIFWindowController.swift
+//  GlyphWindowController.swift
 //  Type Designer
 //
 //  Created by David Schweinsberg on 8/31/18.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class GLIFWindowController: NSWindowController {
+class GlyphWindowController: NSWindowController {
 
   override func windowDidLoad() {
     super.windowDidLoad()
@@ -44,11 +44,25 @@ class GLIFWindowController: NSWindowController {
     }
   }
 
+  override var document: AnyObject? {
+    didSet {
+      guard let fontDocument = document as? UFODocument else { return }
+
+      // Reload this fileURL's window to the same position
+      if let urlString = fontDocument.fileURL?.absoluteString,
+        let glyphVC = self.contentViewController as? GlyphViewController,
+        let glyph = glyphVC.glyph {
+        // TODO: Shift this out of the preferences system into some sort of project file
+        self.windowFrameAutosaveName = urlString + glyph.name
+      }
+    }
+  }
+
 }
 
-// MARK: Font Subscriber Protocol
+// MARK: - Font Subscriber Protocol
 
-extension GLIFWindowController: FontSubscriber {
+extension GlyphWindowController: FontSubscriber {
 
   func font(_ font: UFOFont, didChangeGlyphName glyphName: String) {
     //    document?.updateChangeCount(.changeDone)

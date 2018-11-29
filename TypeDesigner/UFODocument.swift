@@ -10,9 +10,10 @@ import Cocoa
 import UFOKit
 
 class UFODocument: NSDocument {
-  var font: UFOFont?
+  var font: UFOFont
 
   override init() {
+    font = UFOFont()
     super.init()
     hasUndoManager = true
   }
