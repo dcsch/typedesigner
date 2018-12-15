@@ -15,14 +15,16 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
   enum GlyphDisplay {
     case glyphOrder
     case adobeGlyphList
-    case unicodeRange
+    case unicodeBlock
   }
 
   @IBOutlet weak var collectionView: NSCollectionView!
   @IBOutlet weak var orderPopUpButton: NSPopUpButton!
+  @IBOutlet weak var subsetPopUpButton: NSPopUpButton!
   @IBOutlet weak var sizeSlider: NSSlider!
   var characterMappings = [(Int, String?)]()
   var font: UFOFont?
+  var ucd = UCD()
 
   var fontController: FontController? {
     didSet {
@@ -108,7 +110,7 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
       case 1:
         return .adobeGlyphList
       case 2:
-        return .unicodeRange
+        return .unicodeBlock
       default:
         return .glyphOrder
       }
@@ -117,6 +119,10 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
 
   @IBAction func orderPopUpChanged(_ target: Any?) {
     display(by: selectedGlyphDisplay)
+  }
+
+  @IBAction func subsetPopUpChanged(_ target: Any?) {
+    displayUnicodeBlock(index: subsetPopUpButton.indexOfSelectedItem)
   }
 
   @IBAction func sizeSliderChanged(_ target: Any?) {
@@ -128,6 +134,9 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
   }
 
   func displayGlyphOrder() {
+
+    subsetPopUpButton.isHidden = true
+
     if let font = self.font {
       let glyphOrder = font.libProps.glyphOrder
       characterMappings.removeAll()
@@ -139,6 +148,9 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
   }
 
   func displayAdobeGlyphList() {
+
+    subsetPopUpButton.isHidden = true
+
     let agl = AdobeGlyphListForNewFonts()
     characterMappings.removeAll()
     for entry in agl.entries {
@@ -147,7 +159,15 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
     collectionView.reloadData()
   }
 
-  func displayUnicodeRange() {
+  func displayUnicodeBlock() {
+    subsetPopUpButton.isHidden = false
+    subsetPopUpButton.removeAllItems()
+    let blockNames = ucd.blocks.map { $0.name }
+    subsetPopUpButton.addItems(withTitles: blockNames)
+    displayUnicodeBlock(index: subsetPopUpButton.indexOfSelectedItem)
+  }
+
+  func displayUnicodeBlock(index: Int) {
     if let font = self.font {
 
       // Build a dictionary of unicode scalars and their
@@ -156,6 +176,7 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
       for glyphEntry in font.defaultLayer.glyphs {
         if let glyph = glyphEntry.value as? UFOGlyph,
           let name = glyphEntry.key as? String {
+//          print("\(name), unicode count: \(glyph.unicodes.count)")
           for unicode in glyph.unicodes {
             if let us = Unicode.Scalar(unicode.intValue) {
               unicodeToGlyphName[us] = name
@@ -165,7 +186,10 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
       }
 
       characterMappings.removeAll()
-      for i in 0..<0x7f {
+
+      let block = ucd.blocks[index]
+
+      for i in block.range {
         if let us = Unicode.Scalar(i),
           let name = unicodeToGlyphName[us] {
           characterMappings.append((i, name))
@@ -183,8 +207,8 @@ class FontViewController: NSViewController, NSCollectionViewDataSource,
       displayGlyphOrder()
     case .adobeGlyphList:
       displayAdobeGlyphList()
-    case .unicodeRange:
-      displayUnicodeRange()
+    case .unicodeBlock:
+      displayUnicodeBlock()
     }
   }
 

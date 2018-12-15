@@ -732,6 +732,23 @@ Gw
                                     <action selector="orderPopUpChanged:" target="hz7-7Q-jgO" id="Xul-1l-oWs"/>
                                 </connections>
                             </popUpButton>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Oj-uc-EO9">
+                                <rect key="frame" x="163" y="6" width="142" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="ACZ-zx-Ao4" id="K4u-4b-XfW">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="we7-Kr-rsD">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="ACZ-zx-Ao4"/>
+                                            <menuItem title="Item 2" id="iYX-MS-LRc"/>
+                                            <menuItem title="Item 3" id="R1e-Ls-L0e"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="subsetPopUpChanged:" target="hz7-7Q-jgO" id="Xpr-QM-4Du"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="uqf-Mg-eQr" secondAttribute="bottom" constant="9" id="4Qy-cb-IWy"/>
@@ -743,13 +760,17 @@ Gw
                             <constraint firstAttribute="trailing" secondItem="gbv-np-uPf" secondAttribute="trailing" constant="20" symbolic="YES" id="RjG-sl-4EF"/>
                             <constraint firstItem="FxW-Rl-Dn4" firstAttribute="top" secondItem="9wA-Kg-Gun" secondAttribute="top" id="Vuj-zs-czz"/>
                             <constraint firstItem="FxW-Rl-Dn4" firstAttribute="leading" secondItem="9wA-Kg-Gun" secondAttribute="leading" id="Yen-1I-swH"/>
+                            <constraint firstItem="7Oj-uc-EO9" firstAttribute="baseline" secondItem="uqf-Mg-eQr" secondAttribute="baseline" id="a7B-jl-e9G"/>
+                            <constraint firstItem="7Oj-uc-EO9" firstAttribute="leading" secondItem="uqf-Mg-eQr" secondAttribute="trailing" constant="8" symbolic="YES" id="b94-tc-3eh"/>
                             <constraint firstItem="uqf-Mg-eQr" firstAttribute="leading" secondItem="9wA-Kg-Gun" secondAttribute="leading" constant="20" symbolic="YES" id="uJc-gw-IfY"/>
+                            <constraint firstItem="gbv-np-uPf" firstAttribute="leading" secondItem="7Oj-uc-EO9" secondAttribute="trailing" constant="66" id="xPB-O8-Ki4"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Fsn-S4-KMg" id="3Rc-3y-ckB"/>
                         <outlet property="orderPopUpButton" destination="uqf-Mg-eQr" id="wzk-6a-khe"/>
                         <outlet property="sizeSlider" destination="gbv-np-uPf" id="DzW-jl-kd5"/>
+                        <outlet property="subsetPopUpButton" destination="7Oj-uc-EO9" id="lBt-Xz-LGp"/>
                         <segue destination="cBU-fh-Ico" kind="show" identifier="ShowGlyph" id="P7L-Wd-APf"/>
                     </connections>
                 </viewController>
