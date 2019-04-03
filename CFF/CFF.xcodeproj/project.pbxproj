@@ -185,7 +185,7 @@
 					03C2F4F61F43FDDB00B2A3BC = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 9MWCHY26A8;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					03C2F4FF1F43FDDC00B2A3BC = {
@@ -201,6 +201,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 03C2F4ED1F43FDDB00B2A3BC;
@@ -403,7 +404,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.CFF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -428,7 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.typista.CFF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
