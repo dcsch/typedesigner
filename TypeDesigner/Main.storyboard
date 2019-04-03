@@ -293,6 +293,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vRv-Oq-0g9"/>
+                                        <menuItem title="Glyph Info" keyEquivalent="i" id="SeT-PX-hWN">
+                                            <connections>
+                                                <segue destination="TRl-Sc-qxh" kind="show" id="GR9-w1-Dt7"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="v5s-SD-0Su"/>
                                         <menuItem title="Show Sidebar" keyEquivalent="s" id="DAh-OD-r6i">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
@@ -537,6 +543,63 @@
                 <customObject id="kIs-4A-b72" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1840" y="-224"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="lVj-7P-7D1">
+            <objects>
+                <windowController storyboardIdentifier="Glyph Property Controller" showSeguePresentationStyle="single" id="TRl-Sc-qxh" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="F7G-8Y-hbD">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="666" y="461" width="239" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="TRl-Sc-qxh" id="DGm-mH-eXt"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="bQ3-8O-2A0" kind="relationship" relationship="window.shadowedContentViewController" id="djI-UW-yLV"/>
+                    </connections>
+                </windowController>
+                <customObject id="Gfy-Et-qbS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1026.5" y="-370"/>
+        </scene>
+        <!--Glyph Property View Controller-->
+        <scene sceneID="MmH-nJ-QcS">
+            <objects>
+                <viewController id="bQ3-8O-2A0" customClass="GlyphPropertyViewController" customModule="Type_Designer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="7gC-3P-wl3">
+                        <rect key="frame" x="0.0" y="0.0" width="239" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IiB-5M-e7l">
+                                <rect key="frame" x="18" y="263" width="44" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Name:" id="gGY-1G-kWV">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-tD-h1r">
+                                <rect key="frame" x="68" y="260" width="151" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="o4V-Yk-Sbg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="wwe-tD-h1r" id="BwR-yY-4e0"/>
+                    </connections>
+                </viewController>
+                <customObject id="V8M-H8-oIk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1026.5" y="91"/>
         </scene>
         <!--Import View Controller-->
         <scene sceneID="z1Y-tN-Tx0">
