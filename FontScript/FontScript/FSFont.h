@@ -22,7 +22,7 @@ NS_SWIFT_NAME(Font)
                              showInterface:(BOOL)showInterface;
 
 // File Operations
-@property(readonly) NSURL *url;
+@property(null_unspecified, readonly) NSURL *url;
 - (void)saveToURL:(nonnull NSURL *)url showProgress:(BOOL)progress formatVersion:(NSUInteger)version;
 
 // Sub-Objects

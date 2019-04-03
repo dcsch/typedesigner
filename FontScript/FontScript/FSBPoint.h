@@ -13,10 +13,10 @@ NS_SWIFT_NAME(BPoint)
 @interface FSBPoint : NSObject
 
 - (nonnull instancetype)initWithPoint:(nonnull FSPoint *)point NS_DESIGNATED_INITIALIZER;
-- (instancetype)init __attribute__((unavailable));
+- (nonnull instancetype)init __attribute__((unavailable));
 
 // Parents
-@property(weak) FSContour *contour;
+@property(nullable, weak) FSContour *contour;
 
 // Attributes
 @property FSPointType type;

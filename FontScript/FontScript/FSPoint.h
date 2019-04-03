@@ -28,17 +28,17 @@ NS_SWIFT_NAME(Point)
 @interface FSPoint : NSObject <NSCopying>
 
 - (nonnull instancetype)initWithPoint:(CGPoint)cgPoint type:(FSPointType)type smooth:(BOOL)smooth NS_DESIGNATED_INITIALIZER;
-- (instancetype)init __attribute__((unavailable));
+- (nonnull instancetype)init __attribute__((unavailable));
 
 // Parents
-@property(weak) FSContour *contour;
-@property(readonly, weak) FSGlyph *glyph;
-@property(readonly, weak) FSLayer *layer;
-@property(readonly, weak) FSFont *font;
+@property(null_unspecified, weak) FSContour *contour;
+@property(null_unspecified, readonly, weak) FSGlyph *glyph;
+@property(null_unspecified, readonly, weak) FSLayer *layer;
+@property(null_unspecified, readonly, weak) FSFont *font;
 
 // Identification
 @property(nullable) NSString *name;
-@property(readonly) NSString *identifier;
+@property(null_unspecified, readonly) NSString *identifier;
 @property(readonly) NSUInteger index;
 
 // Coordinate

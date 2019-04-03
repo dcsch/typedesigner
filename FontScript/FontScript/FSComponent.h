@@ -19,15 +19,15 @@ NS_SWIFT_NAME(Component)
 @interface FSComponent : NSObject <NSCopying>
 
 - (nonnull instancetype)initWithBaseGlyphName:(nonnull NSString *)baseGlyphName NS_DESIGNATED_INITIALIZER;
-- (instancetype)init __attribute__((unavailable));
+- (nonnull instancetype)init __attribute__((unavailable));
 
 // Parents
-@property(weak) FSGlyph *glyph;
-@property(readonly, weak) FSLayer *layer;
-@property(readonly, weak) FSFont *font;
+@property(nullable, weak) FSGlyph *glyph;
+@property(nullable, readonly, weak) FSLayer *layer;
+@property(nullable, readonly, weak) FSFont *font;
 
 // Identification
-@property(readonly) NSString *identifier;
+@property(null_unspecified, readonly) NSString *identifier;
 @property(readonly) NSUInteger index;
 
 // Attributes
@@ -39,13 +39,13 @@ NS_SWIFT_NAME(Component)
 // Queries
 
 // Pens and Drawing
-- (void)drawWithPen:(id <FSPen>)pen;
-- (void)drawWithPointPen:(id <FSPointPen>)pointPen;
+- (void)drawWithPen:(nonnull id <FSPen>)pen;
+- (void)drawWithPointPen:(nonnull id <FSPointPen>)pointPen;
 
 // Transformations
 
 // Normalization
-- (BOOL)decomposeWithError:(NSError **)error;
+- (BOOL)decomposeWithError:(NSError *_Nullable*_Nullable)error;
 
 // Environment
 

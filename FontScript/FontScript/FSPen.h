@@ -35,6 +35,6 @@ NS_SWIFT_NAME(Pen)
 
 - (BOOL)addComponentWithName:(nonnull NSString *)name
               transformation:(CGAffineTransform)transformation
-                       error:(NSError **)error NS_SWIFT_NAME(addComponent(name:transformation:));
+                       error:(NSError *_Nullable*_Nullable)error NS_SWIFT_NAME(addComponent(name:transformation:));
 
 @end

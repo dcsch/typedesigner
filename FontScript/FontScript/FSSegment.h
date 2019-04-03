@@ -26,13 +26,13 @@ NS_SWIFT_NAME(Segment)
 @interface FSSegment : NSObject
 
 - (nonnull instancetype)initWithPoints:(nonnull NSArray<FSPoint *> *)points NS_DESIGNATED_INITIALIZER;
-- (instancetype)init __attribute__((unavailable));
+- (nonnull instancetype)init __attribute__((unavailable));
 
 // Parents
-@property(weak) FSContour *contour;
-@property(readonly, weak) FSGlyph *glyph;
-@property(readonly, weak) FSLayer *layer;
-@property(readonly, weak) FSFont *font;
+@property(null_unspecified, weak) FSContour *contour;
+@property(null_unspecified, readonly, weak) FSGlyph *glyph;
+@property(null_unspecified, readonly, weak) FSLayer *layer;
+@property(null_unspecified, readonly, weak) FSFont *font;
 
 // Identification
 

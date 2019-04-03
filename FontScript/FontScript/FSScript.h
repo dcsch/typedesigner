@@ -13,22 +13,22 @@
 NS_SWIFT_NAME(Script)
 @interface FSScript : NSObject
 
-@property(readonly) NSArray<FSFont *> *fonts;
+@property(nonnull, readonly) NSArray<FSFont *> *fonts;
 
-+ (FSScript *)Shared;
++ (nonnull FSScript *)Shared;
 
-- (nonnull instancetype)initWithPath:(NSString *)path NS_DESIGNATED_INITIALIZER;
-- (instancetype)init __attribute__((unavailable));
+- (nonnull instancetype)initWithPath:(nonnull NSString *)path NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init __attribute__((unavailable));
 
-- (FSFont *)newFontWithFamilyName:(NSString *)familyName
-                        styleName:(NSString *)styleName
-                    showInterface:(BOOL)showInterface;
+- (nonnull FSFont *)newFontWithFamilyName:(nonnull NSString *)familyName
+                                styleName:(nonnull NSString *)styleName
+                            showInterface:(BOOL)showInterface;
 
 @end
 
 @interface FSScript (Python)
 
-- (void)importModule:(NSString *)moduleName;
-- (void)runModule:(NSString *)moduleName function:(NSString *)functionName arguments:(NSArray *)args;
+- (void)importModule:(nonnull NSString *)moduleName;
+- (void)runModule:(nonnull NSString *)moduleName function:(nonnull NSString *)functionName arguments:(nonnull NSArray *)args;
 
 @end

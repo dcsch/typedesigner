@@ -21,15 +21,15 @@ NS_SWIFT_NAME(Contour)
 @interface FSContour : NSObject <NSCopying>
 
 - (nonnull instancetype)initWithGlyph:(nullable FSGlyph *)glyph NS_DESIGNATED_INITIALIZER;
-- (instancetype)init __attribute__((unavailable));
+- (nonnull instancetype)init __attribute__((unavailable));
 
 // Parents
-@property(weak) FSGlyph *glyph;
-@property(readonly, weak) FSLayer *layer;
-@property(readonly, weak) FSFont *font;
+@property(nullable, weak) FSGlyph *glyph;
+@property(nullable, readonly, weak) FSLayer *layer;
+@property(nullable, readonly, weak) FSFont *font;
 
 // Identification
-@property(readonly) NSString *identifier;
+@property(null_unspecified, readonly) NSString *identifier;
 @property NSUInteger index;
 
 // Winding Direction

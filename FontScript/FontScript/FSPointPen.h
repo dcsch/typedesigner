@@ -28,5 +28,5 @@ NS_SWIFT_NAME(PointPen)
 - (BOOL)addComponentWithBaseGlyphName:(nonnull NSString *)baseGlyphName
                        transformation:(CGAffineTransform)transformation
                            identifier:(nullable NSString *)identifier
-                                error:(NSError **)error;
+                                error:(NSError *_Nullable*_Nullable)error;
 @end
