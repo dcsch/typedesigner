@@ -335,6 +335,7 @@
 		6373B1B7166A11B5007EC53F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6373B1B9166A11B5007EC53F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6373B1BD166A11B5007EC53F /* Type-Designer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Type-Designer-Prefix.pch"; sourceTree = "<group>"; };
+		63D3F55C2364C693005881D6 /* Type Designer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Type Designer.entitlements"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -561,7 +562,9 @@
 				6373B1AE166A11B5007EC53F /* Frameworks */,
 				6373B1AC166A11B5007EC53F /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		6373B1AC166A11B5007EC53F /* Products */ = {
 			isa = PBXGroup;
@@ -595,6 +598,7 @@
 		6373B1B5166A11B5007EC53F /* Type Designer */ = {
 			isa = PBXGroup;
 			children = (
+				63D3F55C2364C693005881D6 /* Type Designer.entitlements */,
 				630AA399166B5A17001BD6BF /* Tables */,
 				63534560168DB12C00C66A9F /* Suitcase */,
 				6373B1B6166A11B5007EC53F /* Supporting Files */,
@@ -686,7 +690,7 @@
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0900;
 				LastTestingUpgradeCheck = 0710;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "David Schweinsberg";
 				TargetAttributes = {
 					034EC2C41F730F97008570B3 = {
@@ -1240,10 +1244,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Type Designer.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TypeDesigner/Type-Designer-Prefix.pch";
 				INFOPLIST_FILE = TypeDesigner/Info.plist;
@@ -1268,10 +1274,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Type Designer.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9MWCHY26A8;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TypeDesigner/Type-Designer-Prefix.pch";
 				INFOPLIST_FILE = TypeDesigner/Info.plist;

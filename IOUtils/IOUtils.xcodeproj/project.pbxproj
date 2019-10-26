@@ -61,7 +61,9 @@
 				03FF4FF21F44C2EC009F5F0C /* IOUtilsTests */,
 				03FF4FE61F44C2EC009F5F0C /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		03FF4FE61F44C2EC009F5F0C /* Products */ = {
 			isa = PBXGroup;

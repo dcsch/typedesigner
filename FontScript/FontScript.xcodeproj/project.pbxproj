@@ -247,7 +247,9 @@
 				035AD8B920B8CC97006494B7 /* Products */,
 				035AD8D620B8E5ED006494B7 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		035AD8B920B8CC97006494B7 /* Products */ = {
 			isa = PBXGroup;
