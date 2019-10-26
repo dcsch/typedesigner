@@ -61,7 +61,7 @@ class UFODocument: NSDocument {
   }
 
   @IBAction func undo(_ sender: Any?) {
-    let foo = 0
+//    let foo = 0
   }
 
 }

@@ -40,11 +40,11 @@ class TestPointPen : NSObject, PointPen {
     records.append(str)
   }
 
-//  func addCGPoint(_ point: CGPoint, type: Point.Type, smooth: Bool) {
-//  }
-//
-//  func addCGPoint(_ point: CGPoint, type: Point.Type, smooth: Bool, name: String?, identifier: String?) {
-//  }
+  func addCGPoint(_ point: CGPoint, type: PointType, smooth: Bool) {
+  }
+
+  func addCGPoint(_ point: CGPoint, type: PointType, smooth: Bool, name: String?, identifier: String?) {
+  }
 
   func addComponent(withBaseGlyphName baseGlyphName: String,
                     transformation: CGAffineTransform,

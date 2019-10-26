@@ -31,3 +31,4 @@ FOUNDATION_EXPORT const unsigned char FontScriptVersionString[];
 #import <FontScript/FSBoundsPen.h>
 #import <FontScript/FSIdentifier.h>
 #import <FontScript/FontScriptFunctions.h>
+#import <FontScript/NSValue+CGPoint.h>

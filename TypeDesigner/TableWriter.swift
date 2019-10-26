@@ -656,14 +656,9 @@ extension Data {
 
   var checksum: UInt32 {
     get {
-      return withUnsafeBytes { (dataPtr: UnsafePointer<UInt32>) -> UInt32 in
-        var ptr = dataPtr
-        var sum: UInt32 = 0
-        for _ in 0..<(count / 4) {
-          sum = sum &+ ptr.pointee.bigEndian
-          ptr += 1
-        }
-        return sum
+      return withUnsafeBytes { ptr in
+        let bufferPtr = ptr.bindMemory(to: UInt32.self)
+        return bufferPtr.reduce(0) { $0 &+ $1.bigEndian }
       }
     }
   }

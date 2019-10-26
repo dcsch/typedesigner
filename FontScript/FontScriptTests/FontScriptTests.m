@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "FontScript.h"
+#import "../FontScript/FontScript.h"
 
 @interface FontScriptTests : XCTestCase
 {

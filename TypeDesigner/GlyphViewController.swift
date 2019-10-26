@@ -71,11 +71,11 @@ class GlyphViewController: NSViewController, GlyphViewDelegate, FontControllerCo
   }
 
   @IBAction func undo(_ sender: Any?) {
-    let foo = 0
+//    let foo = 0
   }
 
   @IBAction func redo(_ sender: Any?) {
-    let foo = 0
+//    let foo = 0
   }
 
   var glyph: UFOGlyph? {

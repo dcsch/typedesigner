@@ -7,8 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "FSGlyph.h"
-#import "FSContour.h"
+#import "../FontScript/FSGlyph.h"
+#import "../FontScript/FSContour.h"
 
 @interface FSContourTests : XCTestCase
 

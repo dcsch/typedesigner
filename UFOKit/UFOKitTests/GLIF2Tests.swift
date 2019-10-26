@@ -30,12 +30,12 @@ class GLIF2Tests: XCTestCase {
   }
 
   func testTopElement() {
-    let glif = """
-    <notglyph name="a" format="2">
-      <outline>
-      </outline>
-    </notglyph>
-    """
+//    let glif = """
+//    <notglyph name="a" format="2">
+//      <outline>
+//      </outline>
+//    </notglyph>
+//    """
   }
 
   func testReadGlyphException() {

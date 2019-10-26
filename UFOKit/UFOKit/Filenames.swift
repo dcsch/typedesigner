@@ -19,7 +19,7 @@ public class Filenames {
     // Replace any initial period with an underscore
     var name = glyphName
     if name.hasPrefix(".") {
-      name = "_" + name.suffix(from: String.Index(encodedOffset: 1))
+      name = "_" + name.suffix(from: name.index(after: name.startIndex))
     }
 
     // Replace illegal characters with an underscore and append an uppercase

@@ -7,10 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "FSLayer.h"
-#import "FSGlyph.h"
-#import "FSComponent.h"
-#import "FSContour.h"
+#import "../FontScript/FSLayer.h"
+#import "../FontScript/FSGlyph.h"
+#import "../FontScript/FSComponent.h"
+#import "../FontScript/FSContour.h"
 #import "FSTestPen.h"
 
 @interface FSComponentTests : XCTestCase

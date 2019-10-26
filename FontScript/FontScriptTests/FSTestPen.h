@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FSPen.h"
+#import "../FontScript/FSPen.h"
 
 @interface FSTestPen : NSObject <FSPen>
 

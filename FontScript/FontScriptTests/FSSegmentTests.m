@@ -7,8 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "FSSegment.h"
-#import "FSPoint.h"
+#import "../FontScript/FSSegment.h"
+#import "../FontScript/FSPoint.h"
 
 @interface FSSegmentTests : XCTestCase
 

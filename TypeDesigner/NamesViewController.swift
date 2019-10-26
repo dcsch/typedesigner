@@ -21,9 +21,9 @@ class NamesViewController: NSViewController, FontControllerConsumer {
       if let new = fontController {
         new.addSubscriber(self)
       }
-      if let font = fontController?.font {
+//      if let font = fontController?.font {
 //        familyName?.stringValue = font.nameTable.record(nameID: .fullFontName)!.record
-      }
+//      }
     }
   }
 

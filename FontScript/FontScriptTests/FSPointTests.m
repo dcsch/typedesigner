@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "FSPoint.h"
+#import "../FontScript/FSPoint.h"
 
 @interface FSPointTests : XCTestCase
 
