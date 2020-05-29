@@ -75,14 +75,9 @@
 		03A1CEC32106A68E00127C55 /* FSBoundsPen.m in Sources */ = {isa = PBXBuildFile; fileRef = 0378D28920CB38AE00AFE4E3 /* FSBoundsPen.m */; };
 		03A1CEC42106A68E00127C55 /* FSIdentifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E49DEE20F022640039776E /* FSIdentifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03A1CEC52106A68E00127C55 /* FSIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E49DEF20F022640039776E /* FSIdentifier.m */; };
-		03A1CECA2106AD0F00127C55 /* FSScriptPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CEC92106AD0F00127C55 /* FSScriptPy.m */; };
 		03A1CECC2106AFF000127C55 /* NSValue+CGPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A1CECB2106AFF000127C55 /* NSValue+CGPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03A1CECE2106B0FD00127C55 /* NSValue+CGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CECD2106B0FD00127C55 /* NSValue+CGPoint.m */; };
-		03A1CED02106B32300127C55 /* FSFontPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CECF2106B32300127C55 /* FSFontPy.m */; };
-		03A1CED22106B33100127C55 /* FSLayerPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED12106B33100127C55 /* FSLayerPy.m */; };
-		03A1CED42107A3BC00127C55 /* FSInfoPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED32107A3BC00127C55 /* FSInfoPy.m */; };
 		03A1CED52107A4D000127C55 /* FSPythonObjects.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A1CEC62106AB2700127C55 /* FSPythonObjects.h */; };
-		03A1CED72107A69700127C55 /* FSGlyphPy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED62107A69700127C55 /* FSGlyphPy.m */; };
 		03A1CEDA2107A7BA00127C55 /* FontScriptFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A1CED82107A7BA00127C55 /* FontScriptFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03A1CEDB2107A7BA00127C55 /* FontScriptFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED92107A7BA00127C55 /* FontScriptFunctions.m */; };
 		03A1CEDE2107AB7100127C55 /* FontScriptFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CED92107A7BA00127C55 /* FontScriptFunctions.m */; };
@@ -595,21 +590,16 @@
 				03879D5420C1DD5D0033A7C4 /* FSInfo.m in Sources */,
 				0348F58E20BCCD0600FDC6E2 /* FSLayer.m in Sources */,
 				0348F58820BA22E700FDC6E2 /* FSFont.m in Sources */,
-				03A1CED72107A69700127C55 /* FSGlyphPy.m in Sources */,
-				03A1CED42107A3BC00127C55 /* FSInfoPy.m in Sources */,
 				03B1078320CA0693008C05E3 /* FontScript.m in Sources */,
 				0348F59220BCCD1F00FDC6E2 /* FSGlyph.m in Sources */,
 				03E49DF120F022640039776E /* FSIdentifier.m in Sources */,
 				035AD8D520B8CD68006494B7 /* FSScript.m in Sources */,
-				03A1CECA2106AD0F00127C55 /* FSScriptPy.m in Sources */,
 				03924DD5210940B300928986 /* FSContourPointPen.m in Sources */,
 				033585932123B0770075FD98 /* FSBPoint.m in Sources */,
 				03E49DFD20F43C030039776E /* FSPointToSegmentPen.m in Sources */,
 				03E49DDE20EFFCDF0039776E /* FSPoint.m in Sources */,
 				03F46A1F20D2F7360073B844 /* FSContour.m in Sources */,
-				03A1CED22106B33100127C55 /* FSLayerPy.m in Sources */,
 				0378D28B20CB38AE00AFE4E3 /* FSBoundsPen.m in Sources */,
-				03A1CED02106B32300127C55 /* FSFontPy.m in Sources */,
 				0366C81521016982003EEEB6 /* FSComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

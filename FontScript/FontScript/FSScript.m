@@ -10,7 +10,7 @@
 #import "FSFont.h"
 
 #if TARGET_OS_OSX
-#import "FSPythonObjects.h"
+//#import "FSPythonObjects.h"
 #endif
 
 NSErrorDomain const FontScriptErrorDomain = @"FontScriptErrorDomain";
@@ -36,18 +36,18 @@ static __weak FSScript *script;
     _fonts = [[NSMutableArray alloc] init];
 
 #if TARGET_OS_OSX
-    if (!Py_IsInitialized()) {
-      wchar_t *p = Py_GetPath();
-      size_t len = wcslen(p) * sizeof(wchar_t);
-      NSString *pythonPath = [[NSString alloc] initWithBytes:p length:len encoding:NSUTF32LittleEndianStringEncoding];
-      if (![pythonPath containsString:path]) {
-        pythonPath = [pythonPath stringByAppendingFormat:@":%@", path];
-        NSLog(@"Adding to PYTHONPATH: %@", pythonPath);
-        Py_SetPath((const wchar_t *)[pythonPath cStringUsingEncoding:NSUTF32LittleEndianStringEncoding]);
-        PyImport_AppendInittab("fontParts", PyInit_fontParts);
-      }
-    Py_Initialize();
-    }
+//    if (!Py_IsInitialized()) {
+//      wchar_t *p = Py_GetPath();
+//      size_t len = wcslen(p) * sizeof(wchar_t);
+//      NSString *pythonPath = [[NSString alloc] initWithBytes:p length:len encoding:NSUTF32LittleEndianStringEncoding];
+//      if (![pythonPath containsString:path]) {
+//        pythonPath = [pythonPath stringByAppendingFormat:@":%@", path];
+//        NSLog(@"Adding to PYTHONPATH: %@", pythonPath);
+//        Py_SetPath((const wchar_t *)[pythonPath cStringUsingEncoding:NSUTF32LittleEndianStringEncoding]);
+//        PyImport_AppendInittab("fontParts", PyInit_fontParts);
+//      }
+//    Py_Initialize();
+//    }
 #endif
     script = self;
   }
