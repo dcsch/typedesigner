@@ -26,8 +26,6 @@
 		034BF03B1F96A9AA00BFE9F1 /* CharacterToGlyphMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034BF03A1F96A9AA00BFE9F1 /* CharacterToGlyphMapping.swift */; };
 		034EC2C81F730F97008570B3 /* TypeDesignerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC2C71F730F97008570B3 /* TypeDesignerUITests.swift */; };
 		034EC2D61F73103F008570B3 /* TypeDesignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034EC2D51F73103F008570B3 /* TypeDesignerTests.swift */; };
-		035AD8A620B8B70E006494B7 /* UFOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD8A320B8B590006494B7 /* UFOKit.framework */; };
-		035AD8A720B8B70E006494B7 /* UFOKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 035AD8A320B8B590006494B7 /* UFOKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		035AD8AB20B8BB1C006494B7 /* UFODocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8AA20B8BB1C006494B7 /* UFODocument.swift */; };
 		035AD8AD20B8BC64006494B7 /* UFOFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AD8AC20B8BC64006494B7 /* UFOFont.swift */; };
 		036383A42112392900E7E26C /* OpenTypeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036383A32112392900E7E26C /* OpenTypeConverter.swift */; };
@@ -97,6 +95,7 @@
 		03FF50311F47F339009F5F0C /* CvtTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF50301F47F339009F5F0C /* CvtTable.swift */; };
 		03FF50331F48152C009F5F0C /* DsigTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF50321F48152C009F5F0C /* DsigTable.swift */; };
 		03FF506E1F4BE212009F5F0C /* GlyfCompositeDescript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF506D1F4BE212009F5F0C /* GlyfCompositeDescript.swift */; };
+		6327BCDF2481B3D4005E1B08 /* UFOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6327BCDE2481B3D4005E1B08 /* UFOKit */; };
 		6373B1B0166A11B5007EC53F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6373B1AF166A11B5007EC53F /* Cocoa.framework */; };
 		6373B1BA166A11B5007EC53F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6373B1B8166A11B5007EC53F /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -115,27 +114,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6373B1AA166A11B5007EC53F;
 			remoteInfo = "Type Designer";
-		};
-		035AD8A220B8B590006494B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 03601D701FDF67F8000B1401;
-			remoteInfo = UFOKit;
-		};
-		035AD8A420B8B590006494B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 03601D791FDF67F8000B1401;
-			remoteInfo = UFOKitTests;
-		};
-		035AD8A820B8B70E006494B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 03601D6F1FDF67F8000B1401;
-			remoteInfo = UFOKit;
 		};
 		03924DBE2108ED5900928986 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -225,7 +203,6 @@
 			files = (
 				03924DC82109085F00928986 /* FontScript.framework in Embed Frameworks */,
 				03FF501E1F45188E009F5F0C /* CFF.framework in Embed Frameworks */,
-				035AD8A720B8B70E006494B7 /* UFOKit.framework in Embed Frameworks */,
 				03FF501A1F45188E009F5F0C /* IOUtils.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -257,7 +234,6 @@
 		034EC2D31F73103F008570B3 /* TypeDesignerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypeDesignerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		034EC2D51F73103F008570B3 /* TypeDesignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeDesignerTests.swift; sourceTree = "<group>"; };
 		034EC2D71F73103F008570B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UFOKit.xcodeproj; path = UFOKit/UFOKit.xcodeproj; sourceTree = "<group>"; };
 		035AD8AA20B8BB1C006494B7 /* UFODocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFODocument.swift; sourceTree = "<group>"; };
 		035AD8AC20B8BC64006494B7 /* UFOFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFOFont.swift; sourceTree = "<group>"; };
 		036383A32112392900E7E26C /* OpenTypeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeConverter.swift; sourceTree = "<group>"; };
@@ -357,9 +333,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6327BCDF2481B3D4005E1B08 /* UFOKit in Frameworks */,
 				03FF50191F45188E009F5F0C /* IOUtils.framework in Frameworks */,
 				6373B1B0166A11B5007EC53F /* Cocoa.framework in Frameworks */,
-				035AD8A620B8B70E006494B7 /* UFOKit.framework in Frameworks */,
 				03FF501D1F45188E009F5F0C /* CFF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,15 +359,6 @@
 				034EC2D71F73103F008570B3 /* Info.plist */,
 			);
 			path = TypeDesignerTests;
-			sourceTree = "<group>";
-		};
-		035AD89C20B8B590006494B7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				035AD8A320B8B590006494B7 /* UFOKit.framework */,
-				035AD8A520B8B590006494B7 /* UFOKitTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		03924DB72108ED5900928986 /* Products */ = {
@@ -555,7 +522,6 @@
 				03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */,
 				03C2F5111F43FDDC00B2A3BC /* CFF.xcodeproj */,
 				03924DB62108ED5900928986 /* FontScript.xcodeproj */,
-				035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */,
 				6373B1B5166A11B5007EC53F /* Type Designer */,
 				034EC2C61F730F97008570B3 /* TypeDesignerUITests */,
 				034EC2D41F73103F008570B3 /* TypeDesignerTests */,
@@ -674,9 +640,11 @@
 				03924DCA2109089000928986 /* PBXTargetDependency */,
 				03FF501C1F45188E009F5F0C /* PBXTargetDependency */,
 				03FF50201F45188E009F5F0C /* PBXTargetDependency */,
-				035AD8A920B8B70E006494B7 /* PBXTargetDependency */,
 			);
 			name = "Type Designer";
+			packageProductDependencies = (
+				6327BCDE2481B3D4005E1B08 /* UFOKit */,
+			);
 			productName = Typecast;
 			productReference = 6373B1AB166A11B5007EC53F /* Type Designer.app */;
 			productType = "com.apple.product-type.application";
@@ -723,6 +691,9 @@
 				Base,
 			);
 			mainGroup = 6373B1A0166A11B5007EC53F;
+			packageReferences = (
+				6327BCDD2481B3D4005E1B08 /* XCRemoteSwiftPackageReference "ufokit" */,
+			);
 			productRefGroup = 6373B1AC166A11B5007EC53F /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -738,10 +709,6 @@
 					ProductGroup = 03FF50001F44C2EC009F5F0C /* Products */;
 					ProjectRef = 03FF4FFF1F44C2EC009F5F0C /* IOUtils.xcodeproj */;
 				},
-				{
-					ProductGroup = 035AD89C20B8B590006494B7 /* Products */;
-					ProjectRef = 035AD89B20B8B590006494B7 /* UFOKit.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -753,20 +720,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		035AD8A320B8B590006494B7 /* UFOKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = UFOKit.framework;
-			remoteRef = 035AD8A220B8B590006494B7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		035AD8A520B8B590006494B7 /* UFOKitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UFOKitTests.xctest;
-			remoteRef = 035AD8A420B8B590006494B7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		03924DBF2108ED5900928986 /* FontScript.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -967,11 +920,6 @@
 			isa = PBXTargetDependency;
 			target = 6373B1AA166A11B5007EC53F /* Type Designer */;
 			targetProxy = 034EC2D81F73103F008570B3 /* PBXContainerItemProxy */;
-		};
-		035AD8A920B8B70E006494B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UFOKit;
-			targetProxy = 035AD8A820B8B70E006494B7 /* PBXContainerItemProxy */;
 		};
 		03924DCA2109089000928986 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1336,6 +1284,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6327BCDD2481B3D4005E1B08 /* XCRemoteSwiftPackageReference "ufokit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dcsch/ufokit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6327BCDE2481B3D4005E1B08 /* UFOKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6327BCDD2481B3D4005E1B08 /* XCRemoteSwiftPackageReference "ufokit" */;
+			productName = UFOKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6373B1A2166A11B5007EC53F /* Project object */;
 }
